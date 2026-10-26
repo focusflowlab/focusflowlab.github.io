@@ -24,7 +24,7 @@ def app_ld(name, path, desc):
 TOOLS = [
   dict(slug="focus-timer", name="Focus timer", tag="Focus",
        title="Free Focus Timer for Studying: Focus Blocks and Breaks",
-       desc="A free study focus timer. Pick a 25, 45 or 50 minute focus block, take a short break, and end each block with a quick self-test.",
+       desc="A free online study timer: 25/5 Pomodoro-style blocks or 45 and 50 minute focus blocks, with breaks and a quick self-test after each one.",
        h1="One focus block at a time.",
        lead="Pick a block length, put your phone in another room, press start.",
        card="Focus blocks with a break and a self-test prompt at the end.",
@@ -50,7 +50,7 @@ TOOLS = [
           </div>
           <p class="muted timer-count" id="done-count"></p>
         </div>""",
-       how="""<p>A focus block is a set stretch of time where you do one thing: no phone, no switching tabs, no “quick check”. Short blocks with breaks are easier to start than a vague evening of studying.</p>
+       how="""<p>A focus block is a set stretch of time where you do one thing: no phone, no switching tabs, no “quick check”. Short blocks with breaks are easier to start than a vague evening of studying. The 25-minute block with a 5-minute break is the classic Pomodoro-style rhythm; 50 and 10 suits longer study sessions.</p>
           <ul>
             <li><strong>Start with 25 minutes</strong> if focusing is hard right now. Move up to 45 or 50 as it gets easier.</li>
             <li><strong>End each block with a self-test.</strong> Writing down what you just learned, without looking, shows what actually went in.</li>
@@ -161,21 +161,23 @@ TOOLS = [
             <li><strong>Use your current grade as a percentage.</strong> If your school shows letters, use the percentage behind the letter.</li>
             <li><strong>Then plan backwards.</strong> The <a href="/tools/exam-countdown/">exam countdown</a> shows how many study hours you have left.</li>
           </ul>""",
-       faq=[("How is the score I need worked out?", "Needed score = (target grade − current grade × (1 − final weight)) ÷ final weight, with the weight as a decimal. So a final worth 25% uses 0.25."),
+       faq=[("What do I need on my final to pass?", "Set “Grade you want” to your course’s pass mark, often 60% or 70% (check your syllabus). The calculator shows the score you need on the final to reach it."),
+            ("What do I need on my final to get an A?", "Put 90 as the grade you want, or check the table under the result: it lists the score you need for an A, B, C and D at once."),
+            ("How is the score I need worked out?", "Needed score = (target grade − current grade × (1 − final weight)) ÷ final weight, with the weight as a decimal. So a final worth 25% uses 0.25."),
             ("What if the answer is over 100%?", "Then the target can’t be reached on the final alone, unless your course has extra credit. Try the next grade down to see what is reachable."),
             ("Does it work for weighted categories?", "If your grade comes from several weighted categories, work out your current grade first with the weighted grade calculator, then use that number here.")],
        script="final-grade.js"),
   dict(slug="gpa-calculator", name="GPA calculator", tag="Grades",
-       title="GPA Calculator: Semester and Cumulative GPA (4.0 Scale)",
-       desc="Work out your semester GPA from letter grades and credits on the US 4.0 scale, and your new cumulative GPA. Free, saves in your browser.",
+       title="GPA Calculator: Weighted, Cumulative and How to Raise It",
+       desc="Free GPA calculator for college and high school: semester GPA, weighted GPA for Honors and AP classes, cumulative GPA, and the GPA you need to raise it.",
        h1="Work out your GPA.",
        lead="Add your courses, credits and letter grades. Your GPA updates as you type.",
-       card="Semester and cumulative GPA on the 4.0 scale.",
+       card="Semester, weighted and cumulative GPA, and how to raise it.",
        go="Calculate my GPA",
        tool="""        <form class="sheet" id="gpa-form" novalidate aria-label="GPA calculator">
           <p class="sheet-title">This semester</p>
-          <div class="row-head" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span></span></div>
-          <ol class="tool-rows" id="gpa-rows"></ol>
+          <div class="row-head gpa-head" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span>Level</span><span></span></div>
+          <ol class="tool-rows gpa-rows" id="gpa-rows"></ol>
           <div class="sheet-actions"><button class="btn btn-soft" type="button" id="add-course">Add a course</button></div>
           <fieldset><legend>Past GPA (optional, for cumulative)</legend>
             <div class="fields fields-2b">
@@ -186,19 +188,31 @@ TOOLS = [
           <div class="count-result" aria-live="polite">
             <dl class="totals">
               <div><dt>Semester GPA</dt><dd id="r-term">–</dd></div>
+              <div><dt>Weighted GPA</dt><dd id="r-weighted">–</dd></div>
               <div><dt>Credits</dt><dd id="r-credits">0</dd></div>
               <div><dt>Cumulative GPA</dt><dd id="r-cum">–</dd></div>
             </dl>
           </div>
+          <fieldset><legend>Raise my GPA (optional)</legend>
+            <div class="fields fields-2b">
+              <div><label for="targetGpa">Target cumulative GPA</label><input type="number" id="targetGpa" min="0" max="4" step="0.01" placeholder="3.50" inputmode="decimal"></div>
+              <div><label for="nextCredits">Credits next term</label><input type="number" id="nextCredits" min="1" step="1" placeholder="15" inputmode="numeric"></div>
+            </div>
+            <p class="gpa-need" id="r-need" aria-live="polite"></p>
+          </fieldset>
         </form>""",
        how="""<p>GPA is an average of grade points, weighted by credits, so a 4-credit course counts more than a 1-credit one. This calculator uses the common US 4.0 scale: A = 4.0, A− = 3.7, B+ = 3.3, B = 3.0, and so on down to F = 0.</p>
+          <p><strong>Weighted GPA</strong> is common in US high schools: Honors classes usually get an extra 0.5 and AP or IB classes an extra 1.0, so an A in an AP class counts as 5.0. Set each course’s level to see it. Schools differ, so check yours.</p>
           <ul>
             <li><strong>Check your school’s scale.</strong> Some schools give A+ a 4.3, and some don’t use plus or minus grades. Your transcript or student handbook says which.</li>
             <li><strong>For cumulative GPA,</strong> add your current GPA and the credits it covers. The calculator combines them with this semester.</li>
             <li><strong>Pass/fail courses</strong> usually don’t count toward GPA, so leave them out.</li>
+            <li><strong>To raise your GPA,</strong> put your target and next term’s credits under “Raise my GPA”. It shows the GPA you need next term.</li>
           </ul>""",
        faq=[("How is GPA calculated?", "Multiply each course’s grade points by its credits, add those up, and divide by the total credits. A 3-credit A (4.0) and a 4-credit B (3.0) give (12 + 12) ÷ 7 = 3.43."),
             ("Does an A+ count as 4.3?", "At some schools, yes. This calculator uses 4.0 for an A+, which is the most common rule. Check your school’s policy."),
+            ("How do I calculate a weighted GPA for Honors and AP classes?", "Add 0.5 to the grade points of Honors classes and 1.0 to AP or IB classes, then average by credits as usual. An A in an AP class becomes 5.0. Many high schools use this scale, but check yours."),
+            ("How much can I raise my GPA in one semester?", "It depends on how many credits you already have. Put your target and next term’s credits under “Raise my GPA” to see the GPA you’d need. The more credits behind you, the slower your GPA moves."),
             ("Can I use it for UK, Canadian or Australian grades?", "Only if your school reports a 4.0-scale GPA. UK degree classifications and Australian GPA scales work differently, so this calculator won’t match them.")],
        script="gpa.js"),
   dict(slug="weighted-grade-calculator", name="Weighted grade calculator", tag="Grades",
@@ -234,7 +248,7 @@ TOOLS = [
        script="weighted-grade.js"),
   dict(slug="study-schedule-maker", name="Study schedule maker", tag="Planning",
        title="Study Schedule Maker: Free Weekly Plan for All Your Exams",
-       desc="Add your subjects and exam dates, set your daily hours, and get a week-by-week study schedule that gives nearer exams more time. Free and printable.",
+       desc="Free study schedule and study timetable maker: add your subjects and exam dates and get weekly hours per subject, with more time for nearer exams.",
        h1="A study schedule for all your exams.",
        lead="Add each subject and its exam date. You get hours per subject for every week.",
        card="Weekly hours per subject, up to each exam.",
@@ -263,7 +277,8 @@ TOOLS = [
             <li><strong>Mark your hardest subjects as Heavy.</strong> They get about three times the time of a Light one.</li>
             <li><strong>Turn hours into blocks.</strong> Use the <a href="/tools/focus-timer/">focus timer</a> to work through each subject’s hours one block at a time.</li>
           </ul>""",
-       faq=[("How does it decide hours per subject?", "Each study day, subjects with an upcoming exam share your hours. A subject’s share grows with the work it needs (Light, Normal, Heavy) and as its exam gets closer."),
+       faq=[("Is this a study timetable maker?", "Yes. It makes a printable week-by-week study timetable for all your subjects. Press “Print or save as PDF” to keep it."),
+            ("How does it decide hours per subject?", "Each study day, subjects with an upcoming exam share your hours. A subject’s share grows with the work it needs (Light, Normal, Heavy) and as its exam gets closer."),
             ("Can I save or print it?", "Press “Print or save as PDF”. Your subjects and dates also stay in this browser for next time."),
             ("What about big exams like the NCLEX or MCAT?", "For a single big exam, the exam-specific study plans are a better fit. They follow that exam’s content outline.")],
        script="study-schedule.js"),
@@ -302,7 +317,8 @@ TOOLS = [
             <li><strong>Use the review days</strong> to recall, not re-read: skim your notes and test yourself on the main points.</li>
             <li><strong>Behind schedule?</strong> Put in the pages you’ve read so far and the plan resets from today.</li>
           </ul>""",
-       faq=[("How are pages per day worked out?", "Pages left ÷ reading days before the deadline, rounded up. Review days and rest days aren’t counted as reading days."),
+       faq=[("How many pages a day should I read?", "Enough to finish by your deadline with a couple of days spare for review. Put in your page count and deadline above and the planner works it out."),
+            ("How are pages per day worked out?", "Pages left ÷ reading days before the deadline, rounded up. Review days and rest days aren’t counted as reading days."),
             ("Does it count today?", "Yes. The plan starts today and ends the day before your deadline."),
             ("Is my plan saved?", "Yes, in this browser only, so you can come back and update the pages you’ve read.")],
        script="reading-planner.js"),

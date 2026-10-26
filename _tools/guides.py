@@ -88,6 +88,86 @@ GUIDES = [
          ("Plan by the week, not the day", """<p>List every topic, then spread them across the weeks you have, with the biggest and weakest first. A weekly target bends when a day goes wrong. A daily schedule usually breaks. The <a href="/tools/exam-countdown/">exam countdown</a> shows how many study hours you really have, and the <a href="/study-plan/">study plan generators</a> lay out the weeks for big exams.</p>"""),
          ("Review on a schedule", """<p>Come back to each topic a day later, a few days later and a couple of weeks later, recalling first each time. The <a href="/tools/spaced-review/">spaced review calendar</a> gives you the dates.</p>"""),
        ]),
+  dict(slug="how-to-study-for-finals-in-a-week", tag="Finals", date="2026-10-27",
+       title="How to Study for Finals in a Week: A Day-by-Day Plan",
+       h1="How to study for finals in a week",
+       desc="A day-by-day plan for studying for finals in one week: sort your exams, learn by recall, practise under time pressure, and sleep before the exam.",
+       lead="Seven days, several exams. Here’s a plan that fits, day by day.",
+       card="A day-by-day plan for the last week before finals.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("Start with the numbers", """<p>A week sounds like a lot until you count it. Five study days at five hours is 25 hours, shared between every exam you have. Put your exam dates and daily hours into the <a href="/tools/exam-countdown/">exam countdown</a> to see your real total before you plan anything.</p>
+<p>Then check what each exam is worth to you. The <a href="/tools/final-grade-calculator/">final grade calculator</a> shows the score you need on each final for the grade you want. An exam where you need 60% to keep an A gets less time than one where you need 85% to pass.</p>"""),
+         ("Day 7: sort everything", """<ul>
+<li>List every exam, its date and the topics it covers. Use the syllabus or review sheet, not memory.</li>
+<li>Mark each topic: know it, shaky, or haven’t learned it.</li>
+<li>Find past papers or practice questions for every exam. These decide what you study.</li>
+<li>Put your exams into the <a href="/tools/study-schedule-maker/">study schedule maker</a> to split your hours across subjects.</li>
+</ul>"""),
+         ("Days 6 to 4: learn by recall", """<p>Work through the shaky and unlearned topics, biggest first. For each one, read it once, close your notes, and write down what you remember. Then check and fill the gaps. This is slower than re-reading, but it’s the part that sticks.</p>
+<p>Switch subjects during the day instead of spending a whole day on one. Mixing topics feels harder, but it helps you tell similar problems apart on the exam.</p>
+<p>Work in focus blocks with short breaks. The <a href="/tools/focus-timer/">focus timer</a> runs 25, 45 or 50 minute blocks.</p>"""),
+         ("Days 3 and 2: practise like the exam", """<ul>
+<li>Do past papers or practice sets under time pressure, with your notes closed.</li>
+<li>Mark them straight away. For every mistake, write down why: didn’t know it, misread it, or ran out of time.</li>
+<li>Spend the rest of the day on the mistakes, not on what you already got right.</li>
+</ul>"""),
+         ("Day 1: review and rest", """<p>No new topics. Go through your mistake list, recall the main formulas and points from memory, and stop early. Sleep matters more than one more hour of studying: memory consolidates while you sleep, and a tired brain loses marks on easy questions.</p>"""),
+         ("If you have two exams close together", """<p>Study for the first exam in the morning and the second in the afternoon until the first is done, then switch fully to the second. The <a href="/guides/how-to-study-for-multiple-exams/">guide to studying for multiple exams</a> covers this in more detail.</p>"""),
+       ]),
+  dict(slug="how-to-study-for-multiple-exams", tag="Finals", date="2026-10-27",
+       title="How to Study for Multiple Exams in the Same Week",
+       h1="How to study for multiple exams in the same week",
+       desc="Several exams in one week? Split your hours by what each exam needs, study more than one subject a day, and switch focus as each exam passes.",
+       lead="Three exams, one week. Split the time on purpose, not by panic.",
+       card="Split your time across several exams without panic.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("Don’t study in exam order", """<p>The common mistake is studying for the first exam until it’s over, then starting the second. By then the third has no time left. Spread your study across every exam from the start, with more time for the ones that are sooner or harder.</p>"""),
+         ("Weigh each exam", """<p>Give each exam a weight from two things: how much work it needs, and how much the grade matters. A heavy subject where you’re borderline gets the most hours. A light one where you’re safe gets the least. The <a href="/tools/final-grade-calculator/">final grade calculator</a> tells you where you’re safe.</p>
+<p>The <a href="/tools/study-schedule-maker/">study schedule maker</a> does this split for you: add each subject, its exam date and how much work it needs, and it shares out your daily hours, with more time for the exam that comes first.</p>"""),
+         ("Mix subjects in the same day", """<p>Study two or three subjects each day instead of one. Mixed practice feels harder while you’re doing it, but it leads to better results on the test. In one study, students who mixed different kinds of maths problems scored far higher a week later than students who practised one kind at a time.</p>"""),
+         ("Switch focus as exams pass", """<p>The day before each exam, give it most of your time and keep the others ticking over with short recall sessions. After the exam, drop it completely and move its hours to the next one.</p>"""),
+         ("Keep each day realistic", """<ul>
+<li>Plan in focus blocks, for example four to six blocks of 45 minutes with breaks.</li>
+<li>Start each day with a short review of yesterday’s topics, from memory.</li>
+<li>Stop at a set time. Sleep is when today’s studying sticks.</li>
+</ul>"""),
+       ]),
+  dict(slug="does-cramming-work", tag="Finals", date="2026-10-27",
+       title="Does Cramming Work? What to Do If You Have to Cram",
+       h1="Does cramming work?",
+       desc="Cramming gets some facts through one exam but fades fast. Here’s what research says, and how to cram better if you’re out of time.",
+       lead="It can get you through tomorrow. It won’t get you through the course.",
+       card="What research says, and how to cram better if you must.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("The short answer", """<p>Cramming can get you through a test the next day. But what you cram fades fast, and spreading the same study time over several days works better. In one flashcard study, spacing beat cramming for 90% of students, yet most of them believed cramming had worked better. Cramming feels effective because the material feels familiar while you’re doing it.</p>"""),
+         ("Why it feels like it works", """<p>When you’ve just read something five times, it feels easy to recognise. Recognising isn’t the same as recalling it in an exam, with nothing in front of you. That gap is why crammed material can vanish when you see the question.</p>"""),
+         ("If you have to cram tonight", """<ol>
+<li><strong>Pick what’s worth points.</strong> Look at past papers or the review sheet and cover those topics first.</li>
+<li><strong>Test yourself instead of re-reading.</strong> Read a section once, close the book, write what you remember, then check.</li>
+<li><strong>Do practice questions.</strong> Even a few past questions show you what the exam wants.</li>
+<li><strong>Take short breaks</strong> every 45 to 50 minutes. The <a href="/tools/focus-timer/">focus timer</a> keeps you honest.</li>
+<li><strong>Sleep.</strong> An all-nighter costs you on the easy questions. Stop in time to get some sleep.</li>
+</ol>"""),
+         ("Next time, space it out", """<p>Study the same hours across more days instead. Review each topic a day later, a few days later and a week later. The <a href="/tools/spaced-review/">spaced review calendar</a> and <a href="/tools/flashcards/">flashcards</a> do the scheduling for you.</p>"""),
+       ]),
+  dict(slug="stop-procrastinating-studying", tag="Focus", date="2026-10-27",
+       title="How to Stop Procrastinating and Start Studying",
+       h1="How to stop procrastinating and start studying",
+       desc="Procrastination is about how a task feels, not laziness. Make the first step tiny, set an if-then plan, and remove the easiest escape.",
+       lead="It’s not laziness. It’s how the task feels. Change that, and starting gets easier.",
+       card="Make starting easy: tiny first steps and if-then plans.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions and starting a study session.",
+       sections=[
+         ("Why you put it off", """<p>Research on procrastination keeps finding the same pattern: we delay tasks that feel unpleasant, especially when the reward is far away and something easier is close at hand. A big, vague task like “study for biology” is all three: unpleasant, far from any reward, and competing with your phone.</p>"""),
+         ("Make the first step tiny", """<p>“Study for biology” is hard to start. “Write down what I remember about cell respiration for five minutes” isn’t. Shrink the first step until it feels almost silly. Once you’ve started, carrying on is much easier than starting was.</p>"""),
+         ("Use an if-then plan", """<p>Decide exactly when and where you’ll start: “If it’s 7pm, then I sit at my desk and open chapter 4.” Plans like this, called implementation intentions, made people noticeably more likely to follow through on their goals across many studies.</p>"""),
+         ("Remove the easy escape", """<p>Put your phone in another room before you start. If it’s within reach, checking it will always be easier than studying. The <a href="/guides/stop-checking-phone-while-studying/">phone guide</a> has more ways to add distance.</p>"""),
+         ("Start with a timer", """<p>Commit to one focus block, not the whole evening. The <a href="/tools/focus-timer/">focus timer</a> runs 25, 45 or 50 minutes. When it ends, you can stop. Most of the time you won’t want to.</p>"""),
+         ("Clear your head first", """<p>If other worries keep pulling you away, spend three minutes writing them all down before you start. The <a href="/guides/brain-dump-before-studying/">brain dump guide</a> shows how.</p>"""),
+       ]),
 ]
 
 REFS = {
@@ -95,6 +175,10 @@ REFS = {
   "active-recall-notes": "Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., &amp; Willingham, D. T. (2013). Improving students’ learning with effective learning techniques. <em>Psychological Science in the Public Interest</em>, 14(1).",
   "brain-dump-before-studying": "Masicampo, E. J., &amp; Baumeister, R. F. (2011). Consider it done! Plan making can eliminate the cognitive effects of unfulfilled goals. <em>Journal of Personality and Social Psychology</em>, 101(4).",
   "stop-rereading-cover-syllabus-faster": "Karpicke, J. D., &amp; Roediger, H. L. (2008). The critical importance of retrieval for learning. <em>Science</em>, 319(5865).",
+  "how-to-study-for-finals-in-a-week": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).<br>Rohrer, D., &amp; Taylor, K. (2007). The shuffling of mathematics problems improves learning. <em>Instructional Science</em>, 35(6).",
+  "how-to-study-for-multiple-exams": "Rohrer, D., &amp; Taylor, K. (2007). The shuffling of mathematics problems improves learning. <em>Instructional Science</em>, 35(6).",
+  "does-cramming-work": "Kornell, N. (2009). Optimising learning using flashcards: Spacing is more effective than cramming. <em>Applied Cognitive Psychology</em>, 23(9).",
+  "stop-procrastinating-studying": "Steel, P. (2007). The nature of procrastination: A meta-analytic and theoretical review of quintessential self-regulatory failure. <em>Psychological Bulletin</em>, 133(1).<br>Gollwitzer, P. M., &amp; Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. <em>Advances in Experimental Social Psychology</em>, 38.",
 }
 
 VIDEO_SCRIPT = """
@@ -113,6 +197,11 @@ VIDEO_SCRIPT = """
   });
 </script>"""
 
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+def nice_date(iso):
+    return f"{int(iso[8:10])} {MONTHS[int(iso[5:7]) - 1]} {iso[:4]}"
+
 def guide_page(g):
     path = f"/guides/{g['slug']}/"
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Guides", "/guides/"), (g["h1"][0].upper() + g["h1"][1:], path)])
@@ -120,9 +209,14 @@ def guide_page(g):
     toc = "\n".join(f'          <li><a href="#{i}">{h}</a></li>' for i, h in heads)
     secs = "\n".join(f'        <h2 id="{slug(h)}">{h}</h2>\n        {body}' for h, body in g["sections"])
     ld = {"@context": "https://schema.org", "@graph": [
-      {"@type": "Article", "headline": g["title"], "description": g["desc"], "url": SITE + path, "datePublished": PUBLISHED, "dateModified": PUBLISHED,
-       "author": ORG, "publisher": ORG, "image": f"https://i.ytimg.com/vi/{g['video']}/hqdefault.jpg", "mainEntityOfPage": SITE + path},
+      {"@type": "Article", "headline": g["title"], "description": g["desc"], "url": SITE + path, "datePublished": g.get("date", PUBLISHED), "dateModified": g.get("date", PUBLISHED),
+       "author": ORG, "publisher": ORG, "image": (f"https://i.ytimg.com/vi/{g['video']}/hqdefault.jpg" if g.get("video") else SITE + "/assets/og-image.png"), "mainEntityOfPage": SITE + path},
       crumb_ld]}
+    watch_toc = '          <li><a href="#watch">Watch the video</a></li>' if g.get("video") else ""
+    watch = (f"""        <h2 id="watch">Watch the video</h2>
+        <a class="video" href="https://www.youtube.com/watch?v={g['video']}" data-video="{g['video']}">
+          <span class="video-frame"><img src="https://i.ytimg.com/vi/{g['video']}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
+          <span class="video-title">Watch on the FocusFlow Lab YouTube channel</span></a>""" if g.get("video") else "")
     body = f"""{crumb_html}
 
     <main id="main">
@@ -130,27 +224,24 @@ def guide_page(g):
         <span class="card-tag">{g['tag']}</span>
         <h1>{g['h1']}</h1>
         <p class="lead">{g['lead']}</p>
-        <p>By FocusFlow Lab. Published <time datetime="{PUBLISHED}">26 October 2026</time>.</p>
+        <p>By FocusFlow Lab. Published <time datetime="{g.get('date', PUBLISHED)}">{nice_date(g.get('date', PUBLISHED))}</time>.</p>
       </header>
       <div class="doc">
         <nav class="toc" aria-label="On this page">
           <p>On this page</p>
           <ol>
 {toc}
-          <li><a href="#watch">Watch the video</a></li>
+{watch_toc}
           </ol>
         </nav>
         <article class="prose">
 {secs}
-        <h2 id="watch">Watch the video</h2>
-        <a class="video" href="https://www.youtube.com/watch?v={g['video']}" data-video="{g['video']}">
-          <span class="video-frame"><img src="https://i.ytimg.com/vi/{g['video']}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
-          <span class="video-title">Watch on the FocusFlow Lab YouTube channel</span></a>
+{watch}
         <aside class="sheet guide-kit">
-          <p><strong>Want this on paper?</strong> The free Study Focus Kit has a printable worksheet for this system, plus four more.</p>
+          <p><strong>Want this on paper?</strong> {g.get("kit", "The free Study Focus Kit has a printable worksheet for this system, plus four more.")}</p>
           <a class="btn" href="/#free-kit">Get the free kit</a>
         </aside>
-        <p class="refs"><strong>Source:</strong> {REFS[g['slug']]}</p>
+        <p class="refs"><strong>{"Sources" if "<br>" in REFS[g['slug']] else "Source"}:</strong> {REFS[g['slug']]}</p>
         </article>
       </div>
     </main>"""
@@ -171,7 +262,7 @@ def index_page():
       <section class="hero single wash">
         <div>
           <h1>Study guides.</h1>
-          <p class="lead">Short, practical guides to the FocusFlow systems. Each one goes with a video and a worksheet in the free kit.</p>
+          <p class="lead">Short, practical guides to studying: focus, memory, planning and finals. Most go with a FocusFlow video.</p>
         </div>
       </section>
       <ul class="cards">

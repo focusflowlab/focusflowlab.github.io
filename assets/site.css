@@ -557,3 +557,6 @@ label.btn { margin: 0; display: inline-flex; }
 }
 /* The header bar keeps the page gutter (an older .masthead rule reset it) */
 .site-head .container.masthead { padding-inline: var(--gutter); }
+.gpa-head, .gpa-rows li { grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 1fr) auto; }
+.gpa-need { margin-top: var(--space-sm); font-weight: 600; color: var(--color-accent-ink); min-height: 1.5em; }
+@media (max-width: 560px) { .gpa-rows li { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); } .gpa-rows li > :first-child { grid-column: 1 / -1; } }

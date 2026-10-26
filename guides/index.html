@@ -58,6 +58,26 @@
           "@type": "Article",
           "headline": "Why Re-reading Won’t Finish Your Syllabus (and What Will)",
           "url": "https://thefocusflowlab.com/guides/stop-rereading-cover-syllabus-faster/"
+        },
+        {
+          "@type": "Article",
+          "headline": "How to Study for Finals in a Week: A Day-by-Day Plan",
+          "url": "https://thefocusflowlab.com/guides/how-to-study-for-finals-in-a-week/"
+        },
+        {
+          "@type": "Article",
+          "headline": "How to Study for Multiple Exams in the Same Week",
+          "url": "https://thefocusflowlab.com/guides/how-to-study-for-multiple-exams/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Does Cramming Work? What to Do If You Have to Cram",
+          "url": "https://thefocusflowlab.com/guides/does-cramming-work/"
+        },
+        {
+          "@type": "Article",
+          "headline": "How to Stop Procrastinating and Start Studying",
+          "url": "https://thefocusflowlab.com/guides/stop-procrastinating-studying/"
         }
       ]
     },
@@ -165,6 +185,7 @@
               <ul>
                 <li><a href="/guides/stop-checking-phone-while-studying/"><strong>Stop checking your phone</strong><span>Distance and friction, not willpower</span></a></li>
                 <li><a href="/guides/brain-dump-before-studying/"><strong>Clear mental clutter</strong><span>A 3-minute brain dump</span></a></li>
+                <li><a href="/guides/stop-procrastinating-studying/"><strong>Stop procrastinating</strong><span>Make starting easy</span></a></li>
               </ul>
             </div>
             <div>
@@ -172,12 +193,15 @@
               <ul>
                 <li><a href="/guides/active-recall-notes/"><strong>Why highlighting fails</strong><span>Take notes you remember</span></a></li>
                 <li><a href="/guides/stop-rereading-cover-syllabus-faster/"><strong>Stop re-reading</strong><span>Cover your syllabus faster</span></a></li>
+                <li><a href="/guides/why-exam-marathons-fail/"><strong>Why exam marathons fail</strong><span>Study in 90-minute blocks</span></a></li>
               </ul>
             </div>
             <div>
-              <p class="mega-title">Study stamina</p>
+              <p class="mega-title">Finals</p>
               <ul>
-                <li><a href="/guides/why-exam-marathons-fail/"><strong>Why exam marathons fail</strong><span>Study in 90-minute blocks</span></a></li>
+                <li><a href="/guides/how-to-study-for-finals-in-a-week/"><strong>Finals in a week</strong><span>A day-by-day plan</span></a></li>
+                <li><a href="/guides/how-to-study-for-multiple-exams/"><strong>Several exams at once</strong><span>Split your time on purpose</span></a></li>
+                <li><a href="/guides/does-cramming-work/"><strong>Does cramming work?</strong><span>And how to cram if you must</span></a></li>
               </ul>
             </div>
             <div class="mega-cta">
@@ -200,7 +224,7 @@
       <section class="hero single wash">
         <div>
           <h1>Study guides.</h1>
-          <p class="lead">Short, practical guides to the FocusFlow systems. Each one goes with a video and a worksheet in the free kit.</p>
+          <p class="lead">Short, practical guides to studying: focus, memory, planning and finals. Most go with a FocusFlow video.</p>
         </div>
       </section>
       <ul class="cards">
@@ -208,6 +232,10 @@
         <li><a href="active-recall-notes/"><span class="card-tag">Memory</span><h2 class="card-name">Why highlighting fails, and how to take notes you remember</h2><span class="card-note">Turn notes into questions and test yourself.</span><span class="card-go">Read the guide</span></a></li>
         <li><a href="brain-dump-before-studying/"><span class="card-tag">Focus</span><h2 class="card-name">How to clear mental clutter before studying</h2><span class="card-note">A 3-minute brain dump before you start.</span><span class="card-go">Read the guide</span></a></li>
         <li><a href="stop-rereading-cover-syllabus-faster/"><span class="card-tag">Planning</span><h2 class="card-name">Why re-reading won’t finish your syllabus</h2><span class="card-note">Cover more ground with retrieval, not re-reading.</span><span class="card-go">Read the guide</span></a></li>
+        <li><a href="how-to-study-for-finals-in-a-week/"><span class="card-tag">Finals</span><h2 class="card-name">How to study for finals in a week</h2><span class="card-note">A day-by-day plan for the last week before finals.</span><span class="card-go">Read the guide</span></a></li>
+        <li><a href="how-to-study-for-multiple-exams/"><span class="card-tag">Finals</span><h2 class="card-name">How to study for multiple exams in the same week</h2><span class="card-note">Split your time across several exams without panic.</span><span class="card-go">Read the guide</span></a></li>
+        <li><a href="does-cramming-work/"><span class="card-tag">Finals</span><h2 class="card-name">Does cramming work?</h2><span class="card-note">What research says, and how to cram better if you must.</span><span class="card-go">Read the guide</span></a></li>
+        <li><a href="stop-procrastinating-studying/"><span class="card-tag">Focus</span><h2 class="card-name">How to stop procrastinating and start studying</h2><span class="card-note">Make starting easy: tiny first steps and if-then plans.</span><span class="card-go">Read the guide</span></a></li>
 {% for g in site.guides reversed %}
         <li><a href="{{ g.url }}"><span class="card-tag">{{ g.tag | default: "Study system" }}</span><h2 class="card-name">{{ g.title }}</h2><span class="card-note">{{ g.card | default: g.lead }}</span><span class="card-go">Read the guide</span></a></li>
 {% endfor %}

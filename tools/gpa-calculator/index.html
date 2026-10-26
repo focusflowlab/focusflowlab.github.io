@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GPA Calculator: Semester and Cumulative GPA (4.0 Scale)</title>
-  <meta name="description" content="Work out your semester GPA from letter grades and credits on the US 4.0 scale, and your new cumulative GPA. Free, saves in your browser.">
+  <title>GPA Calculator: Weighted, Cumulative and How to Raise It</title>
+  <meta name="description" content="Free GPA calculator for college and high school: semester GPA, weighted GPA for Honors and AP classes, cumulative GPA, and the GPA you need to raise it.">
   <link rel="canonical" href="https://thefocusflowlab.com/tools/gpa-calculator/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="FocusFlow Lab">
   <meta property="og:title" content="GPA calculator from FocusFlow Lab">
-  <meta property="og:description" content="Work out your semester GPA from letter grades and credits on the US 4.0 scale, and your new cumulative GPA. Free, saves in your browser.">
+  <meta property="og:description" content="Free GPA calculator for college and high school: semester GPA, weighted GPA for Honors and AP classes, cumulative GPA, and the GPA you need to raise it.">
   <meta property="og:url" content="https://thefocusflowlab.com/tools/gpa-calculator/">
   <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -29,7 +29,7 @@
       "@type": "WebApplication",
       "name": "GPA calculator",
       "url": "https://thefocusflowlab.com/tools/gpa-calculator/",
-      "description": "Work out your semester GPA from letter grades and credits on the US 4.0 scale, and your new cumulative GPA. Free, saves in your browser.",
+      "description": "Free GPA calculator for college and high school: semester GPA, weighted GPA for Honors and AP classes, cumulative GPA, and the GPA you need to raise it.",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",
       "isAccessibleForFree": true,
@@ -85,6 +85,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "At some schools, yes. This calculator uses 4.0 for an A+, which is the most common rule. Check your school’s policy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate a weighted GPA for Honors and AP classes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add 0.5 to the grade points of Honors classes and 1.0 to AP or IB classes, then average by credits as usual. An A in an AP class becomes 5.0. Many high schools use this scale, but check yours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much can I raise my GPA in one semester?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on how many credits you already have. Put your target and next term’s credits under “Raise my GPA” to see the GPA you’d need. The more credits behind you, the slower your GPA moves."
           }
         },
         {
@@ -184,6 +200,7 @@
               <ul>
                 <li><a href="/guides/stop-checking-phone-while-studying/"><strong>Stop checking your phone</strong><span>Distance and friction, not willpower</span></a></li>
                 <li><a href="/guides/brain-dump-before-studying/"><strong>Clear mental clutter</strong><span>A 3-minute brain dump</span></a></li>
+                <li><a href="/guides/stop-procrastinating-studying/"><strong>Stop procrastinating</strong><span>Make starting easy</span></a></li>
               </ul>
             </div>
             <div>
@@ -191,12 +208,15 @@
               <ul>
                 <li><a href="/guides/active-recall-notes/"><strong>Why highlighting fails</strong><span>Take notes you remember</span></a></li>
                 <li><a href="/guides/stop-rereading-cover-syllabus-faster/"><strong>Stop re-reading</strong><span>Cover your syllabus faster</span></a></li>
+                <li><a href="/guides/why-exam-marathons-fail/"><strong>Why exam marathons fail</strong><span>Study in 90-minute blocks</span></a></li>
               </ul>
             </div>
             <div>
-              <p class="mega-title">Study stamina</p>
+              <p class="mega-title">Finals</p>
               <ul>
-                <li><a href="/guides/why-exam-marathons-fail/"><strong>Why exam marathons fail</strong><span>Study in 90-minute blocks</span></a></li>
+                <li><a href="/guides/how-to-study-for-finals-in-a-week/"><strong>Finals in a week</strong><span>A day-by-day plan</span></a></li>
+                <li><a href="/guides/how-to-study-for-multiple-exams/"><strong>Several exams at once</strong><span>Split your time on purpose</span></a></li>
+                <li><a href="/guides/does-cramming-work/"><strong>Does cramming work?</strong><span>And how to cram if you must</span></a></li>
               </ul>
             </div>
             <div class="mega-cta">
@@ -224,8 +244,8 @@
         </div>
         <form class="sheet" id="gpa-form" novalidate aria-label="GPA calculator">
           <p class="sheet-title">This semester</p>
-          <div class="row-head" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span></span></div>
-          <ol class="tool-rows" id="gpa-rows"></ol>
+          <div class="row-head gpa-head" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span>Level</span><span></span></div>
+          <ol class="tool-rows gpa-rows" id="gpa-rows"></ol>
           <div class="sheet-actions"><button class="btn btn-soft" type="button" id="add-course">Add a course</button></div>
           <fieldset><legend>Past GPA (optional, for cumulative)</legend>
             <div class="fields fields-2b">
@@ -236,10 +256,18 @@
           <div class="count-result" aria-live="polite">
             <dl class="totals">
               <div><dt>Semester GPA</dt><dd id="r-term">–</dd></div>
+              <div><dt>Weighted GPA</dt><dd id="r-weighted">–</dd></div>
               <div><dt>Credits</dt><dd id="r-credits">0</dd></div>
               <div><dt>Cumulative GPA</dt><dd id="r-cum">–</dd></div>
             </dl>
           </div>
+          <fieldset><legend>Raise my GPA (optional)</legend>
+            <div class="fields fields-2b">
+              <div><label for="targetGpa">Target cumulative GPA</label><input type="number" id="targetGpa" min="0" max="4" step="0.01" placeholder="3.50" inputmode="decimal"></div>
+              <div><label for="nextCredits">Credits next term</label><input type="number" id="nextCredits" min="1" step="1" placeholder="15" inputmode="numeric"></div>
+            </div>
+            <p class="gpa-need" id="r-need" aria-live="polite"></p>
+          </fieldset>
         </form>
       </section>
 
@@ -248,10 +276,12 @@
         <h2>How to use it</h2>
         <div class="prose">
           <p>GPA is an average of grade points, weighted by credits, so a 4-credit course counts more than a 1-credit one. This calculator uses the common US 4.0 scale: A = 4.0, A− = 3.7, B+ = 3.3, B = 3.0, and so on down to F = 0.</p>
+          <p><strong>Weighted GPA</strong> is common in US high schools: Honors classes usually get an extra 0.5 and AP or IB classes an extra 1.0, so an A in an AP class counts as 5.0. Set each course’s level to see it. Schools differ, so check yours.</p>
           <ul>
             <li><strong>Check your school’s scale.</strong> Some schools give A+ a 4.3, and some don’t use plus or minus grades. Your transcript or student handbook says which.</li>
             <li><strong>For cumulative GPA,</strong> add your current GPA and the credits it covers. The calculator combines them with this semester.</li>
             <li><strong>Pass/fail courses</strong> usually don’t count toward GPA, so leave them out.</li>
+            <li><strong>To raise your GPA,</strong> put your target and next term’s credits under “Raise my GPA”. It shows the GPA you need next term.</li>
           </ul>
         </div>
       </section>
@@ -263,6 +293,10 @@
             <p>Multiply each course’s grade points by its credits, add those up, and divide by the total credits. A 3-credit A (4.0) and a 4-credit B (3.0) give (12 + 12) ÷ 7 = 3.43.</p></details>
           <details><summary>Does an A+ count as 4.3?</summary>
             <p>At some schools, yes. This calculator uses 4.0 for an A+, which is the most common rule. Check your school’s policy.</p></details>
+          <details><summary>How do I calculate a weighted GPA for Honors and AP classes?</summary>
+            <p>Add 0.5 to the grade points of Honors classes and 1.0 to AP or IB classes, then average by credits as usual. An A in an AP class becomes 5.0. Many high schools use this scale, but check yours.</p></details>
+          <details><summary>How much can I raise my GPA in one semester?</summary>
+            <p>It depends on how many credits you already have. Put your target and next term’s credits under “Raise my GPA” to see the GPA you’d need. The more credits behind you, the slower your GPA moves.</p></details>
           <details><summary>Can I use it for UK, Canadian or Australian grades?</summary>
             <p>Only if your school reports a 4.0-scale GPA. UK degree classifications and Australian GPA scales work differently, so this calculator won’t match them.</p></details>
         </div>
