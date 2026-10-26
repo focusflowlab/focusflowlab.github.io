@@ -34,7 +34,7 @@ When your ninety minute timer goes off, get up from your chair immediately. Do n
 
 ### 4. Fill a large glass of water
 
-Drink a full glass of cool water during your twenty minute recovery gap. Late semester fatigue is often just mild dehydration from sitting under bright lights for hours. Skipping water makes you feel sleepy even when you slept well the night before. Skip the extra sugary drinks or coffee shots during this rest window because they cause energy crashes later. Plain water keeps your body feeling fresh and ready for the next focus period. Keep a filled bottle right by your kitchen sink. You can download our free one page tracking worksheet linked in the description below to log your daily hydration and focus cycles. For example, drink a full sixteen ounce glass right when your rest break starts. Many students reach for energy drinks instead, which leads to a bad afternoon crash. Stick to cold water to stay alert.
+Drink a full glass of cool water during your twenty minute recovery gap. Late semester fatigue is often just mild dehydration from sitting under bright lights for hours. Skipping water makes you feel sleepy even when you slept well the night before. Skip the extra sugary drinks or coffee shots during this rest window because they cause energy crashes later. Plain water keeps your body feeling fresh and ready for the next focus period. Keep a filled bottle right by your kitchen sink. For example, drink a full sixteen ounce glass right when your rest break starts. Many students reach for energy drinks instead, which leads to a bad afternoon crash. Stick to cold water to stay alert.
 
 **Tip:** Drink plain water instead of high energy caffeinated drinks.
 
