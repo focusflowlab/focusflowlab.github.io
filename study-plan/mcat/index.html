@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCAT Study Schedule Generator: Free Weekly Plan</title>
+  <meta name="description" content="Enter your MCAT test date and study hours. Get a free week-by-week schedule across all four sections, with full-length practice tests placed for you.">
+  <link rel="canonical" href="https://thefocusflowlab.com/study-plan/mcat/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="MCAT study schedule generator">
+  <meta property="og:description" content="A week-by-week MCAT schedule built from your test date, your hours and your weak sections. Free, prints cleanly.">
+  <meta property="og:url" content="https://thefocusflowlab.com/study-plan/mcat/">
+  <meta property="og:image" content="https://thefocusflowlab.com/planner-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/focusflow-icon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="../assets/plan.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "MCAT Study Schedule Generator",
+        "url": "https://thefocusflowlab.com/study-plan/mcat/",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "publisher": { "@type": "Organization", "name": "FocusFlow Lab", "url": "https://thefocusflowlab.com/" },
+        "dateModified": "2026-10-27"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "FocusFlow Lab", "item": "https://thefocusflowlab.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Study plans", "item": "https://thefocusflowlab.com/study-plan/" },
+          { "@type": "ListItem", "position": 3, "name": "MCAT", "item": "https://thefocusflowlab.com/study-plan/mcat/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "How long should I study for the MCAT?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Most people study for 3 to 6 months and put in roughly 300 to 500 hours. Studying full time, 2 to 3 months can be enough." } },
+          { "@type": "Question", "name": "How many MCAT full-length practice tests should I take?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Around 6 to 10, mostly in the second half of your prep. Spend about as long reviewing each test as you spent taking it." } },
+          { "@type": "Question", "name": "Is this an official MCAT schedule?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. It's a free planning tool from FocusFlow Lab. Check current exam details at aamc.org." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <a class="wordmark" href="/"><img src="/focusflow-icon.jpg" alt="" width="30" height="30">FocusFlow Lab</a>
+      <nav aria-label="Main">
+        <a href="/study-plan/" aria-current="page">Study plans</a>
+        <a href="/#free-kit">Free focus kit</a>
+        <a href="/#planner">Sprint planner</a>
+      </nav>
+    </header>
+
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/study-plan/">Study plans</a> / MCAT</nav>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Months of MCAT prep, laid out week by week.</h1>
+          <p class="lead">Put in your test date and the hours you can give it. You get a schedule across all four sections, with full-length tests in the weeks they belong.</p>
+          <p class="hero-note">Free, no sign-up. Your answers stay in this browser.</p>
+        </div>
+
+        <form id="plan-form" class="sheet" novalidate>
+          <p class="sheet-title">Plan sheet</p>
+          <div class="fields">
+            <div>
+              <label for="examDate">Test date</label>
+              <input type="date" id="examDate" name="examDate" required>
+            </div>
+            <div>
+              <label for="hoursPerDay">Hours a day</label>
+              <input type="number" id="hoursPerDay" name="hoursPerDay" min="0.5" max="14" step="0.5" value="4" inputmode="decimal">
+            </div>
+            <div>
+              <label for="daysPerWeek">Days a week</label>
+              <select id="daysPerWeek" name="daysPerWeek">
+                <option>3</option><option>4</option><option>5</option><option selected>6</option><option>7</option>
+              </select>
+            </div>
+          </div>
+          <fieldset>
+            <legend>Which sections worry you? (optional)</legend>
+            <div class="topics" id="weak-areas"></div>
+          </fieldset>
+          <div class="sheet-actions"><button class="btn" type="submit">Build my schedule</button></div>
+          <p class="error" id="form-error" role="alert"></p>
+        </form>
+      </section>
+
+      <section id="plan" class="plan" aria-live="polite"></section>
+
+      <section class="reading">
+        <h2>How the schedule is put together</h2>
+        <div class="prose">
+          <p>The MCAT has four scored sections: Chem/Phys, CARS, Bio/Biochem and Psych/Soc. It's a long day, over seven hours of testing time, so stamina is part of what you're training.</p>
+          <ol>
+            <li><strong>Content review, roughly the first half.</strong> Sections in order of how much you need them, with practice passages at the end of each day.</li>
+            <li><strong>Practice and review, the second half.</strong> One full-length test a week, the next day spent reviewing it, and the rest of the week aimed at your weakest section.</li>
+            <li><strong>Final week.</strong> Your last full-length at least five days out, light review, and a day off before the test.</li>
+          </ol>
+          <p>CARS shows up every week, even during content review, because reading speed builds slowly. The four sections start equal, and any you tick as a worry get 50% more time.</p>
+          <p>Check test dates and current rules at <a href="https://students-residents.aamc.org/" rel="noopener">aamc.org</a> before you book anything.</p>
+        </div>
+      </section>
+
+      <section class="reading">
+        <h2>What makes a schedule stick</h2>
+        <div class="prose">
+          <p>A long prep is a test of habits more than intelligence.</p>
+          <ul>
+            <li>Take full-length tests in one sitting, at the time of day you'll sit the real one.</li>
+            <li>Review a test slowly. Sort every miss into content gap, misread or timing.</li>
+            <li>Protect one rest day a week. The plan assumes you take it.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>How long should I study for the MCAT?</summary>
+            <p>Most people study for 3 to 6 months and put in roughly 300 to 500 hours. Studying full time, 2 to 3 months can be enough.</p></details>
+          <details><summary>How many full-length practice tests should I take?</summary>
+            <p>Around 6 to 10, mostly in the second half of your prep. Spend about as long reviewing each test as you spent taking it.</p></details>
+          <details><summary>Can I save the schedule?</summary>
+            <p>Use "Print or save as PDF" and choose Save as PDF. Your answers also stay in this browser for next time.</p></details>
+          <details><summary>Is this an official MCAT schedule?</summary>
+            <p>No. It's a free planning tool from FocusFlow Lab, and it isn't connected to the AAMC.</p></details>
+        </div>
+      </section>
+
+      <aside class="kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+
+    <footer class="colophon">
+      <p>Made by FocusFlow Lab. Last reviewed October 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      <p>MCAT® is a registered trademark of the Association of American Medical Colleges (AAMC). FocusFlow Lab isn't affiliated with or endorsed by the AAMC.</p>
+      <p><a href="/study-plan/nclex/">NCLEX study plan</a> &nbsp; <a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a></p>
+    </footer>
+  </div>
+
+  <script>
+    /* MCAT settings: four sections, equal weight to start. */
+    window.EXAM_CONFIG = {
+      id: 'mcat',
+      shortName: 'MCAT',
+      maxDays: 365,
+      reviewShare: 0.5,
+      recommendedHours: { min: 300, max: 500 },
+      topics: [
+        { name: 'Chem/Phys', weight: 25 },
+        { name: 'CARS', weight: 25 },
+        { name: 'Bio/Biochem', weight: 25 },
+        { name: 'Psych/Soc', weight: 25 }
+      ],
+      tasks: {
+        review: () => [
+          'Work through content for this week’s sections, biggest first.',
+          'Finish each day with practice passages on what you covered.',
+          'Do 2 or 3 CARS passages every study day.',
+          'Put anything you have to memorize into flashcards.'
+        ],
+        practice: (days, weekIndex) => [
+          'Take one full-length test, timed, in a single sitting.',
+          'Spend the next day reviewing it, every question, right or wrong.',
+          'Use the rest of the week on passages for your weakest section.',
+          weekIndex % 2 === 0 ? 'Keep CARS going daily, 2 or 3 passages.' : "Redo last week's missed questions before starting new ones."
+        ],
+        final: () => [
+          'Take your last full-length at least five days before test day.',
+          'Light review only: flashcards, missed questions, key equations.',
+          'Confirm your ID, test center and start time.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }
+    };
+  </script>
+  <script src="../assets/plan.js" defer></script>
+</body>
+</html>
