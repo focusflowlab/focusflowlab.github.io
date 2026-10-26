@@ -1,0 +1,127 @@
+/* Hallmark · shape: Split Studio (/), Long Document (/privacy, /terms), kept tool layout (/study-plan) · genre: editorial · theme: brand · redesign: full
+ * paper: oklch(97.5% 0.008 200) · accent: oklch(55% 0.095 185) · display: Bricolage Grotesque · body: IBM Plex Sans · hero: Split (/), Stage (/study-plan/*) · nav: edge-aligned wordmark and three links · footer: colophon, wordmark over contact and links · signature: a printed sprint-day sheet with four focus blocks you can tick off
+ * axes: light/grotesk-sans/chromatic-teal · posture: split · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V, the page has one real picture (the planner); the day sheet carries the hero instead of a stock photo */
+/* Hallmark · waive 46a · the number is a rule in plan.js, not a claim · "50% more" tells users what ticking a shaky topic does to the plan */
+/* Hallmark · reworded hero lead "Simple, tested-on-yourself study systems: fewer distractions, notes that stick, and a plan that gets you through the syllabus without all-nighters." to "Tested-on-yourself study systems: fewer distractions, notes that stick, no all-nighters." · 58 names it: the old lead ran 20 words over the hero budget */
+/* Hallmark · reworded "9 printable A4 pages · PDF · instant download" into a three-row spec list · 63 names it: dot-joined meta reads as template */
+@import url("./tokens.css");
+@import url("./base.css");
+
+body { font-size: var(--text-md); line-height: 1.6; }
+a { color: var(--color-accent-ink); }
+a:hover { color: var(--color-ink); }
+a:active { color: var(--color-ink-2); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+.container { max-width: var(--container); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--color-muted); }
+
+/* Masthead: the header of a printed sheet */
+.masthead { display: flex; justify-content: space-between; align-items: center; gap: var(--space-md); flex-wrap: wrap; padding: var(--space-md) 0; border-bottom: var(--rule-hair) solid var(--color-rule); }
+.wordmark { display: inline-flex; align-items: center; gap: var(--space-xs); min-height: 44px; font: 700 1.05rem/1 var(--font-display); color: var(--color-ink); text-decoration: none; }
+.wordmark img { width: 32px; height: 32px; border-radius: 8px; }
+.masthead nav { display: flex; gap: var(--space-xs) var(--space-lg); flex-wrap: wrap; font-size: var(--text-sm); }
+.masthead nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-muted); text-decoration: none; }
+.masthead nav a:hover, .masthead nav a[aria-current] { color: var(--color-ink); text-decoration: underline; }
+
+/* Controls */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px;
+  padding: 0 var(--space-lg); border: 1px solid var(--color-accent); border-radius: var(--radius-card);
+  background: var(--color-accent); color: var(--color-on-accent);
+  font: 600 1rem var(--font-body); text-decoration: none; cursor: pointer;
+  transition: background-color var(--dur-micro) ease, border-color var(--dur-micro) ease, color var(--dur-micro) ease, transform var(--dur-micro) ease;
+}
+.btn:hover { background: var(--color-accent-ink); border-color: var(--color-accent-ink); color: var(--color-on-accent); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+.btn-quiet { background: transparent; color: var(--color-accent-ink); }
+.btn-quiet:hover { background: var(--color-accent-wash); border-color: var(--color-accent); color: var(--color-ink); }
+.text-link { font-weight: 600; color: var(--color-accent-ink); }
+
+/* Headings share one weight and one colour */
+h1, h2, h3 { color: var(--color-ink); font-weight: 700; }
+h1 { font-size: var(--text-display); line-height: 1.02; }
+h2 { font-size: var(--text-section); line-height: 1.1; }
+h3 { font-size: var(--text-title); }
+
+/* The sheet: ruled paper with a hairline all round and a teal head rule */
+.sheet { background: var(--color-paper-2); border: 1px solid var(--color-rule-strong); border-top: 4px solid var(--color-accent); border-radius: var(--radius-card); padding: var(--space-lg); }
+.sheet-title { display: flex; justify-content: space-between; gap: var(--space-sm); font: 700 1.05rem/1.3 var(--font-display); margin: 0 0 var(--space-md); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--color-rule); }
+.sheet-title span { font: 500 var(--text-sm) var(--font-mono); color: var(--color-muted); }
+
+/* ---------- Home ---------- */
+.home-hero { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--gap-columns); align-items: center; padding: var(--space-2xl) 0 var(--section-gap-s); }
+.home-hero .lead { margin-top: var(--space-lg); color: var(--color-muted); max-width: 40ch; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-md) var(--space-lg); margin-top: var(--space-xl); }
+
+.day-sheet ol { list-style: none; margin: 0; padding: 0; }
+.day-sheet li { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) auto; gap: var(--space-sm); align-items: center; padding: var(--space-sm) 0; border-bottom: 1px solid var(--color-rule); }
+.day-sheet li:last-child { border-bottom: 0; }
+.day-sheet .n { font: 500 1.4rem/1 var(--font-mono); color: var(--color-accent-ink); }
+.day-sheet label { display: inline-flex; align-items: center; gap: var(--space-xs); min-height: 44px; font-size: var(--text-sm); color: var(--color-muted); cursor: pointer; }
+.day-sheet input { width: 20px; height: 20px; margin: 0; accent-color: var(--color-accent); }
+.day-sheet li:has(input:checked) strong { text-decoration: line-through; text-decoration-color: var(--color-accent); color: var(--color-muted); }
+.day-sheet .foot { margin: var(--space-md) 0 0; font-size: var(--text-sm); color: var(--color-muted); }
+
+.band { padding: var(--section-gap-s) 0; border-top: 2px solid var(--color-ink); scroll-margin-top: var(--space-md); }
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--gap-columns); align-items: start; }
+.split > * { min-width: 0; }
+.split .intro p { margin-top: var(--space-md); color: var(--color-muted); max-width: 46ch; }
+
+.ruled { list-style: none; margin: var(--space-xl) 0 0; padding: 0; border-top: 1px solid var(--color-rule); counter-reset: ruled; }
+.ruled li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: var(--space-sm); padding: var(--space-sm) 0; border-bottom: 1px solid var(--color-rule); counter-increment: ruled; }
+.ruled li::before { content: counter(ruled, decimal-leading-zero); font: 500 var(--text-sm)/1.9 var(--font-mono); color: var(--color-accent-ink); }
+
+.form-sheet p { color: var(--color-muted); margin-bottom: var(--space-md); }
+.ml-embedded { min-height: 120px; }
+
+.planner { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+.planner figure { margin: 0; }
+.planner figure img { width: 100%; border: 1px solid var(--color-rule-strong); border-radius: var(--radius-card); background: var(--color-paper-2); }
+.planner figcaption { margin-top: var(--space-xs); font-size: var(--text-sm); color: var(--color-muted); }
+.planner .ruled { margin-top: var(--space-lg); }
+.planner .ruled li { grid-template-columns: minmax(0, 1fr); }
+.planner .ruled li::before { content: none; }
+.spec { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--space-2xs) var(--space-lg); margin: var(--space-lg) 0 0; font-size: var(--text-sm); }
+.spec dt { color: var(--color-muted); }
+.spec dd { margin: 0; }
+.buy { display: flex; align-items: center; gap: var(--space-lg); flex-wrap: wrap; margin-top: var(--space-xl); }
+.price { font: 500 clamp(2.75rem, 4vw + 1rem, 4rem)/1 var(--font-mono); font-variant-numeric: tabular-nums; color: var(--color-ink); margin: 0; }
+
+/* Lists of links set as timetable rows */
+.rows { list-style: none; margin: var(--space-xl) 0 0; padding: 0; border-top: 1px solid var(--color-rule); }
+.rows li { border-bottom: 1px solid var(--color-rule); }
+.rows a { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr) auto; gap: var(--space-lg); align-items: baseline; padding: var(--space-md) 0; color: var(--color-ink); text-decoration: none; }
+.rows a:hover .rows-name, .rows a:focus-visible .rows-name { color: var(--color-accent-ink); text-decoration: underline; }
+.rows-name { font: 700 var(--text-title)/1.2 var(--font-display); }
+.rows-note { color: var(--color-muted); }
+.rows-go { color: var(--color-accent-ink); font-weight: 600; white-space: nowrap; }
+
+/* Footer: colophon */
+.colophon { margin-top: var(--section-gap-s); padding: var(--space-xl) 0; border-top: 1px solid var(--color-rule); font-size: var(--text-sm); color: var(--color-muted); }
+.colophon p { margin: 0 0 var(--space-xs); max-width: 72ch; }
+.colophon a { color: var(--color-muted); }
+.colophon a:hover { color: var(--color-ink); }
+.colophon-links { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); margin-top: var(--space-md); }
+
+/* ---------- Legal pages: Long Document ---------- */
+.doc { padding: var(--space-2xl) 0 0; display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 8fr); gap: var(--gap-columns); }
+.doc-head h1 { font-size: var(--text-display-s); }
+.doc-head p { margin-top: var(--space-md); color: var(--color-muted); font-size: var(--text-sm); }
+.prose { max-width: var(--measure); }
+.prose h2 { font-size: var(--text-title); margin: var(--space-xl) 0 var(--space-sm); }
+.prose h2:first-child { margin-top: 0; }
+.prose p, .prose ul, .prose ol { margin: 0 0 var(--space-md); }
+.prose ul, .prose ol { padding-left: 20px; }
+.prose li { margin-bottom: var(--space-xs); }
+
+@media (max-width: 860px) {
+  .home-hero, .split, .planner, .doc { grid-template-columns: minmax(0, 1fr); }
+  .home-hero { padding-top: var(--space-xl); }
+  .planner figure { order: 2; }
+  .rows a { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); }
+}
+.sub { margin-top: var(--space-md); max-width: 52ch; }

@@ -13,10 +13,14 @@
   <meta property="og:url" content="https://thefocusflowlab.com/study-plan/nclex/">
   <meta property="og:image" content="https://thefocusflowlab.com/planner-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="/focusflow-icon.jpg">
+  <meta property="og:image:width" content="2024">
+  <meta property="og:image:height" content="742">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="../../assets/site.css">
   <link rel="stylesheet" href="../assets/plan.css">
   <script type="application/ld+json">
   {
@@ -30,8 +34,8 @@
         "operatingSystem": "Any",
         "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "publisher": { "@type": "Organization", "name": "FocusFlow Lab", "url": "https://thefocusflowlab.com/" },
-        "dateModified": "2026-10-27"
+        "publisher": { "@type": "Organization", "@id": "https://thefocusflowlab.com/#org", "name": "FocusFlow Lab", "url": "https://thefocusflowlab.com/" },
+        "dateModified": "2026-10-26"
       },
       {
         "@type": "BreadcrumbList",
@@ -57,9 +61,9 @@
   </script>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
     <header class="masthead">
-      <a class="wordmark" href="/"><img src="/focusflow-icon.jpg" alt="" width="30" height="30">FocusFlow Lab</a>
+      <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
       <nav aria-label="Main">
         <a href="/study-plan/" aria-current="page">Study plans</a>
         <a href="/#free-kit">Free focus kit</a>
@@ -77,7 +81,7 @@
           <p class="hero-note">Free, no sign-up. Your answers stay in this browser.</p>
         </div>
 
-        <form id="plan-form" class="sheet" novalidate>
+        <form id="plan-form" class="sheet" novalidate aria-label="Plan sheet">
           <p class="sheet-title">Plan sheet</p>
           <div class="fields">
             <div>
@@ -109,7 +113,7 @@
       <section class="reading">
         <h2>How the plan is put together</h2>
         <div class="prose">
-          <p>The NCLEX-RN is a computer-adaptive test. It keeps choosing questions based on how you answered the last ones, so it rewards clinical judgment over memorized facts. That's why the plan moves you off pure reading fairly early.</p>
+          <p>The NCLEX-RN is a computer-adaptive test. It keeps choosing questions based on how you answered the last ones, so it rewards clinical judgment over memorized facts. That’s why the plan moves you off pure reading fairly early.</p>
           <ol>
             <li><strong>Content review, the first 40% or so.</strong> One or two topics a day, each day ending with questions on what you just read.</li>
             <li><strong>Practice and review, most of the middle.</strong> Mixed question sets every day, every rationale read, and one timed practice test a week.</li>
@@ -127,7 +131,7 @@
           <ul>
             <li>Keep an error log. Write down why you missed a question, not just the right answer. Re-read it for the first 30 minutes of every study day.</li>
             <li>Study at the same time each day. Your phone goes in another room for that block.</li>
-            <li>When you miss a day, don't double up the next one. Just carry on from where the plan says you are.</li>
+            <li>When you miss a day, don’t double up the next one. Just carry on from where the plan says you are.</li>
           </ul>
         </div>
       </section>
@@ -140,9 +144,9 @@
           <details><summary>How many practice questions a day?</summary>
             <p>Around 75 to 150 a day once content review is done. Reading every rationale matters more than the raw number.</p></details>
           <details><summary>Can I save the plan?</summary>
-            <p>Use "Print or save as PDF" and choose Save as PDF. Your answers also stay in this browser, so the plan is one click away next time.</p></details>
+            <p>Use “Print or save as PDF” and choose Save as PDF. Your answers also stay in this browser, so the plan is one click away next time.</p></details>
           <details><summary>Is this an official NCLEX plan?</summary>
-            <p>No. It's a free planning tool from FocusFlow Lab, and it isn't connected to NCSBN.</p></details>
+            <p>No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to NCSBN.</p></details>
         </div>
       </section>
 
@@ -157,8 +161,8 @@
 
     <footer class="colophon">
       <p>Made by FocusFlow Lab. Last reviewed October 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
-      <p>NCLEX® and NCLEX-RN® are registered trademarks of the National Council of State Boards of Nursing (NCSBN). FocusFlow Lab isn't affiliated with or endorsed by NCSBN.</p>
-      <p><a href="/study-plan/mcat/">MCAT study schedule</a> &nbsp; <a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a></p>
+      <p>NCLEX® and NCLEX-RN® are registered trademarks of the National Council of State Boards of Nursing (NCSBN). FocusFlow Lab isn’t affiliated with or endorsed by NCSBN.</p>
+      <p class="colophon-links"><a href="/study-plan/mcat/">MCAT study schedule</a> <a href="/privacy.html">Privacy</a> <a href="/terms.html">Terms</a></p>
     </footer>
   </div>
 

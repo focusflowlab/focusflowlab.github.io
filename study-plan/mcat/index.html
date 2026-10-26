@@ -13,10 +13,14 @@
   <meta property="og:url" content="https://thefocusflowlab.com/study-plan/mcat/">
   <meta property="og:image" content="https://thefocusflowlab.com/planner-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="/focusflow-icon.jpg">
+  <meta property="og:image:width" content="2024">
+  <meta property="og:image:height" content="742">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="../../assets/site.css">
   <link rel="stylesheet" href="../assets/plan.css">
   <script type="application/ld+json">
   {
@@ -30,8 +34,8 @@
         "operatingSystem": "Any",
         "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "publisher": { "@type": "Organization", "name": "FocusFlow Lab", "url": "https://thefocusflowlab.com/" },
-        "dateModified": "2026-10-27"
+        "publisher": { "@type": "Organization", "@id": "https://thefocusflowlab.com/#org", "name": "FocusFlow Lab", "url": "https://thefocusflowlab.com/" },
+        "dateModified": "2026-10-26"
       },
       {
         "@type": "BreadcrumbList",
@@ -57,9 +61,9 @@
   </script>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
     <header class="masthead">
-      <a class="wordmark" href="/"><img src="/focusflow-icon.jpg" alt="" width="30" height="30">FocusFlow Lab</a>
+      <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
       <nav aria-label="Main">
         <a href="/study-plan/" aria-current="page">Study plans</a>
         <a href="/#free-kit">Free focus kit</a>
@@ -77,7 +81,7 @@
           <p class="hero-note">Free, no sign-up. Your answers stay in this browser.</p>
         </div>
 
-        <form id="plan-form" class="sheet" novalidate>
+        <form id="plan-form" class="sheet" novalidate aria-label="Plan sheet">
           <p class="sheet-title">Plan sheet</p>
           <div class="fields">
             <div>
@@ -109,7 +113,7 @@
       <section class="reading">
         <h2>How the schedule is put together</h2>
         <div class="prose">
-          <p>The MCAT has four scored sections: Chem/Phys, CARS, Bio/Biochem and Psych/Soc. It's a long day, over seven hours of testing time, so stamina is part of what you're training.</p>
+          <p>The MCAT has four scored sections: Chem/Phys, CARS, Bio/Biochem and Psych/Soc. It’s a long day, over seven hours of testing time, so stamina is part of what you’re training.</p>
           <ol>
             <li><strong>Content review, roughly the first half.</strong> Sections in order of how much you need them, with practice passages at the end of each day.</li>
             <li><strong>Practice and review, the second half.</strong> One full-length test a week, the next day spent reviewing it, and the rest of the week aimed at your weakest section.</li>
@@ -125,7 +129,7 @@
         <div class="prose">
           <p>A long prep is a test of habits more than intelligence.</p>
           <ul>
-            <li>Take full-length tests in one sitting, at the time of day you'll sit the real one.</li>
+            <li>Take full-length tests in one sitting, at the time of day you’ll sit the real one.</li>
             <li>Review a test slowly. Sort every miss into content gap, misread or timing.</li>
             <li>Protect one rest day a week. The plan assumes you take it.</li>
           </ul>
@@ -140,9 +144,9 @@
           <details><summary>How many full-length practice tests should I take?</summary>
             <p>Around 6 to 10, mostly in the second half of your prep. Spend about as long reviewing each test as you spent taking it.</p></details>
           <details><summary>Can I save the schedule?</summary>
-            <p>Use "Print or save as PDF" and choose Save as PDF. Your answers also stay in this browser for next time.</p></details>
+            <p>Use “Print or save as PDF” and choose Save as PDF. Your answers also stay in this browser for next time.</p></details>
           <details><summary>Is this an official MCAT schedule?</summary>
-            <p>No. It's a free planning tool from FocusFlow Lab, and it isn't connected to the AAMC.</p></details>
+            <p>No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to the AAMC.</p></details>
         </div>
       </section>
 
@@ -157,8 +161,8 @@
 
     <footer class="colophon">
       <p>Made by FocusFlow Lab. Last reviewed October 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
-      <p>MCAT® is a registered trademark of the Association of American Medical Colleges (AAMC). FocusFlow Lab isn't affiliated with or endorsed by the AAMC.</p>
-      <p><a href="/study-plan/nclex/">NCLEX study plan</a> &nbsp; <a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a></p>
+      <p>MCAT® is a registered trademark of the Association of American Medical Colleges (AAMC). FocusFlow Lab isn’t affiliated with or endorsed by the AAMC.</p>
+      <p class="colophon-links"><a href="/study-plan/nclex/">NCLEX study plan</a> <a href="/privacy.html">Privacy</a> <a href="/terms.html">Terms</a></p>
     </footer>
   </div>
 

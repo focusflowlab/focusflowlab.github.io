@@ -16,9 +16,9 @@
   const errorBox = document.getElementById('form-error');
 
   const PHASES = {
-    review: { label: 'Content review', color: 'var(--phase-review)' },
-    practice: { label: 'Practice and review', color: 'var(--phase-practice)' },
-    final: { label: 'Final week', color: 'var(--phase-final)' },
+    review: { label: 'Content review', color: 'var(--color-phase-review)' },
+    practice: { label: 'Practice and review', color: 'var(--color-phase-practice)' },
+    final: { label: 'Final week', color: 'var(--color-phase-final)' },
   };
 
   /** Build the weak-area checkboxes from the exam's topic list. */
