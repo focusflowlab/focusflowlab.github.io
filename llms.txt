@@ -1,0 +1,20 @@
+# FocusFlow Lab
+
+> FocusFlow Lab makes simple study systems for students: fewer phone distractions, notes that stick, calmer exam weeks. It runs a YouTube channel, a free printable Study Focus Kit, free exam study plan generators and a $7 Exam Sprint Planner.
+
+## Free tools
+- [NCLEX study plan generator](https://thefocusflowlab.com/study-plan/nclex/): week-by-week NCLEX-RN plan from your exam date, daily hours and weak client-needs areas. Free, no sign-up, prints cleanly.
+- [MCAT study schedule generator](https://thefocusflowlab.com/study-plan/mcat/): week-by-week MCAT plan across all four sections, with CARS every week and full-length tests in the second half.
+- [All study plan generators](https://thefocusflowlab.com/study-plan/)
+
+## Products
+- [Free Study Focus Kit](https://thefocusflowlab.com/#free-kit): 5 printable worksheets (phone distractions, note-taking, mental clutter, syllabus coverage, focus reset), sent by email.
+- [Exam Sprint Planner](https://thefocusflowlab.com/#planner): $7 printable PDF, 9 A4 pages. A 14-day plan for the two weeks before exams: exam map and priority grid, sprint calendar with four focus blocks a day, daily pages that end each block with a self-test, active-recall tracker.
+
+## Videos
+- [YouTube: FocusFlow Lab](https://www.youtube.com/@YourFocusFlowLab)
+
+## Contact
+- hello@thefocusflowlab.com
+
+NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. FocusFlow Lab is not affiliated with either.
