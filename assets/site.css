@@ -293,7 +293,7 @@ h3 { font-size: var(--text-title); }
 
 /* Sticky frosted masthead */
 .site-head { position: sticky; top: 0; z-index: var(--z-sticky-nav); background: color-mix(in oklab, var(--color-paper) 82%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid color-mix(in oklab, var(--color-rule) 70%, transparent); }
-.site-head .masthead { border-bottom: 0; padding: var(--space-xs) 0; }
+.site-head .masthead { border-bottom: 0; padding: var(--space-sm) 0; }
 .masthead nav { gap: var(--space-2xs); }
 .masthead nav a { padding: 0 var(--space-sm); border-radius: var(--radius-pill); color: var(--color-ink-2); }
 .masthead nav a:hover, .masthead nav a[aria-current] { background: var(--color-accent-wash); color: var(--color-ink); text-decoration: none; }
@@ -542,3 +542,9 @@ label.btn { margin: 0; display: inline-flex; }
   .nav-trigger::after { width: 6px; height: 6px; }
 }
 @media (prefers-reduced-motion: reduce) { .nav-trigger::after { transition: none; } }
+
+/* Breadcrumbs: shared by every page type, with clear space below the header */
+.crumbs { font-size: var(--text-sm); color: var(--color-muted); margin: var(--space-lg) 0 0; }
+.crumbs a { color: var(--color-muted); }
+.crumbs a:hover { color: var(--color-ink); }
+@media (max-width: 640px) { .crumbs { margin-top: var(--space-md); } }

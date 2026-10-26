@@ -2,8 +2,6 @@
 /* FocusFlow Lab study plan generators. Loads after /assets/site.css and uses its tokens only.
    Direction: a printed study timetable, one ruled row per week (see /design.md). */
 
-.crumbs { font-size: var(--text-sm); color: var(--color-muted); margin: var(--space-md) 0 0; }
-.crumbs a { color: var(--color-muted); }
 
 /* Hero: headline and sentence on the left, the planner sheet on the right */
 .hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--gap-columns); align-items: start; padding: var(--space-xl) 0 var(--space-2xl); }
