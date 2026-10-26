@@ -461,7 +461,7 @@ def page(e):
       <aside class="kit">
         <div>
           <h2>Staying focused is the hard part.</h2>
-          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days.</p>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>
         </div>
         <a class="btn" href="/#free-kit">Get the free kit</a>
       </aside>
