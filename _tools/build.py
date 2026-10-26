@@ -16,6 +16,11 @@ def url_of(path):
     return "/" + (rel[:-len("index.html")] if rel.endswith("index.html") else rel)
 
 pages = [p for p in ROOT.rglob("*.html") if not any(part.startswith(("_", ".")) for part in p.relative_to(ROOT).parts)]
+# Jekyll layouts (auto-published guides) include the same header and footer.
+(ROOT / "_includes").mkdir(exist_ok=True)
+(ROOT / "_includes/site-head.html").write_text(head + "\n", encoding="utf-8", newline="\n")
+(ROOT / "_includes/site-foot.html").write_text(foot + "\n", encoding="utf-8", newline="\n")
+
 for page in pages:
     html = page.read_text(encoding="utf-8")
     if "<!-- site-head -->" not in html:

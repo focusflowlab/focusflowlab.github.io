@@ -1,0 +1,84 @@
+---
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}{% if page.title.size < 52 %} | FocusFlow Lab{% endif %}</title>
+  <meta name="description" content="{{ page.description | escape }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="{{ page.title | escape }}">
+  <meta property="og:description" content="{{ page.description | escape }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{% if page.video %}https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg{% else %}{{ site.url }}/assets/og-image.png{% endif %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Article", "headline": {{ page.title | jsonify }}, "description": {{ page.description | jsonify }},
+        "url": "{{ site.url }}{{ page.url }}", "datePublished": "{{ page.date | date: '%Y-%m-%d' }}", "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
+        "author": { "@type": "Organization", "@id": "{{ site.url }}/#org", "name": "FocusFlow Lab", "url": "{{ site.url }}/" },
+        "publisher": { "@type": "Organization", "@id": "{{ site.url }}/#org", "name": "FocusFlow Lab", "url": "{{ site.url }}/" }{% if page.video %},
+        "image": "https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg"{% endif %} },
+      { "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "FocusFlow Lab", "item": "{{ site.url }}/" },
+        { "@type": "ListItem", "position": 2, "name": "Guides", "item": "{{ site.url }}/guides/" },
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": "{{ site.url }}{{ page.url }}" } ] }
+    ]
+  }
+  </script>
+</head>
+<body>
+{% include site-head.html %}
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/guides/">Guides</a> / {{ page.title }}</nav>
+    <main id="main">
+      <header class="doc-head guide-head">
+        <span class="card-tag">{{ page.tag | default: "Study system" }}</span>
+        <h1>{{ page.title }}</h1>
+        <p class="lead">{{ page.lead }}</p>
+        <p>By FocusFlow Lab. Published <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-d %B %Y' }}</time>.</p>
+      </header>
+      <div class="doc doc-single">
+        <article class="prose">
+{{ content }}
+        {% if page.video %}
+        <h2 id="watch">Watch the video</h2>
+        <a class="video" href="https://www.youtube.com/watch?v={{ page.video }}" data-video="{{ page.video }}">
+          <span class="video-frame"><img src="https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
+          <span class="video-title">Watch on the FocusFlow Lab YouTube channel</span></a>
+        {% endif %}
+        <aside class="sheet guide-kit">
+          <p><strong>Want this on paper?</strong> The free Study Focus Kit has printable worksheets for the FocusFlow systems.</p>
+          <a class="btn" href="/#free-kit">Get the free kit</a>
+        </aside>
+        </article>
+      </div>
+    </main>
+  </div>
+{% include site-foot.html %}
+<script>
+  document.querySelectorAll('.video[data-video]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + link.dataset.video + '?autoplay=1&rel=0';
+      frame.title = link.querySelector('.video-title').textContent;
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+      frame.allowFullscreen = true;
+      link.querySelector('.video-frame').replaceChildren(frame);
+      link.replaceWith(...link.childNodes);
+    }, { once: true });
+  });
+</script>
+</body>
+</html>

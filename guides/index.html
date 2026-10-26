@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -111,6 +113,9 @@
         <li><a href="active-recall-notes/"><span class="card-tag">Memory</span><h2 class="card-name">Why highlighting fails, and how to take notes you remember</h2><span class="card-note">Turn notes into questions and test yourself.</span><span class="card-go">Read the guide</span></a></li>
         <li><a href="brain-dump-before-studying/"><span class="card-tag">Focus</span><h2 class="card-name">How to clear mental clutter before studying</h2><span class="card-note">A 3-minute brain dump before you start.</span><span class="card-go">Read the guide</span></a></li>
         <li><a href="stop-rereading-cover-syllabus-faster/"><span class="card-tag">Planning</span><h2 class="card-name">Why re-reading won’t finish your syllabus</h2><span class="card-note">Cover more ground with retrieval, not re-reading.</span><span class="card-go">Read the guide</span></a></li>
+{% for g in site.guides reversed %}
+        <li><a href="{{ g.url }}"><span class="card-tag">{{ g.tag | default: "Study system" }}</span><h2 class="card-name">{{ g.title }}</h2><span class="card-note">{{ g.card | default: g.lead }}</span><span class="card-go">Read the guide</span></a></li>
+{% endfor %}
       </ul>
     </main>
   </div>

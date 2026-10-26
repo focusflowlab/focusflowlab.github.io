@@ -459,3 +459,4 @@ input[type="text"] { width: 100%; min-height: 44px; padding: var(--space-xs) var
 .product-offer p { margin: var(--space-sm) 0 var(--space-md); }
 .product-offer .text-link { margin-left: var(--space-md); }
 @media (max-width: 860px) { .products, .kit.product-offer { grid-template-columns: minmax(0, 1fr); } }
+.doc-single { display: block; } .doc-single .prose { margin: 0 auto; }

@@ -1,0 +1,16 @@
+# GitHub Pages builds this site with Jekyll. Hand-written pages have no front matter and are copied as they are.
+# Only auto-published video guides (_guides/*.md) are built from a layout.
+title: FocusFlow Lab
+url: https://thefocusflowlab.com
+markdown: kramdown
+kramdown:
+  auto_ids: true
+collections:
+  guides:
+    output: true
+    permalink: /guides/:name/
+exclude:
+  - _tools
+  - _pins
+  - design.md
+  - README.md

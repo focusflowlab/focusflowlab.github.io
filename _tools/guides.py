@@ -176,13 +176,17 @@ def index_page():
       </section>
       <ul class="cards">
 {cards}
+{{% for g in site.guides reversed %}}
+        <li><a href="{{{{ g.url }}}}"><span class="card-tag">{{{{ g.tag | default: "Study system" }}}}</span><h2 class="card-name">{{{{ g.title }}}}</h2><span class="card-note">{{{{ g.card | default: g.lead }}}}</span><span class="card-go">Read the guide</span></a></li>
+{{% endfor %}}
       </ul>
     </main>"""
     return shell(path=path, title="Study Guides: Focus, Memory and Exam Planning | FocusFlow Lab", desc=desc, og_title="Study guides from FocusFlow Lab",
                  ld=ld, body=body, css_depth=1, extra_head='\n  <link rel="stylesheet" href="../study-plan/assets/plan.css">')
 
 (ROOT / "guides").mkdir(exist_ok=True)
-(ROOT / "guides/index.html").write_text(index_page(), encoding="utf-8", newline="\n")
+# Front matter so Jekyll adds auto-published video guides (_guides/*.md) to the list.
+(ROOT / "guides/index.html").write_text("---\n---\n" + index_page(), encoding="utf-8", newline="\n")
 for g in GUIDES:
     out = ROOT / "guides" / g["slug"] / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)

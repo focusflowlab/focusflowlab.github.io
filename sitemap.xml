@@ -1,3 +1,5 @@
+---
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://thefocusflowlab.com/guides/active-recall-notes/</loc><lastmod>2026-10-26</lastmod></url>
@@ -19,4 +21,5 @@
   <url><loc>https://thefocusflowlab.com/tools/spaced-review/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://thefocusflowlab.com/privacy.html</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://thefocusflowlab.com/terms.html</loc><lastmod>2026-10-26</lastmod></url>
-</urlset>
+{% for g in site.guides %}  <url><loc>https://thefocusflowlab.com{{ g.url }}</loc><lastmod>{{ g.date | date: '%Y-%m-%d' }}</lastmod></url>
+{% endfor %}</urlset>
