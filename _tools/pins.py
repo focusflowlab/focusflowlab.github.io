@@ -39,6 +39,8 @@ PINS = [
        title="How to Clear Mental Clutter Before Studying", desc="A 3-minute brain dump gets the noise out of your head before a study session. Here is how to do it."),
   dict(slug="rereading-guide", board="Study Tips and Focus", headline="Re-reading won't finish your syllabus", line="Read once, then test yourself.", kind="steps", data=["Read a section once", "Close the book and recall", "Check, then move on"], link="/guides/stop-rereading-cover-syllabus-faster/",
        title="Why Re-reading Won't Finish Your Syllabus", desc="Re-reading feels safe but is slow. Cover your syllabus faster with retrieval practice and a weekly plan."),
+  dict(slug="marathon-guide", board="Study Tips and Focus", headline="Why exam marathons fail", line="Study in 90-minute blocks instead.", kind="steps", data=["Set a sharp 90-minute timer", "Step away from your desk", "Switch topics between blocks"], link="/guides/why-exam-marathons-fail/",
+       title="Why Exam Study Marathons Fail (and What to Do Instead)", desc="Long study marathons burn you out. Work in 90-minute focus blocks, take real breaks and switch topics between them."),
   dict(slug="focus-kit", board="Study Tips and Focus", headline="5 free study focus worksheets", line="Phone distractions, notes, clutter, syllabus, focus reset.", kind="steps", data=["Stop phone distractions", "Take notes you remember", "Clear mental clutter", "Cover your syllabus faster", "Reset your focus"], link="/#free-kit",
        title="Free Study Focus Kit: 5 Printable Worksheets", desc="Five free printable worksheets, one for each FocusFlow study system. Enter your email and the kit arrives in your inbox."),
 ]
