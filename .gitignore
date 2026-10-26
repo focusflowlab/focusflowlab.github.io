@@ -1,3 +1,4 @@
 .hallmark/
 .claude/
 __pycache__/
+_pins/
