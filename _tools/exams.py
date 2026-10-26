@@ -201,6 +201,148 @@ EXAMS = [
     "note": "LSAT® is a registered trademark of the Law School Admission Council (LSAC). FocusFlow Lab isn’t affiliated with or endorsed by LSAC.",
     "tag": "Law school",
   },
+  {
+    "slug": "pance",
+    "short": "PANCE",
+    "title": "PANCE Study Plan Generator: Free Weekly Schedule",
+    "desc": "Put in your PANCE date and study hours. Get a week-by-week plan weighted to the organ systems on the NCCPA blueprint, with extra time on your weak areas.",
+    "og_title": "PANCE study plan generator",
+    "h1": "Your PANCE study plan, week by week.",
+    "lead": "Put in your exam date and the hours you have. You get a plan across the organ systems, heaviest first.",
+    "date_label": "Exam date", "legend": "Which systems feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 6, "hours_default": 5,
+    "config": {"id": "pance", "shortName": "PANCE", "maxDays": 270, "reviewShare": 0.45, "recommendedHours": {"min": 150, "max": 350}},
+    "topics": [("Cardiovascular", 13), ("Pulmonary", 10), ("Gastrointestinal and nutrition", 9), ("Musculoskeletal", 8), ("Endocrine", 7), ("EENT", 7), ("Neurologic", 7), ("Reproductive", 7), ("Infectious disease", 6), ("Psychiatry and behavioral", 6), ("Dermatologic", 5), ("Genitourinary", 5), ("Hematologic", 5), ("Renal", 5)],
+    "tasks": """{
+        review: (days) => [
+          'Review this week’s organ systems, biggest first.',
+          `Finish each day with questions on what you covered, about ${days * 50} this week.`,
+          'Keep an error log: the diagnosis or treatment you missed, and why.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one timed practice exam in a single sitting.' : `Do mixed question blocks across all systems, about ${days * 80} this week.`,
+          'Review every question, including the ones you got right.',
+          'Spend the rest of the week on your two weakest systems.',
+          'Open each day with 20 minutes on your error log.'
+        ],
+        final: () => [
+          'Light review only: your error log and high-yield tables.',
+          'Confirm your exam appointment, ID and test centre.',
+          'No new material in the last two days.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>The PANCE tests what new physician assistants need across the organ systems, along with tasks like history-taking, diagnosis and pharmacology. Cardiovascular and pulmonary carry the most questions, so they get the most time here.</p>
+          <ol>
+            <li><strong>Systems review, a bit under half.</strong> A few systems a week, each day ending with questions on what you covered.</li>
+            <li><strong>Mixed practice, the rest.</strong> Question blocks across all systems, a timed practice exam every other week, and focused work on your weakest areas.</li>
+            <li><strong>Final week.</strong> Error log and high-yield review, nothing new, and a day off before the exam.</li>
+          </ol>
+          <p>Topic hours follow the rough share of each organ system on the NCCPA content blueprint. Any system you tick as shaky gets 50% more time. These shares are rough, not official.</p>
+          <p>Check the current blueprint at <a href="https://www.nccpa.net/" rel="noopener">nccpa.net</a> before you rely on it.</p>""",
+    "faq": [
+      ("How long should I study for the PANCE?", "Many students give it 4 to 12 weeks after graduation, often around 150 to 350 hours, depending on how their rotations went."),
+      ("How many practice questions should I do?", "Many students work through one full question bank and take a few timed practice exams, reviewing every question."),
+      ("Is this an official PANCE plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to the NCCPA."),
+    ],
+    "note": "The PANCE is the Physician Assistant National Certifying Exam, run by the National Commission on Certification of Physician Assistants (NCCPA). FocusFlow Lab isn’t affiliated with or endorsed by the NCCPA.",
+    "tag": "Medicine",
+  },
+  {
+    "slug": "naplex",
+    "short": "NAPLEX",
+    "title": "NAPLEX Study Plan Generator: Free Weekly Schedule",
+    "desc": "Put in your NAPLEX date and study hours. Get a week-by-week plan weighted to the NAPLEX competency areas, with calculations practice every week.",
+    "og_title": "NAPLEX study plan generator",
+    "h1": "Your NAPLEX study plan, week by week.",
+    "lead": "Put in your exam date and the hours you have. You get a plan weighted to the NAPLEX areas, with calculations every week.",
+    "date_label": "Exam date", "legend": "Which areas feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 6, "hours_default": 5,
+    "config": {"id": "naplex", "shortName": "NAPLEX", "maxDays": 270, "reviewShare": 0.45, "recommendedHours": {"min": 120, "max": 300}},
+    "topics": [("Treatment plans", 35), ("Patient data and assessment", 18), ("Drug characteristics", 14), ("Calculations", 14), ("Compounding and dispensing", 11), ("Practice and medication-use systems", 8)],
+    "tasks": """{
+        review: (days) => [
+          'Review this week’s drug classes and disease states, biggest first.',
+          `Do calculations every study day, about ${days * 10} problems this week.`,
+          'End each day with questions on what you covered.',
+          'Keep an error log: the drug fact or step you missed, and why.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one timed practice exam in a single sitting.' : `Do mixed question sets, about ${days * 60} questions this week.`,
+          'Keep calculations going daily: 10 problems before anything else.',
+          'Spend the rest of the week on your weakest area.',
+          'Review your error log before each session.'
+        ],
+        final: () => [
+          'Light review only: top drugs, your error log and key calculations.',
+          'Confirm your appointment, ID and test centre.',
+          'No new material in the last two days.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>The NAPLEX tests whether you can practise safely as a new pharmacist. Building and managing treatment plans is the biggest area, so it gets the most time. Calculations show up every week because they’re easy points that fade without practice.</p>
+          <ol>
+            <li><strong>Content review, a bit under half.</strong> Disease states and drug classes, with daily calculations and questions on what you covered.</li>
+            <li><strong>Mixed practice, the rest.</strong> Timed practice exams every other week, mixed question sets in between, and focused work on your weakest area.</li>
+            <li><strong>Final week.</strong> Light review, nothing new, and a day off before the exam.</li>
+          </ol>
+          <p>Topic hours follow the rough share of each competency area on the NAPLEX blueprint. Any area you tick as shaky gets 50% more time. These shares are rough, not official.</p>
+          <p>Check the current blueprint at <a href="https://nabp.pharmacy/" rel="noopener">nabp.pharmacy</a> before you rely on it.</p>""",
+    "faq": [
+      ("How long should I study for the NAPLEX?", "Many graduates study for 4 to 8 weeks, often around 120 to 300 hours, starting soon after finishing their program."),
+      ("How do I get better at NAPLEX calculations?", "Do a small set every day rather than a big block once a week, and write out every step. Most calculation misses come from units and rounding."),
+      ("Is this an official NAPLEX plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to NABP."),
+    ],
+    "note": "NAPLEX® is a registered trademark of the National Association of Boards of Pharmacy (NABP). FocusFlow Lab isn’t affiliated with or endorsed by NABP.",
+    "tag": "Pharmacy",
+  },
+  {
+    "slug": "cpa-far",
+    "short": "CPA FAR",
+    "title": "CPA FAR Study Plan Generator: Free Weekly Schedule",
+    "desc": "Put in your CPA FAR exam date and study hours. Get a week-by-week plan across the three FAR content areas, with practice questions and simulations built in.",
+    "og_title": "CPA FAR study plan generator",
+    "h1": "Your CPA FAR study plan, week by week.",
+    "lead": "Put in your exam date and the hours you have. You get a plan across the FAR areas, with simulations in the second half.",
+    "date_label": "Exam date", "legend": "Which areas feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 5, "hours_default": 2.5,
+    "config": {"id": "cpa-far", "shortName": "FAR", "maxDays": 270, "reviewShare": 0.55, "recommendedHours": {"min": 100, "max": 180}},
+    "topics": [("Financial reporting", 35), ("Select balance sheet accounts", 35), ("Select transactions", 30)],
+    "tasks": """{
+        review: (days) => [
+          'Work through this week’s topics, one or two a study day.',
+          `Do multiple-choice questions on each topic the same day, about ${days * 30} this week.`,
+          'Keep an error log: the rule you missed, and why.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one timed practice exam, multiple choice and simulations.' : 'Do timed simulations on your weakest topics.',
+          `Do mixed multiple-choice sets, about ${days * 40} questions this week.`,
+          'Review every miss and re-work the simulation steps.',
+          'Re-read your error log at the start of each session.'
+        ],
+        final: () => [
+          'Light review only: your error log and formulas.',
+          'Confirm your Notice to Schedule, appointment and ID.',
+          'No new topics in the last two days.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>FAR (Financial Accounting and Reporting) is one of the three core CPA sections and usually the one people find longest. It has multiple-choice questions and task-based simulations, so the plan adds simulations once you’ve covered the content.</p>
+          <ol>
+            <li><strong>Content review, a bit over half.</strong> One or two topics a day, each ending with multiple-choice questions on what you covered.</li>
+            <li><strong>Practice, the rest.</strong> Timed practice exams every other week, simulations on your weak topics, and mixed question sets.</li>
+            <li><strong>Final week.</strong> Light review, nothing new, and a day off before the exam.</li>
+          </ol>
+          <p>Topic hours follow the rough midpoints of the three FAR content areas in the AICPA blueprint. Any area you tick as shaky gets 50% more time. These shares are rough, not official.</p>
+          <p>Check the current blueprint at <a href="https://www.aicpa-cima.com/" rel="noopener">aicpa-cima.com</a> before you rely on it.</p>""",
+    "faq": [
+      ("How many hours should I study for FAR?", "Many candidates plan around 100 to 180 hours for FAR, more than for the other sections, spread over 8 to 12 weeks while working."),
+      ("Can I study for FAR while working full time?", "Yes. Set fewer hours a day and more weeks: 2 to 3 hours on weekdays and a longer session at the weekend is a common pattern."),
+      ("Is this an official CPA plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to the AICPA, NASBA or any state board."),
+    ],
+    "note": "CPA is a designation granted by state boards of accountancy. The Uniform CPA Examination is developed by the AICPA. FocusFlow Lab isn’t affiliated with or endorsed by the AICPA, NASBA or any board of accountancy.",
+    "tag": "Accounting",
+  },
 ]
 
 STICK = """<p>A plan that survives week two beats a perfect one that doesn’t.</p>
