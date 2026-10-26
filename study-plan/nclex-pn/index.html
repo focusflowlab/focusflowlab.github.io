@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NCLEX-PN Study Plan Generator: Free Weekly Schedule</title>
+  <meta name="description" content="Put in your NCLEX-PN date and free hours. Get a week-by-week plan weighted to the PN client-needs categories, with extra time on your weak areas.">
+  <link rel="canonical" href="https://thefocusflowlab.com/study-plan/nclex-pn/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="NCLEX-PN study plan generator">
+  <meta property="og:description" content="Put in your NCLEX-PN date and free hours. Get a week-by-week plan weighted to the PN client-needs categories, with extra time on your weak areas.">
+  <meta property="og:url" content="https://thefocusflowlab.com/study-plan/nclex-pn/">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../assets/plan.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "NCLEX-PN study plan generator",
+      "url": "https://thefocusflowlab.com/study-plan/nclex-pn/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thefocusflowlab.com/#org",
+        "name": "FocusFlow Lab",
+        "url": "https://thefocusflowlab.com/"
+      },
+      "dateModified": "2026-10-26"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "FocusFlow Lab",
+          "item": "https://thefocusflowlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Study plans",
+          "item": "https://thefocusflowlab.com/study-plan/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "NCLEX-PN",
+          "item": "https://thefocusflowlab.com/study-plan/nclex-pn/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long should I study for the NCLEX-PN?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many grads give it 4 to 8 weeks at around 2 to 4 hours a day. If you work full time, a longer, lighter plan is easier to keep."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many practice questions a day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Around 60 to 100 once content review is done. Reading every rationale matters more than the raw number."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this an official NCLEX-PN plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to NCSBN."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-head -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
+    <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
+    <nav aria-label="Main">
+      <a href="/study-plan/" aria-current="page">Study plans</a>
+      <a href="/tools/">Tools</a>
+      <a href="/guides/">Guides</a>
+      <a href="/#free-kit">Free kit</a>
+      <a class="nav-cta" href="/#planner">Sprint planner</a>
+    </nav>
+  </div>
+</header>
+<!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/study-plan/">Study plans</a> / NCLEX-PN</nav>
+
+    <main id="main">
+      <section class="hero">
+        <div>
+          <h1>Your NCLEX-PN weeks, planned in a minute.</h1>
+          <p class="lead">Put in your test date and the hours you really have. You get a week-by-week plan that follows the PN test plan.</p>
+          <p class="hero-note">Free, no sign-up. Your answers stay in this browser.</p>
+        </div>
+
+        <form id="plan-form" class="sheet" novalidate aria-label="Plan sheet">
+          <p class="sheet-title">Plan sheet</p>
+          <div class="fields">
+            <div>
+              <label for="examDate">Exam date</label>
+              <input type="date" id="examDate" name="examDate" required>
+            </div>
+            <div>
+              <label for="hoursPerDay">Hours a day</label>
+              <input type="number" id="hoursPerDay" name="hoursPerDay" min="0.5" max="14" step="0.5" value="3" inputmode="decimal">
+            </div>
+            <div>
+              <label for="daysPerWeek">Days a week</label>
+              <select id="daysPerWeek" name="daysPerWeek">
+                <option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option>
+              </select>
+            </div>
+          </div>
+          <fieldset>
+            <legend>Where do you feel shaky? (optional)</legend>
+            <div class="topics" id="weak-areas"></div>
+          </fieldset>
+          <div class="sheet-actions"><button class="btn" type="submit">Build my plan</button></div>
+          <p class="error" id="form-error" role="alert"></p>
+        </form>
+      </section>
+
+      <section id="plan" class="plan" aria-live="polite"></section>
+
+      <section class="reading">
+        <h2>How the plan is put together</h2>
+        <div class="prose">
+          <p>The NCLEX-PN is a computer-adaptive test for practical and vocational nurses. Like the RN exam, it picks each question based on your earlier answers, so it rewards judgment over memorized facts.</p>
+          <ol>
+            <li><strong>Content review, the first 40% or so.</strong> One or two categories a day, each day ending with questions on what you read.</li>
+            <li><strong>Practice and review, most of the middle.</strong> Mixed question sets daily, every rationale read, one timed practice test a week.</li>
+            <li><strong>Final week.</strong> About 60% of your usual hours, your error log, and a day off before the exam.</li>
+          </ol>
+          <p>Topic hours follow the midpoints of the client-needs ranges on the NCLEX-PN test plan, so Coordinated Care gets the most time. Any area you tick as shaky gets 50% more.</p>
+          <p>Check the current test plan at <a href="https://www.ncsbn.org/" rel="noopener">ncsbn.org</a> before you rely on it.</p>
+        </div>
+      </section>
+
+      <section class="reading">
+        <h2>What makes a plan stick</h2>
+        <div class="prose">
+          <p>A plan that survives week two beats a perfect one that doesn’t.</p>
+          <ul>
+            <li>Study at the same time each day. Your phone goes in another room for that block.</li>
+            <li>Keep a log of every miss and why. Re-read it before each study day.</li>
+            <li>When you miss a day, don’t double up. Carry on from where the plan says you are.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>How long should I study for the NCLEX-PN?</summary>
+            <p>Many grads give it 4 to 8 weeks at around 2 to 4 hours a day. If you work full time, a longer, lighter plan is easier to keep.</p></details>
+          <details><summary>How many practice questions a day?</summary>
+            <p>Around 60 to 100 once content review is done. Reading every rationale matters more than the raw number.</p></details>
+          <details><summary>Is this an official NCLEX-PN plan?</summary>
+            <p>No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to NCSBN.</p></details>
+          <details><summary>Can I save the plan?</summary>
+            <p>Use “Print or save as PDF” and choose Save as PDF. Your answers also stay in this browser for next time.</p></details>
+        </div>
+      </section>
+
+      <aside class="kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+    <aside class="page-note">
+      <p>Made by FocusFlow Lab. Last reviewed October 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      <p>NCLEX® and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing (NCSBN). FocusFlow Lab isn’t affiliated with or endorsed by NCSBN.</p>
+    </aside>
+  </div>
+
+<!-- site-foot -->
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/exam-countdown/">Exam countdown</a></li>
+          <li><a href="/tools/spaced-review/">Spaced review calendar</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- /site-foot -->
+  <script>
+    window.EXAM_CONFIG = {"id": "nclex-pn", "shortName": "NCLEX-PN", "maxDays": 180, "reviewShare": 0.4, "recommendedHours": {"min": 80, "max": 180},
+      topics: [{"name": "Coordinated Care", "weight": 21}, {"name": "Safety and Infection Control", "weight": 13}, {"name": "Pharmacological Therapies", "weight": 13}, {"name": "Psychosocial Integrity", "weight": 12}, {"name": "Reduction of Risk Potential", "weight": 12}, {"name": "Basic Care and Comfort", "weight": 10}, {"name": "Physiological Adaptation", "weight": 10}, {"name": "Health Promotion", "weight": 9}],
+      tasks: {
+        review: (days) => [
+          'Read up on one or two of this week’s categories each study day.',
+          `End each day with 40 to 60 questions on what you covered, about ${days * 50} this week.`,
+          'Start an error log: why you missed it, not just the answer.'
+        ],
+        practice: (days) => [
+          `Do 60 to 100 mixed questions per study day, about ${days * 80} this week.`,
+          'Read every rationale, even on the ones you got right.',
+          'Take one timed practice test and note your weakest category.',
+          'Open each day with 20 minutes on your error log.'
+        ],
+        final: () => [
+          'Keep it light: 40 to 60 questions a day and your error log. Nothing new.',
+          'Go over medication safety, infection control and scope of practice.',
+          'Confirm your ID, test center and start time.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }
+    };
+  </script>
+  <script src="../assets/plan.js" defer></script>
+</body>
+</html>

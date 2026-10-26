@@ -5,7 +5,20 @@
 ## Free tools
 - [NCLEX study plan generator](https://thefocusflowlab.com/study-plan/nclex/): week-by-week NCLEX-RN plan from your exam date, daily hours and weak client-needs areas. Free, no sign-up, prints cleanly.
 - [MCAT study schedule generator](https://thefocusflowlab.com/study-plan/mcat/): week-by-week MCAT plan across all four sections, with CARS every week and full-length tests in the second half.
+- [NCLEX-PN study plan generator](https://thefocusflowlab.com/study-plan/nclex-pn/)
+- [USMLE Step 1 study schedule generator](https://thefocusflowlab.com/study-plan/usmle-step-1/)
+- [GRE study plan generator](https://thefocusflowlab.com/study-plan/gre/)
+- [LSAT study schedule generator](https://thefocusflowlab.com/study-plan/lsat/)
 - [All study plan generators](https://thefocusflowlab.com/study-plan/)
+- [Focus timer](https://thefocusflowlab.com/tools/focus-timer/): focus blocks with breaks and a self-test prompt.
+- [Exam countdown](https://thefocusflowlab.com/tools/exam-countdown/): days and real study hours left before an exam.
+- [Spaced review calendar](https://thefocusflowlab.com/tools/spaced-review/): review dates 1, 3, 7, 14 and 30 days out, exportable to a calendar.
+
+## Guides
+- [How to stop checking your phone while studying](https://thefocusflowlab.com/guides/stop-checking-phone-while-studying/)
+- [Why highlighting fails, and how to take notes you remember](https://thefocusflowlab.com/guides/active-recall-notes/)
+- [How to clear mental clutter before studying](https://thefocusflowlab.com/guides/brain-dump-before-studying/)
+- [Why re-reading won’t finish your syllabus](https://thefocusflowlab.com/guides/stop-rereading-cover-syllabus-faster/)
 
 ## Products
 - [Free Study Focus Kit](https://thefocusflowlab.com/#free-kit): 5 printable worksheets (phone distractions, note-taking, mental clutter, syllabus coverage, focus reset), sent by email.
@@ -17,4 +30,4 @@
 ## Contact
 - hello@thefocusflowlab.com
 
-NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. FocusFlow Lab is not affiliated with either.
+NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. FocusFlow Lab is not affiliated with any of them.

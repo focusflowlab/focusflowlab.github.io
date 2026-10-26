@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spaced Repetition Calendar: Free Review Schedule Maker</title>
+  <meta name="description" content="Add a topic and the day you studied it. Get review dates 1, 3, 7, 14 and 30 days later, and add them to Google, Apple or Outlook calendar.">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/spaced-review/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="Spaced review calendar from FocusFlow Lab">
+  <meta property="og:description" content="Add a topic and the day you studied it. Get review dates 1, 3, 7, 14 and 30 days later, and add them to Google, Apple or Outlook calendar.">
+  <meta property="og:url" content="https://thefocusflowlab.com/tools/spaced-review/">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Spaced review calendar",
+      "url": "https://thefocusflowlab.com/tools/spaced-review/",
+      "description": "Add a topic and the day you studied it. Get review dates 1, 3, 7, 14 and 30 days later, and add them to Google, Apple or Outlook calendar.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thefocusflowlab.com/#org",
+        "name": "FocusFlow Lab",
+        "url": "https://thefocusflowlab.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "FocusFlow Lab",
+          "item": "https://thefocusflowlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://thefocusflowlab.com/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Spaced review calendar",
+          "item": "https://thefocusflowlab.com/tools/spaced-review/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I get the dates into my calendar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Press “Add to my calendar” to download a .ics file, then open it or import it into Google Calendar, Apple Calendar or Outlook."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my topics saved?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, in this browser only. Nothing is sent anywhere."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why these gaps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1, 3, 7, 14 and 30 days is a common, simple schedule. Exact gaps matter less than reviewing more than once, with recall instead of re-reading."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-head -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
+    <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
+    <nav aria-label="Main">
+      <a href="/study-plan/">Study plans</a>
+      <a href="/tools/" aria-current="page">Tools</a>
+      <a href="/guides/">Guides</a>
+      <a href="/#free-kit">Free kit</a>
+      <a class="nav-cta" href="/#planner">Sprint planner</a>
+    </nav>
+  </div>
+</header>
+<!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/tools/">Tools</a> / Spaced review calendar</nav>
+
+    <main id="main">
+      <section class="hero tool-hero">
+        <div>
+          <h1>Review it before you forget it.</h1>
+          <p class="lead">Add each topic the day you study it. Get the dates to review it again.</p>
+          <p class="hero-note">Free, no sign-up. Works in your browser.</p>
+        </div>
+        <div class="review-tool">
+          <form class="sheet" id="review-form" novalidate aria-label="Add a topic">
+            <p class="sheet-title">Add a topic</p>
+            <div class="fields fields-2">
+              <div><label for="topic">Topic</label><input type="text" id="topic" maxlength="80" placeholder="Cardiac drugs, chapter 4…" autocomplete="off"></div>
+              <div><label for="studied">First studied</label><input type="date" id="studied"></div>
+            </div>
+            <div class="sheet-actions"><button class="btn" type="submit">Add topic</button></div>
+            <p class="error" id="review-error" role="alert"></p>
+          </form>
+          <p class="muted" id="review-empty">Your topics and review dates show up here.</p>
+          <div id="review-list" class="review-list" aria-live="polite"></div>
+          <div class="sheet-actions" id="review-actions" hidden>
+            <button class="btn" type="button" id="download-ics">Add to my calendar (.ics)</button>
+            <button class="btn btn-quiet" type="button" id="clear-all">Clear all</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="reading">
+        <h2>How to use it</h2>
+        <div class="prose">
+          <p>Memory fades fast after you first learn something, and each review slows the fade. Spacing reviews further apart each time is one of the best-supported study methods there is.</p>
+          <ul>
+            <li><strong>Recall first, then check.</strong> On a review day, write or say what you remember before opening your notes.</li>
+            <li><strong>Keep reviews short.</strong> Ten minutes of active recall beats an hour of re-reading.</li>
+            <li><strong>Miss one? Do it the next day</strong> and keep the rest of the dates.</li>
+          </ul>
+          <p>The dates here use a common schedule: 1, 3, 7, 14 and 30 days after you first study a topic.</p>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>How do I get the dates into my calendar?</summary>
+            <p>Press “Add to my calendar” to download a .ics file, then open it or import it into Google Calendar, Apple Calendar or Outlook.</p></details>
+          <details><summary>Are my topics saved?</summary>
+            <p>Yes, in this browser only. Nothing is sent anywhere.</p></details>
+          <details><summary>Why these gaps?</summary>
+            <p>1, 3, 7, 14 and 30 days is a common, simple schedule. Exact gaps matter less than reviewing more than once, with recall instead of re-reading.</p></details>
+        </div>
+      </section>
+
+      <aside class="kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+  </div>
+
+<!-- site-foot -->
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/exam-countdown/">Exam countdown</a></li>
+          <li><a href="/tools/spaced-review/">Spaced review calendar</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- /site-foot -->
+<script src="/assets/tools/spaced-review.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+"""Generate the newer exam plan pages from one template.
+
+Run from the repo root:  python _tools/exams.py && python _tools/build.py
+Edit the EXAMS data below, never the generated pages by hand.
+JS task strings use typographic apostrophes (’) only, so single quotes never break them.
+"""
+import json, pathlib, html
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+TODAY = "2026-10-26"
+
+EXAMS = [
+  {
+    "slug": "nclex-pn",
+    "short": "NCLEX-PN",
+    "title": "NCLEX-PN Study Plan Generator: Free Weekly Schedule",
+    "desc": "Put in your NCLEX-PN date and free hours. Get a week-by-week plan weighted to the PN client-needs categories, with extra time on your weak areas.",
+    "og_title": "NCLEX-PN study plan generator",
+    "h1": "Your NCLEX-PN weeks, planned in a minute.",
+    "lead": "Put in your test date and the hours you really have. You get a week-by-week plan that follows the PN test plan.",
+    "date_label": "Exam date", "legend": "Where do you feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 5, "hours_default": 3,
+    "config": {"id": "nclex-pn", "shortName": "NCLEX-PN", "maxDays": 180, "reviewShare": 0.4, "recommendedHours": {"min": 80, "max": 180}},
+    "topics": [("Coordinated Care", 21), ("Safety and Infection Control", 13), ("Pharmacological Therapies", 13), ("Psychosocial Integrity", 12), ("Reduction of Risk Potential", 12), ("Basic Care and Comfort", 10), ("Physiological Adaptation", 10), ("Health Promotion", 9)],
+    "tasks": """{
+        review: (days) => [
+          'Read up on one or two of this week’s categories each study day.',
+          `End each day with 40 to 60 questions on what you covered, about ${days * 50} this week.`,
+          'Start an error log: why you missed it, not just the answer.'
+        ],
+        practice: (days) => [
+          `Do 60 to 100 mixed questions per study day, about ${days * 80} this week.`,
+          'Read every rationale, even on the ones you got right.',
+          'Take one timed practice test and note your weakest category.',
+          'Open each day with 20 minutes on your error log.'
+        ],
+        final: () => [
+          'Keep it light: 40 to 60 questions a day and your error log. Nothing new.',
+          'Go over medication safety, infection control and scope of practice.',
+          'Confirm your ID, test center and start time.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>The NCLEX-PN is a computer-adaptive test for practical and vocational nurses. Like the RN exam, it picks each question based on your earlier answers, so it rewards judgment over memorized facts.</p>
+          <ol>
+            <li><strong>Content review, the first 40% or so.</strong> One or two categories a day, each day ending with questions on what you read.</li>
+            <li><strong>Practice and review, most of the middle.</strong> Mixed question sets daily, every rationale read, one timed practice test a week.</li>
+            <li><strong>Final week.</strong> About 60% of your usual hours, your error log, and a day off before the exam.</li>
+          </ol>
+          <p>Topic hours follow the midpoints of the client-needs ranges on the NCLEX-PN test plan, so Coordinated Care gets the most time. Any area you tick as shaky gets 50% more.</p>
+          <p>Check the current test plan at <a href="https://www.ncsbn.org/" rel="noopener">ncsbn.org</a> before you rely on it.</p>""",
+    "faq": [
+      ("How long should I study for the NCLEX-PN?", "Many grads give it 4 to 8 weeks at around 2 to 4 hours a day. If you work full time, a longer, lighter plan is easier to keep."),
+      ("How many practice questions a day?", "Around 60 to 100 once content review is done. Reading every rationale matters more than the raw number."),
+      ("Is this an official NCLEX-PN plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to NCSBN."),
+    ],
+    "note": "NCLEX® and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing (NCSBN). FocusFlow Lab isn’t affiliated with or endorsed by NCSBN.",
+    "tag": "Nursing",
+  },
+  {
+    "slug": "usmle-step-1",
+    "short": "USMLE Step 1",
+    "title": "USMLE Step 1 Study Schedule Generator: Free Plan",
+    "desc": "Put in your USMLE Step 1 date and daily hours. Get a week-by-week systems-based schedule with question blocks and self-assessments built in.",
+    "og_title": "USMLE Step 1 study schedule generator",
+    "h1": "Your Step 1 dedicated period, week by week.",
+    "lead": "Put in your test date and your study hours. You get a systems-based schedule with daily question blocks and self-assessments.",
+    "date_label": "Test date", "legend": "Which areas worry you? (optional)", "button": "Build my schedule",
+    "days_default": 6, "hours_default": 8,
+    "config": {"id": "usmle-step-1", "shortName": "Step 1", "maxDays": 365, "reviewShare": 0.45, "recommendedHours": {"min": 250, "max": 500}},
+    "topics": [("General principles", 18), ("Nervous system and behavior", 15), ("Reproductive and endocrine", 12), ("Cardiovascular", 9), ("Musculoskeletal and skin", 9), ("Respiratory", 8), ("Renal and urinary", 8), ("Gastrointestinal", 8), ("Blood, lymph and immune", 8)],
+    "tasks": """{
+        review: (days) => [
+          'Cover this week’s systems in order, biggest first.',
+          `Do one or two timed blocks of questions a day on those systems, about ${days * 60} this week.`,
+          'Review every block the same day and add misses to your flashcards.',
+          'Do your flashcard reviews first thing, before new material.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one NBME self-assessment, timed, in one sitting.' : 'Take one practice exam in your question bank, timed.',
+          `Do 2 or 3 random timed blocks a day, about ${days * 100} questions this week.`,
+          'Spend the morning after an assessment reviewing it fully.',
+          'Aim the rest of the week at your weakest systems.'
+        ],
+        final: () => [
+          'Take your last self-assessment about a week before the test.',
+          'Light review only: flashcards, missed questions, high-yield facts.',
+          'Confirm your permit, ID, test center and start time.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>Step 1 is a one-day, roughly eight-hour exam and is now scored pass or fail. Questions mix basic science with the organ systems, so the schedule is built around systems, with general principles (biochemistry, genetics, immunology, microbiology and pharmacology) as its own block.</p>
+          <ol>
+            <li><strong>Systems review, a bit under half.</strong> Each week covers a few systems, with timed question blocks on them every day.</li>
+            <li><strong>Mixed practice, the rest.</strong> Random timed blocks across all systems, with a self-assessment every week or two.</li>
+            <li><strong>Final week.</strong> Your last self-assessment about a week out, light review, and a day off before the test.</li>
+          </ol>
+          <p>Topic hours roughly follow the share of each system in the USMLE content outline. Any area you tick as a worry gets 50% more time. These weights are rough, not official.</p>
+          <p>Check the current content outline and rules at <a href="https://www.usmle.org/" rel="noopener">usmle.org</a> before you rely on them.</p>""",
+    "faq": [
+      ("How long is a Step 1 dedicated period?", "Many students take 4 to 8 weeks of dedicated study at 8 to 10 hours a day, after building a base during the preclinical years."),
+      ("How many practice questions should I do?", "Many students finish one full question bank, roughly 3,000 to 4,000 questions, and review each block the same day."),
+      ("Is this an official USMLE schedule?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to the FSMB or NBME."),
+    ],
+    "note": "USMLE® is a joint program of the Federation of State Medical Boards (FSMB) and the National Board of Medical Examiners (NBME). FocusFlow Lab isn’t affiliated with or endorsed by either.",
+    "tag": "Medicine",
+  },
+  {
+    "slug": "gre",
+    "short": "GRE",
+    "title": "GRE Study Plan Generator: Free Week-by-Week Schedule",
+    "desc": "Put in your GRE date and the hours you have. Get a week-by-week plan across verbal, quant and the essay, with practice tests in the right weeks.",
+    "og_title": "GRE study plan generator",
+    "h1": "Your GRE prep, laid out week by week.",
+    "lead": "Put in your test date and the hours you can give it. You get a plan across verbal, quant and the essay.",
+    "date_label": "Test date", "legend": "Which areas worry you? (optional)", "button": "Build my plan",
+    "days_default": 5, "hours_default": 2,
+    "config": {"id": "gre", "shortName": "GRE", "maxDays": 270, "reviewShare": 0.5, "recommendedHours": {"min": 40, "max": 120}},
+    "topics": [("Reading comprehension", 16), ("Data analysis", 14), ("Algebra", 14), ("Arithmetic", 12), ("Text completion", 12), ("Geometry", 10), ("Sentence equivalence", 10), ("Analytical writing", 6), ("Vocabulary", 6)],
+    "tasks": """{
+        review: (days) => [
+          'Learn or relearn this week’s topics, one or two a day.',
+          `Finish each day with practice questions on what you covered, about ${days * 20} this week.`,
+          'Learn 10 to 15 new words a day and review the old ones.',
+          'Keep a list of every question type that trips you up.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one full practice test, timed, in one sitting.' : 'Do timed mixed sections: one verbal, one quant.',
+          'Review every miss: content gap, misread or timing?',
+          'Write one Issue essay, timed at 30 minutes.',
+          'Spend the rest of the week on your weakest question type.'
+        ],
+        final: () => [
+          'Take your last practice test about five days before the test.',
+          'Light review only: vocabulary, formulas and your miss list.',
+          'Confirm your ID, test center or home setup, and start time.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>The GRE General Test is just under two hours: two Verbal Reasoning sections, two Quantitative Reasoning sections and one Analytical Writing task, “Analyze an Issue”.</p>
+          <ol>
+            <li><strong>Content review, the first half.</strong> Quant topics and verbal question types, a couple a day, with practice questions to finish.</li>
+            <li><strong>Practice, the second half.</strong> A full practice test every other week, timed sections in between, and one timed essay a week.</li>
+            <li><strong>Final week.</strong> Your last practice test about five days out, light review, and a day off before the test.</li>
+          </ol>
+          <p>Quant and verbal get about the same total time, with less for the essay. Any area you tick as a worry gets 50% more.</p>
+          <p>Use the free official practice tests from ETS, and check current rules at <a href="https://www.ets.org/gre.html" rel="noopener">ets.org/gre</a>.</p>""",
+    "faq": [
+      ("How long should I study for the GRE?", "Many people study for 1 to 3 months and put in around 40 to 120 hours, depending on their starting score and target."),
+      ("How many practice tests should I take?", "At least the free official ones, spaced out across the second half of your prep, with a full review of each."),
+      ("Is this an official GRE plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to ETS."),
+    ],
+    "note": "GRE® is a registered trademark of ETS. FocusFlow Lab isn’t affiliated with or endorsed by ETS.",
+    "tag": "Grad school",
+  },
+  {
+    "slug": "lsat",
+    "short": "LSAT",
+    "title": "LSAT Study Schedule Generator: Free Weekly Plan",
+    "desc": "Put in your LSAT date and the hours you have. Get a week-by-week schedule for logical reasoning, reading comprehension and the writing sample.",
+    "og_title": "LSAT study schedule generator",
+    "h1": "Your LSAT prep, planned week by week.",
+    "lead": "Put in your test date and the hours you can give it. You get a schedule built around logical reasoning and reading.",
+    "date_label": "Test date", "legend": "Which areas worry you? (optional)", "button": "Build my schedule",
+    "days_default": 5, "hours_default": 2.5,
+    "config": {"id": "lsat", "shortName": "LSAT", "maxDays": 365, "reviewShare": 0.45, "recommendedHours": {"min": 120, "max": 300}},
+    "topics": [("Reading comprehension", 26), ("Flaw and assumption", 20), ("Strengthen and weaken", 14), ("Inference questions", 12), ("Other reasoning questions", 10), ("Method and parallel", 8), ("Timing drills", 6), ("Argumentative writing", 4)],
+    "tasks": """{
+        review: (days) => [
+          'Learn this week’s question types, one or two a day.',
+          `Drill each type untimed first, then timed, about ${days * 15} questions this week.`,
+          'Do two reading passages every study day.',
+          'Write down why each wrong answer is wrong, not just the right one.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one full practice test, timed, in one sitting.' : 'Do two timed sections: one reasoning, one reading.',
+          'Blind review: redo the hard questions untimed before checking answers.',
+          'Spend the rest of the week on your weakest question type.',
+          'Write one practice argumentative essay.'
+        ],
+        final: () => [
+          'Take your last full practice test about five days before the test.',
+          'Light review only: your notes on question types and common traps.',
+          'Check your ID, test setup and start time.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>The LSAT has four multiple-choice sections: two scored Logical Reasoning, one scored Reading Comprehension and one unscored section. There’s also a separate, unscored Argumentative Writing sample that schools see. Since 2024 there are no logic games.</p>
+          <ol>
+            <li><strong>Learn the question types, a bit under half.</strong> One or two types a day, untimed first, then timed, plus daily reading passages.</li>
+            <li><strong>Timed practice, the rest.</strong> A full practice test every other week, timed sections in between, and blind review of every hard question.</li>
+            <li><strong>Final week.</strong> Your last practice test about five days out, light review, and a day off before the test.</li>
+          </ol>
+          <p>Logical reasoning gets about two thirds of the time because it’s two of the three scored sections. Any area you tick as a worry gets 50% more.</p>
+          <p>Use the official practice tests on LawHub, and check current rules at <a href="https://www.lsac.org/" rel="noopener">lsac.org</a>.</p>""",
+    "faq": [
+      ("How long should I study for the LSAT?", "Many people study for 2 to 4 months, often around 120 to 300 hours, depending on their starting score and target."),
+      ("What is blind review?", "After a timed section, redo the questions you weren’t sure of without a timer and before seeing answers. It shows whether misses come from reasoning or from time pressure."),
+      ("Is this an official LSAT plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to LSAC."),
+    ],
+    "note": "LSAT® is a registered trademark of the Law School Admission Council (LSAC). FocusFlow Lab isn’t affiliated with or endorsed by LSAC.",
+    "tag": "Law school",
+  },
+]
+
+STICK = """<p>A plan that survives week two beats a perfect one that doesn’t.</p>
+          <ul>
+            <li>Study at the same time each day. Your phone goes in another room for that block.</li>
+            <li>Keep a log of every miss and why. Re-read it before each study day.</li>
+            <li>When you miss a day, don’t double up. Carry on from where the plan says you are.</li>
+          </ul>"""
+
+def page(e):
+    url = f"https://thefocusflowlab.com/study-plan/{e['slug']}/"
+    cfg = dict(e["config"])
+    cfg_js = json.dumps(cfg)[:-1] + ",\n      topics: " + json.dumps([{"name": n, "weight": w} for n, w in e["topics"]]) + ",\n      tasks: " + e["tasks"] + "\n    }"
+    ld = {"@context": "https://schema.org", "@graph": [
+      {"@type": "WebApplication", "name": e["og_title"][0].upper() + e["og_title"][1:], "url": url, "applicationCategory": "EducationalApplication",
+       "operatingSystem": "Any", "isAccessibleForFree": True, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+       "publisher": {"@type": "Organization", "@id": "https://thefocusflowlab.com/#org", "name": "FocusFlow Lab", "url": "https://thefocusflowlab.com/"}, "dateModified": TODAY},
+      {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "FocusFlow Lab", "item": "https://thefocusflowlab.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Study plans", "item": "https://thefocusflowlab.com/study-plan/"},
+        {"@type": "ListItem", "position": 3, "name": e["short"], "item": url}]},
+      {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in e["faq"]]}]}
+    days_opts = "".join(f"<option{' selected' if d == e['days_default'] else ''}>{d}</option>" for d in range(3, 8))
+    faq_html = "\n".join(f"          <details><summary>{html.escape(q, False)}</summary>\n            <p>{html.escape(a, False)}</p></details>" for q, a in e["faq"])
+    faq_html += "\n          <details><summary>Can I save the plan?</summary>\n            <p>Use “Print or save as PDF” and choose Save as PDF. Your answers also stay in this browser for next time.</p></details>"
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{e['title']}</title>
+  <meta name="description" content="{e['desc']}">
+  <link rel="canonical" href="{url}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="{e['og_title']}">
+  <meta property="og:description" content="{e['desc']}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../assets/plan.css">
+  <script type="application/ld+json">
+{json.dumps(ld, indent=2, ensure_ascii=False)}
+  </script>
+</head>
+<body>
+<!-- site-head --><!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/study-plan/">Study plans</a> / {e['short']}</nav>
+
+    <main id="main">
+      <section class="hero">
+        <div>
+          <h1>{e['h1']}</h1>
+          <p class="lead">{e['lead']}</p>
+          <p class="hero-note">Free, no sign-up. Your answers stay in this browser.</p>
+        </div>
+
+        <form id="plan-form" class="sheet" novalidate aria-label="Plan sheet">
+          <p class="sheet-title">Plan sheet</p>
+          <div class="fields">
+            <div>
+              <label for="examDate">{e['date_label']}</label>
+              <input type="date" id="examDate" name="examDate" required>
+            </div>
+            <div>
+              <label for="hoursPerDay">Hours a day</label>
+              <input type="number" id="hoursPerDay" name="hoursPerDay" min="0.5" max="14" step="0.5" value="{e['hours_default']}" inputmode="decimal">
+            </div>
+            <div>
+              <label for="daysPerWeek">Days a week</label>
+              <select id="daysPerWeek" name="daysPerWeek">
+                {days_opts}
+              </select>
+            </div>
+          </div>
+          <fieldset>
+            <legend>{e['legend']}</legend>
+            <div class="topics" id="weak-areas"></div>
+          </fieldset>
+          <div class="sheet-actions"><button class="btn" type="submit">{e['button']}</button></div>
+          <p class="error" id="form-error" role="alert"></p>
+        </form>
+      </section>
+
+      <section id="plan" class="plan" aria-live="polite"></section>
+
+      <section class="reading">
+        <h2>How the plan is put together</h2>
+        <div class="prose">
+          {e['how']}
+        </div>
+      </section>
+
+      <section class="reading">
+        <h2>What makes a plan stick</h2>
+        <div class="prose">
+          {STICK}
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+{faq_html}
+        </div>
+      </section>
+
+      <aside class="kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+    <aside class="page-note">
+      <p>Made by FocusFlow Lab. Last reviewed October 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      <p>{e['note']}</p>
+    </aside>
+  </div>
+
+<!-- site-foot --><!-- /site-foot -->
+  <script>
+    window.EXAM_CONFIG = {cfg_js};
+  </script>
+  <script src="../assets/plan.js" defer></script>
+</body>
+</html>
+"""
+
+for e in EXAMS:
+    out = ROOT / "study-plan" / e["slug"] / "index.html"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(page(e), encoding="utf-8", newline="\n")
+    print("wrote", out.relative_to(ROOT).as_posix())

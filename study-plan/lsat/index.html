@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LSAT Study Schedule Generator: Free Weekly Plan</title>
+  <meta name="description" content="Put in your LSAT date and the hours you have. Get a week-by-week schedule for logical reasoning, reading comprehension and the writing sample.">
+  <link rel="canonical" href="https://thefocusflowlab.com/study-plan/lsat/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="LSAT study schedule generator">
+  <meta property="og:description" content="Put in your LSAT date and the hours you have. Get a week-by-week schedule for logical reasoning, reading comprehension and the writing sample.">
+  <meta property="og:url" content="https://thefocusflowlab.com/study-plan/lsat/">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../assets/plan.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "LSAT study schedule generator",
+      "url": "https://thefocusflowlab.com/study-plan/lsat/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thefocusflowlab.com/#org",
+        "name": "FocusFlow Lab",
+        "url": "https://thefocusflowlab.com/"
+      },
+      "dateModified": "2026-10-26"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "FocusFlow Lab",
+          "item": "https://thefocusflowlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Study plans",
+          "item": "https://thefocusflowlab.com/study-plan/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "LSAT",
+          "item": "https://thefocusflowlab.com/study-plan/lsat/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long should I study for the LSAT?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many people study for 2 to 4 months, often around 120 to 300 hours, depending on their starting score and target."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is blind review?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After a timed section, redo the questions you weren’t sure of without a timer and before seeing answers. It shows whether misses come from reasoning or from time pressure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this an official LSAT plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to LSAC."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-head -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
+    <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
+    <nav aria-label="Main">
+      <a href="/study-plan/" aria-current="page">Study plans</a>
+      <a href="/tools/">Tools</a>
+      <a href="/guides/">Guides</a>
+      <a href="/#free-kit">Free kit</a>
+      <a class="nav-cta" href="/#planner">Sprint planner</a>
+    </nav>
+  </div>
+</header>
+<!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/study-plan/">Study plans</a> / LSAT</nav>
+
+    <main id="main">
+      <section class="hero">
+        <div>
+          <h1>Your LSAT prep, planned week by week.</h1>
+          <p class="lead">Put in your test date and the hours you can give it. You get a schedule built around logical reasoning and reading.</p>
+          <p class="hero-note">Free, no sign-up. Your answers stay in this browser.</p>
+        </div>
+
+        <form id="plan-form" class="sheet" novalidate aria-label="Plan sheet">
+          <p class="sheet-title">Plan sheet</p>
+          <div class="fields">
+            <div>
+              <label for="examDate">Test date</label>
+              <input type="date" id="examDate" name="examDate" required>
+            </div>
+            <div>
+              <label for="hoursPerDay">Hours a day</label>
+              <input type="number" id="hoursPerDay" name="hoursPerDay" min="0.5" max="14" step="0.5" value="2.5" inputmode="decimal">
+            </div>
+            <div>
+              <label for="daysPerWeek">Days a week</label>
+              <select id="daysPerWeek" name="daysPerWeek">
+                <option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option>
+              </select>
+            </div>
+          </div>
+          <fieldset>
+            <legend>Which areas worry you? (optional)</legend>
+            <div class="topics" id="weak-areas"></div>
+          </fieldset>
+          <div class="sheet-actions"><button class="btn" type="submit">Build my schedule</button></div>
+          <p class="error" id="form-error" role="alert"></p>
+        </form>
+      </section>
+
+      <section id="plan" class="plan" aria-live="polite"></section>
+
+      <section class="reading">
+        <h2>How the plan is put together</h2>
+        <div class="prose">
+          <p>The LSAT has four multiple-choice sections: two scored Logical Reasoning, one scored Reading Comprehension and one unscored section. There’s also a separate, unscored Argumentative Writing sample that schools see. Since 2024 there are no logic games.</p>
+          <ol>
+            <li><strong>Learn the question types, a bit under half.</strong> One or two types a day, untimed first, then timed, plus daily reading passages.</li>
+            <li><strong>Timed practice, the rest.</strong> A full practice test every other week, timed sections in between, and blind review of every hard question.</li>
+            <li><strong>Final week.</strong> Your last practice test about five days out, light review, and a day off before the test.</li>
+          </ol>
+          <p>Logical reasoning gets about two thirds of the time because it’s two of the three scored sections. Any area you tick as a worry gets 50% more.</p>
+          <p>Use the official practice tests on LawHub, and check current rules at <a href="https://www.lsac.org/" rel="noopener">lsac.org</a>.</p>
+        </div>
+      </section>
+
+      <section class="reading">
+        <h2>What makes a plan stick</h2>
+        <div class="prose">
+          <p>A plan that survives week two beats a perfect one that doesn’t.</p>
+          <ul>
+            <li>Study at the same time each day. Your phone goes in another room for that block.</li>
+            <li>Keep a log of every miss and why. Re-read it before each study day.</li>
+            <li>When you miss a day, don’t double up. Carry on from where the plan says you are.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>How long should I study for the LSAT?</summary>
+            <p>Many people study for 2 to 4 months, often around 120 to 300 hours, depending on their starting score and target.</p></details>
+          <details><summary>What is blind review?</summary>
+            <p>After a timed section, redo the questions you weren’t sure of without a timer and before seeing answers. It shows whether misses come from reasoning or from time pressure.</p></details>
+          <details><summary>Is this an official LSAT plan?</summary>
+            <p>No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to LSAC.</p></details>
+          <details><summary>Can I save the plan?</summary>
+            <p>Use “Print or save as PDF” and choose Save as PDF. Your answers also stay in this browser for next time.</p></details>
+        </div>
+      </section>
+
+      <aside class="kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+    <aside class="page-note">
+      <p>Made by FocusFlow Lab. Last reviewed October 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      <p>LSAT® is a registered trademark of the Law School Admission Council (LSAC). FocusFlow Lab isn’t affiliated with or endorsed by LSAC.</p>
+    </aside>
+  </div>
+
+<!-- site-foot -->
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/exam-countdown/">Exam countdown</a></li>
+          <li><a href="/tools/spaced-review/">Spaced review calendar</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- /site-foot -->
+  <script>
+    window.EXAM_CONFIG = {"id": "lsat", "shortName": "LSAT", "maxDays": 365, "reviewShare": 0.45, "recommendedHours": {"min": 120, "max": 300},
+      topics: [{"name": "Reading comprehension", "weight": 26}, {"name": "Flaw and assumption", "weight": 20}, {"name": "Strengthen and weaken", "weight": 14}, {"name": "Inference questions", "weight": 12}, {"name": "Other reasoning questions", "weight": 10}, {"name": "Method and parallel", "weight": 8}, {"name": "Timing drills", "weight": 6}, {"name": "Argumentative writing", "weight": 4}],
+      tasks: {
+        review: (days) => [
+          'Learn this week’s question types, one or two a day.',
+          `Drill each type untimed first, then timed, about ${days * 15} questions this week.`,
+          'Do two reading passages every study day.',
+          'Write down why each wrong answer is wrong, not just the right one.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one full practice test, timed, in one sitting.' : 'Do two timed sections: one reasoning, one reading.',
+          'Blind review: redo the hard questions untimed before checking answers.',
+          'Spend the rest of the week on your weakest question type.',
+          'Write one practice argumentative essay.'
+        ],
+        final: () => [
+          'Take your last full practice test about five days before the test.',
+          'Light review only: your notes on question types and common traps.',
+          'Check your ID, test setup and start time.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }
+    };
+  </script>
+  <script src="../assets/plan.js" defer></script>
+</body>
+</html>

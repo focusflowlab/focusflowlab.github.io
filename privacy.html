@@ -22,16 +22,23 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<div class="container">
-  <header class="masthead">
+<!-- site-head -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
     <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
     <nav aria-label="Main">
-      <a href="study-plan/">Study plans</a>
-      <a href="/#free-kit">Free focus kit</a>
-      <a href="/#planner">Sprint planner</a>
+      <a href="/study-plan/">Study plans</a>
+      <a href="/tools/">Tools</a>
+      <a href="/guides/">Guides</a>
+      <a href="/#free-kit">Free kit</a>
+      <a class="nav-cta" href="/#planner">Sprint planner</a>
     </nav>
-  </header>
-  <main>
+  </div>
+</header>
+<!-- /site-head -->
+<div class="container">
+  <main id="main">
     <header class="doc-head">
       <h1>Privacy Policy</h1>
       <p>Last updated: <time datetime="2026-10-25">25 October 2026</time></p>
@@ -44,7 +51,7 @@
         <li><a href="#how-it-is-used">How it is used</a></li>
         <li><a href="#storage-and-sharing">Storage and sharing</a></li>
         <li><a href="#removing-access">Removing access</a></li>
-        <li><a href="#focusflow-lab-email-list-and-shop">FocusFlow Lab email list and shop</a></li>
+        <li><a href="#focusflow-lab-email-list-and-shop">Email list and shop</a></li>
         <li><a href="#contact">Contact</a></li>
       </ol>
     </nav>
@@ -69,12 +76,55 @@
     </article>
     </div>
   </main>
-
-  <footer class="colophon">
-    <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
-    <p>Contact: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
-    <p class="colophon-links"><a href="privacy.html">Privacy</a> <a href="terms.html">Terms</a> <span>© 2026 FocusFlow Lab</span></p>
-  </footer>
 </div>
+<!-- site-foot -->
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/exam-countdown/">Exam countdown</a></li>
+          <li><a href="/tools/spaced-review/">Spaced review calendar</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- /site-foot -->
 </body>
 </html>
