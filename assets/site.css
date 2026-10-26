@@ -439,3 +439,8 @@ input[type="text"] { width: 100%; min-height: 44px; padding: var(--space-xs) var
   .masthead nav::-webkit-scrollbar { display: none; }
   .masthead nav a { white-space: nowrap; flex: none; }
 }
+
+/* Sticky companions: the kit form and the planner picture stay in view beside their lists */
+@media (min-width: 861px) {
+  #free-kit .form-sheet, .planner figure { position: sticky; top: 88px; }
+}
