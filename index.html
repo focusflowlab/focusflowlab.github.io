@@ -50,14 +50,19 @@
       "@id": "https://thefocusflowlab.com/#website",
       "name": "FocusFlow Lab",
       "url": "https://thefocusflowlab.com/",
-      "publisher": { "@id": "https://thefocusflowlab.com/#org" }
+      "publisher": {
+        "@id": "https://thefocusflowlab.com/#org"
+      }
     },
     {
       "@type": "Product",
       "name": "Exam Sprint Planner",
       "description": "A 14-day printable plan for the two weeks before your exams: exam map and priority grid, sprint calendar with four focus blocks a day, daily focus pages and an active-recall tracker. 9 A4 pages, PDF.",
       "image": "https://thefocusflowlab.com/assets/products/exam-sprint-planner.png",
-      "brand": { "@type": "Brand", "name": "FocusFlow Lab" },
+      "brand": {
+        "@type": "Brand",
+        "name": "FocusFlow Lab"
+      },
       "offers": {
         "@type": "Offer",
         "price": "7.00",
@@ -66,7 +71,74 @@
         "url": "https://focusflowlab.lemonsqueezy.com/checkout/buy/d50b7b6f-a4c8-4de1-bde3-c5299a7360a7",
         "hasMerchantReturnPolicy": {
           "@type": "MerchantReturnPolicy",
-          "applicableCountry": ["US", "GB", "CA", "AU"],
+          "applicableCountry": [
+            "US",
+            "GB",
+            "CA",
+            "AU"
+          ],
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 14,
+          "returnFees": "https://schema.org/FreeReturn",
+          "refundType": "https://schema.org/FullRefund",
+          "merchantReturnLink": "https://thefocusflowlab.com/terms.html#planner-refunds"
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "NCLEX-RN 8-Week Study Planner",
+      "description": "An 8-week printable NCLEX-RN plan: exam map, 8-week overview, weekly and daily focus pages, practice test log, error log and test-day checklist. 9 A4 pages, PDF.",
+      "image": "https://thefocusflowlab.com/assets/products/nclex-rn-8-week-study-planner.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "FocusFlow Lab"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "9.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://focusflowlab.lemonsqueezy.com/checkout/buy/61e18bb1-fd07-4c2f-9278-d6de63e38172",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": [
+            "US",
+            "GB",
+            "CA",
+            "AU"
+          ],
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 14,
+          "returnFees": "https://schema.org/FreeReturn",
+          "refundType": "https://schema.org/FullRefund",
+          "merchantReturnLink": "https://thefocusflowlab.com/terms.html#planner-refunds"
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "MCAT 16-Week Study Planner",
+      "description": "A 16-week printable MCAT plan: exam map, 16-week overview, weekly and daily focus pages, full-length test log, error log and test-day checklist. 9 A4 pages, PDF.",
+      "image": "https://thefocusflowlab.com/assets/products/mcat-16-week-study-planner.png",
+      "brand": {
+        "@type": "Brand",
+        "name": "FocusFlow Lab"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "12.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://focusflowlab.lemonsqueezy.com/checkout/buy/ad1480bd-df0a-4900-8d29-9de7d380c96d",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": [
+            "US",
+            "GB",
+            "CA",
+            "AU"
+          ],
           "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
           "merchantReturnDays": 14,
           "returnFees": "https://schema.org/FreeReturn",
@@ -193,6 +265,39 @@ ml('account', '2740917');
             <a class="btn" id="buy" href="https://focusflowlab.lemonsqueezy.com/checkout/buy/d50b7b6f-a4c8-4de1-bde3-c5299a7360a7">Get the planner</a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="band" id="exam-planners" aria-labelledby="exam-planners-title" data-reveal>
+      <div class="section-head">
+        <h2 id="exam-planners-title">Planners for big exams</h2>
+        <p>Longer preps need a longer plan. Same system: four focus blocks a day, a self-test after each, an error log you keep.</p>
+      </div>
+      <div class="products">
+        <article class="product">
+          <picture>
+            <source type="image/webp" srcset="/assets/products/nclex-rn-8-week-study-planner-800.webp 800w, /assets/products/nclex-rn-8-week-study-planner.webp 1600w" sizes="(max-width: 860px) 100vw, 520px">
+            <img src="/assets/products/nclex-rn-8-week-study-planner.png" alt="NCLEX-RN 8-Week Study Planner preview pages" width="1600" height="900" loading="lazy" decoding="async">
+          </picture>
+          <div class="product-body">
+            <h3>NCLEX-RN 8-Week Study Planner</h3>
+            <p>An exam map weighted to the client-needs categories, an 8-week overview, weekly and daily pages, a practice test log, an error log and a test-day checklist.</p>
+            <p class="product-meta">9 printable A4 pages, PDF, instant download. 14-day no-questions refund.</p>
+            <div class="buy"><p class="price">$9</p><a class="btn" id="buy-nclex" href="https://focusflowlab.lemonsqueezy.com/checkout/buy/61e18bb1-fd07-4c2f-9278-d6de63e38172">Get the planner</a></div>
+          </div>
+        </article>
+        <article class="product">
+          <picture>
+            <source type="image/webp" srcset="/assets/products/mcat-16-week-study-planner-800.webp 800w, /assets/products/mcat-16-week-study-planner.webp 1600w" sizes="(max-width: 860px) 100vw, 520px">
+            <img src="/assets/products/mcat-16-week-study-planner.png" alt="MCAT 16-Week Study Planner preview pages" width="1600" height="900" loading="lazy" decoding="async">
+          </picture>
+          <div class="product-body">
+            <h3>MCAT 16-Week Study Planner</h3>
+            <p>Content review first, full-length tests in the second half, CARS every week. Weekly and daily pages, a full-length test log with section scores, and an error log.</p>
+            <p class="product-meta">9 printable A4 pages, PDF, instant download. 14-day no-questions refund.</p>
+            <div class="buy"><p class="price">$12</p><a class="btn" id="buy-mcat" href="https://focusflowlab.lemonsqueezy.com/checkout/buy/ad1480bd-df0a-4900-8d29-9de7d380c96d">Get the planner</a></div>
+          </div>
+        </article>
       </div>
     </section>
 
