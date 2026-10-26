@@ -10,9 +10,7 @@ The locked system. Every page reads this first and shares it. Change it on purpo
 - Axes: light/grotesk-sans/chromatic-teal · posture: split
 
 ## Files
-- `assets/tokens.css`: every colour, face, space and type step (light and dark). The source of truth.
-- `assets/base.css`: the floor rules (box sizing, overflow-x clip, focus ring, reduced motion).
-- `assets/site.css`: stamp, chrome (masthead, colophon), controls, home and legal layouts. Every page links it.
+- `assets/site.css`, one file: self-hosted fonts (`assets/fonts/`), then the tokens block (every colour, face, space and type step, light and dark: the source of truth), then the floor rules, then chrome, controls, home and legal layouts. Every page links it.
 - `study-plan/assets/plan.css`: the generator form and timetable only. Loads after `site.css`.
 
 ## Tokens (roles)

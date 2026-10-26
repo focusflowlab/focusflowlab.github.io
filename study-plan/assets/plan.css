@@ -1,3 +1,4 @@
+/* Hallmark · shape: kept tool layout · genre: editorial · theme: brand · redesign: full · system: /assets/site.css (stamp, critique and waivers live there) */
 /* FocusFlow Lab study plan generators. Loads after /assets/site.css and uses its tokens only.
    Direction: a printed study timetable, one ruled row per week (see /design.md). */
 
@@ -19,7 +20,7 @@
 label, legend { display: block; font-size: var(--text-sm); color: var(--color-muted); margin-bottom: var(--space-xs); }
 input[type="date"], input[type="number"], select {
   width: 100%; min-height: 44px; padding: var(--space-xs) var(--space-sm);
-  border: 1px solid var(--color-rule-strong); border-radius: var(--radius-card);
+  border: 1px solid var(--color-muted); border-radius: var(--radius-card);
   background: var(--color-paper); color: var(--color-ink); font: 500 1rem var(--font-mono);
 }
 input:hover, select:hover { border-color: var(--color-accent); }
@@ -79,7 +80,7 @@ fieldset { border: 0; padding: 0; margin: var(--space-lg) 0 0; min-width: 0; }
 
 /* Reading sections below the tool */
 .reading { border-top: 1px solid var(--color-rule); padding: var(--space-2xl) 0 0; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr); gap: var(--gap-columns); }
-.reading h2 { font-size: var(--text-2xl); }
+.reading h2 { font-size: var(--text-3xl); }
 @media (max-width: 860px) { .reading { grid-template-columns: minmax(0, 1fr); gap: var(--space-sm); } }
 .reading + .reading { margin-top: var(--space-2xl); }
 
@@ -99,3 +100,5 @@ fieldset { border: 0; padding: 0; margin: var(--space-lg) 0 0; min-width: 0; }
   body { font-size: 11pt; }
   .week { grid-template-columns: 90px minmax(0, 1fr) 200px; }
 }
+
+.topic:active { transform: translateY(1px); }

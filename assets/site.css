@@ -2,11 +2,114 @@
  * paper: oklch(97.5% 0.008 200) · accent: oklch(55% 0.095 185) · display: Bricolage Grotesque · body: IBM Plex Sans · hero: Split (/), Stage (/study-plan/*) · nav: edge-aligned wordmark and three links · footer: colophon, wordmark over contact and links · signature: a printed sprint-day sheet with four focus blocks you can tick off
  * axes: light/grotesk-sans/chromatic-teal · posture: split · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V, the page has one real picture (the planner); the day sheet carries the hero instead of a stock photo */
-/* Hallmark · waive 46a · the number is a rule in plan.js, not a claim · "50% more" tells users what ticking a shaky topic does to the plan */
+/* Hallmark · waive 44c · /study-plan/* heroes end near 600px at 1440 · the plan builds right under the form, so a short hero keeps it in view */
+/* Hallmark · waive 77 · reading sections on /study-plan/* are prose · they answer the questions people search for, so they stay text */
+/* Hallmark · waive 78 · reading heads on /study-plan/* render at 39px · they sit in a narrow side column under the tool */
 /* Hallmark · reworded hero lead "Simple, tested-on-yourself study systems: fewer distractions, notes that stick, and a plan that gets you through the syllabus without all-nighters." to "Tested-on-yourself study systems: fewer distractions, notes that stick, no all-nighters." · 58 names it: the old lead ran 20 words over the hero budget */
 /* Hallmark · reworded "9 printable A4 pages · PDF · instant download" into a three-row spec list · 63 names it: dot-joined meta reads as template */
-@import url("./tokens.css");
-@import url("./base.css");
+/* Fonts: self-hosted latin subsets (SIL Open Font License) */
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/bricolage-700.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400 600; font-display: swap; src: url("fonts/plex-sans.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/plex-mono-500.woff2") format("woff2"); }
+
+/* ---------- Tokens: the source of truth (see /design.md) ---------- */
+/* FocusFlow Lab tokens. The source of truth for every page; see design.md. */
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1.0625rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.5rem); --text-display: clamp(2.5rem, 4.5vw + 1rem, 4.5rem);
+  --text-section: clamp(1.75rem, 2vw + 1rem, 2.75rem); --text-title: clamp(1.2rem, 0.6vw + 0.95rem, 1.5rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.3rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --container: 1120px; --gutter: 40px; --gap-columns: 48px; --section-gap-s: 72px; --section-gap: 104px; --section-gap-l: 136px;
+  --z-base: 1; --z-raised: 10; --z-sticky-nav: 300;
+
+  /* Colour: FocusFlow teal (#2a9d8f / #3cc2b2) is the anchor; navy ink; cool ruled paper. */
+  --color-paper: oklch(97.5% 0.008 200);
+  --color-paper-2: oklch(99.2% 0.004 200);
+  --color-paper-3: oklch(94.5% 0.012 200);
+  --color-ink: oklch(25% 0.05 250);
+  --color-ink-2: oklch(33% 0.045 248);
+  --color-muted: oklch(45% 0.03 240);
+  --color-rule: oklch(88% 0.015 210);
+  --color-rule-strong: oklch(78% 0.02 210);
+  --color-accent: oklch(55% 0.095 185);
+  --color-accent-ink: oklch(42% 0.08 190);
+  --color-accent-wash: oklch(93% 0.04 185);
+  --color-on-accent: oklch(99% 0.01 185);
+  --color-focus: oklch(50% 0.11 190);
+  --color-phase-review: oklch(58% 0.1 185);
+  --color-phase-practice: oklch(70% 0.12 75);
+  --color-phase-final: oklch(55% 0.05 250);
+  --color-error: oklch(52% 0.16 30);
+  --color-success: oklch(50% 0.12 150);
+
+  --font-display: "Bricolage Grotesque", "IBM Plex Sans", ui-sans-serif, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-outlier: var(--font-mono);
+
+  --measure: 64ch;
+  --radius-card: 6px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
+  --tracking-display: -0.02em;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: oklch(19% 0.02 220);
+    --color-paper-2: oklch(23% 0.022 220);
+    --color-paper-3: oklch(26% 0.024 220);
+    --color-ink: oklch(94% 0.01 200);
+    --color-ink-2: oklch(86% 0.015 200);
+    --color-muted: oklch(76% 0.02 210);
+    --color-rule: oklch(32% 0.02 215);
+    --color-rule-strong: oklch(44% 0.025 215);
+    --color-accent: oklch(74% 0.11 185);
+    --color-accent-ink: oklch(82% 0.1 185);
+    --color-accent-wash: oklch(30% 0.05 190);
+    --color-on-accent: oklch(20% 0.03 200);
+    --color-focus: oklch(80% 0.11 185);
+    --color-phase-final: oklch(70% 0.05 250);
+    --color-error: oklch(75% 0.13 30);
+  }
+}
+:root[data-theme="dark"] {
+  --color-paper: oklch(19% 0.02 220); --color-paper-2: oklch(23% 0.022 220); --color-paper-3: oklch(26% 0.024 220);
+  --color-ink: oklch(94% 0.01 200); --color-ink-2: oklch(86% 0.015 200); --color-muted: oklch(76% 0.02 210);
+  --color-rule: oklch(32% 0.02 215); --color-rule-strong: oklch(44% 0.025 215);
+  --color-accent: oklch(74% 0.11 185); --color-accent-ink: oklch(82% 0.1 185); --color-accent-wash: oklch(30% 0.05 190);
+  --color-on-accent: oklch(20% 0.03 200); --color-focus: oklch(80% 0.11 185); --color-phase-final: oklch(70% 0.05 250); --color-error: oklch(75% 0.13 30);
+}
+
+/* ---------- Base: the floor rules ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scrollbar-color: var(--color-muted) var(--color-paper); scroll-padding-top: var(--space-3xl); }
+body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; caret-color: var(--color-accent); }
+::selection { background: color-mix(in oklab, var(--color-accent) 22%, transparent); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: var(--display-weight, 700); font-synthesis: none; letter-spacing: var(--tracking-display); line-height: 1.05; overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
+h1 { max-width: 20ch; font-size: var(--text-display); } h2 { max-width: 30ch; font-size: var(--text-section); } h3 { max-width: 40ch; font-size: var(--text-title); line-height: 1.2; }
+.lead { font-size: var(--text-lead); line-height: 1.45; max-width: 52ch; }
+p { margin: 0; text-wrap: pretty; }
+p:not([class]) { max-width: 65ch; }
+img, video { max-width: 100%; height: auto; display: block; }
+svg { display: block; }
+[hidden] { display: none !important; }
+button, input, select, textarea { font: inherit; }
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); box-sizing: border-box; }
+.num, .figure, td.num { font-variant-numeric: tabular-nums; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+[data-slot] { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--color-paper-2, var(--color-paper)), var(--color-paper-3, var(--color-paper))); }
+[data-slot] > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+[data-slot]:has(> img) > :not(img):not([data-keep]) { display: none !important; }
+@media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 56px; --section-gap: 80px; --section-gap-l: 104px; --gap-columns: 32px; } }
+@media (max-width: 40rem) { :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }
+@media (prefers-reduced-motion: reduce) { *:not(.keep-motion), *:not(.keep-motion)::before, *:not(.keep-motion)::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+
+/* ---------- Site ---------- */
 
 body { font-size: var(--text-md); line-height: 1.6; }
 a { color: var(--color-accent-ink); }
@@ -108,7 +211,9 @@ h3 { font-size: var(--text-title); }
 .colophon-links { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); margin-top: var(--space-md); }
 
 /* ---------- Legal pages: Long Document ---------- */
-.doc { padding: var(--space-2xl) 0 0; display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 8fr); gap: var(--gap-columns); }
+.doc-head { padding: var(--space-2xl) 0 var(--space-xl); border-bottom: 2px solid var(--color-ink); }
+.doc { padding: var(--space-xl) 0 0; display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 8fr); gap: var(--gap-columns); }
+.doc > .prose { grid-column: 2; }
 .doc-head h1 { font-size: var(--text-display-s); }
 .doc-head p { margin-top: var(--space-md); color: var(--color-muted); font-size: var(--text-sm); }
 .prose { max-width: var(--measure); }
@@ -120,8 +225,32 @@ h3 { font-size: var(--text-title); }
 
 @media (max-width: 860px) {
   .home-hero, .split, .planner, .doc { grid-template-columns: minmax(0, 1fr); }
+  .doc > .prose { grid-column: 1; }
   .home-hero { padding-top: var(--space-xl); }
   .planner figure { order: 2; }
   .rows a { grid-template-columns: minmax(0, 1fr); gap: var(--space-2xs); }
 }
 .sub { margin-top: var(--space-md); max-width: 52ch; }
+
+/* MailerLite embed, restyled with the site tokens (the form and its wiring are MailerLite's) */
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper { background: transparent !important; border: 0 !important; border-radius: 0 !important; max-width: none !important; width: 100% !important; }
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody { padding: 0 !important; }
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent { display: none !important; }
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-align-center { text-align: left !important; }
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody { padding: 0 !important; }
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-successContent h4,
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-successContent p { color: var(--color-ink) !important; font-family: var(--font-body) !important; text-align: left !important; }
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-fieldRow input.form-control {
+  min-height: 48px !important; padding: 0 var(--space-sm) !important; font: 1rem var(--font-body) !important;
+  background: var(--color-paper-2) !important; color: var(--color-ink) !important;
+  border: 1px solid var(--color-muted) !important; border-radius: var(--radius-card) !important;
+}
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-fieldRow input.form-control::placeholder { color: var(--color-muted) !important; }
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedSubmit button.primary {
+  min-height: 48px !important; padding: 0 var(--space-lg) !important; font: 600 1rem var(--font-body) !important;
+  background: var(--color-accent) !important; color: var(--color-on-accent) !important;
+  border: 1px solid var(--color-accent) !important; border-radius: var(--radius-card) !important;
+}
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedSubmit button.primary:hover { background: var(--color-accent-ink) !important; border-color: var(--color-accent-ink) !important; }
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer input.form-control:focus-visible,
+.ml-embedded :is([id^="mlb2-"], #ml-form-any).ml-form-embedContainer button:focus-visible { outline: 2px solid var(--color-focus) !important; outline-offset: 3px !important; }
