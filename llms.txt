@@ -13,6 +13,12 @@
 - [Focus timer](https://thefocusflowlab.com/tools/focus-timer/): focus blocks with breaks and a self-test prompt.
 - [Exam countdown](https://thefocusflowlab.com/tools/exam-countdown/): days and real study hours left before an exam.
 - [Spaced review calendar](https://thefocusflowlab.com/tools/spaced-review/): review dates 1, 3, 7, 14 and 30 days out, exportable to a calendar.
+- [Final grade calculator](https://thefocusflowlab.com/tools/final-grade-calculator/): the score needed on a final exam to reach a target course grade.
+- [GPA calculator](https://thefocusflowlab.com/tools/gpa-calculator/): semester and cumulative GPA on the US 4.0 scale.
+- [Weighted grade calculator](https://thefocusflowlab.com/tools/weighted-grade-calculator/): course grade from weighted categories.
+- [Study schedule maker](https://thefocusflowlab.com/tools/study-schedule-maker/): weekly study hours per subject up to each exam date.
+- [Reading planner](https://thefocusflowlab.com/tools/reading-planner/): pages per day to finish a reading by a deadline.
+- [Flashcards](https://thefocusflowlab.com/tools/flashcards/): flashcards with spaced repetition, stored in the browser.
 
 ## Guides
 - [How to stop checking your phone while studying](https://thefocusflowlab.com/guides/stop-checking-phone-while-studying/)

@@ -31,6 +31,18 @@ PINS = [
        title="Exam Countdown: Study Hours Left Before Your Exam", desc="Put in your exam date and daily hours to see the real number of study hours you have left. Free, no sign-up."),
   dict(slug="spaced-review", board="Free Study Tools", headline="Review it before you forget it", line="Review dates 1, 3, 7, 14 and 30 days out.", kind="dates", data=["Day 1", "Day 3", "Day 7", "Day 14", "Day 30"], link="/tools/spaced-review/",
        title="Spaced Repetition Review Calendar", desc="Add each topic the day you study it and get review dates 1, 3, 7, 14 and 30 days later, ready to add to your calendar."),
+  dict(slug="final-grade", board="Free Study Tools", headline="What do you need on your final?", line="Current grade, final weight, target. Done.", kind="stats", data=[("82%", "now"), ("30%", "final weight"), ("92%", "you need")], link="/tools/final-grade-calculator/",
+       title="Final Grade Calculator: What Do I Need on My Final?", desc="Find the score you need on your final exam to get the course grade you want. Free, no sign-up."),
+  dict(slug="gpa", board="Free Study Tools", headline="Work out your GPA in seconds", line="Semester and cumulative, 4.0 scale.", kind="stats", data=[("3.39", "semester"), ("10", "credits"), ("3.40", "cumulative")], link="/tools/gpa-calculator/",
+       title="Free GPA Calculator (4.0 Scale)", desc="Work out your semester and cumulative GPA from letter grades and credits on the US 4.0 scale. Free, saves in your browser."),
+  dict(slug="weighted-grade", board="Free Study Tools", headline="Your course grade, from the syllabus", line="Homework, quizzes, midterm, final.", kind="steps", data=["Homework 20%", "Quizzes 15%", "Midterm 25%", "Final exam 40%"], link="/tools/weighted-grade-calculator/",
+       title="Weighted Grade Calculator", desc="Work out your course grade from weighted categories like homework, quizzes and exams. Leave ungraded work blank to see your grade so far."),
+  dict(slug="study-schedule", board="Free Study Tools", headline="One study schedule for all your exams", line="Nearer exams get more time.", kind="weeks", data=["Biology 12.5 h, History 2.5 h", "Biology 12 h, History 3 h", "History 15 h", "History 15 h", "History 8 h"], link="/tools/study-schedule-maker/",
+       title="Free Study Schedule Maker for All Your Exams", desc="Add your subjects and exam dates and get weekly study hours per subject, with more time for exams that are coming up first."),
+  dict(slug="reading-plan", board="Free Study Tools", headline="How many pages a day?", line="Finish your reading on time, with review days.", kind="stats", data=[("320", "pages"), ("8", "reading days"), ("38", "pages a day")], link="/tools/reading-planner/",
+       title="Reading Planner: Pages a Day to Finish on Time", desc="Put in your page count and deadline and get how many pages to read a day, with a day-by-day plan and review days."),
+  dict(slug="flashcards", board="Free Study Tools", headline="Flashcards that come back at the right time", line="Spaced repetition, free, no sign-up.", kind="dates", data=["Day 1", "Day 3", "Day 7", "Day 14", "Day 30"], link="/tools/flashcards/",
+       title="Free Flashcards with Spaced Repetition", desc="Make flashcards and review them with spaced repetition: cards you know come back later, cards you miss come back tomorrow."),
   dict(slug="phone-guide", board="Study Tips and Focus", headline="Stop checking your phone while studying", line="Willpower loses. Distance and friction win.", kind="steps", data=["Put the phone in another room", "Add friction to every check", "Check it only in breaks"], link="/guides/stop-checking-phone-while-studying/",
        title="How to Stop Checking Your Phone While Studying", desc="Willpower loses to a phone within reach. Use distance and friction instead: a simple guide with a free printable worksheet."),
   dict(slug="highlighting-guide", board="Study Tips and Focus", headline="Why highlighting fails", line="And how to take notes you remember.", kind="steps", data=["Turn notes into questions", "Cover the answers and recall", "Review again in a few days"], link="/guides/active-recall-notes/",
@@ -70,7 +82,7 @@ h1 { position: relative; margin-top: 64px; font: 700 96px/1.0 "Bricolage Grotesq
 .chips span { padding: 14px 28px; border-radius: 999px; background: var(--mint); font-size: 30px; }
 .chips span.on { background: var(--teal); color: #fff; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; }
-.stats b { display: block; font: 500 120px/1 "IBM Plex Mono"; color: var(--teal-ink); }
+.stats b { display: block; font: 500 100px/1 "IBM Plex Mono"; color: var(--teal-ink); letter-spacing: -0.04em; }
 .stats span { font-size: 30px; color: var(--muted); }
 .dates { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
 .dates div { padding: 28px 8px; border-radius: 22px; background: var(--mint); text-align: center; font: 500 34px "IBM Plex Mono"; color: var(--teal-ink); }
@@ -89,7 +101,7 @@ def visual(p):
     if k == "stats":
         return '<div class="stats">' + "".join(f"<div><b>{n}</b><span>{l}</span></div>" for n, l in d) + "</div>"
     if k == "dates":
-        return '<div style="font-size:32px;margin-bottom:24px">Cardiac drugs, chapter 4</div><div class="dates">' + "".join(f"<div>{x}</div>" for x in d) + "</div>"
+        return '<div style="font-size:32px;margin-bottom:24px">' + ("Next review of a card" if p["slug"]=="flashcards" else "Cardiac drugs, chapter 4") + '</div><div class="dates">' + "".join(f"<div>{x}</div>" for x in d) + "</div>"
     return "".join(f'<div class="step"><i>{i+1:02d}</i><span>{t}</span></div>' for i, t in enumerate(d))
 
 for p in PINS:

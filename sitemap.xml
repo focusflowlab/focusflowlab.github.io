@@ -21,5 +21,11 @@
   <url><loc>https://thefocusflowlab.com/tools/spaced-review/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://thefocusflowlab.com/privacy.html</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://thefocusflowlab.com/terms.html</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/tools/final-grade-calculator/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/tools/gpa-calculator/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/tools/weighted-grade-calculator/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/tools/study-schedule-maker/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/tools/reading-planner/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/tools/flashcards/</loc><lastmod>2026-10-26</lastmod></url>
 {% for g in site.guides %}  <url><loc>https://thefocusflowlab.com{{ g.url }}</loc><lastmod>{{ g.date | date: '%Y-%m-%d' }}</lastmod></url>
 {% endfor %}</urlset>

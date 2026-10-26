@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading Planner: How Many Pages a Day to Finish on Time</title>
+  <meta name="description" content="Put in your page count and deadline. Get how many pages to read a day, a day-by-day page plan and review days before the deadline.">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/reading-planner/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="Reading planner from FocusFlow Lab">
+  <meta property="og:description" content="Put in your page count and deadline. Get how many pages to read a day, a day-by-day page plan and review days before the deadline.">
+  <meta property="og:url" content="https://thefocusflowlab.com/tools/reading-planner/">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Reading planner",
+      "url": "https://thefocusflowlab.com/tools/reading-planner/",
+      "description": "Put in your page count and deadline. Get how many pages to read a day, a day-by-day page plan and review days before the deadline.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thefocusflowlab.com/#org",
+        "name": "FocusFlow Lab",
+        "url": "https://thefocusflowlab.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "FocusFlow Lab",
+          "item": "https://thefocusflowlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://thefocusflowlab.com/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Reading planner",
+          "item": "https://thefocusflowlab.com/tools/reading-planner/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How are pages per day worked out?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pages left ÷ reading days before the deadline, rounded up. Review days and rest days aren’t counted as reading days."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it count today?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The plan starts today and ends the day before your deadline."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my plan saved?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, in this browser only, so you can come back and update the pages you’ve read."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-head -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
+    <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
+    <nav aria-label="Main">
+      <a href="/study-plan/">Study plans</a>
+      <a href="/tools/" aria-current="page">Tools</a>
+      <a href="/guides/">Guides</a>
+      <a href="/#free-kit">Free kit</a>
+      <a class="nav-cta" href="/#planner">Sprint planner</a>
+    </nav>
+  </div>
+</header>
+<!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/tools/">Tools</a> / Reading planner</nav>
+
+    <main id="main">
+      <section class="hero tool-hero">
+        <div>
+          <h1>How many pages a day?</h1>
+          <p class="lead">Your page count and deadline in, a day-by-day reading plan out.</p>
+          <p class="hero-note">Free, no sign-up. Works in your browser.</p>
+        </div>
+        <form class="sheet" id="reading-form" novalidate aria-label="Reading planner">
+          <p class="sheet-title">Your reading</p>
+          <div class="fields">
+            <div><label for="totalPages">Total pages</label><input type="number" id="totalPages" min="1" max="20000" step="1" placeholder="320" inputmode="numeric"></div>
+            <div><label for="pagesRead">Already read</label><input type="number" id="pagesRead" min="0" step="1" placeholder="0" inputmode="numeric"></div>
+            <div><label for="deadline">Finish by</label><input type="date" id="deadline"></div>
+          </div>
+          <div class="fields fields-2b" style="margin-top:var(--space-sm)">
+            <div><label for="readDays">Reading days a week</label><select id="readDays"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option></select></div>
+            <div><label class="check" style="margin-top:28px"><input type="checkbox" id="reviewDays" checked> Keep the last 2 days for review</label></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Plan my reading</button></div>
+          <p class="error" id="reading-error" role="alert"></p>
+          <div id="reading-result" class="count-result" hidden aria-live="polite">
+            <dl class="totals">
+              <div><dt>Pages a day</dt><dd id="r-per"></dd></div>
+              <div><dt>Reading days</dt><dd id="r-days"></dd></div>
+              <div><dt>Pages left</dt><dd id="r-left"></dd></div>
+            </dl>
+            <div class="table-scroll"><table class="mini-table"><thead><tr><th>Day</th><th>Pages</th></tr></thead><tbody id="r-table"></tbody></table></div>
+          </div>
+        </form>
+      </section>
+
+
+      <section class="reading">
+        <h2>How to use it</h2>
+        <div class="prose">
+          <p>The planner spreads the pages you have left evenly across your reading days, then keeps the last two days for review if you want them. Rest days are skipped, so the daily number is what you really have to read.</p>
+          <ul>
+            <li><strong>Read once, properly.</strong> Close the book after each section and write down the main points from memory. The <a href="/guides/stop-rereading-cover-syllabus-faster/">re-reading guide</a> explains why this beats a second read.</li>
+            <li><strong>Use the review days</strong> to recall, not re-read: skim your notes and test yourself on the main points.</li>
+            <li><strong>Behind schedule?</strong> Put in the pages you’ve read so far and the plan resets from today.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>How are pages per day worked out?</summary>
+            <p>Pages left ÷ reading days before the deadline, rounded up. Review days and rest days aren’t counted as reading days.</p></details>
+          <details><summary>Does it count today?</summary>
+            <p>Yes. The plan starts today and ends the day before your deadline.</p></details>
+          <details><summary>Is my plan saved?</summary>
+            <p>Yes, in this browser only, so you can come back and update the pages you’ve read.</p></details>
+        </div>
+      </section>
+
+      <aside class="kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+  </div>
+
+<!-- site-foot -->
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/final-grade-calculator/">Final grade calculator</a></li>
+          <li><a href="/tools/gpa-calculator/">GPA calculator</a></li>
+          <li><a href="/tools/study-schedule-maker/">Study schedule maker</a></li>
+          <li><a href="/tools/flashcards/">Flashcards</a></li>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/">All study tools</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+          <li><a href="https://www.pinterest.com/focusflowlabofficial/" rel="me noopener">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- Cloudflare Web Analytics: cookie-free page view counts -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3d7d2afbf78f49eba33293c0abd20ab1"}'></script>
+<!-- /site-foot -->
+<script src="/assets/tools/reading-planner.js" defer></script>
+</body>
+</html>

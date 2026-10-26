@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPA Calculator: Semester and Cumulative GPA (4.0 Scale)</title>
+  <meta name="description" content="Work out your semester GPA from letter grades and credits on the US 4.0 scale, and your new cumulative GPA. Free, saves in your browser.">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/gpa-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="GPA calculator from FocusFlow Lab">
+  <meta property="og:description" content="Work out your semester GPA from letter grades and credits on the US 4.0 scale, and your new cumulative GPA. Free, saves in your browser.">
+  <meta property="og:url" content="https://thefocusflowlab.com/tools/gpa-calculator/">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "GPA calculator",
+      "url": "https://thefocusflowlab.com/tools/gpa-calculator/",
+      "description": "Work out your semester GPA from letter grades and credits on the US 4.0 scale, and your new cumulative GPA. Free, saves in your browser.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thefocusflowlab.com/#org",
+        "name": "FocusFlow Lab",
+        "url": "https://thefocusflowlab.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "FocusFlow Lab",
+          "item": "https://thefocusflowlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://thefocusflowlab.com/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "GPA calculator",
+          "item": "https://thefocusflowlab.com/tools/gpa-calculator/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is GPA calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply each course’s grade points by its credits, add those up, and divide by the total credits. A 3-credit A (4.0) and a 4-credit B (3.0) give (12 + 12) ÷ 7 = 3.43."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does an A+ count as 4.3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At some schools, yes. This calculator uses 4.0 for an A+, which is the most common rule. Check your school’s policy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use it for UK, Canadian or Australian grades?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if your school reports a 4.0-scale GPA. UK degree classifications and Australian GPA scales work differently, so this calculator won’t match them."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-head -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
+    <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
+    <nav aria-label="Main">
+      <a href="/study-plan/">Study plans</a>
+      <a href="/tools/" aria-current="page">Tools</a>
+      <a href="/guides/">Guides</a>
+      <a href="/#free-kit">Free kit</a>
+      <a class="nav-cta" href="/#planner">Sprint planner</a>
+    </nav>
+  </div>
+</header>
+<!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/tools/">Tools</a> / GPA calculator</nav>
+
+    <main id="main">
+      <section class="hero tool-hero">
+        <div>
+          <h1>Work out your GPA.</h1>
+          <p class="lead">Add your courses, credits and letter grades. Your GPA updates as you type.</p>
+          <p class="hero-note">Free, no sign-up. Works in your browser.</p>
+        </div>
+        <form class="sheet" id="gpa-form" novalidate aria-label="GPA calculator">
+          <p class="sheet-title">This semester</p>
+          <div class="row-head" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span></span></div>
+          <ol class="tool-rows" id="gpa-rows"></ol>
+          <div class="sheet-actions"><button class="btn btn-soft" type="button" id="add-course">Add a course</button></div>
+          <fieldset><legend>Past GPA (optional, for cumulative)</legend>
+            <div class="fields fields-2b">
+              <div><label for="prevGpa">Current cumulative GPA</label><input type="number" id="prevGpa" min="0" max="4" step="0.01" placeholder="3.40" inputmode="decimal"></div>
+              <div><label for="prevCredits">Credits so far</label><input type="number" id="prevCredits" min="0" step="1" placeholder="45" inputmode="numeric"></div>
+            </div>
+          </fieldset>
+          <div class="count-result" aria-live="polite">
+            <dl class="totals">
+              <div><dt>Semester GPA</dt><dd id="r-term">–</dd></div>
+              <div><dt>Credits</dt><dd id="r-credits">0</dd></div>
+              <div><dt>Cumulative GPA</dt><dd id="r-cum">–</dd></div>
+            </dl>
+          </div>
+        </form>
+      </section>
+
+
+      <section class="reading">
+        <h2>How to use it</h2>
+        <div class="prose">
+          <p>GPA is an average of grade points, weighted by credits, so a 4-credit course counts more than a 1-credit one. This calculator uses the common US 4.0 scale: A = 4.0, A− = 3.7, B+ = 3.3, B = 3.0, and so on down to F = 0.</p>
+          <ul>
+            <li><strong>Check your school’s scale.</strong> Some schools give A+ a 4.3, and some don’t use plus or minus grades. Your transcript or student handbook says which.</li>
+            <li><strong>For cumulative GPA,</strong> add your current GPA and the credits it covers. The calculator combines them with this semester.</li>
+            <li><strong>Pass/fail courses</strong> usually don’t count toward GPA, so leave them out.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>How is GPA calculated?</summary>
+            <p>Multiply each course’s grade points by its credits, add those up, and divide by the total credits. A 3-credit A (4.0) and a 4-credit B (3.0) give (12 + 12) ÷ 7 = 3.43.</p></details>
+          <details><summary>Does an A+ count as 4.3?</summary>
+            <p>At some schools, yes. This calculator uses 4.0 for an A+, which is the most common rule. Check your school’s policy.</p></details>
+          <details><summary>Can I use it for UK, Canadian or Australian grades?</summary>
+            <p>Only if your school reports a 4.0-scale GPA. UK degree classifications and Australian GPA scales work differently, so this calculator won’t match them.</p></details>
+        </div>
+      </section>
+
+      <aside class="kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+  </div>
+
+<!-- site-foot -->
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/final-grade-calculator/">Final grade calculator</a></li>
+          <li><a href="/tools/gpa-calculator/">GPA calculator</a></li>
+          <li><a href="/tools/study-schedule-maker/">Study schedule maker</a></li>
+          <li><a href="/tools/flashcards/">Flashcards</a></li>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/">All study tools</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+          <li><a href="https://www.pinterest.com/focusflowlabofficial/" rel="me noopener">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- Cloudflare Web Analytics: cookie-free page view counts -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3d7d2afbf78f49eba33293c0abd20ab1"}'></script>
+<!-- /site-foot -->
+<script src="/assets/tools/gpa.js" defer></script>
+</body>
+</html>
