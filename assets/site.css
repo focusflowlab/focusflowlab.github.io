@@ -555,3 +555,5 @@ label.btn { margin: 0; display: inline-flex; }
   .masthead nav .nav-item:first-child .nav-trigger { margin-left: calc(var(--space-xs) * -1); }
   .masthead nav .nav-cta { display: none; }
 }
+/* The header bar keeps the page gutter (an older .masthead rule reset it) */
+.site-head .container.masthead { padding-inline: var(--gutter); }
