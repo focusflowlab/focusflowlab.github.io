@@ -48,7 +48,11 @@
         <p class="lead">{{ page.lead }}</p>
         <p>By FocusFlow Lab. Published <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%-d %B %Y' }}</time>.</p>
       </header>
-      <div class="doc doc-single">
+      <div class="doc">
+        <nav class="toc" aria-label="On this page" hidden>
+          <p>On this page</p>
+          <ol id="guide-toc"></ol>
+        </nav>
         <article class="prose">
 {{ content }}
         {% if page.video %}
@@ -67,6 +71,22 @@
   </div>
 {% include site-foot.html %}
 <script>
+  // "On this page": built from the guide's headings, so every auto-published guide gets one.
+  (() => {
+    const heads = document.querySelectorAll('.prose h2[id], .prose h3[id]');
+    const list = document.getElementById('guide-toc');
+    if (!list || heads.length < 2) return;
+    heads.forEach((h) => {
+      const li = document.createElement('li');
+      if (h.tagName === 'H3') li.className = 'toc-sub';
+      const a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent.replace(/^\d+\.\s*/, '');
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    list.parentElement.hidden = false;
+  })();
   document.querySelectorAll('.video[data-video]').forEach((link) => {
     link.addEventListener('click', (event) => {
       event.preventDefault();

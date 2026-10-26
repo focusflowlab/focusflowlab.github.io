@@ -35,6 +35,65 @@
         "@id": "https://thefocusflowlab.com/#org",
         "name": "FocusFlow Lab",
         "url": "https://thefocusflowlab.com/"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Focus timer",
+            "url": "https://thefocusflowlab.com/tools/focus-timer/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Exam countdown",
+            "url": "https://thefocusflowlab.com/tools/exam-countdown/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Spaced review calendar",
+            "url": "https://thefocusflowlab.com/tools/spaced-review/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Final grade calculator",
+            "url": "https://thefocusflowlab.com/tools/final-grade-calculator/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "GPA calculator",
+            "url": "https://thefocusflowlab.com/tools/gpa-calculator/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Weighted grade calculator",
+            "url": "https://thefocusflowlab.com/tools/weighted-grade-calculator/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Study schedule maker",
+            "url": "https://thefocusflowlab.com/tools/study-schedule-maker/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "name": "Reading planner",
+            "url": "https://thefocusflowlab.com/tools/reading-planner/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "name": "Flashcards",
+            "url": "https://thefocusflowlab.com/tools/flashcards/"
+          }
+        ]
       }
     },
     {
@@ -65,11 +124,106 @@
   <div class="container masthead">
     <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
     <nav aria-label="Main">
-      <a href="/study-plan/">Study plans</a>
-      <a href="/tools/" aria-current="page">Tools</a>
-      <a href="/guides/">Guides</a>
-      <a href="/#free-kit">Free kit</a>
-      <a class="nav-cta" href="/#planner">Sprint planner</a>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/study-plan/" aria-expanded="false" aria-controls="menu-plans">Study plans</a>
+        <div class="mega" id="menu-plans">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Nursing</p>
+              <ul>
+                <li><a href="/study-plan/nclex/"><strong>NCLEX-RN</strong><span>Weighted to the client-needs categories</span></a></li>
+                <li><a href="/study-plan/nclex-pn/"><strong>NCLEX-PN</strong><span>For practical and vocational nurses</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Medicine</p>
+              <ul>
+                <li><a href="/study-plan/mcat/"><strong>MCAT</strong><span>All four sections, CARS every week</span></a></li>
+                <li><a href="/study-plan/usmle-step-1/"><strong>USMLE Step 1</strong><span>Systems-based dedicated period</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Grad and law school</p>
+              <ul>
+                <li><a href="/study-plan/gre/"><strong>GRE</strong><span>Verbal, quant and the essay</span></a></li>
+                <li><a href="/study-plan/lsat/"><strong>LSAT</strong><span>Logical reasoning and reading</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Put in your test date and hours, get a week-by-week plan you can print.</p>
+              <a class="btn btn-soft" href="/study-plan/">All study plans</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/tools/" aria-current="page" aria-expanded="false" aria-controls="menu-tools">Tools</a>
+        <div class="mega" id="menu-tools">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Grades</p>
+              <ul>
+                <li><a href="/tools/final-grade-calculator/"><strong>Final grade calculator</strong><span>What you need on the final</span></a></li>
+                <li><a href="/tools/gpa-calculator/"><strong>GPA calculator</strong><span>Semester and cumulative, 4.0 scale</span></a></li>
+                <li><a href="/tools/weighted-grade-calculator/"><strong>Weighted grade calculator</strong><span>Course grade from categories</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Planning</p>
+              <ul>
+                <li><a href="/tools/study-schedule-maker/"><strong>Study schedule maker</strong><span>Weekly hours for every exam</span></a></li>
+                <li><a href="/tools/exam-countdown/"><strong>Exam countdown</strong><span>Real study hours left</span></a></li>
+                <li><a href="/tools/reading-planner/"><strong>Reading planner</strong><span>Pages a day to finish on time</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Focus and memory</p>
+              <ul>
+                <li><a href="/tools/focus-timer/"><strong>Focus timer</strong><span>Focus blocks with a self-test</span></a></li>
+                <li><a href="/tools/flashcards/"><strong>Flashcards</strong><span>Spaced repetition, no sign-up</span></a></li>
+                <li><a href="/tools/spaced-review/"><strong>Spaced review calendar</strong><span>When to review each topic</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Free tools that run in your browser. Nothing to install.</p>
+              <a class="btn btn-soft" href="/tools/">All tools</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/guides/" aria-expanded="false" aria-controls="menu-guides">Guides</a>
+        <div class="mega" id="menu-guides">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Focus</p>
+              <ul>
+                <li><a href="/guides/stop-checking-phone-while-studying/"><strong>Stop checking your phone</strong><span>Distance and friction, not willpower</span></a></li>
+                <li><a href="/guides/brain-dump-before-studying/"><strong>Clear mental clutter</strong><span>A 3-minute brain dump</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Memory</p>
+              <ul>
+                <li><a href="/guides/active-recall-notes/"><strong>Why highlighting fails</strong><span>Take notes you remember</span></a></li>
+                <li><a href="/guides/stop-rereading-cover-syllabus-faster/"><strong>Stop re-reading</strong><span>Cover your syllabus faster</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Study stamina</p>
+              <ul>
+                <li><a href="/guides/why-exam-marathons-fail/"><strong>Why exam marathons fail</strong><span>Study in 90-minute blocks</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Short guides that go with the FocusFlow videos. New ones arrive with each video.</p>
+              <a class="btn btn-soft" href="/guides/">All guides</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="/#free-kit">Free kit</a>
+      <a class="nav-link nav-cta" href="/#planner">Sprint planner</a>
     </nav>
   </div>
 </header>
@@ -96,6 +250,15 @@
         <li><a href="flashcards/"><span class="card-tag">Memory</span><h2 class="card-name">Flashcards</h2><span class="card-note">Make flashcards and review them with spaced repetition.</span><span class="card-go">Make cards</span></a></li>
         <li><a href="/study-plan/"><span class="card-tag">Planning</span><h2 class="card-name">Exam study plans</h2><span class="card-note">Week-by-week plans for the NCLEX, MCAT, USMLE Step 1, GRE and LSAT.</span><span class="card-go">Pick an exam</span></a></li>
       </ul>
+      <section class="reading">
+        <h2>Which tool do you need?</h2>
+        <div class="prose">
+          <p><strong>Worried about grades?</strong> The <a href="/tools/weighted-grade-calculator/">weighted grade calculator</a> shows where you stand in a course, the <a href="/tools/final-grade-calculator/">final grade calculator</a> shows what you need on the final, and the <a href="/tools/gpa-calculator/">GPA calculator</a> shows how the semester changes your GPA.</p>
+          <p><strong>Exams coming up?</strong> Start with the <a href="/tools/exam-countdown/">exam countdown</a> to see your real study hours, then share them out with the <a href="/tools/study-schedule-maker/">study schedule maker</a>. For one big exam, use a <a href="/study-plan/">study plan</a> for that exam instead.</p>
+          <p><strong>Need it to stick?</strong> Make <a href="/tools/flashcards/">flashcards</a>, plan reviews with the <a href="/tools/spaced-review/">spaced review calendar</a>, and get through set reading with the <a href="/tools/reading-planner/">reading planner</a>. Then sit down with the <a href="/tools/focus-timer/">focus timer</a> and do one block at a time.</p>
+          <p>Everything you type stays in your browser. Nothing is sent to us.</p>
+        </div>
+      </section>
     </main>
   </div>
 

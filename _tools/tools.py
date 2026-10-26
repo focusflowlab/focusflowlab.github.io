@@ -353,6 +353,37 @@ TOOLS = [
        script="flashcards.js"),
 ]
 
+RELATED = {
+    "focus-timer": ["exam-countdown", "study-schedule-maker", "flashcards"],
+    "exam-countdown": ["study-schedule-maker", "final-grade-calculator", "focus-timer"],
+    "spaced-review": ["flashcards", "reading-planner", "focus-timer"],
+    "final-grade-calculator": ["weighted-grade-calculator", "gpa-calculator", "exam-countdown"],
+    "gpa-calculator": ["final-grade-calculator", "weighted-grade-calculator", "study-schedule-maker"],
+    "weighted-grade-calculator": ["final-grade-calculator", "gpa-calculator", "study-schedule-maker"],
+    "study-schedule-maker": ["exam-countdown", "focus-timer", "reading-planner"],
+    "reading-planner": ["study-schedule-maker", "spaced-review", "flashcards"],
+    "flashcards": ["spaced-review", "focus-timer", "reading-planner"],
+}
+
+def related_block(t):
+    by_slug = {x["slug"]: x for x in TOOLS}
+    items = "\n".join(
+        f'          <li><a href="/tools/{s}/"><span class="card-tag">{by_slug[s]["tag"]}</span><span class="card-name">{by_slug[s]["name"]}</span><span class="card-note">{by_slug[s]["card"]}</span><span class="card-go">{by_slug[s]["go"]}</span></a></li>'
+        for s in RELATED.get(t["slug"], []) if s in by_slug)
+    return f"""      <section class="band related" aria-labelledby="related-title">
+        <h2 id="related-title">Related tools</h2>
+        <ul class="cards">
+{items}
+        </ul>
+      </section>"""
+
+def feedback_block(t):
+    subject = f"Feedback: {t['name']}".replace(" ", "%20")
+    return f"""      <aside class="feedback">
+        <p><strong>Something not right, or a tool you wish we had?</strong> Tell us and we’ll fix or build it.</p>
+        <a class="btn btn-soft" href="mailto:hello@thefocusflowlab.com?subject={subject}">Send feedback</a>
+      </aside>"""
+
 def tool_page(t):
     path = f"/tools/{t['slug']}/"
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Tools", "/tools/"), (t["name"], path)])
@@ -379,6 +410,10 @@ def tool_page(t):
 
 {faq_block(t['faq'])}
 
+{related_block(t)}
+
+{feedback_block(t)}
+
 {KIT_ASIDE}
     </main>"""
     return shell(path=path, title=t["title"] + " | FocusFlow Lab" if len(t["title"]) < 45 else t["title"], desc=t["desc"], og_title=t["name"] + " from FocusFlow Lab",
@@ -391,7 +426,9 @@ def index_page():
     cards = "\n".join(f'        <li><a href="{t["slug"]}/"><span class="card-tag">{t["tag"]}</span><h2 class="card-name">{t["name"]}</h2><span class="card-note">{t["card"]}</span><span class="card-go">{t["go"]}</span></a></li>' for t in TOOLS)
     desc = "Free study tools that run in your browser: final grade and GPA calculators, a study schedule maker, flashcards, a focus timer and more. No sign-up."
     ld = {"@context": "https://schema.org", "@graph": [
-        {"@type": "CollectionPage", "name": "Free study tools", "url": SITE + path, "description": desc, "publisher": ORG}, crumb_ld]}
+        {"@type": "CollectionPage", "name": "Free study tools", "url": SITE + path, "description": desc, "publisher": ORG,
+         "mainEntity": {"@type": "ItemList", "itemListElement": [
+           {"@type": "ListItem", "position": i + 1, "name": t["name"], "url": f"{SITE}/tools/{t['slug']}/"} for i, t in enumerate(TOOLS)]}}, crumb_ld]}
     body = f"""{crumb_html}
 
     <main id="main">
@@ -405,6 +442,15 @@ def index_page():
 {cards}
         <li><a href="/study-plan/"><span class="card-tag">Planning</span><h2 class="card-name">Exam study plans</h2><span class="card-note">Week-by-week plans for the NCLEX, MCAT, USMLE Step 1, GRE and LSAT.</span><span class="card-go">Pick an exam</span></a></li>
       </ul>
+      <section class="reading">
+        <h2>Which tool do you need?</h2>
+        <div class="prose">
+          <p><strong>Worried about grades?</strong> The <a href="/tools/weighted-grade-calculator/">weighted grade calculator</a> shows where you stand in a course, the <a href="/tools/final-grade-calculator/">final grade calculator</a> shows what you need on the final, and the <a href="/tools/gpa-calculator/">GPA calculator</a> shows how the semester changes your GPA.</p>
+          <p><strong>Exams coming up?</strong> Start with the <a href="/tools/exam-countdown/">exam countdown</a> to see your real study hours, then share them out with the <a href="/tools/study-schedule-maker/">study schedule maker</a>. For one big exam, use a <a href="/study-plan/">study plan</a> for that exam instead.</p>
+          <p><strong>Need it to stick?</strong> Make <a href="/tools/flashcards/">flashcards</a>, plan reviews with the <a href="/tools/spaced-review/">spaced review calendar</a>, and get through set reading with the <a href="/tools/reading-planner/">reading planner</a>. Then sit down with the <a href="/tools/focus-timer/">focus timer</a> and do one block at a time.</p>
+          <p>Everything you type stays in your browser. Nothing is sent to us.</p>
+        </div>
+      </section>
     </main>"""
     return shell(path=path, title="Free Study Tools: GPA, Final Grade, Flashcards and More", desc=desc, og_title="Free study tools from FocusFlow Lab",
                  ld=ld, body=body, css_depth=1, extra_head=PLAN_CSS.replace("../../", "../"))

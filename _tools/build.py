@@ -29,7 +29,7 @@ for page in pages:
     h = head
     for section in ("/study-plan/", "/tools/", "/guides/"):
         if url.startswith(section):
-            h = h.replace(f'<a href="{section}">', f'<a href="{section}" aria-current="page">')
+            h = h.replace(f'href="{section}" aria-expanded', f'href="{section}" aria-current="page" aria-expanded')
     html = re.sub(r"<!-- site-head -->.*?<!-- /site-head -->", lambda m: f"<!-- site-head -->\n{h}\n<!-- /site-head -->", html, flags=re.S)
     html = re.sub(r"<!-- site-foot -->.*?<!-- /site-foot -->", lambda m: f"<!-- site-foot -->\n{foot}\n<!-- /site-foot -->", html, flags=re.S)
     page.write_text(html, encoding="utf-8", newline="\n")
