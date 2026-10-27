@@ -168,9 +168,46 @@ GUIDES = [
          ("Start with a timer", """<p>Commit to one focus block, not the whole evening. The <a href="/tools/focus-timer/">focus timer</a> runs 25, 45 or 50 minutes. When it ends, you can stop. Most of the time you won’t want to.</p>"""),
          ("Clear your head first", """<p>If other worries keep pulling you away, spend three minutes writing them all down before you start. The <a href="/guides/brain-dump-before-studying/">brain dump guide</a> shows how.</p>"""),
        ]),
+  dict(slug="how-long-to-study-for-exams", tag="Planning", date="2026-10-27",
+       title="How Long Should You Study for Each Exam? NCLEX, MCAT, USMLE and More",
+       h1="How long should you study for each exam?",
+       desc="Typical study hours and weeks for the NCLEX, TEAS, MCAT, USMLE Step 1, PANCE, NAPLEX, DAT, GRE, GMAT, LSAT and CPA, side by side, and how to turn them into a plan.",
+       lead="The common ranges for 14 exams in one table, and how to work out where you fit.",
+       card="Study hours for 14 exams, side by side.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("The numbers", """<p>These are the ranges students and prep programs commonly plan around. They are starting points, not rules: your background, your target score and how recently you studied the material move you up or down the range.</p>
+<div class="table-scroll"><table class="mini-table">
+<thead><tr><th scope="col">Exam</th><th scope="col">Test length</th><th scope="col">Common prep time</th><th scope="col">Hours, roughly</th></tr></thead>
+<tbody>
+<tr><td><a href="/study-plan/nclex/">NCLEX-RN</a></td><td>85 to 150 questions, up to 5 hours</td><td>6 to 8 weeks</td><td>150 to 300</td></tr>
+<tr><td><a href="/study-plan/nclex-pn/">NCLEX-PN</a></td><td>85 to 150 questions, up to 5 hours</td><td>5 to 8 weeks</td><td>120 to 250</td></tr>
+<tr><td><a href="/study-plan/teas/">ATI TEAS</a></td><td>170 questions, about 3.5 hours</td><td>4 to 8 weeks</td><td>30 to 80</td></tr>
+<tr><td><a href="/study-plan/mcat/">MCAT</a></td><td>230 questions, about 7.5 hours with breaks</td><td>3 to 6 months</td><td>300 to 500</td></tr>
+<tr><td><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></td><td>Up to 280 questions, one 8-hour day</td><td>6 to 8 weeks dedicated</td><td>300 to 600</td></tr>
+<tr><td><a href="/study-plan/pance/">PANCE</a></td><td>300 questions, 5 hours</td><td>6 to 12 weeks</td><td>150 to 350</td></tr>
+<tr><td><a href="/study-plan/naplex/">NAPLEX</a></td><td>225 questions, 6 hours</td><td>6 to 10 weeks</td><td>120 to 300</td></tr>
+<tr><td><a href="/study-plan/dat/">DAT</a></td><td>About 4.5 hours</td><td>2 to 3 months</td><td>200 to 350</td></tr>
+<tr><td><a href="/study-plan/gre/">GRE</a></td><td>About 2 hours</td><td>1 to 3 months</td><td>60 to 150</td></tr>
+<tr><td><a href="/study-plan/gmat/">GMAT</a></td><td>64 questions, 2 hours 15 minutes</td><td>2 to 3 months</td><td>80 to 150</td></tr>
+<tr><td><a href="/study-plan/lsat/">LSAT</a></td><td>Four 35-minute sections plus writing</td><td>3 to 6 months</td><td>150 to 300</td></tr>
+<tr><td><a href="/study-plan/cpa-far/">CPA FAR</a></td><td>4 hours</td><td>8 to 12 weeks</td><td>100 to 180</td></tr>
+<tr><td><a href="/study-plan/cpa-aud/">CPA AUD</a></td><td>4 hours</td><td>6 to 10 weeks</td><td>90 to 150</td></tr>
+<tr><td><a href="/study-plan/cpa-reg/">CPA REG</a></td><td>4 hours</td><td>6 to 10 weeks</td><td>90 to 150</td></tr>
+</tbody></table></div>
+<p>Test lengths come from each exam’s official site and can change, so check before you book. Each exam name links to a free plan that turns your own date and hours into a week-by-week schedule.</p>"""),
+         ("Where you fit in the range", """<ul>
+<li><strong>Use the low end</strong> if you studied the material recently, your practice scores are already near your target, or the exam is pass/fail and you’re comfortably passing practice tests.</li>
+<li><strong>Use the high end</strong> if it’s been years since the coursework, your first practice test is well below your target, or you’re aiming for a competitive score.</li>
+<li><strong>Take a practice test first.</strong> It tells you more than any table. Plan from the gap between that score and your target.</li>
+</ul>"""),
+         ("Turn hours into weeks", """<p>Divide your hours by what you can really study each week. 200 hours at 4 hours a day, 5 days a week, is 10 weeks. If that runs past your test date, either add hours per week or move the date. The <a href="/tools/exam-countdown/">exam countdown</a> shows how many study hours you have left before a date.</p>"""),
+         ("Spread it out", """<p>The same hours spread over more weeks beat the same hours crammed into fewer. Spacing your review out over time is one of the most reliable findings in learning research. Leave the last few days light, and sleep properly before the exam.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "how-long-to-study-for-exams": "Test details: NCSBN (ncsbn.org), ATI (atitesting.com), AAMC (aamc.org), USMLE (usmle.org), NCCPA (nccpa.net), NABP (nabp.pharmacy), ADA (ada.org), ETS (ets.org), GMAC (mba.com), LSAC (lsac.org), AICPA (aicpa-cima.com).<br>Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "stop-checking-phone-while-studying": "Ward, A. F., Duke, K., Gneezy, A., &amp; Bos, M. W. (2017). Brain drain: The mere presence of one’s own smartphone reduces available cognitive capacity. <em>Journal of the Association for Consumer Research</em>, 2(2).",
   "active-recall-notes": "Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., &amp; Willingham, D. T. (2013). Improving students’ learning with effective learning techniques. <em>Psychological Science in the Public Interest</em>, 14(1).",
   "brain-dump-before-studying": "Masicampo, E. J., &amp; Baumeister, R. F. (2011). Consider it done! Plan making can eliminate the cognitive effects of unfulfilled goals. <em>Journal of Personality and Social Psychology</em>, 101(4).",
