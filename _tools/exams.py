@@ -583,6 +583,12 @@ EXAMS = [
 ]
 
 GUIDE_LINK = {
+  "cpa-far": '''
+          <p>Planning all four sections? See the <a href="/guides/cpa-study-schedule/">CPA study schedule</a> for order and timing.</p>''',
+  "cpa-aud": '''
+          <p>Planning all four sections? See the <a href="/guides/cpa-study-schedule/">CPA study schedule</a> for order and timing.</p>''',
+  "cpa-reg": '''
+          <p>Planning all four sections? See the <a href="/guides/cpa-study-schedule/">CPA study schedule</a> for order and timing.</p>''',
   "nclex": '''
           <p>More detail: <a href="/guides/how-to-study-for-the-nclex/">how to study for the NCLEX</a>, with a 6-week plan.</p>''',
   "mcat": '''

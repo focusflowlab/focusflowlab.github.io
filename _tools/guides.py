@@ -284,9 +284,55 @@ GUIDES = [
 <li>Time yourself. The English section gives you about a minute per question, so pace matters.</li>
 </ul>"""),
        ]),
+  dict(slug="cpa-study-schedule", tag="Exam plans", date="2026-10-28",
+       title="CPA Study Schedule: How to Plan All Four Sections",
+       h1="CPA study schedule: how to plan all four sections",
+       desc="A CPA study schedule for all four sections: how the exam is structured, which order to take FAR, AUD, REG and your discipline in, how long each takes, and a free plan for each section.",
+       lead="Four sections, one credit window. Here’s how to order them and how long to give each.",
+       card="Plan all four CPA sections: order, hours and timeline.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the CPA Exam is structured", """<p>Since January 2024, the CPA Exam has three core sections that everyone takes, plus one discipline section you choose:</p>
+<ul>
+<li><strong>Core:</strong> Financial Accounting and Reporting (FAR), Auditing and Attestation (AUD), and Taxation and Regulation (REG).</li>
+<li><strong>Discipline (pick one):</strong> Business Analysis and Reporting (BAR), Information Systems and Controls (ISC), or Tax Compliance and Planning (TCP).</li>
+</ul>
+<p>Each section is a 4-hour exam, and you need a score of 75 to pass. You take them one at a time, in any order, and must pass all four within your state’s credit window. That window used to be 18 months in every state; many states now allow 30 months. Check your own board of accountancy’s rules before you plan.</p>"""),
+         ("Which order to take them in", """<p>There’s no required order, but these approaches work well for most candidates:</p>
+<ul>
+<li><strong>FAR first</strong> if you have the most time now. It’s usually the longest section, and it gives you a base for the others.</li>
+<li><strong>Pair related sections.</strong> REG and TCP overlap on tax, and FAR and BAR overlap on financial reporting, so taking them back to back saves review time.</li>
+<li><strong>Put your busiest work season on your shortest section,</strong> or leave a gap. Don’t start FAR in the middle of busy season.</li>
+</ul>"""),
+         ("How long each section takes", """<div class="table-scroll"><table class="mini-table">
+<thead><tr><th scope="col">Section</th><th scope="col">Common study hours</th><th scope="col">Weeks, studying part time</th><th scope="col">Free plan</th></tr></thead>
+<tbody>
+<tr><td>FAR</td><td>100 to 180</td><td>8 to 12</td><td><a href="/study-plan/cpa-far/">FAR study plan</a></td></tr>
+<tr><td>AUD</td><td>90 to 150</td><td>6 to 10</td><td><a href="/study-plan/cpa-aud/">AUD study plan</a></td></tr>
+<tr><td>REG</td><td>90 to 150</td><td>6 to 10</td><td><a href="/study-plan/cpa-reg/">REG study plan</a></td></tr>
+<tr><td>Discipline (BAR, ISC or TCP)</td><td>roughly 80 to 150</td><td>6 to 10</td><td>Use the <a href="/tools/study-schedule-maker/">study schedule maker</a></td></tr>
+</tbody></table></div>
+<p>These are common planning ranges, not official figures. Your accounting background and how recently you studied each topic move you up or down.</p>"""),
+         ("A full timeline", """<p>Studying part time while working, most candidates finish all four sections in about 12 to 18 months:</p>
+<ol>
+<li><strong>Months 1 to 3:</strong> FAR. Book your exam date before you start, so the plan has an end.</li>
+<li><strong>Months 4 to 6:</strong> AUD or REG.</li>
+<li><strong>Months 7 to 9:</strong> the other core section.</li>
+<li><strong>Months 10 to 12:</strong> your discipline section, paired with the core section it overlaps most.</li>
+</ol>
+<p>Leave a week or two between sections to rest, and keep a buffer before your credit window closes in case you need to retake one.</p>"""),
+         ("Plan each section week by week", """<p>Each free section plan builds a week-by-week schedule from your exam date and the hours you have, weighted to the AICPA blueprint, with simulations in the second half:</p>
+<ul>
+<li><a href="/study-plan/cpa-far/">CPA FAR study plan</a></li>
+<li><a href="/study-plan/cpa-aud/">CPA AUD study plan</a></li>
+<li><a href="/study-plan/cpa-reg/">CPA REG study plan</a></li>
+</ul>
+<p>Studying while working is mostly a focus problem. Short, protected blocks with your phone in another room beat long, distracted evenings. The <a href="/tools/focus-timer/">Pomodoro timer</a> helps.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "cpa-study-schedule": "AICPA &amp; CIMA. CPA Exam blueprints and CPA Evolution, aicpa-cima.com. NASBA. CPA Exam information and credit window rules by jurisdiction, nasba.org.",
   "how-to-study-for-the-nclex": "NCSBN. NCLEX-RN test plan and Next Generation NCLEX information, ncsbn.org.",
   "mcat-study-schedule-3-months": "AAMC. What’s on the MCAT exam, and official MCAT practice exams, students-residents.aamc.org.",
   "how-to-study-for-the-teas": "ATI. About the ATI TEAS 7, atitesting.com/teas.",
