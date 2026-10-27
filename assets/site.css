@@ -601,3 +601,9 @@ body.embed { background: var(--color-paper); }
   .site-foot { margin-top: var(--space-xl); }
 }
 .example-row[hidden] { display: none; }
+/* Two-column field rows win over the three-column default from plan.css */
+.fields.fields-2b { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+@media (max-width: 700px) { .fields.fields-2b { grid-template-columns: minmax(0, 1fr); } .fields.fields-2b > :first-child { grid-column: auto; } }
+/* Rows ending in a date: give the date room for the full year */
+.fields.fields-date { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(10.5rem, 1.3fr); }
+@media (max-width: 700px) { .fields.fields-date { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .fields.fields-date > :last-child { grid-column: 1 / -1; } .fields.fields-date > :first-child { grid-column: auto; } }
