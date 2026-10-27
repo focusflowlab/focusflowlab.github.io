@@ -10,6 +10,28 @@ from common import TRACKER_FORM, TRACKERS
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TODAY = "2026-10-26"
 
+# Printable planners sold on Gumroad: slug -> (weeks, permalink). Add a slug once its product is published.
+PLANNERS = {"nclex-pn": (6, "nclex-pn-6-week-planner"), "usmle-step-1": (8, "usmle-step-1-8-week-planner"), "gre": (8, "gre-8-week-planner"),
+            "lsat": (12, "lsat-12-week-planner"), "pance": (8, "pance-8-week-planner"), "naplex": (8, "naplex-8-week-planner"),
+            "cpa-far": (10, "cpa-far-10-week-planner")}
+
+
+def planner_offer(e):
+    if e["slug"] not in PLANNERS:
+        return ""
+    weeks, link = PLANNERS[e["slug"]]
+    url = "https://tthefocusflowlab.gumroad.com/l/" + link
+    return f'''      <aside class="kit" aria-label="Printable planner">
+        <div>
+          <h2>Want it on paper?</h2>
+          <p>The {e['short']} {weeks}-Week Study Planner. Weekly and daily pages, a practice test log, an error log and a test-day checklist to print. $5, 14-day no-questions refund.</p>
+        </div>
+        <a class="btn" href="{url}" data-checkout="{url}">Get the planner</a>
+      </aside>
+
+'''
+
+
 EXAMS = [
   {
     "slug": "nclex-pn",
@@ -710,7 +732,7 @@ def page(e):
         </div>
       </section>
 
-{(TRACKER_FORM(e['slug'], '      ') + chr(10) + chr(10)) if e['slug'] in TRACKERS else ''}      <aside class="kit" aria-label="Free Study Focus Kit">
+{(TRACKER_FORM(e['slug'], '      ') + chr(10) + chr(10)) if e['slug'] in TRACKERS else ''}{planner_offer(e)}      <aside class="kit" aria-label="Free Study Focus Kit">
         <div>
           <h2>Staying focused is the hard part.</h2>
           <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>
