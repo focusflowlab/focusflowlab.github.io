@@ -12,6 +12,11 @@
 - [PANCE study plan generator](https://thefocusflowlab.com/study-plan/pance/)
 - [NAPLEX study plan generator](https://thefocusflowlab.com/study-plan/naplex/)
 - [CPA FAR study plan generator](https://thefocusflowlab.com/study-plan/cpa-far/)
+- [TEAS study plan generator](https://thefocusflowlab.com/study-plan/teas/)
+- [DAT study plan generator](https://thefocusflowlab.com/study-plan/dat/)
+- [GMAT study plan generator](https://thefocusflowlab.com/study-plan/gmat/)
+- [CPA AUD study plan generator](https://thefocusflowlab.com/study-plan/cpa-aud/)
+- [CPA REG study plan generator](https://thefocusflowlab.com/study-plan/cpa-reg/)
 - [All study plan generators](https://thefocusflowlab.com/study-plan/)
 - [Focus timer](https://thefocusflowlab.com/tools/focus-timer/): focus blocks with breaks and a self-test prompt.
 - [Exam countdown](https://thefocusflowlab.com/tools/exam-countdown/): days and real study hours left before an exam.

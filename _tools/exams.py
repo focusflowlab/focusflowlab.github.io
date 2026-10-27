@@ -343,6 +343,242 @@ EXAMS = [
     "note": "CPA is a designation granted by state boards of accountancy. The Uniform CPA Examination is developed by the AICPA. FocusFlow Lab isn’t affiliated with or endorsed by the AICPA, NASBA or any board of accountancy.",
     "tag": "Accounting",
   },
+  {
+    "slug": "teas",
+    "short": "ATI TEAS",
+    "title": "TEAS Study Plan Generator: Free Weekly TEAS 7 Schedule",
+    "desc": "Put in your ATI TEAS test date and study hours. Get a week-by-week plan across reading, math, science and English, weighted to the TEAS 7 question counts.",
+    "og_title": "TEAS study plan generator",
+    "h1": "Your TEAS study plan, week by week.",
+    "lead": "Put in your test date and the hours you have. You get a plan across all four TEAS sections, with science getting the most time.",
+    "date_label": "Test date", "legend": "Which sections feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 5, "hours_default": 1.5,
+    "config": {"id": "teas", "shortName": "TEAS", "maxDays": 180, "reviewShare": 0.55, "recommendedHours": {"min": 30, "max": 80}},
+    "topics": [("Science", 29), ("Reading", 26), ("Math", 23), ("English and language usage", 22)],
+    "tasks": """{
+        review: (days) => [
+          'Review this week’s sections, science first if it’s on the list.',
+          `End each study day with practice questions on what you covered, about ${days * 20} this week.`,
+          'Keep an error log: the fact or step you missed, and why.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one full timed practice test.' : 'Do timed section practice on your weakest section.',
+          `Do mixed question sets, about ${days * 30} questions this week.`,
+          'Review every miss, including lucky guesses.',
+          'Re-read your error log at the start of each session.'
+        ],
+        final: () => [
+          'Light review only: your error log and math formulas.',
+          'Check your test appointment, ID and what you can bring.',
+          'No new topics in the last two days.',
+          'Rest the day before and sleep early.'
+        ]
+      }""",
+    "how": """<p>The ATI TEAS is the entrance exam many nursing and allied health programs use. TEAS 7 has four sections: reading, math, science and English and language usage. Science has the most questions, so it gets the most time.</p>
+          <ol>
+            <li><strong>Content review, about half.</strong> Each study day covers one area and ends with practice questions on it.</li>
+            <li><strong>Practice, the rest.</strong> Full timed practice tests every other week and timed sets on your weakest section.</li>
+            <li><strong>Final week.</strong> Light review, nothing new, and rest before test day.</li>
+          </ol>
+          <p>Section hours follow the share of questions in each TEAS 7 section. Any section you tick as shaky gets 50% more time. Your program may set its own minimum score, so check it.</p>
+          <p>Check the current test details at <a href="https://www.atitesting.com/teas" rel="noopener">atitesting.com</a> before you rely on it.</p>""",
+    "faq": [
+      ("How long should I study for the TEAS?", "Most people plan 4 to 8 weeks at 1 to 2 hours a day. If your math or science is rusty, give yourself the longer end."),
+      ("Which TEAS section is hardest?", "Science is the largest section and the one most people find hardest, because it covers anatomy and physiology, biology, chemistry and scientific reasoning."),
+      ("Is this an official TEAS plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to ATI."),
+    ],
+    "note": "TEAS and ATI are registered trademarks of Assessment Technologies Institute, LLC. FocusFlow Lab isn’t affiliated with or endorsed by ATI.",
+    "tag": "Nursing",
+  },
+  {
+    "slug": "dat",
+    "short": "DAT",
+    "title": "DAT Study Schedule Generator: Free Weekly Plan",
+    "desc": "Put in your DAT test date and study hours. Get a week-by-week plan across biology, general and organic chemistry, perceptual ability, reading and quantitative reasoning.",
+    "og_title": "DAT study schedule generator",
+    "h1": "Your DAT study schedule, week by week.",
+    "lead": "Put in your test date and the hours you have. You get a plan across every DAT section, with perceptual ability practice every week.",
+    "date_label": "Test date", "legend": "Which sections feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 6, "hours_default": 4,
+    "config": {"id": "dat", "shortName": "DAT", "maxDays": 180, "reviewShare": 0.5, "recommendedHours": {"min": 200, "max": 350}},
+    "topics": [("Biology", 20), ("Perceptual ability", 20), ("General chemistry", 15), ("Organic chemistry", 15), ("Reading comprehension", 15), ("Quantitative reasoning", 15)],
+    "tasks": """{
+        review: (days) => [
+          'Review this week’s sections, biggest first.',
+          'Do one perceptual ability set every study day, even in content weeks.',
+          `End each day with questions on what you covered, about ${days * 30} this week.`,
+          'Keep an error log: the concept you missed, and why.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one full-length timed practice test.' : 'Do timed section practice on your weakest two sections.',
+          `Do mixed question sets, about ${days * 40} questions this week.`,
+          'Review every miss before moving on.',
+          'Keep perceptual ability practice going daily.'
+        ],
+        final: () => [
+          'Light review only: your error log and formulas.',
+          'Check your Prometric appointment and ID.',
+          'No new topics in the last two days.',
+          'Rest the day before and sleep early.'
+        ]
+      }""",
+    "how": """<p>The Dental Admission Test has four parts: the Survey of the Natural Sciences (biology, general chemistry and organic chemistry), perceptual ability, reading comprehension and quantitative reasoning. Perceptual ability is a skill, not content, so the plan practises it every week.</p>
+          <ol>
+            <li><strong>Content review, about half.</strong> Science and math content by section, with questions at the end of each day and a daily perceptual ability set.</li>
+            <li><strong>Practice, the rest.</strong> Full-length practice tests every other week and timed work on your weakest sections.</li>
+            <li><strong>Final week.</strong> Light review, nothing new, and rest before test day.</li>
+          </ol>
+          <p>Section hours are rough shares based on the question counts and how much content each section covers. They aren’t official. Any section you tick as shaky gets 50% more time.</p>
+          <p>Check the current test details at <a href="https://www.ada.org/education/testing/dental-admission-test" rel="noopener">ada.org</a> before you rely on it.</p>""",
+    "faq": [
+      ("How long should I study for the DAT?", "Many students plan around 2 to 3 months at 4 or more hours a day, roughly 200 to 350 hours, depending on how recently they took the sciences."),
+      ("How do I get better at perceptual ability?", "Practise it a little every day rather than in big blocks. The question types follow patterns, and short daily practice builds speed."),
+      ("Is this an official DAT plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to the American Dental Association."),
+    ],
+    "note": "DAT is a program of the American Dental Association. FocusFlow Lab isn’t affiliated with or endorsed by the ADA.",
+    "tag": "Dentistry",
+  },
+  {
+    "slug": "gmat",
+    "short": "GMAT",
+    "title": "GMAT Study Plan Generator: Free Weekly GMAT Focus Schedule",
+    "desc": "Put in your GMAT test date and study hours. Get a week-by-week plan across Quantitative Reasoning, Verbal Reasoning and Data Insights, with practice exams built in.",
+    "og_title": "GMAT study plan generator",
+    "h1": "Your GMAT study plan, week by week.",
+    "lead": "Put in your test date and the hours you have. You get a plan across all three GMAT sections, with practice exams in the second half.",
+    "date_label": "Test date", "legend": "Which sections feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 5, "hours_default": 2,
+    "config": {"id": "gmat", "shortName": "GMAT", "maxDays": 180, "reviewShare": 0.5, "recommendedHours": {"min": 80, "max": 150}},
+    "topics": [("Quantitative Reasoning", 34), ("Verbal Reasoning", 33), ("Data Insights", 33)],
+    "tasks": """{
+        review: (days) => [
+          'Work through this week’s question types, one or two a study day.',
+          `Do untimed practice on each type the same day, about ${days * 15} questions this week.`,
+          'Keep an error log: the question type, why you missed it, and the fix.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one full timed practice exam.' : 'Do timed sets on your weakest section.',
+          `Do mixed timed sets, about ${days * 20} questions this week.`,
+          'Review every miss and every slow question.',
+          'Re-read your error log at the start of each session.'
+        ],
+        final: () => [
+          'Light review only: your error log.',
+          'Check your appointment, ID, or online test setup.',
+          'No new material in the last two days.',
+          'Rest the day before and sleep early.'
+        ]
+      }""",
+    "how": """<p>The GMAT Focus Edition has three equally scored sections: Quantitative Reasoning, Verbal Reasoning and Data Insights. Time is split evenly across them, with extra for any section you mark as shaky.</p>
+          <ol>
+            <li><strong>Question types first, about half.</strong> Learn each type, then practise it untimed the same day.</li>
+            <li><strong>Timed practice, the rest.</strong> A full practice exam every other week and timed sets on your weakest section.</li>
+            <li><strong>Final week.</strong> Light review, nothing new, and rest before test day.</li>
+          </ol>
+          <p>Any section you tick as shaky gets 50% more time.</p>
+          <p>Check the current test details at <a href="https://www.mba.com/exams/gmat-exam" rel="noopener">mba.com</a> before you rely on it.</p>""",
+    "faq": [
+      ("How many hours should I study for the GMAT?", "Many test takers plan around 80 to 150 hours over 2 to 3 months. Your starting score and target decide where you land in that range."),
+      ("Should I take practice exams early?", "Take one at the start to see where you are, then about one every two weeks once you’ve covered the question types."),
+      ("Is this an official GMAT plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to GMAC."),
+    ],
+    "note": "GMAT is a registered trademark of the Graduate Management Admission Council (GMAC). FocusFlow Lab isn’t affiliated with or endorsed by GMAC.",
+    "tag": "Business school",
+  },
+  {
+    "slug": "cpa-aud",
+    "short": "CPA AUD",
+    "title": "CPA AUD Study Plan Generator: Free Weekly Schedule",
+    "desc": "Put in your CPA AUD exam date and study hours. Get a week-by-week plan across the four AUD content areas, with practice questions and simulations built in.",
+    "og_title": "CPA AUD study plan generator",
+    "h1": "Your CPA AUD study plan, week by week.",
+    "lead": "Put in your exam date and the hours you have. You get a plan across the AUD areas, with simulations in the second half.",
+    "date_label": "Exam date", "legend": "Which areas feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 5, "hours_default": 2.5,
+    "config": {"id": "cpa-aud", "shortName": "AUD", "maxDays": 270, "reviewShare": 0.55, "recommendedHours": {"min": 90, "max": 150}},
+    "topics": [("Performing further procedures and obtaining evidence", 35), ("Assessing risk and developing a planned response", 30), ("Ethics, professional responsibilities and general principles", 20), ("Forming conclusions and reporting", 15)],
+    "tasks": """{
+        review: (days) => [
+          'Work through this week’s topics, one or two a study day.',
+          `Do multiple-choice questions on each topic the same day, about ${days * 30} this week.`,
+          'Keep an error log: the standard or step you missed, and why.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one timed practice exam, multiple choice and simulations.' : 'Do timed simulations on your weakest area.',
+          `Do mixed multiple-choice sets, about ${days * 40} questions this week.`,
+          'Review every miss and re-work the simulation steps.',
+          'Re-read your error log at the start of each session.'
+        ],
+        final: () => [
+          'Light review only: your error log and report wording.',
+          'Confirm your Notice to Schedule, appointment and ID.',
+          'No new topics in the last two days.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>AUD (Auditing and Attestation) is one of the three core CPA sections. It tests the audit process from planning to the report, plus ethics and independence, with multiple-choice questions and task-based simulations.</p>
+          <ol>
+            <li><strong>Content review, a bit over half.</strong> One or two topics a day, each ending with multiple-choice questions.</li>
+            <li><strong>Practice, the rest.</strong> Timed practice exams every other week, simulations on your weak areas, and mixed question sets.</li>
+            <li><strong>Final week.</strong> Light review, nothing new, and a day off before the exam.</li>
+          </ol>
+          <p>Area hours follow the rough midpoints of the four AUD content areas in the AICPA blueprint. These shares are rough, not official. Any area you tick as shaky gets 50% more time.</p>
+          <p>Check the current blueprint at <a href="https://www.aicpa-cima.com/" rel="noopener">aicpa-cima.com</a> before you rely on it.</p>""",
+    "faq": [
+      ("How many hours should I study for AUD?", "Many candidates plan around 90 to 150 hours for AUD, spread over 6 to 10 weeks while working."),
+      ("Is AUD easier than FAR?", "Most candidates find AUD has less material than FAR, but it’s more about judgement and wording, so practise reading questions carefully."),
+      ("Is this an official CPA plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to the AICPA, NASBA or any state board."),
+    ],
+    "note": "CPA is a designation granted by state boards of accountancy. The Uniform CPA Examination is developed by the AICPA. FocusFlow Lab isn’t affiliated with or endorsed by the AICPA, NASBA or any board of accountancy.",
+    "tag": "Accounting",
+  },
+  {
+    "slug": "cpa-reg",
+    "short": "CPA REG",
+    "title": "CPA REG Study Plan Generator: Free Weekly Schedule",
+    "desc": "Put in your CPA REG exam date and study hours. Get a week-by-week plan across tax, business law and ethics, with practice questions and simulations built in.",
+    "og_title": "CPA REG study plan generator",
+    "h1": "Your CPA REG study plan, week by week.",
+    "lead": "Put in your exam date and the hours you have. You get a plan across the REG areas, with the tax areas getting the most time.",
+    "date_label": "Exam date", "legend": "Which areas feel shaky? (optional)", "button": "Build my plan",
+    "days_default": 5, "hours_default": 2.5,
+    "config": {"id": "cpa-reg", "shortName": "REG", "maxDays": 270, "reviewShare": 0.55, "recommendedHours": {"min": 90, "max": 150}},
+    "topics": [("Federal taxation of entities", 28), ("Federal taxation of individuals", 27), ("Business law", 20), ("Ethics, professional responsibilities and federal tax procedures", 15), ("Federal taxation of property transactions", 10)],
+    "tasks": """{
+        review: (days) => [
+          'Work through this week’s topics, one or two a study day.',
+          `Do multiple-choice questions on each topic the same day, about ${days * 30} this week.`,
+          'Keep an error log: the rule or number you missed, and why.'
+        ],
+        practice: (days, weekIndex) => [
+          weekIndex % 2 === 0 ? 'Take one timed practice exam, multiple choice and simulations.' : 'Do timed tax simulations on your weakest area.',
+          `Do mixed multiple-choice sets, about ${days * 40} questions this week.`,
+          'Review every miss and re-work the simulation steps.',
+          'Re-read your error log at the start of each session.'
+        ],
+        final: () => [
+          'Light review only: your error log and key tax limits.',
+          'Confirm your Notice to Schedule, appointment and ID.',
+          'No new topics in the last two days.',
+          'Take the day before off. Rest, eat well, sleep early.'
+        ]
+      }""",
+    "how": """<p>REG (Taxation and Regulation) is one of the three core CPA sections. Most of it is federal taxation of individuals and entities, with business law and ethics making up the rest.</p>
+          <ol>
+            <li><strong>Content review, a bit over half.</strong> One or two topics a day, each ending with multiple-choice questions.</li>
+            <li><strong>Practice, the rest.</strong> Timed practice exams every other week, tax simulations on your weak areas, and mixed question sets.</li>
+            <li><strong>Final week.</strong> Light review, nothing new, and a day off before the exam.</li>
+          </ol>
+          <p>Area hours follow the rough midpoints of the five REG content areas in the AICPA blueprint. These shares are rough, not official. Any area you tick as shaky gets 50% more time.</p>
+          <p>Check the current blueprint at <a href="https://www.aicpa-cima.com/" rel="noopener">aicpa-cima.com</a> before you rely on it.</p>""",
+    "faq": [
+      ("How many hours should I study for REG?", "Many candidates plan around 90 to 150 hours for REG, spread over 6 to 10 weeks while working."),
+      ("Should I memorise tax numbers for REG?", "Learn the rules and how to apply them first. Keep a short list of the limits and thresholds that come up most and review it in the final week."),
+      ("Is this an official CPA plan?", "No. It’s a free planning tool from FocusFlow Lab, and it isn’t connected to the AICPA, NASBA or any state board."),
+    ],
+    "note": "CPA is a designation granted by state boards of accountancy. The Uniform CPA Examination is developed by the AICPA. FocusFlow Lab isn’t affiliated with or endorsed by the AICPA, NASBA or any board of accountancy.",
+    "tag": "Accounting",
+  },
 ]
 
 STICK = """<p>A plan that survives week two beats a perfect one that doesn’t.</p>

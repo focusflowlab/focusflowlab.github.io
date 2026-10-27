@@ -34,5 +34,10 @@
   <url><loc>https://thefocusflowlab.com/study-plan/pance/</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://thefocusflowlab.com/study-plan/naplex/</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://thefocusflowlab.com/study-plan/cpa-far/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/study-plan/teas/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/study-plan/dat/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/study-plan/gmat/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/study-plan/cpa-aud/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://thefocusflowlab.com/study-plan/cpa-reg/</loc><lastmod>2026-10-27</lastmod></url>
 {% for g in site.guides %}  <url><loc>https://thefocusflowlab.com{{ g.url }}</loc><lastmod>{{ g.date | date: '%Y-%m-%d' }}</lastmod></url>
 {% endfor %}</urlset>
