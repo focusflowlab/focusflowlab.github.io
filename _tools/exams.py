@@ -694,7 +694,7 @@ def page(e):
         </div>
       </section>
 
-      <aside class="kit">
+      <aside class="kit" aria-label="Free Study Focus Kit">
         <div>
           <h2>Staying focused is the hard part.</h2>
           <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>
@@ -702,7 +702,7 @@ def page(e):
         <a class="btn" href="/#free-kit">Get the free kit</a>
       </aside>
     </main>
-    <aside class="page-note">
+    <aside class="page-note" aria-label="About this page">
       <p>Made by FocusFlow Lab. Last reviewed October 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
       <p>{e['note']}</p>
     </aside>

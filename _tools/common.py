@@ -55,7 +55,7 @@ def crumbs(items):
 
 ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "FocusFlow Lab", "url": SITE + "/"}
 
-KIT_ASIDE = """      <aside class="kit">
+KIT_ASIDE = """      <aside class="kit" aria-label="Free Study Focus Kit">
         <div>
           <h2>Staying focused is the hard part.</h2>
           <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>

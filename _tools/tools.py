@@ -395,7 +395,7 @@ def related_block(t):
 
 def feedback_block(t):
     subject = f"Feedback: {t['name']}".replace(" ", "%20")
-    return f"""      <aside class="feedback">
+    return f"""      <aside class="feedback" aria-label="Feedback">
         <p><strong>Something not right, or a tool you wish we had?</strong> Tell us and we’ll fix or build it.</p>
         <a class="btn btn-soft" href="mailto:hello@thefocusflowlab.com?subject={subject}">Send feedback</a>
       </aside>"""

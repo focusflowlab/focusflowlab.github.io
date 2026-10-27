@@ -182,15 +182,6 @@
   ]
 }
 </script>
-<!-- MailerLite Universal -->
-<script>
-(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-.push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-ml('account', '2740917');
-</script>
-<!-- End MailerLite Universal -->
 </head>
 <body>
 <!-- site-head -->
@@ -369,7 +360,18 @@ ml('account', '2740917');
         </div>
         <div class="sheet form-sheet">
           <p>Enter your email and the kit arrives in your inbox (confirm your address first). You also get a free printable study planner (weekly timetable, exam tracker, daily focus page and review log) and three sample pages from the exam planners.</p>
-          <div class="ml-embedded" data-form="4xjfpD"></div>
+          <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
+            <label for="kit-email">Email address</label>
+            <div class="kit-row">
+              <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">
+              <button class="btn" type="submit">Send me the free kit</button>
+            </div>
+            <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+            <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>
+          </form>
+          <p class="form-note">You’ll also get a few study emails and occasional planner news. Unsubscribe any time. <a href="/privacy.html#focusflow-lab-email-list-and-shop">How we use your email</a>.</p>
         </div>
       </div>
     </section>

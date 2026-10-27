@@ -40,3 +40,39 @@
     if (open) { close(); open.querySelector('.nav-trigger').focus(); }
   });
 })();
+
+// Study Focus Kit signup: sends the email straight to MailerLite only when the form is submitted.
+// No third-party script loads before that, so nothing is stored in the visitor's browser.
+(() => {
+  const form = document.getElementById('kit-form');
+  if (!form) return;
+  const input = form.querySelector('#kit-email');
+  const status = form.querySelector('#kit-status');
+  const button = form.querySelector('button[type="submit"]');
+  const say = (text, bad) => { status.textContent = text; status.classList.toggle('is-error', !!bad); input.setAttribute('aria-invalid', bad ? 'true' : 'false'); };
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.website.value) return; // spam trap
+    const email = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Please enter a valid email address.', true); input.focus(); return; }
+    button.disabled = true;
+    say('Sending\u2026');
+    try {
+      const data = new FormData(form);
+      data.delete('website');
+      const res = await fetch(form.action, { method: 'POST', body: data });
+      const json = await res.json();
+      if (json.success) {
+        form.reset();
+        say('Check your inbox! Confirm your email and the kit is on its way. If it isn\u2019t there in a few minutes, check your Promotions or Spam folder.');
+      } else {
+        const msg = json.errors && json.errors.fields && json.errors.fields.email ? json.errors.fields.email[0] : 'Something went wrong. Please try again.';
+        say(msg, true);
+      }
+    } catch {
+      say('We couldn\u2019t reach the signup service. Please try again, or email hello@thefocusflowlab.com.', true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();

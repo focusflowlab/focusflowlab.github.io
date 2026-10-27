@@ -274,7 +274,7 @@ def guide_page(g):
         <article class="prose">
 {secs}
 {watch}
-        <aside class="sheet guide-kit">
+        <aside class="sheet guide-kit" aria-label="Free Study Focus Kit">
           <p><strong>Want this on paper?</strong> {g.get("kit", "The free Study Focus Kit has a printable worksheet for this system, plus four more.")}</p>
           <a class="btn" href="/#free-kit">Get the free kit</a>
         </aside>
