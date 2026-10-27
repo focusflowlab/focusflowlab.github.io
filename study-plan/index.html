@@ -164,10 +164,11 @@
         </div>
       </section>
 
-      <div class="plan-search" data-filter-for="plan-cards" hidden>
+      <div class="plan-search" data-filter-for="plan-cards" data-chips hidden>
         <label for="plan-search-input">Find your exam</label>
         <input type="search" id="plan-search-input" placeholder="Try nclex, mcat, cpa or pharmacy" autocomplete="off" aria-describedby="plan-search-count">
-        <p class="plan-search-count" id="plan-search-count" role="status" aria-live="polite"></p>
+        <div class="filter-chips" role="group" aria-label="Filter by category"></div>
+<p class="plan-search-count" id="plan-search-count" role="status" aria-live="polite"></p>
         <p class="plan-search-empty" hidden>No plan for that yet. <a href="mailto:hello@thefocusflowlab.com?subject=Exam%20plan%20request">Tell us which exam you need</a> and we’ll add it.</p>
       </div>
 

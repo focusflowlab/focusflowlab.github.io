@@ -509,7 +509,14 @@ def index_page():
           <p class="lead">Small tools that run in your browser. No sign-up, nothing to install.</p>
         </div>
       </section>
-      <ul class="cards">
+      <div class="plan-search guide-filter" data-filter-for="tool-cards" data-chips data-noun="tool" hidden>
+        <label for="tool-search-input">Search tools</label>
+        <input type="search" id="tool-search-input" placeholder="Try gpa, timer, flashcards or schedule" autocomplete="off" aria-describedby="tool-search-count">
+        <div class="filter-chips" role="group" aria-label="Filter by category"></div>
+        <p class="plan-search-count" id="tool-search-count" role="status" aria-live="polite"></p>
+        <p class="plan-search-empty" hidden>No tool matches that yet. <a href="mailto:hello@thefocusflowlab.com?subject=Tool%20request">Tell us what you’d like us to build</a>.</p>
+      </div>
+      <ul class="cards" id="tool-cards">
 {cards}
         <li><a href="/study-plan/"><span class="card-tag">Planning</span><h2 class="card-name">Exam study plans</h2><span class="card-note">Week-by-week plans for 14 exams, from the NCLEX and MCAT to the GMAT and CPA.</span><span class="card-go">Pick an exam</span></a></li>
       </ul>

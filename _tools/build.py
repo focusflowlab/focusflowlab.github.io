@@ -11,6 +11,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 head = (ROOT / "_partials/site-head.html").read_text(encoding="utf-8").strip()
 foot = (ROOT / "_partials/site-foot.html").read_text(encoding="utf-8").strip()
 
+HUB = {"/study-plan/": "← All study plans", "/tools/": "← All study tools", "/guides/": "← All study guides"}
+
 def url_of(path):
     rel = path.relative_to(ROOT).as_posix()
     return "/" + (rel[:-len("index.html")] if rel.endswith("index.html") else rel)
@@ -27,10 +29,13 @@ for page in pages:
         continue
     url = url_of(page)
     h = head
+    f = foot
     for section in ("/study-plan/", "/tools/", "/guides/"):
         if url.startswith(section):
             h = h.replace(f'href="{section}" aria-expanded', f'href="{section}" aria-current="page" aria-expanded')
+            if url != section:
+                f = f'<nav class="container hub-link" aria-label="Back to section"><a href="{section}">{HUB[section]}</a></nav>' + chr(10) + foot
     html = re.sub(r"<!-- site-head -->.*?<!-- /site-head -->", lambda m: f"<!-- site-head -->\n{h}\n<!-- /site-head -->", html, flags=re.S)
-    html = re.sub(r"<!-- site-foot -->.*?<!-- /site-foot -->", lambda m: f"<!-- site-foot -->\n{foot}\n<!-- /site-foot -->", html, flags=re.S)
+    html = re.sub(r"<!-- site-foot -->.*?<!-- /site-foot -->", lambda m: f"<!-- site-foot -->\n{f}\n<!-- /site-foot -->", html, flags=re.S)
     page.write_text(html, encoding="utf-8", newline="\n")
     print("built", url)
