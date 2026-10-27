@@ -607,3 +607,24 @@ body.embed { background: var(--color-paper); }
 /* Rows ending in a date: give the date room for the full year */
 .fields.fields-date { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(10.5rem, 1.3fr); }
 @media (max-width: 700px) { .fields.fields-date { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .fields.fields-date > :last-child { grid-column: 1 / -1; } .fields.fields-date > :first-child { grid-column: auto; } }
+/* Space between a card grid and the section after it */
+ul.cards + section.reading { margin-top: var(--space-lg); }
+/* Product offer: gap between the description and the buttons */
+.offer-actions { margin-top: var(--space-md); }
+@media (max-width: 560px) {
+  /* GPA rows on phones: course on its own line, then credits, grade, level and remove on one line */
+  .gpa-rows li { grid-template-columns: minmax(0, 0.7fr) minmax(0, 0.9fr) minmax(6.25rem, 1.3fr) 2.75rem; }
+  .gpa-rows li > :first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  /* Study schedule rows on phones: the exam date gets the full width */
+  #ss-rows li > input[type="date"] { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .gpa-rows li { grid-template-columns: 3rem 4rem minmax(0, 1fr) 2.75rem; }
+  .gpa-rows input, .gpa-rows select { padding-left: var(--space-xs); padding-right: var(--space-xs); }
+  .gpa-rows select { padding-right: 1.5rem; background-position: right 0.4rem center; }
+}
+@media (max-width: 560px) {
+  .gpa-rows select, .gpa-rows input[type="number"] { font-family: var(--font-body); font-size: 0.95rem; }
+}
