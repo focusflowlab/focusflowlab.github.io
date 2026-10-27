@@ -576,3 +576,6 @@ body.embed { background: var(--color-paper); }
 .embed-main { padding: var(--space-md); max-width: 640px; margin: 0 auto; }
 .embed-main .sheet { margin: 0; }
 .embed-credit { margin: var(--space-sm) 0 0; font-size: var(--text-sm); color: var(--color-muted); text-align: center; }
+.tracker-offer { margin-block: var(--space-xl); }
+.tracker-title { font-size: var(--text-title); margin: 0 0 var(--space-xs); }
+.tracker-offer .kit-form { margin-top: var(--space-md); }

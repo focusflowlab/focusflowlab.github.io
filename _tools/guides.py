@@ -1,6 +1,6 @@
 """Generate /guides/ pages.  Run: cd _tools && python guides.py && cd .. && python _tools/build.py"""
 import pathlib, re
-from common import shell, crumbs, ORG, SITE
+from common import shell, crumbs, ORG, SITE, NCLEX_TRACKER_FORM
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PUBLISHED = "2026-10-26"
@@ -204,7 +204,7 @@ GUIDES = [
          ("Turn hours into weeks", """<p>Divide your hours by what you can really study each week. 200 hours at 4 hours a day, 5 days a week, is 10 weeks. If that runs past your test date, either add hours per week or move the date. The <a href="/tools/exam-countdown/">exam countdown</a> shows how many study hours you have left before a date.</p>"""),
          ("Spread it out", """<p>The same hours spread over more weeks beat the same hours crammed into fewer. Spacing your review out over time is one of the most reliable findings in learning research. Leave the last few days light, and sleep properly before the exam.</p>"""),
        ]),
-  dict(slug="how-to-study-for-the-nclex", tag="Exam plans", date="2026-10-28",
+  dict(slug="how-to-study-for-the-nclex", tag="Exam plans", signup="nclex", date="2026-10-28",
        title="How to Study for the NCLEX: A 4 to 8 Week Plan That Works",
        h1="How to study for the NCLEX",
        desc="How to study for the NCLEX-RN in 4 to 8 weeks: how the exam works, how to split your time across the client needs categories, and a week-by-week plan.",
@@ -322,6 +322,12 @@ MONTHS = ["January", "February", "March", "April", "May", "June", "July", "Augus
 def nice_date(iso):
     return f"{int(iso[8:10])} {MONTHS[int(iso[5:7]) - 1]} {iso[:4]}"
 
+def KIT_BOX(g):
+    return f'''        <aside class="sheet guide-kit" aria-label="Free Study Focus Kit">
+          <p><strong>Want this on paper?</strong> {g.get("kit", "The free Study Focus Kit has a printable worksheet for this system, plus four more.")}</p>
+          <a class="btn" href="/#free-kit">Get the free kit</a>
+        </aside>'''
+
 def guide_page(g):
     path = f"/guides/{g['slug']}/"
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Guides", "/guides/"), (g["h1"][0].upper() + g["h1"][1:], path)])
@@ -357,10 +363,7 @@ def guide_page(g):
         <article class="prose">
 {secs}
 {watch}
-        <aside class="sheet guide-kit" aria-label="Free Study Focus Kit">
-          <p><strong>Want this on paper?</strong> {g.get("kit", "The free Study Focus Kit has a printable worksheet for this system, plus four more.")}</p>
-          <a class="btn" href="/#free-kit">Get the free kit</a>
-        </aside>
+{NCLEX_TRACKER_FORM if g.get("signup") == "nclex" else KIT_BOX(g)}
         <p class="refs"><strong>{"Sources" if "<br>" in REFS[g['slug']] else "Source"}:</strong> {REFS[g['slug']]}</p>
         </article>
       </div>
