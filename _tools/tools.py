@@ -1,5 +1,5 @@
 """Generate /tools/ pages.  Run: python _tools/tools.py && python _tools/build.py"""
-import pathlib
+import pathlib, json, html
 from common import shell, crumbs, ORG, SITE, KIT_ASIDE
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -445,6 +445,14 @@ def embed_page(t):
 </html>
 """
 
+EXAMPLES = {"final-grade-calculator": ["final-form", {"current": "82", "weight": "30", "target": "85"}], "gpa-calculator": ["gpa-form", {"prevGpa": "3.2", "prevCredits": "45", "targetGpa": "3.3", "nextCredits": "15"}], "exam-countdown": ["countdown-form", {"examDate": "+42", "hoursPerDay": "3", "daysPerWeek": "5"}], "reading-planner": ["reading-form", {"totalPages": "420", "pagesRead": "60", "deadline": "+21", "readDays": "6"}]}
+
+def example_button(t):
+    if t['slug'] not in EXAMPLES:
+        return ''
+    form, vals = EXAMPLES[t['slug']]
+    return f'\n          <p class="example-row"><button class="btn btn-soft" type="button" data-example-for="{form}" data-example=\'{html.escape(json.dumps(vals))}\'>Try an example</button> <span class="example-note">Fills in sample numbers so you can see how it works.</span></p>'
+
 def tool_page(t):
     path = f"/tools/{t['slug']}/"
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Tools", "/tools/"), (t["name"], path)])
@@ -456,7 +464,7 @@ def tool_page(t):
         <div>
           <h1>{t['h1']}</h1>
           <p class="lead">{t['lead']}</p>
-          <p class="hero-note">Free, no sign-up. Works in your browser.</p>
+          <p class="hero-note">Free, no sign-up. Works in your browser.</p>{example_button(t)}
         </div>
 {t['tool']}
       </section>

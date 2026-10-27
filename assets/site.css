@@ -579,3 +579,12 @@ body.embed { background: var(--color-paper); }
 .tracker-offer { margin-block: var(--space-xl); }
 .tracker-title { font-size: var(--text-title); margin: 0 0 var(--space-xs); }
 .tracker-offer .kit-form { margin-top: var(--space-md); }
+.plan-search { max-width: 34rem; margin: 0 0 var(--space-lg); }
+.plan-search label { display: block; font-weight: 600; margin-bottom: var(--space-xs); }
+.plan-search input { width: 100%; min-height: 2.75rem; padding: var(--space-xs) var(--space-sm); border: 1px solid var(--color-muted); border-radius: var(--radius-control); background: var(--color-paper); color: var(--color-ink); font: 1rem/1.4 var(--font-body); }
+.plan-search-count { margin: var(--space-xs) 0 0; font-size: var(--text-sm); color: var(--color-muted); min-height: 1.4em; }
+.plan-search-empty { margin: var(--space-xs) 0 0; }
+.cards > li[hidden] { display: none; }
+.example-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-sm); margin: var(--space-sm) 0 0; }
+.example-row .btn { margin: 0; }
+.example-note { font-size: var(--text-sm); color: var(--color-muted); }

@@ -164,21 +164,29 @@
         </div>
       </section>
 
-      <ul class="cards">
-        <li><a href="nclex/"><span class="card-tag">Nursing</span><h2 class="card-name">NCLEX-RN</h2><span class="card-note">For nursing grads. Time follows the client-needs categories, with extra on your shaky areas.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="nclex-pn/"><span class="card-tag">Nursing</span><h2 class="card-name">NCLEX-PN</h2><span class="card-note">For practical and vocational nurses. Weighted to the PN test plan.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="mcat/"><span class="card-tag">Medicine</span><h2 class="card-name">MCAT</h2><span class="card-note">For pre-meds. All four sections, CARS every week, full-length tests in the second half.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="usmle-step-1/"><span class="card-tag">Medicine</span><h2 class="card-name">USMLE Step 1</h2><span class="card-note">A systems-based dedicated period with daily question blocks and self-assessments.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="gre/"><span class="card-tag">Grad school</span><h2 class="card-name">GRE</h2><span class="card-note">Verbal, quant and the essay, with practice tests in the second half.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="lsat/"><span class="card-tag">Law school</span><h2 class="card-name">LSAT</h2><span class="card-note">Logical reasoning and reading, timed sections and blind review every week.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="pance/"><span class="card-tag">Medicine</span><h2 class="card-name">PANCE</h2><span class="card-note">For physician assistants. Organ systems weighted to the NCCPA blueprint.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="naplex/"><span class="card-tag">Pharmacy</span><h2 class="card-name">NAPLEX</h2><span class="card-note">Weighted to the NAPLEX areas, with calculations every week.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="cpa-far/"><span class="card-tag">Accounting</span><h2 class="card-name">CPA FAR</h2><span class="card-note">The three FAR content areas, with simulations in the second half.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="teas/"><span class="card-tag">Nursing</span><h2 class="card-name">TEAS</h2><span class="card-note">For nursing school entry. Reading, math, science and English, science weighted most.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="dat/"><span class="card-tag">Dentistry</span><h2 class="card-name">DAT</h2><span class="card-note">Biology, chemistry, perceptual ability, reading and quantitative reasoning.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="gmat/"><span class="card-tag">Business school</span><h2 class="card-name">GMAT</h2><span class="card-note">Quantitative, verbal and data insights, with practice exams in the second half.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="cpa-aud/"><span class="card-tag">Accounting</span><h2 class="card-name">CPA AUD</h2><span class="card-note">The four AUD content areas, with simulations in the second half.</span><span class="card-go">Plan it</span></a></li>
-        <li><a href="cpa-reg/"><span class="card-tag">Accounting</span><h2 class="card-name">CPA REG</h2><span class="card-note">Tax, business law and ethics, with the tax areas weighted most.</span><span class="card-go">Plan it</span></a></li>
+      <div class="plan-search" data-filter-for="plan-cards" hidden>
+        <label for="plan-search-input">Find your exam</label>
+        <input type="search" id="plan-search-input" placeholder="Try nclex, mcat, cpa or pharmacy" autocomplete="off" aria-describedby="plan-search-count">
+        <p class="plan-search-count" id="plan-search-count" role="status" aria-live="polite"></p>
+        <p class="plan-search-empty" hidden>No plan for that yet. <a href="mailto:hello@thefocusflowlab.com?subject=Exam%20plan%20request">Tell us which exam you need</a> and we’ll add it.</p>
+      </div>
+
+      <ul class="cards" id="plan-cards">
+        <li data-alias="cpa certified public accountant accounting far aud reg bar isc tcp discipline"><a href="/guides/cpa-study-schedule/"><span class="card-tag">Accounting</span><h2 class="card-name">CPA Exam: all sections</h2><span class="card-note">Which order to take FAR, AUD, REG and your discipline in, how long each takes, and a 12-month timeline.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="rn registered nurse nursing ncsbn"><a href="nclex/"><span class="card-tag">Nursing</span><h2 class="card-name">NCLEX-RN</h2><span class="card-note">For nursing grads. Time follows the client-needs categories, with extra on your shaky areas.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="pn lpn lvn practical vocational nurse nursing"><a href="nclex-pn/"><span class="card-tag">Nursing</span><h2 class="card-name">NCLEX-PN</h2><span class="card-note">For practical and vocational nurses. Weighted to the PN test plan.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="medical school med school premed pre-med aamc"><a href="mcat/"><span class="card-tag">Medicine</span><h2 class="card-name">MCAT</h2><span class="card-note">For pre-meds. All four sections, CARS every week, full-length tests in the second half.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="step 1 step1 usmle medical student med school"><a href="usmle-step-1/"><span class="card-tag">Medicine</span><h2 class="card-name">USMLE Step 1</h2><span class="card-note">A systems-based dedicated period with daily question blocks and self-assessments.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="graduate grad school ets"><a href="gre/"><span class="card-tag">Grad school</span><h2 class="card-name">GRE</h2><span class="card-note">Verbal, quant and the essay, with practice tests in the second half.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="law school lsac"><a href="lsat/"><span class="card-tag">Law school</span><h2 class="card-name">LSAT</h2><span class="card-note">Logical reasoning and reading, timed sections and blind review every week.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="pa physician assistant nccpa"><a href="pance/"><span class="card-tag">Medicine</span><h2 class="card-name">PANCE</h2><span class="card-note">For physician assistants. Organ systems weighted to the NCCPA blueprint.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="pharmacy pharmacist pharmd nabp"><a href="naplex/"><span class="card-tag">Pharmacy</span><h2 class="card-name">NAPLEX</h2><span class="card-note">Weighted to the NAPLEX areas, with calculations every week.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="cpa accounting financial accounting reporting"><a href="cpa-far/"><span class="card-tag">Accounting</span><h2 class="card-name">CPA FAR</h2><span class="card-note">The three FAR content areas, with simulations in the second half.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="nurse nursing school entrance ati teas 7"><a href="teas/"><span class="card-tag">Nursing</span><h2 class="card-name">TEAS</h2><span class="card-note">For nursing school entry. Reading, math, science and English, science weighted most.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="dental dentist dentistry ada"><a href="dat/"><span class="card-tag">Dentistry</span><h2 class="card-name">DAT</h2><span class="card-note">Biology, chemistry, perceptual ability, reading and quantitative reasoning.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="mba business school gmac"><a href="gmat/"><span class="card-tag">Business school</span><h2 class="card-name">GMAT</h2><span class="card-note">Quantitative, verbal and data insights, with practice exams in the second half.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="cpa accounting audit auditing attestation"><a href="cpa-aud/"><span class="card-tag">Accounting</span><h2 class="card-name">CPA AUD</h2><span class="card-note">The four AUD content areas, with simulations in the second half.</span><span class="card-go">Plan it</span></a></li>
+        <li data-alias="cpa accounting tax taxation regulation"><a href="cpa-reg/"><span class="card-tag">Accounting</span><h2 class="card-name">CPA REG</h2><span class="card-note">Tax, business law and ethics, with the tax areas weighted most.</span><span class="card-go">Plan it</span></a></li>
       </ul>
 
       <section class="reading">

@@ -86,3 +86,58 @@ document.querySelectorAll('[data-copy]').forEach((btn) => {
     catch { el.select(); if (status) status.textContent = 'Press Ctrl+C to copy.'; }
   });
 });
+
+// Filter a list of cards as you type: <div data-filter-for="list-id"> with an input inside.
+(() => {
+  document.querySelectorAll('[data-filter-for]').forEach((box) => {
+    const list = document.getElementById(box.dataset.filterFor);
+    const input = box.querySelector('input');
+    const count = box.querySelector('[role="status"]');
+    const empty = box.querySelector('.plan-search-empty');
+    if (!list || !input) return;
+    box.hidden = false;
+    const items = [...list.children];
+    const norm = (s) => s.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ');
+    const text = items.map((li) => ' ' + norm([...li.querySelectorAll('span, h2')].map((el) => el.textContent).join(' ') + ' ' + (li.dataset.alias || '')).replace(/\s+/g, ' '));
+    input.addEventListener('input', () => {
+      const words = norm(input.value).split(/\s+/).filter(Boolean);
+      let shown = 0;
+      items.forEach((li, i) => {
+        const match = words.every((w) => text[i].includes(' ' + w));
+        li.hidden = !match;
+        if (match) shown += 1;
+      });
+      count.textContent = words.length ? `${shown} ${shown === 1 ? 'plan' : 'plans'} found` : '';
+      if (empty) empty.hidden = shown > 0 || !words.length;
+    });
+  });
+})();
+
+// "Try an example": fills a tool's fields with sample values. "+N" in a date field means N days from today.
+document.querySelectorAll('[data-example-for]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const form = document.getElementById(btn.dataset.exampleFor);
+    if (!form) return;
+    const values = JSON.parse(btn.dataset.example);
+    Object.entries(values).forEach(([id, value]) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (el.type === 'date' && value.startsWith('+')) {
+        const d = new Date();
+        d.setDate(d.getDate() + Number(value.slice(1)));
+        value = d.toISOString().slice(0, 10);
+      }
+      el.value = value;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    form.requestSubmit();
+  });
+});
+
+// Exam and deadline dates can't be in the past: the picker starts at today.
+(() => {
+  const d = new Date();
+  const today = new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  document.querySelectorAll('#examDate, #deadline').forEach((el) => { if (!el.min) el.min = today; });
+})();
