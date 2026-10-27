@@ -20,7 +20,7 @@ def planner_offer(e):
     if e["slug"] not in PLANNERS:
         return ""
     weeks, link = PLANNERS[e["slug"]]
-    url = "https://tthefocusflowlab.gumroad.com/l/" + link
+    url = "https://store.thefocusflowlab.com/l/" + link
     return f'''      <aside class="kit" aria-label="Printable planner">
         <div>
           <h2>Want it on paper?</h2>
