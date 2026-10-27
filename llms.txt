@@ -1,6 +1,6 @@
 # FocusFlow Lab
 
-> FocusFlow Lab makes simple study systems for students: fewer phone distractions, notes that stick, calmer exam weeks. It runs a YouTube channel, a free printable Study Focus Kit, free exam study plan generators and a $7 Exam Sprint Planner.
+> FocusFlow Lab makes simple study systems for students: fewer phone distractions, notes that stick, calmer exam weeks. It runs a YouTube channel, a free printable Study Focus Kit, free exam study plan generators and a $5 Exam Sprint Planner.
 
 ## Free tools
 - [NCLEX study plan generator](https://thefocusflowlab.com/study-plan/nclex/): week-by-week NCLEX-RN plan from your exam date, daily hours and weak client-needs areas. Free, no sign-up, prints cleanly.
@@ -45,10 +45,10 @@
 
 ## Products
 - [Free Study Focus Kit](https://thefocusflowlab.com/#free-kit): 5 printable worksheets (phone distractions, note-taking, mental clutter, syllabus coverage, focus reset), plus a free 3-page sample from the exam planners, sent by email.
-- [Exam Sprint Planner](https://thefocusflowlab.com/#planner): $7 printable PDF, 9 A4 pages. A 14-day plan for the two weeks before exams: exam map and priority grid, sprint calendar with four focus blocks a day, daily pages that end each block with a self-test, active-recall tracker.
+- [Exam Sprint Planner](https://thefocusflowlab.com/#planner): $5 printable PDF, 9 A4 pages. A 14-day plan for the two weeks before exams: exam map and priority grid, sprint calendar with four focus blocks a day, daily pages that end each block with a self-test, active-recall tracker.
 
-- [NCLEX-RN 8-Week Study Planner](https://thefocusflowlab.com/#exam-planners): $9 printable PDF, 9 A4 pages. Exam map, 8-week overview, weekly and daily pages, practice test log, error log, test-day checklist.
-- [MCAT 16-Week Study Planner](https://thefocusflowlab.com/#exam-planners): $12 printable PDF, 9 A4 pages. Content review then full-length tests, CARS every week, test log with section scores.
+- [NCLEX-RN 8-Week Study Planner](https://thefocusflowlab.com/#exam-planners): $5 printable PDF, 9 A4 pages. Exam map, 8-week overview, weekly and daily pages, practice test log, error log, test-day checklist.
+- [MCAT 16-Week Study Planner](https://thefocusflowlab.com/#exam-planners): $5 printable PDF, 9 A4 pages. Content review then full-length tests, CARS every week, test log with section scores.
 - All planners come with a 14-day no-questions refund.
 
 ## Videos

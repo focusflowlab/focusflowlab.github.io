@@ -1,7 +1,7 @@
 """Turn the planner buy buttons on or off.
 
   python _tools/store.py closed   # buttons say "Opening soon", point to the free kit form
-  python _tools/store.py open     # buttons go to the Lemon Squeezy checkout
+  python _tools/store.py open     # buttons go to the Gumroad checkout
 
 Each buy button carries its checkout link in data-checkout, so nothing is lost
 while the store is closed. Product data for Google switches between
