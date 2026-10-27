@@ -259,7 +259,14 @@
           <p class="lead">Short, practical guides to studying: focus, memory, planning and finals. Most go with a FocusFlow video.</p>
         </div>
       </section>
-      <ul class="cards">
+      <div class="plan-search guide-filter" data-filter-for="guide-cards" data-chips hidden>
+        <label for="guide-search-input">Search guides</label>
+        <input type="search" id="guide-search-input" placeholder="Try phone, finals, nclex or memory" autocomplete="off" aria-describedby="guide-search-count">
+        <div class="filter-chips" role="group" aria-label="Filter by category"></div>
+        <p class="plan-search-count" id="guide-search-count" role="status" aria-live="polite"></p>
+        <p class="plan-search-empty" hidden>No guide matches that yet. <a href="mailto:hello@thefocusflowlab.com?subject=Guide%20request">Tell us what you’d like a guide on</a>.</p>
+      </div>
+      <ul class="cards" id="guide-cards">
         <li><a href="stop-checking-phone-while-studying/"><span class="card-tag">Focus</span><h2 class="card-name">How to stop checking your phone while studying</h2><span class="card-note">Use distance and friction instead of willpower.</span><span class="card-go">Read the guide</span></a></li>
         <li><a href="active-recall-notes/"><span class="card-tag">Memory</span><h2 class="card-name">Why highlighting fails, and how to take notes you remember</h2><span class="card-note">Turn notes into questions and test yourself.</span><span class="card-go">Read the guide</span></a></li>
         <li><a href="brain-dump-before-studying/"><span class="card-tag">Focus</span><h2 class="card-name">How to clear mental clutter before studying</h2><span class="card-note">A 3-minute brain dump before you start.</span><span class="card-go">Read the guide</span></a></li>

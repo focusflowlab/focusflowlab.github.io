@@ -99,16 +99,35 @@ document.querySelectorAll('[data-copy]').forEach((btn) => {
     const items = [...list.children];
     const norm = (s) => s.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ');
     const text = items.map((li) => ' ' + norm([...li.querySelectorAll('span, h2')].map((el) => el.textContent).join(' ') + ' ' + (li.dataset.alias || '')).replace(/\s+/g, ' '));
+    const tagOf = (li) => (li.querySelector('.card-tag') || {}).textContent || '';
+    let activeTag = '';
+    const chipBox = box.hasAttribute('data-chips') ? box.querySelector('.filter-chips') : null;
+    if (chipBox) {
+      const tags = ['All', ...new Set(items.map(tagOf).filter(Boolean))];
+      tags.forEach((tag) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'chip'; b.textContent = tag;
+        b.setAttribute('aria-pressed', String(tag === 'All'));
+        b.addEventListener('click', () => {
+          activeTag = tag === 'All' ? '' : tag;
+          chipBox.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', String(c === b)));
+          input.dispatchEvent(new Event('input'));
+        });
+        chipBox.appendChild(b);
+      });
+    }
     input.addEventListener('input', () => {
       const words = norm(input.value).split(/\s+/).filter(Boolean);
       let shown = 0;
       items.forEach((li, i) => {
-        const match = words.every((w) => text[i].includes(' ' + w));
+        const match = (!activeTag || tagOf(li) === activeTag) && words.every((w) => text[i].includes(' ' + w));
         li.hidden = !match;
         if (match) shown += 1;
       });
-      count.textContent = words.length ? `${shown} ${shown === 1 ? 'plan' : 'plans'} found` : '';
-      if (empty) empty.hidden = shown > 0 || !words.length;
+      const noun = box.dataset.noun || (box.classList.contains('guide-filter') ? 'guide' : 'plan');
+      const filtering = words.length || activeTag;
+      count.textContent = filtering ? `${shown} ${shown === 1 ? noun : noun + 's'} found` : '';
+      if (empty) empty.hidden = shown > 0 || !filtering;
     });
   });
 })();

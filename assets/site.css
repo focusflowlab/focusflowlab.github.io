@@ -628,3 +628,10 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 @media (max-width: 560px) {
   .gpa-rows select, .gpa-rows input[type="number"] { font-family: var(--font-body); font-size: 0.95rem; }
 }
+/* Category filter chips */
+.filter-chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-sm); }
+.chip { min-height: 2.25rem; padding: 0 var(--space-sm); border: 1px solid var(--color-rule-strong, var(--color-muted)); border-radius: 999px; background: transparent; color: var(--color-ink); font: 600 var(--text-sm)/1 var(--font-body); cursor: pointer; }
+.chip:hover { border-color: var(--color-accent); }
+.chip[aria-pressed="true"] { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent, #fff); }
+.chip:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.hero + .plan-search { margin-top: var(--space-lg); }

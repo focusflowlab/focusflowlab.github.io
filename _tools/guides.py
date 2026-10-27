@@ -434,7 +434,14 @@ def index_page():
           <p class="lead">Short, practical guides to studying: focus, memory, planning and finals. Most go with a FocusFlow video.</p>
         </div>
       </section>
-      <ul class="cards">
+      <div class="plan-search guide-filter" data-filter-for="guide-cards" data-chips hidden>
+        <label for="guide-search-input">Search guides</label>
+        <input type="search" id="guide-search-input" placeholder="Try phone, finals, nclex or memory" autocomplete="off" aria-describedby="guide-search-count">
+        <div class="filter-chips" role="group" aria-label="Filter by category"></div>
+        <p class="plan-search-count" id="guide-search-count" role="status" aria-live="polite"></p>
+        <p class="plan-search-empty" hidden>No guide matches that yet. <a href="mailto:hello@thefocusflowlab.com?subject=Guide%20request">Tell us what you’d like a guide on</a>.</p>
+      </div>
+      <ul class="cards" id="guide-cards">
 {cards}
 {{% for g in site.guides reversed %}}
         <li><a href="{{{{ g.url }}}}"><span class="card-tag">{{{{ g.tag | default: "Study system" }}}}</span><h2 class="card-name">{{{{ g.title }}}}</h2><span class="card-note">{{{{ g.card | default: g.lead }}}}</span><span class="card-go">Read the guide</span></a></li>
