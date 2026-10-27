@@ -600,3 +600,4 @@ body.embed { background: var(--color-paper); }
   .page-note { margin-top: var(--space-xl); }
   .site-foot { margin-top: var(--space-xl); }
 }
+.example-row[hidden] { display: none; }

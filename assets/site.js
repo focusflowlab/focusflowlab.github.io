@@ -115,6 +115,12 @@ document.querySelectorAll('[data-copy]').forEach((btn) => {
 
 // "Try an example": fills a tool's fields with sample values. "+N" in a date field means N days from today.
 document.querySelectorAll('[data-example-for]').forEach((btn) => {
+  // Visitors who already have their own saved numbers don't see the example, so it can't overwrite them.
+  window.addEventListener('load', () => {
+    const ids = Object.keys(JSON.parse(btn.dataset.example));
+    const hasOwn = ids.some((id) => { const el = document.getElementById(id); return el && el.value.trim() !== ''; });
+    if (hasOwn) btn.closest('.example-row').hidden = true;
+  });
   btn.addEventListener('click', () => {
     const form = document.getElementById(btn.dataset.exampleFor);
     if (!form) return;
