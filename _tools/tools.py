@@ -23,9 +23,9 @@ def app_ld(name, path, desc):
 
 TOOLS = [
   dict(slug="focus-timer", name="Focus timer", tag="Focus",
-       title="Free Focus Timer for Studying: Focus Blocks and Breaks",
+       title="Pomodoro Timer for Studying: Free Online Focus Timer",
        desc="A free online study timer: 25/5 Pomodoro-style blocks or 45 and 50 minute focus blocks, with breaks and a quick self-test after each one.",
-       h1="One focus block at a time.",
+       h1="A Pomodoro timer for studying.",
        lead="Pick a block length, put your phone in another room, press start.",
        card="Focus blocks with a break and a self-test prompt at the end.",
        go="Start a block",
@@ -323,7 +323,7 @@ TOOLS = [
             ("Is my plan saved?", "Yes, in this browser only, so you can come back and update the pages you’ve read.")],
        script="reading-planner.js"),
   dict(slug="flashcards", name="Flashcards", tag="Memory",
-       title="Free Flashcards with Spaced Repetition (No Sign-up)",
+       title="Online Flashcards: Free Flashcard Maker with Spaced Repetition",
        desc="Make flashcards and review them with spaced repetition: cards you know come back later, cards you miss come back tomorrow. Free, works in your browser.",
        h1="Flashcards that come back at the right time.",
        lead="Write the card, test yourself, and the spacing is done for you.",
