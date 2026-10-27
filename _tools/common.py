@@ -63,19 +63,29 @@ KIT_ASIDE = """      <aside class="kit" aria-label="Free Study Focus Kit">
         <a class="btn" href="/#free-kit">Get the free kit</a>
       </aside>"""
 
-NCLEX_TRACKER_FORM = '''        <aside class="sheet guide-kit tracker-offer" aria-label="Free NCLEX tracker">
-          <h2 class="tracker-title">Free NCLEX-RN 6-week tracker</h2>
-          <p>A printable test plan tracker for every client needs category, a weekly question log, an error log and a final-week checklist. Enter your email and it arrives with the free Study Focus Kit.</p>
-          <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
-            <label for="kit-email">Email address</label>
-            <div class="kit-row">
-              <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">
-              <button class="btn" type="submit">Send me the tracker</button>
-            </div>
-            <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
-            <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>
-          </form>
-          <p class="form-note">You’ll also get a few study emails and occasional planner news. Unsubscribe any time. <a href="/privacy.html#focusflow-lab-email-list-and-shop">How we use your email</a>.</p>
-        </aside>'''
+
+TRACKERS = {
+    "nclex": ("Free NCLEX-RN 6-week tracker", "A printable test plan tracker for every client needs category, a weekly question log, an error log and a final-week checklist."),
+    "mcat": ("Free MCAT 12-week tracker", "A printable tracker for all four sections, a practice exam score log, an error log and a final-week checklist."),
+    "teas": ("Free ATI TEAS 4-week tracker", "A printable tracker for reading, math, science and English, a practice test log, an error log and a final-week checklist."),
+}
+
+def TRACKER_FORM(exam, indent="        "):
+    title, text = TRACKERS[exam]
+    html = f'''<aside class="sheet guide-kit tracker-offer" aria-label="{title}">
+  <h2 class="tracker-title">{title}</h2>
+  <p>{text} Enter your email and it arrives with the free Study Focus Kit.</p>
+  <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
+    <label for="kit-email">Email address</label>
+    <div class="kit-row">
+      <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">
+      <button class="btn" type="submit">Send me the tracker</button>
+    </div>
+    <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
+    <input type="hidden" name="ml-submit" value="1">
+    <input type="hidden" name="anticsrf" value="true">
+    <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>
+  </form>
+  <p class="form-note">You’ll also get a few study emails and occasional planner news. Unsubscribe any time. <a href="/privacy.html#focusflow-lab-email-list-and-shop">How we use your email</a>.</p>
+</aside>'''
+    return "\n".join(indent + l for l in html.splitlines())

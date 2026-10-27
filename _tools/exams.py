@@ -5,6 +5,7 @@ Edit the EXAMS data below, never the generated pages by hand.
 JS task strings use typographic apostrophes (’) only, so single quotes never break them.
 """
 import json, pathlib, html
+from common import TRACKER_FORM, TRACKERS
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TODAY = "2026-10-26"
@@ -703,7 +704,7 @@ def page(e):
         </div>
       </section>
 
-      <aside class="kit" aria-label="Free Study Focus Kit">
+{(TRACKER_FORM(e['slug'], '      ') + chr(10) + chr(10)) if e['slug'] in TRACKERS else ''}      <aside class="kit" aria-label="Free Study Focus Kit">
         <div>
           <h2>Staying focused is the hard part.</h2>
           <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>

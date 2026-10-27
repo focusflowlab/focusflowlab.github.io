@@ -1,6 +1,6 @@
 """Generate /guides/ pages.  Run: cd _tools && python guides.py && cd .. && python _tools/build.py"""
 import pathlib, re
-from common import shell, crumbs, ORG, SITE, NCLEX_TRACKER_FORM
+from common import shell, crumbs, ORG, SITE, TRACKER_FORM
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PUBLISHED = "2026-10-26"
@@ -229,7 +229,7 @@ GUIDES = [
 <li><strong>Spaced review.</strong> Come back to weak topics after a day, a few days and a week. The <a href="/tools/spaced-review/">spaced review calendar</a> schedules it.</li>
 </ul>"""),
        ]),
-  dict(slug="mcat-study-schedule-3-months", tag="Exam plans", date="2026-10-28",
+  dict(slug="mcat-study-schedule-3-months", tag="Exam plans", signup="mcat", date="2026-10-28",
        title="MCAT Study Schedule: A 3-Month Plan, Week by Week",
        h1="A 3-month MCAT study schedule",
        desc="A 3-month MCAT study schedule: how to split time across the four sections, when to take full-length practice exams, and how many hours to plan.",
@@ -254,7 +254,7 @@ GUIDES = [
          ("Week 12: taper", """<p>One last practice exam early in the week, then light review of your error log. No new content in the last two days. Sleep well the night before; test day is long.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 3 months? The free <a href="/study-plan/mcat/">MCAT study schedule generator</a> builds the same structure from your test date and daily hours, with CARS every week and practice exams where they belong.</p>"""),
        ]),
-  dict(slug="how-to-study-for-the-teas", tag="Exam plans", date="2026-10-28",
+  dict(slug="how-to-study-for-the-teas", tag="Exam plans", signup="teas", date="2026-10-28",
        title="How to Study for the TEAS 7: Sections, Timing and a 4-Week Plan",
        h1="How to study for the TEAS",
        desc="How to study for the ATI TEAS 7: what each section covers, how long it takes, and a 4-week plan that gives science and math the time they need.",
@@ -363,7 +363,7 @@ def guide_page(g):
         <article class="prose">
 {secs}
 {watch}
-{NCLEX_TRACKER_FORM if g.get("signup") == "nclex" else KIT_BOX(g)}
+{TRACKER_FORM(g["signup"]) if g.get("signup") else KIT_BOX(g)}
         <p class="refs"><strong>{"Sources" if "<br>" in REFS[g['slug']] else "Source"}:</strong> {REFS[g['slug']]}</p>
         </article>
       </div>
