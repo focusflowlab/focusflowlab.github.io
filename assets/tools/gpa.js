@@ -17,7 +17,7 @@
       <input type="number" aria-label="Credits" min="0" max="12" step="0.5" value="${row.credits}" inputmode="decimal">
       <select aria-label="Grade">${options}</select>
       <select aria-label="Course level"><option value="regular">Regular</option><option value="honors">Honors</option><option value="ap">AP / IB</option></select>
-      <button class="btn btn-quiet row-remove" type="button" aria-label="Remove course">Remove</button>`;
+      <button class="btn btn-quiet row-remove" type="button" aria-label="Remove course" title="Remove course">&times;</button>`;
     const [gradeSel, levelSel] = li.querySelectorAll('select');
     gradeSel.value = row.grade;
     levelSel.value = row.level || 'regular';

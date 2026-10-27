@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPA calculator | FocusFlow Lab</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/gpa-calculator/">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+</head>
+<body class="embed">
+  <main id="main" class="embed-main">
+    <h1 class="visually-hidden">GPA calculator</h1>
+        <form class="sheet" id="gpa-form" novalidate aria-label="GPA calculator">
+          <p class="sheet-title">This semester</p>
+          <div class="row-head gpa-head" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span>Level</span><span></span></div>
+          <ol class="tool-rows gpa-rows" id="gpa-rows"></ol>
+          <div class="sheet-actions"><button class="btn btn-soft" type="button" id="add-course">Add a course</button></div>
+          <fieldset><legend>Past GPA (optional, for cumulative)</legend>
+            <div class="fields fields-2b">
+              <div><label for="prevGpa">Current cumulative GPA</label><input type="number" id="prevGpa" min="0" max="4" step="0.01" placeholder="3.40" inputmode="decimal"></div>
+              <div><label for="prevCredits">Credits so far</label><input type="number" id="prevCredits" min="0" step="1" placeholder="45" inputmode="numeric"></div>
+            </div>
+          </fieldset>
+          <div class="count-result" aria-live="polite">
+            <dl class="totals">
+              <div><dt>Semester GPA</dt><dd id="r-term">–</dd></div>
+              <div><dt>Weighted GPA</dt><dd id="r-weighted">–</dd></div>
+              <div><dt>Credits</dt><dd id="r-credits">0</dd></div>
+              <div><dt>Cumulative GPA</dt><dd id="r-cum">–</dd></div>
+            </dl>
+          </div>
+          <fieldset><legend>Raise my GPA (optional)</legend>
+            <div class="fields fields-2b">
+              <div><label for="targetGpa">Target cumulative GPA</label><input type="number" id="targetGpa" min="0" max="4" step="0.01" placeholder="3.50" inputmode="decimal"></div>
+              <div><label for="nextCredits">Credits next term</label><input type="number" id="nextCredits" min="1" step="1" placeholder="15" inputmode="numeric"></div>
+            </div>
+            <p class="gpa-need" id="r-need" aria-live="polite"></p>
+          </fieldset>
+        </form>
+    <p class="embed-credit">Free <a href="https://thefocusflowlab.com/tools/gpa-calculator/" target="_blank" rel="noopener">gpa calculator</a> by FocusFlow Lab</p>
+  </main>
+<script src="/assets/tools/gpa.js" defer></script>
+</body>
+</html>

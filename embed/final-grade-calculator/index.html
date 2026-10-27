@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Final grade calculator | FocusFlow Lab</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/final-grade-calculator/">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+</head>
+<body class="embed">
+  <main id="main" class="embed-main">
+    <h1 class="visually-hidden">Final grade calculator</h1>
+        <form class="sheet" id="final-form" novalidate aria-label="Final grade calculator">
+          <p class="sheet-title">Your course</p>
+          <div class="fields">
+            <div><label for="current">Current grade (%)</label><input type="number" id="current" min="0" max="150" step="0.1" placeholder="82" inputmode="decimal"></div>
+            <div><label for="weight">Final is worth (%)</label><input type="number" id="weight" min="1" max="99" step="0.5" placeholder="30" inputmode="decimal"></div>
+            <div><label for="target">Grade you want (%)</label><input type="number" id="target" min="0" max="150" step="0.1" placeholder="85" inputmode="decimal"></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Work it out</button></div>
+          <p class="error" id="final-error" role="alert"></p>
+          <div id="final-result" class="count-result" hidden aria-live="polite">
+            <dl class="totals"><div><dt>You need on the final</dt><dd id="r-need"></dd></div></dl>
+            <p class="muted" id="r-note"></p>
+            <table class="mini-table"><thead><tr><th>For a final grade of</th><th>You need</th></tr></thead><tbody id="r-table"></tbody></table>
+          </div>
+        </form>
+    <p class="embed-credit">Free <a href="https://thefocusflowlab.com/tools/final-grade-calculator/" target="_blank" rel="noopener">final grade calculator</a> by FocusFlow Lab</p>
+  </main>
+<script src="/assets/tools/final-grade.js" defer></script>
+</body>
+</html>

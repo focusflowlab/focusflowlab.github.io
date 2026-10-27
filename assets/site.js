@@ -76,3 +76,13 @@
     }
   });
 })();
+
+// Copy buttons: <button data-copy="element-id">
+document.querySelectorAll('[data-copy]').forEach((btn) => {
+  btn.addEventListener('click', async () => {
+    const el = document.getElementById(btn.dataset.copy);
+    const status = btn.parentElement.querySelector('.copy-status');
+    try { await navigator.clipboard.writeText(el.value); if (status) status.textContent = 'Copied.'; }
+    catch { el.select(); if (status) status.textContent = 'Press Ctrl+C to copy.'; }
+  });
+});

@@ -400,6 +400,51 @@ def feedback_block(t):
         <a class="btn btn-soft" href="mailto:hello@thefocusflowlab.com?subject={subject}">Send feedback</a>
       </aside>"""
 
+EMBEDS = {"final-grade-calculator": 820, "gpa-calculator": 1000}
+
+def embed_snippet(t):
+    h = EMBEDS[t["slug"]]
+    return (f'<iframe src="{SITE}/embed/{t["slug"]}/" title="{t["name"]} by FocusFlow Lab" width="100%" height="{h}" '
+            f'style="border:0;max-width:640px" loading="lazy"></iframe>\n'
+            f'<p style="font-size:14px">Free <a href="{SITE}/tools/{t["slug"]}/">{t["name"].lower()}</a> by FocusFlow Lab</p>')
+
+def embed_block(t):
+    if t["slug"] not in EMBEDS:
+        return ""
+    import html as _h
+    return f"""      <section class="reading embed-box" aria-labelledby="embed-title">
+        <h2 id="embed-title">Add this calculator to your site</h2>
+        <div class="prose">
+          <p>Teachers, tutors and student blogs can use this {t['name'].lower()} for free. Paste this code into your page:</p>
+          <textarea id="embed-code" class="embed-code" rows="4" readonly aria-label="Embed code">{_h.escape(embed_snippet(t))}</textarea>
+          <p><button class="btn btn-soft" type="button" data-copy="embed-code">Copy the code</button> <span class="copy-status" role="status" aria-live="polite"></span></p>
+        </div>
+      </section>"""
+
+def embed_page(t):
+    url = f"{SITE}/tools/{t['slug']}/"
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{t['name']} | FocusFlow Lab</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{url}">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+</head>
+<body class="embed">
+  <main id="main" class="embed-main">
+    <h1 class="visually-hidden">{t['name']}</h1>
+{t['tool']}
+    <p class="embed-credit">Free <a href="{url}" target="_blank" rel="noopener">{t['name'].lower()}</a> by FocusFlow Lab</p>
+  </main>
+<script src="/assets/tools/{t['script']}" defer></script>
+</body>
+</html>
+"""
+
 def tool_page(t):
     path = f"/tools/{t['slug']}/"
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Tools", "/tools/"), (t["name"], path)])
@@ -427,6 +472,8 @@ def tool_page(t):
 {faq_block(t['faq'])}
 
 {related_block(t)}
+
+{embed_block(t)}
 
 {feedback_block(t)}
 
@@ -456,7 +503,7 @@ def index_page():
       </section>
       <ul class="cards">
 {cards}
-        <li><a href="/study-plan/"><span class="card-tag">Planning</span><h2 class="card-name">Exam study plans</h2><span class="card-note">Week-by-week plans for the NCLEX, MCAT, USMLE Step 1, GRE and LSAT.</span><span class="card-go">Pick an exam</span></a></li>
+        <li><a href="/study-plan/"><span class="card-tag">Planning</span><h2 class="card-name">Exam study plans</h2><span class="card-note">Week-by-week plans for 14 exams, from the NCLEX and MCAT to the GMAT and CPA.</span><span class="card-go">Pick an exam</span></a></li>
       </ul>
       <section class="reading">
         <h2>Which tool do you need?</h2>
@@ -477,4 +524,8 @@ for t in TOOLS:
     out = ROOT / "tools" / t["slug"] / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(tool_page(t), encoding="utf-8", newline="\n")
+    if t["slug"] in EMBEDS:
+        emb = ROOT / "embed" / t["slug"] / "index.html"
+        emb.parent.mkdir(parents=True, exist_ok=True)
+        emb.write_text(embed_page(t), encoding="utf-8", newline="\n")
     print("wrote", out.relative_to(ROOT).as_posix())

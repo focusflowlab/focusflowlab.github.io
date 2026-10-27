@@ -162,6 +162,9 @@
     document.getElementById('print-plan').addEventListener('click', () => window.print());
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     output.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    const heading = output.querySelector('h2');
+    heading.setAttribute('tabindex', '-1');
+    heading.focus({ preventScroll: true });
   }
 
   /** Handle "Build my plan". */

@@ -581,6 +581,15 @@ EXAMS = [
   },
 ]
 
+GUIDE_LINK = {
+  "nclex": '''
+          <p>More detail: <a href="/guides/how-to-study-for-the-nclex/">how to study for the NCLEX</a>, with a 6-week plan.</p>''',
+  "mcat": '''
+          <p>More detail: <a href="/guides/mcat-study-schedule-3-months/">a 3-month MCAT study schedule</a>, week by week.</p>''',
+  "teas": '''
+          <p>More detail: <a href="/guides/how-to-study-for-the-teas/">how to study for the TEAS</a>, section by section.</p>''',
+}
+
 STICK = """<p>A plan that survives week two beats a perfect one that doesn’t.</p>
           <ul>
             <li>Study at the same time each day. Your phone goes in another room for that block.</li>
@@ -676,7 +685,7 @@ def page(e):
       <section class="reading">
         <h2>How the plan is put together</h2>
         <div class="prose">
-          {e['how']}
+          {e['how']}{GUIDE_LINK.get(e['slug'], '')}
         </div>
       </section>
 

@@ -204,9 +204,92 @@ GUIDES = [
          ("Turn hours into weeks", """<p>Divide your hours by what you can really study each week. 200 hours at 4 hours a day, 5 days a week, is 10 weeks. If that runs past your test date, either add hours per week or move the date. The <a href="/tools/exam-countdown/">exam countdown</a> shows how many study hours you have left before a date.</p>"""),
          ("Spread it out", """<p>The same hours spread over more weeks beat the same hours crammed into fewer. Spacing your review out over time is one of the most reliable findings in learning research. Leave the last few days light, and sleep properly before the exam.</p>"""),
        ]),
+  dict(slug="how-to-study-for-the-nclex", tag="Exam plans", date="2026-10-28",
+       title="How to Study for the NCLEX: A 4 to 8 Week Plan That Works",
+       h1="How to study for the NCLEX",
+       desc="How to study for the NCLEX-RN in 4 to 8 weeks: how the exam works, how to split your time across the client needs categories, and a week-by-week plan.",
+       lead="How the exam works, where your hours should go, and a plan you can start this week.",
+       card="A 4 to 8 week NCLEX plan, weighted to the test plan.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the NCLEX works", """<p>The NCLEX-RN is a computerized adaptive test. It gives you between 85 and 150 questions in up to 5 hours, and each question adapts to how you answered the last one. Since April 2023 it has been the Next Generation NCLEX, which includes case studies that test clinical judgment across several linked questions.</p>
+<p>Because the test adapts, you can’t cram a few topics and hope they come up. You need steady practice across all of it, and the habit of reasoning through each question.</p>"""),
+         ("Split your time by the test plan", """<p>NCSBN publishes the share of questions in each client needs category. The biggest are Management of Care and Pharmacological and Parenteral Therapies, so they deserve the most hours. Smaller areas still need regular practice because every category appears on the exam.</p>
+<p>Start with a practice assessment to find your weak categories, then give those extra time. The free <a href="/study-plan/nclex/">NCLEX study plan generator</a> does this split for you from your exam date and hours.</p>"""),
+         ("A 6-week plan", """<ul>
+<li><strong>Weeks 1 to 3: content plus questions.</strong> Review one or two categories a day, biggest first. End each day with 50 to 75 practice questions on what you covered, and read every rationale, including for questions you got right.</li>
+<li><strong>Weeks 4 and 5: mixed practice.</strong> Do larger blocks of mixed questions, including case studies. Keep an error log: the concept you missed and why. Review that log instead of re-reading notes.</li>
+<li><strong>Week 6: readiness and rest.</strong> One or two readiness assessments early in the week, then light review of your error log. No new content in the last two days, and rest the day before.</li>
+</ul>
+<p>Only have 4 weeks? Keep the same order and shorten each part. Have 8? Stretch the first part and add more mixed practice.</p>"""),
+         ("How many hours a day", """<p>Most people plan around 150 to 300 hours in total, often 3 to 5 hours a day for 6 to 8 weeks. If you’re working, fewer hours over more weeks is fine. The <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> compares the NCLEX with other exams.</p>"""),
+         ("What makes the difference", """<ul>
+<li><strong>Rationales over scores.</strong> Understanding why an answer is right teaches you more than the percentage.</li>
+<li><strong>Focus blocks.</strong> Work in 45 to 50 minute blocks with your phone in another room. The <a href="/tools/focus-timer/">focus timer</a> helps.</li>
+<li><strong>Spaced review.</strong> Come back to weak topics after a day, a few days and a week. The <a href="/tools/spaced-review/">spaced review calendar</a> schedules it.</li>
+</ul>"""),
+       ]),
+  dict(slug="mcat-study-schedule-3-months", tag="Exam plans", date="2026-10-28",
+       title="MCAT Study Schedule: A 3-Month Plan, Week by Week",
+       h1="A 3-month MCAT study schedule",
+       desc="A 3-month MCAT study schedule: how to split time across the four sections, when to take full-length practice exams, and how many hours to plan.",
+       lead="Twelve weeks, four sections. Here’s how to divide them.",
+       card="A 12-week MCAT schedule with practice exams in the right place.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the MCAT is built", """<p>The MCAT has four sections, each scored from 118 to 132 for a total of 472 to 528: Chemical and Physical Foundations, Critical Analysis and Reasoning Skills (CARS), Biological and Biochemical Foundations, and Psychological, Social and Biological Foundations. With breaks, test day is about 7.5 hours.</p>"""),
+         ("Before you start: take a diagnostic", """<p>Take one full-length practice exam, untimed if you need to, before planning anything. It shows which sections need the most time. Many students plan 300 to 500 hours in total; your diagnostic tells you where in that range you are.</p>"""),
+         ("Weeks 1 to 6: content", """<ul>
+<li>Review content by section, giving the most time to your weakest.</li>
+<li>Do CARS passages every week from the start. Reading skill builds slowly, so it can’t wait until the end.</li>
+<li>End each day with practice questions on what you covered, and keep an error log.</li>
+<li>Use flashcards for facts like amino acids, hormones and equations, reviewed a little every day. The free <a href="/tools/flashcards/">flashcards</a> space the reviews for you.</li>
+</ul>"""),
+         ("Weeks 7 to 11: practice exams", """<ul>
+<li>Take one full-length practice exam a week, at the same time of day as your real test.</li>
+<li>Spend at least as long reviewing each exam as taking it. Every miss goes in the error log with the reason.</li>
+<li>On other days, go back to the content behind your misses, and keep CARS practice going.</li>
+</ul>
+<p>The official AAMC practice exams are closest to the real test, so save some for these weeks.</p>"""),
+         ("Week 12: taper", """<p>One last practice exam early in the week, then light review of your error log. No new content in the last two days. Sleep well the night before; test day is long.</p>"""),
+         ("Make it fit your dates", """<p>Not exactly 3 months? The free <a href="/study-plan/mcat/">MCAT study schedule generator</a> builds the same structure from your test date and daily hours, with CARS every week and practice exams where they belong.</p>"""),
+       ]),
+  dict(slug="how-to-study-for-the-teas", tag="Exam plans", date="2026-10-28",
+       title="How to Study for the TEAS 7: Sections, Timing and a 4-Week Plan",
+       h1="How to study for the TEAS",
+       desc="How to study for the ATI TEAS 7: what each section covers, how long it takes, and a 4-week plan that gives science and math the time they need.",
+       lead="What’s on each section, and a 4-week plan to cover it.",
+       card="A 4-week TEAS plan, section by section.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("What’s on the TEAS 7", """<p>The ATI TEAS 7 has 170 questions in 209 minutes, across four sections:</p>
+<ul>
+<li><strong>Reading:</strong> 45 questions in 55 minutes. Key ideas, craft and structure, and using information from more than one source.</li>
+<li><strong>Math:</strong> 38 questions in 57 minutes. Numbers, algebra, measurement and data. An on-screen calculator is provided.</li>
+<li><strong>Science:</strong> 50 questions in 60 minutes. Human anatomy and physiology, biology, chemistry and scientific reasoning.</li>
+<li><strong>English and language usage:</strong> 37 questions in 37 minutes. Grammar, spelling, punctuation and vocabulary.</li>
+</ul>
+<p>Science is the largest section, and anatomy and physiology is the biggest part of it, so it usually needs the most study time.</p>"""),
+         ("Know your target score", """<p>Each nursing program sets its own minimum TEAS score, and some look at section scores too. Check your program’s requirement first, so you know how much you need to improve.</p>"""),
+         ("A 4-week plan", """<ul>
+<li><strong>Week 1:</strong> take a practice test to find your weak sections, then start science, beginning with anatomy and physiology.</li>
+<li><strong>Week 2:</strong> more science, plus math every day. Short daily math practice works better than one long session.</li>
+<li><strong>Week 3:</strong> reading and English, keeping up a little science and math. Do timed section practice.</li>
+<li><strong>Week 4:</strong> a full timed practice test early in the week, then review your mistakes. Light review only in the last two days.</li>
+</ul>
+<p>Most people plan 30 to 80 hours in total, about 1 to 2 hours a day. The free <a href="/study-plan/teas/">TEAS study plan generator</a> builds this from your own test date and hours.</p>"""),
+         ("Study smarter, not longer", """<ul>
+<li>Test yourself instead of re-reading. Read a topic once, close the book, write what you remember, then check.</li>
+<li>Use <a href="/tools/flashcards/">flashcards</a> for anatomy terms and science facts.</li>
+<li>Time yourself. The English section gives you about a minute per question, so pace matters.</li>
+</ul>"""),
+       ]),
 ]
 
 REFS = {
+  "how-to-study-for-the-nclex": "NCSBN. NCLEX-RN test plan and Next Generation NCLEX information, ncsbn.org.",
+  "mcat-study-schedule-3-months": "AAMC. What’s on the MCAT exam, and official MCAT practice exams, students-residents.aamc.org.",
+  "how-to-study-for-the-teas": "ATI. About the ATI TEAS 7, atitesting.com/teas.",
   "how-long-to-study-for-exams": "Test details: NCSBN (ncsbn.org), ATI (atitesting.com), AAMC (aamc.org), USMLE (usmle.org), NCCPA (nccpa.net), NABP (nabp.pharmacy), ADA (ada.org), ETS (ets.org), GMAC (mba.com), LSAC (lsac.org), AICPA (aicpa-cima.com).<br>Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "stop-checking-phone-while-studying": "Ward, A. F., Duke, K., Gneezy, A., &amp; Bos, M. W. (2017). Brain drain: The mere presence of one’s own smartphone reduces available cognitive capacity. <em>Journal of the Association for Consumer Research</em>, 2(2).",
   "active-recall-notes": "Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., &amp; Willingham, D. T. (2013). Improving students’ learning with effective learning techniques. <em>Psychological Science in the Public Interest</em>, 14(1).",
