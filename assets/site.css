@@ -588,3 +588,15 @@ body.embed { background: var(--color-paper); }
 .example-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-sm); margin: var(--space-sm) 0 0; }
 .example-row .btn { margin: 0; }
 .example-note { font-size: var(--text-sm); color: var(--color-muted); }
+/* Mobile: document and guide headers use tighter spacing */
+@media (max-width: 640px) {
+  .doc-head { padding: var(--space-lg) 0 var(--space-md); }
+  .doc { padding-top: var(--space-md); }
+}
+/* Flashcards: space between the empty message, the buttons and the note */
+#fc-empty { margin: 0 0 var(--space-md); }
+.sheet-actions + .muted { margin-top: var(--space-sm); }
+@media (max-width: 640px) {
+  .page-note { margin-top: var(--space-xl); }
+  .site-foot { margin-top: var(--space-xl); }
+}
