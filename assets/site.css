@@ -643,11 +643,23 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .related-links { margin: var(--space-xl) 0; color: var(--ink-muted, inherit); }
 .related-links a { white-space: normal; }
 
-/* Planner catalogue */
-.planner-grid { list-style: none; margin: var(--space-xl) 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-lg); }
-.planner-card { border: 1px solid var(--line, rgba(0,0,0,.12)); border-radius: var(--radius-card); padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm); }
-.planner-card img { width: 100%; height: auto; border-radius: calc(var(--radius-card) - 6px); }
-.planner-card h2 { font-size: var(--text-xl, 1.25rem); margin: 0; }
-.planner-card p { margin: 0; }
-.planner-card .buy { margin-top: auto; }
-.planner-card .nw { white-space: nowrap; }
+/* Planner catalogue: compact rows */
+.planner-grid { list-style: none; margin: var(--space-xl) 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-md); }
+@media (min-width: 900px) { .planner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.planner-card { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: var(--space-md); align-items: stretch; border: 1px solid var(--line, rgba(255,255,255,.12)); border-radius: var(--radius-card); padding: var(--space-md); }
+.planner-card img { width: 112px; height: 112px; border-radius: 12px; display: block; }
+.planner-body { display: flex; flex-direction: column; gap: var(--space-xs, .4rem); min-width: 0; }
+.planner-body h2 { font-size: 1.15rem; line-height: 1.25; margin: 0; }
+.planner-body p { margin: 0; }
+.planner-body .nw { white-space: nowrap; }
+.planner-meta { font-size: .9rem; opacity: .8; }
+.planner-buy { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-md); margin-top: auto; padding-top: var(--space-sm); }
+.planner-price { font-weight: 700; font-size: 1.4rem; }
+@media (max-width: 560px) {
+  .planner-card { grid-template-columns: 72px minmax(0, 1fr); align-items: center; }
+  .planner-card img { width: 72px; height: 72px; }
+  .planner-body { display: contents; }
+  .planner-body h2 { grid-column: 2; }
+  .planner-body p, .planner-body .planner-buy { grid-column: 1 / -1; }
+  .planner-body .planner-buy { margin-top: 0; padding-top: 0; }
+}

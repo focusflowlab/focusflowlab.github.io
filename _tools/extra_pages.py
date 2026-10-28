@@ -21,7 +21,8 @@ ITEMS = [("Exam Sprint Planner", "14 days", "The two weeks before any exam: exam
          ("MCAT 16-Week Study Planner", "16 weeks", "Content review first, full-length tests second, CARS every week.", "mcat-16-week-planner", "/study-plan/mcat/", "mcat-16-week-planner")]
 for slug, (weeks, link) in PLANNERS.items():
     e = EXAMS[slug]
-    ITEMS.append((f"{e['short']} {weeks}-Week Study Planner", f"{weeks} weeks", f"Exam map with rough shares by area, {weeks}-week overview, weekly and daily pages, practice test and error logs.", link, f"/study-plan/{slug}/", link))
+    top = ", ".join(n for n, _ in e["topics"][:3])
+    ITEMS.append((f"{e['short']} {weeks}-Week Study Planner", f"{weeks} weeks", f"Exam map covering {top} and more, with weekly and daily pages.", link, f"/study-plan/{slug}/", link))
 
 FAQ = [
     ("What do I get?", "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map, a week-by-week overview, a weekly page, a daily focus page with four focus blocks and a self-test after each, a practice test log, an error log and a test-day checklist. Print as many copies of the weekly and daily pages as you need."),
@@ -41,12 +42,13 @@ def card(t):
     title, dur, blurb, link, plan, thumb = t
     url = STORE + link
     return f'''        <li class="planner-card">
-          <img src="/assets/products/planners/{thumb}.png" alt="{title} cover" width="400" height="400" loading="lazy" decoding="async">
-          <h2>{nowrap_first(title)}</h2>
-          <p>{blurb}</p>
-          <p class="product-meta">{dur} · 9 pages · A4 + US Letter PDFs</p>
-          <div class="buy"><p class="price">$5</p><a class="btn" href="{url}">Get the planner</a></div>
-          <p><a class="text-link" href="{plan}">Free plan for this exam</a></p>
+          <img src="/assets/products/planners/{thumb}.png" alt="{title} cover" width="112" height="112" loading="lazy" decoding="async">
+          <div class="planner-body">
+            <h2>{nowrap_first(title)}</h2>
+            <p>{blurb}</p>
+            <p class="planner-meta">{dur} · 9 pages · A4 + Letter PDFs</p>
+            <div class="planner-buy"><span class="planner-price">$5</span><a class="btn" href="{url}">Get the planner</a><a class="text-link" href="{plan}">Free plan</a></div>
+          </div>
         </li>'''
 
 def planners_page():
