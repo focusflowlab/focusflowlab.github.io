@@ -4,7 +4,7 @@ Run from the repo root:  python _tools/extra_pages.py && python _tools/build.py
 Planner list comes from PLANNERS in exams.py, read with ast (importing exams.py would rewrite the plan pages).
 Add a planner by adding its slug to PLANNERS in exams.py and a thumbnail to assets/products/planners/.
 """
-import ast, json, pathlib
+import ast, json, pathlib, re
 from common import SITE, shell, crumbs, ORG
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -32,12 +32,17 @@ FAQ = [
     ("Is there a free option?", "Yes. The free study plan generators build a week-by-week schedule for each exam, and the free Study Focus Kit includes a printable study planner."),
 ]
 
+def nowrap_first(title):
+    """Keep a hyphenated first word such as NCLEX-RN on one line."""
+    first, _, rest = title.partition(" ")
+    return f'<span class="nw">{first}</span> {rest}' if "-" in first else title
+
 def card(t):
     title, dur, blurb, link, plan, thumb = t
     url = STORE + link
     return f'''        <li class="planner-card">
           <img src="/assets/products/planners/{thumb}.png" alt="{title} cover" width="400" height="400" loading="lazy" decoding="async">
-          <h2>{title}</h2>
+          <h2>{nowrap_first(title)}</h2>
           <p>{blurb}</p>
           <p class="product-meta">{dur} · 9 A4 pages · PDF</p>
           <div class="buy"><p class="price">$5</p><a class="btn" href="{url}">Get the planner</a></div>

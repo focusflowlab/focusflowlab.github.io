@@ -649,3 +649,5 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .planner-card img { width: 100%; height: auto; border-radius: calc(var(--radius-card) - 6px); }
 .planner-card h2 { font-size: var(--text-xl, 1.25rem); margin: 0; }
 .planner-card p { margin: 0; }
+.planner-card .buy { margin-top: auto; }
+.planner-card .nw { white-space: nowrap; }
