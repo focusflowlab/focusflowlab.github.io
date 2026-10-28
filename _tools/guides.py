@@ -374,6 +374,17 @@ def KIT_BOX(g):
           <a class="btn" href="/#free-kit">Get the free kit</a>
         </aside>'''
 
+RELATED = {
+    "how-to-study-for-the-nclex": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/")],
+    "how-to-study-for-the-teas": [("TEAS study plan generator", "/study-plan/teas/"), ("How to study for the NCLEX", "/guides/how-to-study-for-the-nclex/"), ("Printable planners", "/planners/")],
+    "mcat-study-schedule-3-months": [("MCAT study plan generator", "/study-plan/mcat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("MCAT 16-week printable planner", "/planners/")],
+}
+
+def related_block(slug):
+    if slug not in RELATED:
+        return ""
+    return '<p class="related-links"><strong>Related:</strong> ' + " · ".join(f'<a href="{u}">{t}</a>' for t, u in RELATED[slug]) + "</p>"
+
 def guide_page(g):
     path = f"/guides/{g['slug']}/"
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Guides", "/guides/"), (g["h1"][0].upper() + g["h1"][1:], path)])
@@ -409,6 +420,7 @@ def guide_page(g):
         <article class="prose">
 {secs}
 {watch}
+{related_block(g["slug"])}
 {TRACKER_FORM(g["signup"]) if g.get("signup") else KIT_BOX(g)}
         <p class="refs"><strong>{"Sources" if "<br>" in REFS[g['slug']] else "Source"}:</strong> {REFS[g['slug']]}</p>
         </article>

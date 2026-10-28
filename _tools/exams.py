@@ -16,6 +16,20 @@ PLANNERS = {"nclex-pn": (6, "nclex-pn-6-week-planner"), "usmle-step-1": (8, "usm
             "cpa-far": (10, "cpa-far-10-week-planner")}
 
 
+RELATED = {
+    "teas": [("How to study for the TEAS", "/guides/how-to-study-for-the-teas/"), ("NCLEX-RN study plan", "/study-plan/nclex/")],
+    "cpa-far": [("CPA study schedule: all four sections", "/guides/cpa-study-schedule/"), ("CPA AUD plan", "/study-plan/cpa-aud/"), ("CPA REG plan", "/study-plan/cpa-reg/")],
+    "cpa-aud": [("CPA study schedule: all four sections", "/guides/cpa-study-schedule/"), ("CPA FAR plan", "/study-plan/cpa-far/"), ("CPA REG plan", "/study-plan/cpa-reg/")],
+    "cpa-reg": [("CPA study schedule: all four sections", "/guides/cpa-study-schedule/"), ("CPA FAR plan", "/study-plan/cpa-far/"), ("CPA AUD plan", "/study-plan/cpa-aud/")],
+}
+
+
+def related_block(e):
+    if e["slug"] not in RELATED:
+        return ""
+    return '      <p class="related-links"><strong>Related:</strong> ' + " · ".join(f'<a href="{u}">{t}</a>' for t, u in RELATED[e["slug"]]) + "</p>\n\n"
+
+
 def planner_offer(e):
     if e["slug"] not in PLANNERS:
         return ""
@@ -732,7 +746,7 @@ def page(e):
         </div>
       </section>
 
-{(TRACKER_FORM(e['slug'], '      ') + chr(10) + chr(10)) if e['slug'] in TRACKERS else ''}{planner_offer(e)}      <aside class="kit" aria-label="Free Study Focus Kit">
+{(TRACKER_FORM(e['slug'], '      ') + chr(10) + chr(10)) if e['slug'] in TRACKERS else ''}{related_block(e)}{planner_offer(e)}      <aside class="kit" aria-label="Free Study Focus Kit">
         <div>
           <h2>Staying focused is the hard part.</h2>
           <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>
