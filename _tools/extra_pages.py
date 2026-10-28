@@ -24,7 +24,7 @@ for slug, (weeks, link) in PLANNERS.items():
     ITEMS.append((f"{e['short']} {weeks}-Week Study Planner", f"{weeks} weeks", f"Exam map with rough shares by area, {weeks}-week overview, weekly and daily pages, practice test and error logs.", link, f"/study-plan/{slug}/", link))
 
 FAQ = [
-    ("What do I get?", "A printable PDF of 9 A4 pages: an exam map, a week-by-week overview, a weekly page, a daily focus page with four focus blocks and a self-test after each, a practice test log, an error log and a test-day checklist. Print as many copies of the weekly and daily pages as you need."),
+    ("What do I get?", "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map, a week-by-week overview, a weekly page, a daily focus page with four focus blocks and a self-test after each, a practice test log, an error log and a test-day checklist. Print as many copies of the weekly and daily pages as you need."),
     ("How do I receive it?", "Right after payment you get a download page, and a receipt with the download link is emailed to you. Nothing is shipped."),
     ("Is this an official plan from the exam owner?", "No. These are study planners made by FocusFlow Lab and are not affiliated with or endorsed by any exam owner. Exam shares are rough planning figures, so check the official exam outline for the current version."),
     ("Can you promise I will pass?", "No. A planner helps you organise your time. It can’t guarantee any score."),
@@ -44,7 +44,7 @@ def card(t):
           <img src="/assets/products/planners/{thumb}.png" alt="{title} cover" width="400" height="400" loading="lazy" decoding="async">
           <h2>{nowrap_first(title)}</h2>
           <p>{blurb}</p>
-          <p class="product-meta">{dur} · 9 A4 pages · PDF</p>
+          <p class="product-meta">{dur} · 9 pages · A4 + US Letter PDFs</p>
           <div class="buy"><p class="price">$5</p><a class="btn" href="{url}">Get the planner</a></div>
           <p><a class="text-link" href="{plan}">Free plan for this exam</a></p>
         </li>'''
