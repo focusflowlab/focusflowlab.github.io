@@ -377,6 +377,8 @@ def KIT_BOX(g):
 RELATED = {
     "how-to-study-for-the-nclex": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/")],
     "how-to-study-for-the-teas": [("TEAS study plan generator", "/study-plan/teas/"), ("How to study for the NCLEX", "/guides/how-to-study-for-the-nclex/"), ("Printable planners", "/planners/")],
+    "cpa-study-schedule": [("CPA FAR plan generator", "/study-plan/cpa-far/"), ("CPA AUD plan generator", "/study-plan/cpa-aud/"), ("CPA REG plan generator", "/study-plan/cpa-reg/"), ("CPA FAR 10-week printable planner", "/planners/")],
+    "how-long-to-study-for-exams": [("All free exam study plans", "/study-plan/"), ("Exam countdown calculator", "/tools/exam-countdown/"), ("Printable planners", "/planners/")],
     "mcat-study-schedule-3-months": [("MCAT study plan generator", "/study-plan/mcat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("MCAT 16-week printable planner", "/planners/")],
 }
 
