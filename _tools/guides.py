@@ -242,7 +242,7 @@ GUIDES = [
          ("Weeks 1 to 6: content", """<ul>
 <li>Review content by section, giving the most time to your weakest.</li>
 <li>Do CARS passages every week from the start. Reading skill builds slowly, so it can’t wait until the end.</li>
-<li>End each day with practice questions on what you covered, and keep an error log.</li>
+<li>End each day with practice questions on what you covered, and keep an <a href=\"/guides/mcat-error-log-template/\">error log</a>.</li>
 <li>Use flashcards for facts like amino acids, hormones and equations, reviewed a little every day. The free <a href="/tools/flashcards/">flashcards</a> space the reviews for you.</li>
 </ul>"""),
          ("Weeks 7 to 11: practice exams", """<ul>
@@ -253,6 +253,47 @@ GUIDES = [
 <p>The official AAMC practice exams are closest to the real test, so save some for these weeks.</p>"""),
          ("Week 12: taper", """<p>One last practice exam early in the week, then light review of your error log. No new content in the last two days. Sleep well the night before; test day is long.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 3 months? The free <a href="/study-plan/mcat/">MCAT study schedule generator</a> builds the same structure from your test date and daily hours, with CARS every week and practice exams where they belong.</p>"""),
+       ]),
+  dict(slug="mcat-error-log-template", tag="Exam plans", signup="mcat", date="2026-11-02",
+       title="MCAT Error Log Template: How to Track and Fix Your Mistakes",
+       h1="An MCAT error log template, and how to use it",
+       desc="A simple MCAT error log template with three reasons for every miss, plus how to read it each week so your practice questions change what you do next.",
+       lead="A short log of why you miss questions shows patterns that re-doing the question never will.",
+       card="A simple error log template and how to review it each week.",
+       sections=[
+         ("What an MCAT error log does", """<p>An error log is a running list of the questions you get wrong, with the reason you got each one wrong. Re-doing a missed question fixes that question. Logging the reason shows the pattern behind many of them, and a pattern is something you can change.</p>
+<p>Keep it short enough to finish. If filling in a row takes longer than the question did, you will stop by week three.</p>"""),
+         ("The template", """<p>Copy these columns into a notebook or a spreadsheet. The first row is an example.</p>
+<div class="table-scroll"><table class="mini-table">
+<thead><tr><th scope="col">Date</th><th scope="col">Source</th><th scope="col">Section</th><th scope="col">Topic</th><th scope="col">Why (C, M or T)</th><th scope="col">Next time I will</th></tr></thead>
+<tbody>
+<tr><td>Example</td><td>Practice exam</td><td>Bio/Biochem</td><td>Enzyme inhibition graph</td><td>M</td><td>Say what each axis shows before I read the answers</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<p>The free MCAT tracker has a printable version of this log. You can get it with the form at the end of this page.</p>"""),
+         ("The three reasons", """<p>Pick one letter for every miss. If two apply, pick the one you can fix first.</p>
+<ul>
+<li><strong>C, content gap.</strong> You didn’t know the fact or concept, or couldn’t recall it.</li>
+<li><strong>M, misread.</strong> You knew the content but misread the question or the passage, or fell for a tempting wrong answer.</li>
+<li><strong>T, timing.</strong> You rushed, guessed or ran out of time.</li>
+</ul>"""),
+         ("What to log", """<ul>
+<li>Every question you miss, from question sets and from full-length practice exams.</li>
+<li>Questions you guessed and got right. A lucky guess is still a gap.</li>
+<li>For CARS, one line on why the wrong answer was tempting.</li>
+</ul>
+<p>One line per row. The last column matters most: a rule you can follow the next time you see the same thing.</p>"""),
+         ("Read it once a week", """<p>At the end of each week, count the letters.</p>
+<ul>
+<li><strong>Mostly C:</strong> go back to that content, then test yourself on it with <a href="/tools/flashcards/">flashcards</a> or the <a href="/tools/spaced-review/">spaced review calendar</a>.</li>
+<li><strong>Mostly M:</strong> slow down on the question stem. Put the question in your own words before you look at the choices.</li>
+<li><strong>Mostly T:</strong> practise in shorter timed sets, then build up to full sections.</li>
+</ul>
+<p>These are starting points. Your own pattern matters more than any rule.</p>"""),
+         ("Where it fits in your schedule", """<p>Fill in the log right after every question set and every full-length exam, and spend at least as long reviewing as you spent testing. The <a href="/guides/mcat-study-schedule-3-months/">3-month MCAT schedule</a> shows where the practice exams go, and the free <a href="/study-plan/mcat/">MCAT study schedule generator</a> builds the same structure from your test date.</p>
+<p>Prefer paper? The <a href="/planners/">MCAT 16-week planner</a> has an error log page, a full-length test log and a weekly page for $5.</p>"""),
        ]),
   dict(slug="how-to-study-for-the-teas", tag="Exam plans", signup="teas", date="2026-10-28",
        title="How to Study for the TEAS 7: Sections, Timing and a 4-Week Plan",
@@ -335,6 +376,7 @@ REFS = {
   "cpa-study-schedule": "AICPA &amp; CIMA. CPA Exam blueprints and CPA Evolution, aicpa-cima.com. NASBA. CPA Exam information and credit window rules by jurisdiction, nasba.org.",
   "how-to-study-for-the-nclex": "NCSBN. NCLEX-RN test plan and Next Generation NCLEX information, ncsbn.org.",
   "mcat-study-schedule-3-months": "AAMC. What’s on the MCAT exam, and official MCAT practice exams, students-residents.aamc.org.",
+  "mcat-error-log-template": "AAMC. Official MCAT practice exams, students-residents.aamc.org.",
   "how-to-study-for-the-teas": "ATI. About the ATI TEAS 7, atitesting.com/teas.",
   "how-long-to-study-for-exams": "Test details: NCSBN (ncsbn.org), ATI (atitesting.com), AAMC (aamc.org), USMLE (usmle.org), NCCPA (nccpa.net), NABP (nabp.pharmacy), ADA (ada.org), ETS (ets.org), GMAC (mba.com), LSAC (lsac.org), AICPA (aicpa-cima.com).<br>Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "stop-checking-phone-while-studying": "Ward, A. F., Duke, K., Gneezy, A., &amp; Bos, M. W. (2017). Brain drain: The mere presence of one’s own smartphone reduces available cognitive capacity. <em>Journal of the Association for Consumer Research</em>, 2(2).",
@@ -379,6 +421,7 @@ RELATED = {
     "how-to-study-for-the-teas": [("TEAS study plan generator", "/study-plan/teas/"), ("How to study for the NCLEX", "/guides/how-to-study-for-the-nclex/"), ("Printable planners", "/planners/")],
     "cpa-study-schedule": [("CPA FAR plan generator", "/study-plan/cpa-far/"), ("CPA AUD plan generator", "/study-plan/cpa-aud/"), ("CPA REG plan generator", "/study-plan/cpa-reg/"), ("CPA FAR 10-week printable planner", "/planners/")],
     "how-long-to-study-for-exams": [("All free exam study plans", "/study-plan/"), ("Exam countdown calculator", "/tools/exam-countdown/"), ("Printable planners", "/planners/")],
+    "mcat-error-log-template": [("MCAT study plan generator", "/study-plan/mcat/"), ("A 3-month MCAT study schedule", "/guides/mcat-study-schedule-3-months/"), ("MCAT 16-week printable planner", "/planners/")],
     "mcat-study-schedule-3-months": [("MCAT study plan generator", "/study-plan/mcat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("MCAT 16-week printable planner", "/planners/")],
 }
 
