@@ -38,9 +38,9 @@ BUNDLE_LINE = {
 
 
 def bundle_line(slug):
-    if slug not in BUNDLE_LINE:
+    if slug not in PLANNERS:
         return ""
-    return f'\n          <p class="bundle-line">{BUNDLE_LINE[slug]} <a href="{BUNDLE_URL}">All 14 exam planners are $15, instead of $70 bought separately.</a></p>'
+    return f'\n          <p class="bundle-line">{BUNDLE_LINE.get(slug, "Studying for more than one exam?")}<a href="{BUNDLE_URL}">All 14 exam planners are $15, instead of $70 bought separately.</a></p>'
 
 
 def planner_offer(e):
