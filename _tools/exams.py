@@ -31,6 +31,20 @@ def related_block(e):
     return '      <p class="related-links"><strong>Related:</strong> ' + " · ".join(f'<a href="{u}">{t}</a>' for t, u in RELATED[e["slug"]]) + "</p>\n\n"
 
 
+BUNDLE_URL = "https://store.thefocusflowlab.com/l/all-exam-planners-bundle"
+BUNDLE_LINE = {
+    "cpa-far": "Taking all three sections?", "cpa-aud": "Taking all three sections?", "cpa-reg": "Taking all three sections?",
+    "teas": "Taking more than one exam, like TEAS and then NCLEX?", "nclex-pn": "Taking more than one exam, like TEAS and then NCLEX?",
+    "usmle-step-1": "Taking more than one exam, like the MCAT and then USMLE?",
+}
+
+
+def bundle_line(slug):
+    if slug not in BUNDLE_LINE:
+        return ""
+    return f'\n          <p class="bundle-line">{BUNDLE_LINE[slug]} <a href="{BUNDLE_URL}">All 14 exam planners are $15.</a></p>'
+
+
 def planner_offer(e):
     if e["slug"] not in PLANNERS:
         return ""
@@ -39,7 +53,7 @@ def planner_offer(e):
     return f'''      <aside class="kit" aria-label="Printable planner">
         <div>
           <h2>Want it on paper?</h2>
-          <p>The {e['short']} {weeks}-Week Study Planner. Weekly and daily pages, a practice test log, an error log and a test-day checklist to print. $5, 14-day no-questions refund.</p>
+          <p>The {e['short']} {weeks}-Week Study Planner. Weekly and daily pages, a practice test log, an error log and a test-day checklist to print. $5, 14-day no-questions refund.</p>{bundle_line(e['slug'])}
         </div>
         <a class="btn" href="{url}" data-checkout="{url}">Get the planner</a>
       </aside>
