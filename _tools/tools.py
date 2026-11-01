@@ -393,6 +393,32 @@ def related_block(t):
         </ul>
       </section>"""
 
+# Next-step box per tool: (heading, text, button label, button href, text-link label, text-link href)
+GRADES = ("Finals coming up?", "Turn your grade target into a study plan. The Exam Sprint Planner is a printable 14-day plan with four focus blocks a day and a self-test after each. $5, 14-day no-questions refund.",
+          "See the planners", "/planners/", "Free guide: how to study for finals in a week.", "/guides/how-to-study-for-finals-in-a-week/")
+PLAN = ("Know your exam date? Get the plan.", "Pick your exam for a free week-by-week study plan, or print one.",
+        "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/")
+NEXT_STEP = {
+    "final-grade-calculator": GRADES, "gpa-calculator": GRADES, "weighted-grade-calculator": GRADES,
+    "exam-countdown": PLAN, "study-schedule-maker": PLAN, "reading-planner": PLAN,
+    "spaced-review": ("Studying for a big exam?", "Reviews need dates to fit into. Build a free week-by-week plan for your exam, or print one.",
+                      "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
+    "flashcards": ("Studying for a big exam?", "Cards work best inside a plan. Build a free week-by-week study plan for your exam, or print one.",
+                   "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
+    "focus-timer": ("Take the focus blocks offline.", "The printable planners have daily pages with four focus blocks and a self-test after each. $5 each, 14-day no-questions refund.",
+                    "See the planners", "/planners/", "Or build a free exam study plan.", "/study-plan/"),
+}
+
+def next_step_block(t):
+    h, text, btn, href, link_label, link_href = NEXT_STEP[t["slug"]]
+    return f"""      <aside class="kit" aria-label="Next step">
+        <div>
+          <h2>{h}</h2>
+          <p>{text} <a href="{link_href}">{link_label}</a></p>
+        </div>
+        <a class="btn" href="{href}">{btn}</a>
+      </aside>"""
+
 def feedback_block(t):
     subject = f"Feedback: {t['name']}".replace(" ", "%20")
     return f"""      <aside class="feedback" aria-label="Feedback">
@@ -484,6 +510,8 @@ def tool_page(t):
 {embed_block(t)}
 
 {feedback_block(t)}
+
+{next_step_block(t)}
 
 {KIT_ASIDE}
     </main>"""
