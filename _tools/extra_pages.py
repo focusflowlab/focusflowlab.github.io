@@ -42,7 +42,7 @@ def nowrap_first(title):
 
 def card(t, price="$5", meta=None, cta="Get the planner", free="Free plan"):
     title, dur, blurb, link, plan, thumb = t
-    meta = meta or f"{dur} · 9 pages · A4 + Letter PDFs"
+    meta = meta or f"{dur}, 9 pages, A4 and Letter PDFs"
     url = STORE + link
     return f'''        <li class="planner-card">
           <img src="/assets/products/planners/{thumb}.png" alt="{title} cover" width="112" height="112" loading="lazy" decoding="async">
@@ -101,7 +101,7 @@ def planners_page():
         </div>
       </section>
       <ul class="planner-grid planner-bundle">
-{card(BUNDLE, "$15", "14 planners · A4 + US Letter PDFs", "Get the bundle", "Free study plans")}
+{card(BUNDLE, "$15", "14 planners, A4 and US Letter PDFs", "Get the bundle", "Free study plans")}
       </ul>
 {cards}
       <section class="reading">
