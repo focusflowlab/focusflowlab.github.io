@@ -13,7 +13,8 @@ TODAY = "2026-10-26"
 # Printable planners sold on Gumroad: slug -> (weeks, permalink). Add a slug once its product is published.
 PLANNERS = {"nclex-pn": (6, "nclex-pn-6-week-planner"), "usmle-step-1": (8, "usmle-step-1-8-week-planner"), "gre": (8, "gre-8-week-planner"),
             "lsat": (12, "lsat-12-week-planner"), "pance": (8, "pance-8-week-planner"), "naplex": (8, "naplex-8-week-planner"),
-            "cpa-far": (10, "cpa-far-10-week-planner")}
+            "cpa-far": (10, "cpa-far-10-week-planner"), "teas": (4, "ati-teas-4-week-planner"), "dat": (10, "dat-10-week-planner"),
+            "gmat": (8, "gmat-8-week-planner"), "cpa-aud": (8, "cpa-aud-8-week-planner"), "cpa-reg": (8, "cpa-reg-8-week-planner")}
 
 
 RELATED = {

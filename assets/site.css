@@ -663,3 +663,4 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
   .planner-body p, .planner-body .planner-buy { grid-column: 1 / -1; }
   .planner-body .planner-buy { margin-top: 0; padding-top: 0; }
 }
+.planner-bundle { grid-template-columns: minmax(0, 1fr); margin-bottom: 0; }
