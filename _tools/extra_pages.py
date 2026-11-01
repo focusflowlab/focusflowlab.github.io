@@ -56,6 +56,17 @@ def card(t, price="$5", meta=None, cta="Get the planner", free="Free plan"):
 
 def planners_page():
     path = "/planners/"
+    # same shipping/return blocks as the home-page products, so Google's merchant listing checks pass
+    cc = ["US", "GB", "CA", "AU"]
+    zero = {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+    offer_extra = {
+        "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "USD"},
+                            "shippingDestination": {"@type": "DefinedRegion", "addressCountry": cc},
+                            "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": zero, "transitTime": zero}},
+        "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": cc,
+                                    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 14,
+                                    "returnFees": "https://schema.org/FreeReturn",
+                                    "refundType": "https://schema.org/FullRefund", "merchantReturnLink": SITE + "/terms.html#planner-refunds"}}
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Planners", path)])
     desc = "Printable study planners for NCLEX, MCAT, USMLE, GRE, LSAT, CPA and more. Weekly and daily pages, an error log and a test-day checklist. $5 each or all 14 for $15, 14-day refund."
     ld = {"@context": "https://schema.org", "@graph": [
@@ -63,11 +74,11 @@ def planners_page():
          "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": {
              "@type": "Product", "name": t[0], "description": t[2], "url": STORE + t[3], "image": f"{SITE}/assets/products/planners/{t[5]}.png",
              "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
-             "offers": {"@type": "Offer", "price": "5.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + t[3]}}}
+             "offers": {"@type": "Offer", "price": "5.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + t[3], **offer_extra}}}
              for i, t in enumerate(ITEMS)] + [{"@type": "ListItem", "position": len(ITEMS) + 1, "item": {
              "@type": "Product", "name": BUNDLE[0], "description": BUNDLE[2], "url": STORE + BUNDLE[3], "image": f"{SITE}/assets/products/planners/{BUNDLE[5]}.png",
              "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
-             "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + BUNDLE[3]}}}]}},
+             "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + BUNDLE[3], **offer_extra}}}]}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]},
         crumb_ld]}
     cards = "\n".join(card(t) for t in ITEMS)
