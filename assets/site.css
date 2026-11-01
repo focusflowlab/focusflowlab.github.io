@@ -668,3 +668,7 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 /* Optional exam question on the email form */
 .kit-exam { margin-bottom: var(--space-md); }
 .kit-exam select { width: 100%; min-height: 2.75rem; padding: var(--space-xs) var(--space-sm); border: 1px solid var(--color-muted); border-radius: var(--radius-control); background: var(--color-paper); color: var(--color-ink); font: 1rem/1.4 var(--font-body); }
+
+/* planner index groups */
+.planner-group { margin: var(--space-2xl) 0 calc(-1 * var(--space-md)); font: 700 var(--text-title)/1.2 var(--font-display); }
+.planner-group + .planner-grid { margin-top: var(--space-md); }

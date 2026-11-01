@@ -81,7 +81,15 @@ def planners_page():
              "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + BUNDLE[3], **offer_extra}}}]}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]},
         crumb_ld]}
-    cards = "\n".join(card(t) for t in ITEMS)
+    groups = [("Short on time", ("exam-sprint",)), ("Nursing", ("nclex", "ati-teas")), ("Medicine and health", ("mcat", "usmle", "pance", "naplex", "dat")),
+              ("Accounting", ("cpa",)), ("Graduate and law school", ("gre", "gmat", "lsat"))]
+    cards = ""
+    placed = 0
+    for name, keys in groups:  # shortcut: groups match by thumb-slug prefix, a new exam needs a key here
+        rows = [t for t in ITEMS if t[5].startswith(keys)]
+        placed += len(rows)
+        cards += f'      <h2 class="planner-group">{name}</h2>\n      <ul class="planner-grid">\n' + "\n".join(card(t) for t in rows) + "\n      </ul>\n"
+    assert placed == len(ITEMS), "a planner has no group"
     faq = "\n".join(f"        <h3>{q}</h3>\n        <p>{a}</p>" for q, a in FAQ)
     body = f"""{crumb_html}
 
@@ -95,9 +103,7 @@ def planners_page():
       <ul class="planner-grid planner-bundle">
 {card(BUNDLE, "$15", "14 planners · A4 + US Letter PDFs", "Get the bundle", "Free study plans")}
       </ul>
-      <ul class="planner-grid">
 {cards}
-      </ul>
       <section class="reading">
         <h2>Free first</h2>
         <p>Every exam on this site also has a <a href="/study-plan/">free study plan generator</a>, and the <a href="/#free-kit">free Study Focus Kit</a> includes a printable study planner. The paid planners are the same system on paper, with logs and a checklist you can write on.</p>
