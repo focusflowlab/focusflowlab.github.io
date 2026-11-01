@@ -361,6 +361,27 @@
         <div class="sheet form-sheet">
           <p>Enter your email and the kit arrives in your inbox (confirm your address first). You also get a free printable study planner (weekly timetable, exam tracker, daily focus page and review log) and three sample pages from the exam planners.</p>
           <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
+            <div class="kit-exam">
+              <label for="kit-exam">Which exam are you preparing for? (optional)</label>
+              <select id="kit-exam" name="fields[exam]">
+                <option value="">Choose your exam</option>
+                <option value="NCLEX-RN">NCLEX-RN</option>
+                <option value="NCLEX-PN">NCLEX-PN</option>
+                <option value="ATI TEAS">ATI TEAS</option>
+                <option value="MCAT">MCAT</option>
+                <option value="USMLE Step 1">USMLE Step 1</option>
+                <option value="PANCE">PANCE</option>
+                <option value="NAPLEX">NAPLEX</option>
+                <option value="DAT">DAT</option>
+                <option value="GRE">GRE</option>
+                <option value="LSAT">LSAT</option>
+                <option value="GMAT">GMAT</option>
+                <option value="CPA FAR">CPA FAR</option>
+                <option value="CPA AUD">CPA AUD</option>
+                <option value="CPA REG">CPA REG</option>
+                <option value="University finals / other">University finals / other</option>
+              </select>
+            </div>
             <label for="kit-email">Email address</label>
             <div class="kit-row">
               <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">

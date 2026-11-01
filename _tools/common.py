@@ -70,6 +70,8 @@ TRACKERS = {
     "teas": ("Free ATI TEAS 4-week tracker", "A printable tracker for reading, math, science and English, a practice test log, an error log and a final-week checklist."),
 }
 
+TRACKER_EXAM = {"nclex": "NCLEX-RN", "mcat": "MCAT", "teas": "ATI TEAS"}
+
 def TRACKER_FORM(exam, indent="        "):
     title, text = TRACKERS[exam]
     html = f'''<aside class="sheet guide-kit tracker-offer" aria-label="{title}">
@@ -82,6 +84,7 @@ def TRACKER_FORM(exam, indent="        "):
       <button class="btn" type="submit">Send me the tracker</button>
     </div>
     <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
+    <input type="hidden" name="fields[exam]" value="{TRACKER_EXAM[exam]}">
     <input type="hidden" name="ml-submit" value="1">
     <input type="hidden" name="anticsrf" value="true">
     <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>

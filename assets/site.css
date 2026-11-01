@@ -664,3 +664,7 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
   .planner-body .planner-buy { margin-top: 0; padding-top: 0; }
 }
 .planner-bundle { grid-template-columns: minmax(0, 1fr); margin-bottom: 0; }
+
+/* Optional exam question on the email form */
+.kit-exam { margin-bottom: var(--space-md); }
+.kit-exam select { width: 100%; min-height: 2.75rem; padding: var(--space-xs) var(--space-sm); border: 1px solid var(--color-muted); border-radius: var(--radius-control); background: var(--color-paper); color: var(--color-ink); font: 1rem/1.4 var(--font-body); }
