@@ -33,16 +33,14 @@ def related_block(e):
 
 BUNDLE_URL = "https://store.thefocusflowlab.com/l/all-exam-planners-bundle"
 BUNDLE_LINE = {
-    "cpa-far": "Taking all three sections?", "cpa-aud": "Taking all three sections?", "cpa-reg": "Taking all three sections?",
-    "teas": "Taking more than one exam, like TEAS and then NCLEX?", "nclex-pn": "Taking more than one exam, like TEAS and then NCLEX?",
-    "usmle-step-1": "Taking more than one exam, like the MCAT and then USMLE?",
+    "teas": "Want the whole collection?", "nclex-pn": "Want the whole collection?", "usmle-step-1": "Want the whole collection?",
 }
 
 
 def bundle_line(slug):
     if slug not in BUNDLE_LINE:
         return ""
-    return f'\n          <p class="bundle-line">{BUNDLE_LINE[slug]} <a href="{BUNDLE_URL}">All 14 exam planners are $15.</a></p>'
+    return f'\n          <p class="bundle-line">{BUNDLE_LINE[slug]} <a href="{BUNDLE_URL}">All 14 exam planners are $15, instead of $70 bought separately.</a></p>'
 
 
 def planner_offer(e):

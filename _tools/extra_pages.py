@@ -24,7 +24,7 @@ for slug, (weeks, link) in PLANNERS.items():
     top = ", ".join(n for n, _ in e["topics"][:3])
     ITEMS.append((f"{e['short']} {weeks}-Week Study Planner", f"{weeks} weeks", f"Exam map covering {top} and more, with weekly and daily pages.", link, f"/study-plan/{slug}/", link))
 
-BUNDLE = ("All 14 Exam Planners Bundle", "14 planners", "Every exam planner below in one purchase: NCLEX-RN and PN, TEAS, NAPLEX, MCAT, USMLE Step 1, PANCE, DAT, GRE, LSAT, GMAT and the three CPA sections. $15 instead of $70 bought one by one.", "all-exam-planners-bundle", "/study-plan/", "all-exam-planners-bundle")
+BUNDLE = ("All 14 Exam Planners Bundle", "14 planners", "All 14 exam-specific planners listed below in one purchase: NCLEX-RN and PN, TEAS, NAPLEX, MCAT, USMLE Step 1, PANCE, DAT, GRE, LSAT, GMAT and the three CPA sections. $15 instead of $70 bought one by one. The Exam Sprint Planner is sold separately.", "all-exam-planners-bundle", "/study-plan/", "all-exam-planners-bundle")
 
 FAQ = [
     ("What do I get?", "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map, a week-by-week overview, a weekly page, a daily focus page with four focus blocks and a self-test after each, a practice test log, an error log and a test-day checklist. Print as many copies of the weekly and daily pages as you need."),
