@@ -553,7 +553,9 @@ label.btn { margin: 0; display: inline-flex; }
   .masthead nav { justify-content: space-between; gap: 0; }
   .masthead nav .nav-trigger, .masthead nav .nav-link { padding: 0 var(--space-xs); }
   .masthead nav .nav-item:first-child .nav-trigger { margin-left: calc(var(--space-xs) * -1); }
-  .masthead nav .nav-cta { display: none; }
+  /* Planners pill sits in the logo row, top right; nav is a separate scrolling row so the layout is unchanged */
+  .site-head .masthead { position: relative; }
+  .masthead nav a.nav-cta { position: absolute; top: var(--space-xs); right: var(--gutter); min-height: 36px; padding: 0 var(--space-md); font-size: var(--text-sm); }
 }
 /* The header bar keeps the page gutter (an older .masthead rule reset it) */
 .site-head .container.masthead { padding-inline: var(--gutter); }
