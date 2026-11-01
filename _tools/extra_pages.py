@@ -50,7 +50,7 @@ def card(t, price="$5", meta=None, cta="Get the planner", free="Free plan"):
             <h2>{nowrap_first(title)}</h2>
             <p>{blurb}</p>
             <p class="planner-meta">{meta}</p>
-            <div class="planner-buy"><span class="planner-price">{price}</span><a class="btn" href="{url}">{cta}</a><a class="text-link" href="{plan}">{free}</a></div>
+            <div class="planner-buy"><span class="planner-price">{price}</span><a class="btn" href="{url}?wanted=true">{cta}</a><a class="text-link" href="{plan}">{free}</a></div>
           </div>
         </li>'''
 

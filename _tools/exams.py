@@ -53,7 +53,7 @@ def planner_offer(e):
           <h2>Want it on paper?</h2>
           <p>The {e['short']} {weeks}-Week Study Planner. Weekly and daily pages, a practice test log, an error log and a test-day checklist to print. $5, 14-day no-questions refund.</p>{bundle_line(e['slug'])}
         </div>
-        <a class="btn" href="{url}" data-checkout="{url}">Get the planner</a>
+        <a class="btn" href="{url}?wanted=true">Get the planner</a>
       </aside>
 
 '''
