@@ -166,3 +166,15 @@ document.querySelectorAll('[data-example-for]').forEach((btn) => {
   const today = new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
   document.querySelectorAll('#examDate, #deadline').forEach((el) => { if (!el.min) el.min = today; });
 })();
+
+// Tag store links with the page they came from, so Gumroad's analytics can show which pages send buyers.
+(() => {
+  const page = location.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-') || 'home';
+  document.querySelectorAll('a[href^="https://store.thefocusflowlab.com/"]').forEach((a) => {
+    const u = new URL(a.href);
+    u.searchParams.set('utm_source', 'thefocusflowlab');
+    u.searchParams.set('utm_medium', 'site');
+    u.searchParams.set('utm_campaign', page);
+    a.href = u.toString();
+  });
+})();

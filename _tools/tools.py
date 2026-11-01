@@ -396,10 +396,13 @@ def related_block(t):
 # Next-step box per tool: (heading, text, button label, button href, text-link label, text-link href)
 GRADES = ("Finals coming up?", "Turn your grade target into a study plan. The Exam Sprint Planner is a printable 14-day plan with four focus blocks a day and a self-test after each. $5, 14-day no-questions refund.",
           "See the planners", "/planners/", "Free guide: how to study for finals in a week.", "/guides/how-to-study-for-finals-in-a-week/")
+# GPA and weighted-grade tools get no planner pitch: free guide and free plans only.
+GRADES_FREE = ("Finals coming up?", "Turn your grade target into a study plan. Read how to cover a course in the last week, or build a free week-by-week plan for your exam.",
+               "Finals in a week: the guide", "/guides/how-to-study-for-finals-in-a-week/", "Free exam study plans.", "/study-plan/")
 PLAN = ("Know your exam date? Get the plan.", "Pick your exam for a free week-by-week study plan, or print one.",
         "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/")
 NEXT_STEP = {
-    "final-grade-calculator": GRADES, "gpa-calculator": GRADES, "weighted-grade-calculator": GRADES,
+    "final-grade-calculator": GRADES, "gpa-calculator": GRADES_FREE, "weighted-grade-calculator": GRADES_FREE,
     "exam-countdown": PLAN, "study-schedule-maker": PLAN, "reading-planner": PLAN,
     "spaced-review": ("Studying for a big exam?", "Reviews need dates to fit into. Build a free week-by-week plan for your exam, or print one.",
                       "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
