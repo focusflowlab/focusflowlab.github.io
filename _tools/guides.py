@@ -370,9 +370,102 @@ GUIDES = [
 </ul>
 <p>Studying while working is mostly a focus problem. Short, protected blocks with your phone in another room beat long, distracted evenings. The <a href="/tools/focus-timer/">Pomodoro timer</a> helps.</p>"""),
        ]),
+  dict(slug="usmle-step-1-study-schedule", tag="Exam plans", date="2026-11-02",
+       title="USMLE Step 1 Study Schedule: An 8-Week Dedicated Plan",
+       h1="A USMLE Step 1 study schedule for your dedicated period",
+       desc="An 8-week USMLE Step 1 study schedule: how the exam is built now, how to split systems and question blocks, and when to take self-assessments.",
+       lead="Step 1 is pass/fail, so the aim is to cover everything and pass with room to spare. Here is an 8-week way to do it.",
+       card="An 8-week Step 1 schedule built around systems and daily question blocks.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How Step 1 works now", """<p>Step 1 results have been reported as pass or fail only since 26 January 2022, so there is no three-digit score to chase. It is taken in a single 8-hour session.</p>
+<p>The question format changed in 2026. For exams on or after 14 May 2026, the USMLE lists fourteen 30-minute blocks of up to 20 questions each, with at least 55 minutes of break time. Before that date it was seven 60-minute blocks of up to 40 questions. Check <a href="https://www.usmle.org/step-exams/step-1" rel="noopener">usmle.org</a> for the format on your test date, because it can change again.</p>"""),
+         ("Plan for passing, not for a score", """<p>With a pass/fail result, the useful question is “where am I weakest?”, not “how high can I go?”. Aim to touch every system at least twice and to spend extra time where your practice results are lowest.</p>
+<p>Take one self-assessment early. It shows where to start and gives you a baseline to compare later ones against.</p>"""),
+         ("Weeks 1 to 5: systems, one at a time", """<ul>
+<li>Study one organ system at a time, such as cardiovascular, respiratory, renal and so on, with the basic science behind it: physiology, pathology and pharmacology together.</li>
+<li>Do a timed block of practice questions every day, then review every question, right or wrong, before moving on.</li>
+<li>Keep an <a href="/guides/mcat-error-log-template/">error log</a> with one line per miss: a content gap, a misread, or a timing problem.</li>
+<li>Review flashcards for drugs, pathways and findings a little every day. The free <a href="/tools/flashcards/">flashcards</a> space the reviews for you.</li>
+</ul>"""),
+         ("Weeks 6 and 7: mixed blocks and self-assessment", """<ul>
+<li>Switch to mixed blocks that cover several systems at once, because the real exam does not announce the topic.</li>
+<li>Take a full-length self-assessment under test conditions, at the time of day your exam is booked.</li>
+<li>Spend as long reviewing it as taking it, and send what you learn back into the systems you are weakest in.</li>
+</ul>"""),
+         ("Week 8: taper", """<p>One more self-assessment early in the week, then your error log and short question sets. Keep the last two days light, check your test centre route and ID, and sleep. A full-length exam the day before only adds fatigue.</p>"""),
+         ("How many hours?", """<p>Many students use 4 to 8 weeks of dedicated study, with 8 to 10 hours a day on study days. That is a common planning range, not an official figure, and it depends on how recently you finished the basic science courses. If you are short on time, cut the weeks and keep the daily question blocks.</p>"""),
+         ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/usmle-step-1/">USMLE Step 1 study schedule generator</a> builds a systems-based plan from your exam date and daily hours.</p>
+<p>Prefer paper? The <a href="/planners/">USMLE Step 1 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the USMLE.</p>"""),
+       ]),
+  dict(slug="lsat-study-schedule-12-weeks", tag="Exam plans", date="2026-11-02",
+       title="LSAT Study Schedule: A 12-Week Plan, Week by Week",
+       h1="A 12-week LSAT study schedule",
+       desc="A 12-week LSAT study schedule for the current format: logical reasoning and reading comprehension, timed sections, blind review and full practice tests.",
+       lead="The LSAT now has two question types that are scored. Here is how to spend twelve weeks on them.",
+       card="A 12-week LSAT schedule built on timed sections and blind review.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("What is on the LSAT now", """<p>LSAC describes the current test as four 35-minute multiple-choice sections: two scored Logical Reasoning sections, one scored Reading Comprehension section, and one unscored section of either type. The Analytical Reasoning section, often called logic games, was retired after the June 2024 test.</p>
+<p>LSAT Argumentative Writing is a separate, unscored writing sample taken online. You still need an approved sample on file for your score to be released. LSAC has also announced a format change from August 2027 that moves the unscored questions into the scored sections, so check <a href="https://www.lsac.org/" rel="noopener">lsac.org</a> for your test date.</p>"""),
+         ("Weeks 1 to 3: learn the question types", """<ul>
+<li>Take one full practice test first, untimed if you need to, to see where you start.</li>
+<li>For Logical Reasoning, learn the common types, such as assumption, flaw, strengthen and weaken, and practise each without a clock.</li>
+<li>For Reading Comprehension, practise summarising each paragraph in a few words, then the passage’s main point.</li>
+<li>Start an <a href="/guides/mcat-error-log-template/">error log</a> now: one line per miss, with the reason.</li>
+</ul>"""),
+         ("Weeks 4 to 8: timed sections and blind review", """<ul>
+<li>Do timed 35-minute sections several times a week, mixing Logical Reasoning and Reading Comprehension.</li>
+<li>Use blind review: before you check answers, go back to every question you missed or felt unsure about and re-do it without a clock. Then check, and write down what changed.</li>
+<li>Drill the question type that costs you the most points each week, then test it again in a timed set.</li>
+</ul>"""),
+         ("Weeks 9 to 11: full practice tests", """<ul>
+<li>Take one full test a week under test conditions, at the time of day your exam is booked.</li>
+<li>Spend at least as long reviewing the test as taking it.</li>
+<li>Use official LSAC practice tests where you can, because they are closest to the real thing.</li>
+</ul>"""),
+         ("Week 12: taper", """<p>One last full test early in the week, then error-log review and a few short timed sets. Rest the last two days. Complete your writing sample ahead of time so nothing delays your score.</p>"""),
+         ("How many hours?", """<p>Many students plan roughly 100 to 300 hours in total, spread over two to six months. That is a common estimate, not an official number. Starting score, target score and time between tests all move it, so use your first practice test to judge where you fall.</p>"""),
+         ("Make it fit your dates", """<p>Not exactly 12 weeks? The free <a href="/study-plan/lsat/">LSAT study schedule generator</a> builds this structure from your test date and daily hours.</p>
+<p>Prefer paper? The <a href="/planners/">LSAT 12-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by LSAC.</p>"""),
+       ]),
+  dict(slug="gre-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
+       title="GRE Study Plan: An 8-Week Plan for the Shorter Test",
+       h1="An 8-week GRE study plan",
+       desc="An 8-week GRE study plan for the shorter test: the current format, verbal and quant review, timed sections, the essay and full practice tests.",
+       lead="The GRE is about two hours long now. Here is how to prepare for it in eight weeks.",
+       card="An 8-week GRE plan for verbal, quant and the essay.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the GRE is built now", """<p>Since 22 September 2023 the GRE General Test runs about 1 hour 58 minutes. ETS lists one 30-minute “Analyze an Issue” writing task first, then two Verbal Reasoning sections (12 questions in 18 minutes, 15 questions in 23 minutes) and two Quantitative Reasoning sections (12 questions in 21 minutes, 15 questions in 26 minutes).</p>
+<p>Verbal and Quantitative are adaptive by section: how you do on the first section of each measure affects the difficulty of the second. Check <a href="https://www.ets.org/gre" rel="noopener">ets.org/gre</a> for the current format before you register.</p>"""),
+         ("Weeks 1 and 2: diagnose and review", """<ul>
+<li>Take one full practice test first to see where you stand on verbal and quant.</li>
+<li>Review the quant topics you are rusty on, usually arithmetic, algebra, geometry and data analysis, and work them untimed.</li>
+<li>Read something dense every day, and learn new words from context rather than from long lists.</li>
+</ul>"""),
+         ("Weeks 3 to 5: build speed", """<ul>
+<li>Practise Reading Comprehension, Text Completion and Sentence Equivalence in short timed sets.</li>
+<li>Do timed quant sets, and learn to skip a question that is eating your time and come back to it.</li>
+<li>Write one essay a week from week 3, 30 minutes, then reread it and cut anything that does not support your point.</li>
+<li>Keep an <a href="/guides/mcat-error-log-template/">error log</a> with the reason for each miss.</li>
+</ul>"""),
+         ("Weeks 6 and 7: full practice tests", """<ul>
+<li>Take a full-length practice test each week, essay included, at the time of day of your real test.</li>
+<li>Spend as long reviewing as testing, and send what you learn back to your weakest topics.</li>
+<li>Use the official ETS practice material where possible, because its questions are the closest to the real test.</li>
+</ul>"""),
+         ("Week 8: taper", """<p>One last practice test early in the week, then your error log and a few short timed sets. No new topics in the last two days. Check your ID and test-centre or at-home setup, and sleep.</p>"""),
+         ("How many hours?", """<p>Many students plan about 50 to 120 hours over 6 to 12 weeks. That is a common estimate, not an official figure. A strong starting score or a lower target needs fewer; a long break from maths needs more.</p>"""),
+         ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gre/">GRE study plan generator</a> builds this structure from your test date and daily hours.</p>
+<p>Prefer paper? The <a href="/planners/">GRE 8-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by ETS.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "usmle-step-1-study-schedule": "USMLE. Step 1 exam content and format, usmle.org/step-exams/step-1. USMLE. Examination results and scoring, usmle.org.",
+  "lsat-study-schedule-12-weeks": "LSAC. LSAT format and changes, lsac.org/lsat. LSAC. LSAT Argumentative Writing, lsac.org.",
+  "gre-study-plan-8-weeks": "ETS. GRE General Test content and structure, ets.org/gre.",
   "cpa-study-schedule": "AICPA &amp; CIMA. CPA Exam blueprints and CPA Evolution, aicpa-cima.com. NASBA. CPA Exam information and credit window rules by jurisdiction, nasba.org.",
   "how-to-study-for-the-nclex": "NCSBN. NCLEX-RN test plan and Next Generation NCLEX information, ncsbn.org.",
   "mcat-study-schedule-3-months": "AAMC. What’s on the MCAT exam, and official MCAT practice exams, students-residents.aamc.org.",
@@ -417,6 +510,9 @@ def KIT_BOX(g):
         </aside>'''
 
 RELATED = {
+    "usmle-step-1-study-schedule": [("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("USMLE Step 1 8-week printable planner", "/planners/")],
+    "lsat-study-schedule-12-weeks": [("LSAT study plan generator", "/study-plan/lsat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("LSAT 12-week printable planner", "/planners/")],
+    "gre-study-plan-8-weeks": [("GRE study plan generator", "/study-plan/gre/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("GRE 8-week printable planner", "/planners/")],
     "how-to-study-for-the-nclex": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/")],
     "how-to-study-for-the-teas": [("TEAS study plan generator", "/study-plan/teas/"), ("How to study for the NCLEX", "/guides/how-to-study-for-the-nclex/"), ("Printable planners", "/planners/")],
     "cpa-study-schedule": [("CPA FAR plan generator", "/study-plan/cpa-far/"), ("CPA AUD plan generator", "/study-plan/cpa-aud/"), ("CPA REG plan generator", "/study-plan/cpa-reg/"), ("CPA FAR 10-week printable planner", "/planners/")],

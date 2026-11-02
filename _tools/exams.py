@@ -18,6 +18,9 @@ PLANNERS = {"nclex-pn": (6, "nclex-pn-6-week-planner"), "usmle-step-1": (8, "usm
 
 
 RELATED = {
+    "usmle-step-1": [("USMLE Step 1 study schedule: 8-week plan", "/guides/usmle-step-1-study-schedule/"), ("MCAT study plan", "/study-plan/mcat/")],
+    "lsat": [("LSAT study schedule: 12-week plan", "/guides/lsat-study-schedule-12-weeks/"), ("GRE study plan", "/study-plan/gre/")],
+    "gre": [("GRE study plan: 8-week plan", "/guides/gre-study-plan-8-weeks/"), ("LSAT study plan", "/study-plan/lsat/")],
     "teas": [("How to study for the TEAS", "/guides/how-to-study-for-the-teas/"), ("NCLEX-RN study plan", "/study-plan/nclex/")],
     "cpa-far": [("CPA study schedule: all four sections", "/guides/cpa-study-schedule/"), ("CPA AUD plan", "/study-plan/cpa-aud/"), ("CPA REG plan", "/study-plan/cpa-reg/")],
     "cpa-aud": [("CPA study schedule: all four sections", "/guides/cpa-study-schedule/"), ("CPA FAR plan", "/study-plan/cpa-far/"), ("CPA REG plan", "/study-plan/cpa-reg/")],
