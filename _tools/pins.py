@@ -125,6 +125,18 @@ h1 { position: relative; margin-top: 64px; font: 700 96px/1.0 "Bricolage Grotesq
 .step i { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--mint); font: 500 28px "IBM Plex Mono"; font-style: normal; color: var(--teal-ink); }
 """
 
+# Printable planner pins: one per planner, linking to the exam's plan page (free generator plus the $5 planner).
+_INSIDE = ["Exam map", "Week-by-week overview", "Daily focus pages", "Practice test and error log", "Test-day checklist"]
+_PLANNERS = [("nclex-rn", "NCLEX-RN", 8, "/study-plan/nclex/"), ("nclex-pn", "NCLEX-PN", 6, "/study-plan/nclex-pn/"), ("teas", "ATI TEAS", 4, "/study-plan/teas/"),
+    ("naplex", "NAPLEX", 8, "/study-plan/naplex/"), ("mcat", "MCAT", 16, "/study-plan/mcat/"), ("usmle", "USMLE Step 1", 8, "/study-plan/usmle-step-1/"),
+    ("pance", "PANCE", 8, "/study-plan/pance/"), ("dat", "DAT", 10, "/study-plan/dat/"), ("gre", "GRE", 8, "/study-plan/gre/"), ("lsat", "LSAT", 12, "/study-plan/lsat/"),
+    ("gmat", "GMAT", 8, "/study-plan/gmat/"), ("cpa-far", "CPA FAR", 10, "/study-plan/cpa-far/"), ("cpa-aud", "CPA AUD", 8, "/study-plan/cpa-aud/"), ("cpa-reg", "CPA REG", 8, "/study-plan/cpa-reg/")]
+for _s, _n, _w, _l in _PLANNERS:
+    PINS.append(dict(slug=f"{_s}-planner", board="Exam Study Plans", headline=f"{_n} {_w}-week printable planner", line="9 pages, A4 and US Letter PDFs. $5.", kind="steps", data=_INSIDE, link=_l,
+        title=f"{_n} {_w}-Week Printable Study Planner", desc=f"A printable {_n} study planner: exam map, week-by-week overview, daily focus pages, practice test log, error log and a test-day checklist. A4 and US Letter PDFs, $5. Not affiliated with the exam owner."))
+PINS.append(dict(slug="bundle-planner", board="Exam Study Plans", headline="All 14 exam planners, $15", line="Instead of $70 bought one by one.", kind="steps", data=_INSIDE, link="/planners/",
+    title="All 14 Printable Exam Study Planners, $15", desc="NCLEX-RN and PN, TEAS, NAPLEX, MCAT, USMLE Step 1, PANCE, DAT, GRE, LSAT, GMAT and the three CPA sections in one printable bundle. A4 and US Letter PDFs. Not affiliated with any exam owner."))
+
 def visual(p):
     k, d = p["kind"], p["data"]
     if k == "weeks":
