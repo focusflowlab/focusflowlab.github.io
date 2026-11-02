@@ -535,9 +535,76 @@ GUIDES = [
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/pance/">PANCE study plan generator</a> builds a plan from your exam date and daily hours.</p>
 <p>Prefer paper? The <a href="/planners/">PANCE 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NCCPA.</p>"""),
        ]),
+  dict(slug="gmat-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
+       title="GMAT Study Plan: An 8-Week Schedule for the Focus Edition",
+       h1="An 8-week GMAT study plan",
+       desc="An 8-week GMAT Focus Edition study plan: the three-section format, how to split Quant, Verbal and Data Insights, timed practice and full tests.",
+       lead="The GMAT Focus Edition has three sections and about two hours of testing. Here is an 8-week plan for it.",
+       card="An 8-week GMAT Focus Edition plan across Quant, Verbal and Data Insights.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the GMAT Focus Edition is built", """<p>GMAC lists three 45-minute sections, 2 hours 15 minutes of testing in all: Quantitative Reasoning (21 questions), Verbal Reasoning (23 questions) and Data Insights (20 questions). You can take the sections in any order and take one optional 10-minute break. You can bookmark questions and change up to three answers per section.</p>
+<p>The total score runs from 205 to 805, and the three sections count equally. Data sufficiency now sits in Data Insights, and Verbal no longer has sentence correction. Check <a href="https://www.mba.com/exams/gmat-focus-edition/about/exam-structure" rel="noopener">mba.com</a> for your test date.</p>"""),
+         ("Because sections count equally", """<p>Verbal, Quant and Data Insights each carry a third of the total, so your weakest section is usually the best place to add hours. Take one practice test first and rank the three.</p>"""),
+         ("Weeks 1 and 2: baseline and fundamentals", """<ul>
+<li>Take a full practice test to see where you stand.</li>
+<li>Review quant basics: arithmetic, algebra, word problems. Work untimed.</li>
+<li>Learn the Data Insights question types: data sufficiency, table analysis, graphics interpretation, multi-source reasoning and two-part analysis.</li>
+<li>Start an <a href="/guides/mcat-error-log-template/">error log</a> with the reason for each miss.</li>
+</ul>"""),
+         ("Weeks 3 to 5: build speed by section", """<ul>
+<li>Do timed sets for each section, about two minutes a question on average.</li>
+<li>For Verbal, practise reading comprehension and critical reasoning, and note why wrong options are wrong.</li>
+<li>Learn to move on from a question that is costing too much time. You can only change three answers per section.</li>
+<li>Give extra sessions to your weakest section.</li>
+</ul>"""),
+         ("Weeks 6 and 7: full practice tests", """<ul>
+<li>Take a full test each week at the time of day of your booking.</li>
+<li>Try different section orders to see which suits you.</li>
+<li>Spend as long reviewing as testing. Use official GMAC practice material where you can.</li>
+</ul>"""),
+         ("Week 8: taper", """<p>One last full test early in the week, then error-log review and short timed sets. Keep the last two days light, check your ID and test setup, and sleep.</p>"""),
+         ("How many hours?", """<p>Many students plan about 80 to 150 hours over 6 to 12 weeks. That is a common planning range, not an official figure. A high starting score or a modest target needs fewer; a long break from maths needs more.</p>"""),
+         ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gmat/">GMAT study plan generator</a> builds a plan from your test date and daily hours.</p>
+<p>Prefer paper? The <a href="/planners/">GMAT 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by GMAC.</p>"""),
+       ]),
+  dict(slug="dat-study-schedule-10-weeks", tag="Exam plans", date="2026-11-02",
+       title="DAT Study Schedule: A 10-Week Plan for the Four Tests",
+       h1="A 10-week DAT study schedule",
+       desc="A 10-week DAT study schedule: the four tests, how long each runs, sciences review, perceptual ability practice and full-length mock tests.",
+       lead="The DAT has four timed tests and a lot of science. Here is a 10-week schedule that covers all four.",
+       card="A 10-week DAT schedule across sciences, perceptual ability, reading and quantitative reasoning.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the DAT is built", """<p>The ADA lists four multiple-choice tests: Survey of the Natural Sciences (100 questions, 90 minutes), Perceptual Ability (90 questions, 60 minutes), Reading Comprehension (50 questions, 60 minutes) and Quantitative Reasoning (40 questions, 45 minutes). The sciences cover biology, general chemistry and organic chemistry.</p>
+<p>Scores run from 200 to 600, and there is no official passing score. The ADA introduced a new scoring system on 1 March 2025, and the content specifications have been updated recently, so read the current candidate guide at <a href="https://www.ada.org/education/testing/exams/dental-admission-test-dat" rel="noopener">ada.org</a> before you plan.</p>"""),
+         ("Give each test its own time", """<p>Sciences is the biggest test, so it gets the most hours. Perceptual Ability is the one most students have not seen before, so it needs short daily practice from the start. Reading Comprehension and Quantitative Reasoning need regular timed sets rather than long study blocks.</p>"""),
+         ("Weeks 1 and 2: baseline and plan", """<ul>
+<li>Take a full practice test to see which tests and which science subjects are weakest.</li>
+<li>Start 20 to 30 minutes of Perceptual Ability every day, such as keyhole, angle ranking, hole punching, cube counting and pattern folding.</li>
+<li>Start an <a href="/guides/mcat-error-log-template/">error log</a> with the reason for each miss.</li>
+</ul>"""),
+         ("Weeks 3 to 7: sciences, rotating subjects", """<ul>
+<li>Rotate biology, general chemistry and organic chemistry through the week so none goes cold.</li>
+<li>Practise questions after every topic, then review wrong answers before moving on.</li>
+<li>Keep drilling with the free <a href="/tools/flashcards/">flashcards</a> for reactions, mechanisms and terms.</li>
+<li>Do a timed Reading Comprehension passage and a Quantitative Reasoning set several times a week.</li>
+</ul>"""),
+         ("Weeks 8 and 9: full-length tests", """<ul>
+<li>Take a full-length mock test each week in the real order and timings, at the time of day of your booking.</li>
+<li>Spend as long reviewing as testing, and send what you learn back to the weakest subjects.</li>
+<li>Use official ADA practice materials where you can.</li>
+</ul>"""),
+         ("Week 10: taper", """<p>One last mock early in the week, then your error log and short timed sets. No new topics in the last two days. Check your ID and test-centre details, and sleep.</p>"""),
+         ("How many hours?", """<p>Many students plan around 2 to 3 months at 4 or more hours a day, roughly 200 to 350 hours, depending on how recently they took the sciences. That is a common estimate, not an official figure.</p>"""),
+         ("Make it fit your dates", """<p>Not exactly 10 weeks? The free <a href="/study-plan/dat/">DAT study plan generator</a> builds a plan from your test date and daily hours.</p>
+<p>Prefer paper? The <a href="/planners/">DAT 10-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the ADA.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "gmat-study-plan-8-weeks": "GMAC. GMAT Focus Edition exam structure, mba.com.",
+  "dat-study-schedule-10-weeks": "American Dental Association. Dental Admission Test (DAT) 2026 Candidate Guide and exam page, ada.org.",
   "pance-study-plan-8-weeks": "NCCPA. PANCE content blueprint (effective January 2025) and What to Expect on Test Day, nccpa.net.",
   "naplex-study-plan-8-weeks": "NABP. Take the NAPLEX exam, nabp.pharmacy. NABP. NAPLEX Content Outline, effective for exams beginning May 1, 2025, nabp.pharmacy.",
   "usmle-step-1-study-schedule": "USMLE. Step 1 exam content and format, usmle.org/step-exams/step-1. USMLE. Examination results and scoring, usmle.org.",
@@ -587,6 +654,8 @@ def KIT_BOX(g):
         </aside>'''
 
 RELATED = {
+    "gmat-study-plan-8-weeks": [("GMAT study plan generator", "/study-plan/gmat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("GMAT 8-week printable planner", "/planners/")],
+    "dat-study-schedule-10-weeks": [("DAT study plan generator", "/study-plan/dat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("DAT 10-week printable planner", "/planners/")],
     "pance-study-plan-8-weeks": [("PANCE study plan generator", "/study-plan/pance/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("PANCE 8-week printable planner", "/planners/")],
     "naplex-study-plan-8-weeks": [("NAPLEX study plan generator", "/study-plan/naplex/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("NAPLEX 8-week printable planner", "/planners/")],
     "usmle-step-1-study-schedule": [("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("USMLE Step 1 8-week printable planner", "/planners/")],

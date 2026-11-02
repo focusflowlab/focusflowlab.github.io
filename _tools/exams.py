@@ -18,6 +18,8 @@ PLANNERS = {"nclex-pn": (6, "nclex-pn-6-week-planner"), "usmle-step-1": (8, "usm
 
 
 RELATED = {
+    "gmat": [("GMAT study plan: 8-week plan", "/guides/gmat-study-plan-8-weeks/"), ("GRE study plan", "/study-plan/gre/")],
+    "dat": [("DAT study schedule: 10-week plan", "/guides/dat-study-schedule-10-weeks/"), ("MCAT study plan", "/study-plan/mcat/")],
     "pance": [("PANCE study plan: 8-week plan", "/guides/pance-study-plan-8-weeks/"), ("NAPLEX study plan", "/study-plan/naplex/")],
     "naplex": [("NAPLEX study plan: 8-week plan", "/guides/naplex-study-plan-8-weeks/"), ("PANCE study plan", "/study-plan/pance/")],
     "usmle-step-1": [("USMLE Step 1 study schedule: 8-week plan", "/guides/usmle-step-1-study-schedule/"), ("MCAT study plan", "/study-plan/mcat/")],
