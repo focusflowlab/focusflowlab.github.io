@@ -460,9 +460,51 @@ GUIDES = [
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gre/">GRE study plan generator</a> builds this structure from your test date and daily hours.</p>
 <p>Prefer paper? The <a href="/planners/">GRE 8-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by ETS.</p>"""),
        ]),
+  dict(slug="naplex-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
+       title="NAPLEX Study Plan: An 8-Week Schedule by Content Domain",
+       h1="An 8-week NAPLEX study plan",
+       desc="An 8-week NAPLEX study plan built on the current NABP content outline: how the exam is weighted, what to study each week, calculations and practice tests.",
+       lead="The NAPLEX outline changed in May 2025. Here is an 8-week plan weighted to where the questions are.",
+       card="An 8-week NAPLEX plan weighted to the current content outline.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the NAPLEX is built", """<p>NABP describes the NAPLEX as a 6-hour, 225-question computerised exam. Results are reported as pass or fail, and candidates get five attempts.</p>
+<p>The content outline for exams on or after 1 May 2025 has five domains. Weights are shares of the roughly 200 scored questions:</p>
+<ul>
+<li>Person-Centered Assessment and Treatment Planning: 40% (about 80 questions)</li>
+<li>Foundational Knowledge for Pharmacy Practice: 25% (about 50)</li>
+<li>Medication Use Process: 25% (about 50)</li>
+<li>Professional Practice: 5% (about 10)</li>
+<li>Pharmacy Management and Leadership: 5% (about 10)</li>
+</ul>
+<p>Check <a href="https://nabp.pharmacy/programs/examinations/naplex/take-the-naplex-exam/" rel="noopener">nabp.pharmacy</a> for the outline that applies to your test date.</p>"""),
+         ("Spend time where the questions are", """<p>Two thirds of the scored questions sit in treatment planning and the medication use process, so most of your hours should go to therapeutics, patient cases and the dispensing and monitoring steps. The two 5% domains still deserve a pass or two, but not weeks.</p>"""),
+         ("Weeks 1 and 2: baseline and foundations", """<ul>
+<li>Take a practice exam first to see which domains are weakest.</li>
+<li>Review foundational science that supports therapeutics: pharmacology, pharmacokinetics, and pharmaceutics.</li>
+<li>Start a daily set of calculations. Write out every step; most misses come from units and rounding.</li>
+<li>Start an <a href="/guides/mcat-error-log-template/">error log</a>: one line per miss, with the reason.</li>
+</ul>"""),
+         ("Weeks 3 to 6: therapeutics by body system", """<ul>
+<li>Go through therapeutics one system or condition group at a time, with guideline-based first-line choices, monitoring and patient counselling.</li>
+<li>Work case-style questions every day, because treatment planning questions ask you to choose among options for a patient.</li>
+<li>Keep reviewing drug facts and doses with the free <a href="/tools/flashcards/">flashcards</a>, a little each day.</li>
+<li>Add a short pass through the medication use process: prescription checks, dispensing, interactions and safety.</li>
+</ul>"""),
+         ("Week 7: full-length practice", """<ul>
+<li>Take a timed full-length practice exam at the time of day of your booking.</li>
+<li>Review every miss and send what you learn back into the domain it came from.</li>
+<li>Skim professional practice and management topics once.</li>
+</ul>"""),
+         ("Week 8: taper", """<p>One more mixed practice set early in the week, then your error log and calculations. Keep the last two days light, check your ID and test-centre details, and sleep.</p>"""),
+         ("How many hours?", """<p>Many graduates study for 4 to 8 weeks, often around 120 to 300 hours. That is a common planning range, not an official figure. If you are short on time, shorten the therapeutics weeks and keep the daily calculations and practice questions.</p>"""),
+         ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/naplex/">NAPLEX study plan generator</a> builds a plan from your exam date and daily hours.</p>
+<p>Prefer paper? The <a href="/planners/">NAPLEX 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NABP.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "naplex-study-plan-8-weeks": "NABP. Take the NAPLEX exam, nabp.pharmacy. NABP. NAPLEX Content Outline, effective for exams beginning May 1, 2025, nabp.pharmacy.",
   "usmle-step-1-study-schedule": "USMLE. Step 1 exam content and format, usmle.org/step-exams/step-1. USMLE. Examination results and scoring, usmle.org.",
   "lsat-study-schedule-12-weeks": "LSAC. LSAT format and changes, lsac.org/lsat. LSAC. LSAT Argumentative Writing, lsac.org.",
   "gre-study-plan-8-weeks": "ETS. GRE General Test content and structure, ets.org/gre.",
@@ -510,6 +552,7 @@ def KIT_BOX(g):
         </aside>'''
 
 RELATED = {
+    "naplex-study-plan-8-weeks": [("NAPLEX study plan generator", "/study-plan/naplex/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("NAPLEX 8-week printable planner", "/planners/")],
     "usmle-step-1-study-schedule": [("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("USMLE Step 1 8-week printable planner", "/planners/")],
     "lsat-study-schedule-12-weeks": [("LSAT study plan generator", "/study-plan/lsat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("LSAT 12-week printable planner", "/planners/")],
     "gre-study-plan-8-weeks": [("GRE study plan generator", "/study-plan/gre/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("GRE 8-week printable planner", "/planners/")],
