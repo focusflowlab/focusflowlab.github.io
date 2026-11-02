@@ -155,3 +155,15 @@ for rel, html in (("planners", planners_page()), ("about", about_page())):
     out.parent.mkdir(exist_ok=True)
     out.write_text(html, encoding="utf-8", newline="\n")
     print("wrote", out.relative_to(ROOT).as_posix())
+
+# Pinterest catalog feed (upload its URL in Pinterest Business > Catalogs); prices match Gumroad.
+import csv
+feed = ROOT / "feeds" / "pinterest-catalog.csv"
+feed.parent.mkdir(exist_ok=True)
+with feed.open("w", encoding="utf-8", newline="") as f:
+    w = csv.writer(f)
+    w.writerow(["id", "title", "description", "link", "image_link", "price", "availability", "condition", "brand"])
+    for t in ITEMS + [BUNDLE]:
+        price = "15.00 USD" if t is BUNDLE else "5.00 USD"
+        w.writerow([t[3], t[0] + " (Printable PDF)", t[2] + " Printable PDF, A4 and US Letter. Instant download.", STORE + t[3], f"{SITE}/assets/products/planners/{t[5]}.png", price, "in stock", "new", "FocusFlow Lab"])
+print("wrote", feed.relative_to(ROOT).as_posix())
