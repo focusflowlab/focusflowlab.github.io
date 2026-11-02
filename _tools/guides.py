@@ -501,9 +501,44 @@ GUIDES = [
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/naplex/">NAPLEX study plan generator</a> builds a plan from your exam date and daily hours.</p>
 <p>Prefer paper? The <a href="/planners/">NAPLEX 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NABP.</p>"""),
        ]),
+  dict(slug="pance-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
+       title="PANCE Study Plan: An 8-Week Schedule by Organ System",
+       h1="An 8-week PANCE study plan",
+       desc="An 8-week PANCE study plan built on the NCCPA blueprint: the 300-question format, how organ systems are weighted, weekly focus and practice exams.",
+       lead="The PANCE is five hours and 300 questions. Here is an 8-week plan weighted to the NCCPA blueprint.",
+       card="An 8-week PANCE plan weighted to the NCCPA blueprint.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the PANCE is built", """<p>NCCPA lists the PANCE as a five-hour exam of 300 multiple-choice questions in five blocks of 60 questions, with 60 minutes per block. There are 45 minutes of break time in total between blocks, and you manage it yourself. A 15-minute tutorial comes first. Once you leave a block or its time runs out, you cannot go back to it.</p>
+<p>The blueprint effective January 2025 splits the exam two ways, by medical content and by task. Check <a href="https://www.nccpa.net/become-certified/pance-blueprint/" rel="noopener">nccpa.net</a> for the version that applies to your test date.</p>"""),
+         ("Where the questions are", """<p>Largest medical content shares: Cardiovascular 11%, Pulmonary 9%, Gastrointestinal/Nutrition 8% and Musculoskeletal 8%. Infectious Diseases, Neurologic, Psychiatry/Behavioral Science and Reproductive are 7% each. Professional Practice is 6%, and the rest are 4 to 6% each. NCCPA notes that up to 8 to 10% of the exam covers general surgical topics, 12 to 15% focuses on pediatric patients, and the percentages may vary slightly.</p>
+<p>By task, the biggest are Formulating Most Likely Diagnosis (18%), History Taking and Physical Examination (16%), Clinical Intervention (16%) and Pharmaceutical Therapeutics (15%). So practise deciding what is going on and what to do, not just recalling facts.</p>"""),
+         ("Weeks 1 and 2: baseline and the big systems", """<ul>
+<li>Take a practice exam first to see which systems are weakest.</li>
+<li>Start with cardiovascular and pulmonary, the two biggest shares.</li>
+<li>Do a block of practice questions daily and review every one, right or wrong.</li>
+<li>Start an <a href="/guides/mcat-error-log-template/">error log</a>: one line per miss, with the reason.</li>
+</ul>"""),
+         ("Weeks 3 to 6: the remaining systems", """<ul>
+<li>Take about two systems a week, ordered by weight and by your weak spots: GI, musculoskeletal, infectious disease, neurologic, psychiatry, reproductive, then the smaller ones.</li>
+<li>For each condition, learn presentation, the most likely diagnosis, first-line management and key drugs.</li>
+<li>Use the free <a href="/tools/flashcards/">flashcards</a> for drugs and classic findings, a little each day.</li>
+<li>Fit in pediatrics and surgical topics alongside each system.</li>
+</ul>"""),
+         ("Week 7: full-length practice", """<ul>
+<li>Take a timed 300-question practice exam in five blocks with a 45-minute break budget, at the time of day of your booking.</li>
+<li>Review every miss and send what you learn back to the weakest systems and tasks.</li>
+<li>Skim professional practice topics once.</li>
+</ul>"""),
+         ("Week 8: taper", """<p>One more mixed question set early in the week, then your error log. Keep the last two days light. Bring two valid IDs with matching names, arrive at least 30 minutes early, and sleep.</p>"""),
+         ("How many hours?", """<p>Many students give the PANCE 4 to 12 weeks after graduation, often around 150 to 350 hours, depending on how their rotations went. That is a common planning range, not an official figure. If you are short on time, cut weeks from the middle and keep the daily question blocks.</p>"""),
+         ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/pance/">PANCE study plan generator</a> builds a plan from your exam date and daily hours.</p>
+<p>Prefer paper? The <a href="/planners/">PANCE 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NCCPA.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "pance-study-plan-8-weeks": "NCCPA. PANCE content blueprint (effective January 2025) and What to Expect on Test Day, nccpa.net.",
   "naplex-study-plan-8-weeks": "NABP. Take the NAPLEX exam, nabp.pharmacy. NABP. NAPLEX Content Outline, effective for exams beginning May 1, 2025, nabp.pharmacy.",
   "usmle-step-1-study-schedule": "USMLE. Step 1 exam content and format, usmle.org/step-exams/step-1. USMLE. Examination results and scoring, usmle.org.",
   "lsat-study-schedule-12-weeks": "LSAC. LSAT format and changes, lsac.org/lsat. LSAC. LSAT Argumentative Writing, lsac.org.",
@@ -552,6 +587,7 @@ def KIT_BOX(g):
         </aside>'''
 
 RELATED = {
+    "pance-study-plan-8-weeks": [("PANCE study plan generator", "/study-plan/pance/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("PANCE 8-week printable planner", "/planners/")],
     "naplex-study-plan-8-weeks": [("NAPLEX study plan generator", "/study-plan/naplex/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("NAPLEX 8-week printable planner", "/planners/")],
     "usmle-step-1-study-schedule": [("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("USMLE Step 1 8-week printable planner", "/planners/")],
     "lsat-study-schedule-12-weeks": [("LSAT study plan generator", "/study-plan/lsat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("LSAT 12-week printable planner", "/planners/")],
