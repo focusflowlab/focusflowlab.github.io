@@ -674,3 +674,5 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 /* planner index groups */
 .planner-group { margin: var(--space-2xl) 0 var(--space-md); font: 700 var(--text-title)/1.2 var(--font-display); }
 .planner-group + .planner-grid { margin-top: 0; }
+
+@media (min-width: 861px) { #menu-guides .mega-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 0.9fr); } }
