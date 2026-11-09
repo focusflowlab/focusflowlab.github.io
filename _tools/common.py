@@ -3,8 +3,9 @@ import json
 
 SITE = "https://thefocusflowlab.com"
 
-def shell(*, path, title, desc, og_title, ld, body, css_depth, extra_head="", scripts=""):
+def shell(*, path, title, desc, og_title, ld, body, css_depth, extra_head="", scripts="", og_image=None):
     url = SITE + path
+    img, iw, ih, card = (og_image, 400, 400, "summary") if og_image else (f"{SITE}/assets/og-image.png", 1200, 630, "summary_large_image")
     up = "../" * css_depth
     return f"""<!doctype html>
 <html lang="en">
@@ -19,10 +20,10 @@ def shell(*, path, title, desc, og_title, ld, body, css_depth, extra_head="", sc
   <meta property="og:title" content="{og_title}">
   <meta property="og:description" content="{desc}">
   <meta property="og:url" content="{url}">
-  <meta property="og:image" content="{SITE}/assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="{img}">
+  <meta property="og:image:width" content="{iw}">
+  <meta property="og:image:height" content="{ih}">
+  <meta name="twitter:card" content="{card}">
   <link rel="icon" href="/assets/icon-64.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>

@@ -75,15 +75,15 @@ def planners_page():
     path = "/planners/"
     offer_extra = OFFER_EXTRA
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Planners", path)])
-    desc = "Printable study planners for NCLEX, MCAT, USMLE, GRE, LSAT, CPA and more. Weekly and daily pages, an error log and a test-day checklist. $5 each or all 14 for $15, 14-day refund."
+    desc = "Printable study planners for NCLEX, MCAT, USMLE, GRE, LSAT, CPA and more. Weekly and daily pages, error log, checklist. $5 each or all 14 for $15."
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "name": "Printable study planners", "url": SITE + path, "description": desc, "publisher": ORG,
          "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": {
-             "@type": "Product", "name": t[0], "description": t[2], "url": STORE + t[3], "image": f"{SITE}/assets/products/planners/{t[5]}.png",
+             "@type": "Product", "name": t[0], "description": t[2], "url": f"{SITE}/planners/{t[3]}/", "image": f"{SITE}/assets/products/planners/{t[5]}.png",
              "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
              "offers": {"@type": "Offer", "price": "5.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + t[3], **offer_extra}}}
              for i, t in enumerate(ITEMS)] + [{"@type": "ListItem", "position": len(ITEMS) + 1, "item": {
-             "@type": "Product", "name": BUNDLE[0], "description": BUNDLE[2], "url": STORE + BUNDLE[3], "image": f"{SITE}/assets/products/planners/{BUNDLE[5]}.png",
+             "@type": "Product", "name": BUNDLE[0], "description": BUNDLE[2], "url": f"{SITE}/planners/{BUNDLE[3]}/", "image": f"{SITE}/assets/products/planners/{BUNDLE[5]}.png",
              "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
              "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + BUNDLE[3], **offer_extra}}}]}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]},
@@ -149,7 +149,7 @@ def planners_page():
     <aside class="page-note" aria-label="About this page">
       <p>Made by FocusFlow Lab. Questions: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a>. Exam names belong to their owners; FocusFlow Lab isn’t affiliated with or endorsed by any exam owner. Purchases are processed by Gumroad; see the <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy policy</a>.</p>
     </aside>"""
-    return shell(path=path, title="Printable Study Planners for NCLEX, MCAT, USMLE, GRE and More | FocusFlow Lab", desc=desc,
+    return shell(path=path, title="Printable Study Planners: NCLEX, MCAT, GRE, CPA | FocusFlow Lab", desc=desc,
                  og_title="Printable study planners", ld=ld, body=body, css_depth=1, extra_head='\n  <link rel="stylesheet" href="../study-plan/assets/plan.css">')
 
 def about_page():
@@ -201,7 +201,7 @@ _FOR = {  # permalink: (what the plan is for, exam-map wording, trademark / non-
     "mcat-16-week-planner": ("the MCAT", "A map of the exam.", "MCAT is a registered trademark of the AAMC. FocusFlow Lab is not affiliated with or endorsed by the AAMC."),
 }
 _CPA_TM = "CPA is a designation granted by state boards of accountancy. The Uniform CPA Examination is developed by the AICPA. FocusFlow Lab is not affiliated with or endorsed by the AICPA, NASBA or any board of accountancy."
-CHECK = "Rough planning figures only: check the official exam outline for the current version."
+CHECK = "The exam map shows rough shares of the exam. They are planning figures, so check the official outline for the current version."
 
 def planner_detail(t):
     title, dur, blurb, link, plan, thumb = t
@@ -222,7 +222,7 @@ def planner_detail(t):
         lead = "A 14-day printable plan for the two weeks before your exams. Nine pages, in A4 and US Letter, ready to print tonight."
         inside = [("Exam map and priority grid", "Map the exam and set your priorities."), ("Sprint calendar", "Four focus blocks a day across the 14 days."),
                   ("Daily pages", "Each block ends with a self-test."), ("Active-recall tracker", "An active-recall tracker for your sprint.")]
-        desc = "A printable 14-day plan for the two weeks before your exams: exam map, priority grid, four focus blocks a day, self-tests. $5, A4 and US Letter PDFs, 14-day refund."
+        desc = "A printable 14-day plan for the two weeks before your exams: exam map, priority grid, four focus blocks a day. $5, A4 and Letter PDFs, 14-day refund."
         inside_h = "What is inside"
     else:
         h1 = title
@@ -236,8 +236,8 @@ def planner_detail(t):
             inside = [("Exam map", emap), (f"{weeks}-week overview", f"The whole plan across {weeks} weeks."), ("Weekly pages", "One page for each week."),
                       ("Daily focus pages", "Four focus blocks a day, with a self-test after each."),
                       ("Practice test log and error log", "Record your scores, and the questions you missed."), ("Test-day checklist", "What to do and bring on the day.")]
-        desc = (f"Printable {weeks}-week plan for {for_}: exam map, weekly and daily pages, error log and test-day checklist. $5, A4 and US Letter PDFs, 14-day refund."
-                if not is_mcat else "Printable 16-week MCAT plan: content review first, full-length tests second, CARS every week. $5, A4 and US Letter PDFs, 14-day refund.")
+        desc = (f"Printable {weeks}-week plan for {for_}: exam map, weekly and daily pages, error log and test-day checklist. $5, A4 and Letter PDFs, 14-day refund."
+                if not is_mcat else "Printable 16-week MCAT plan: content review first, full-length tests second, CARS every week. $5, A4 and Letter PDFs, 14-day refund.")
         inside_h = "What is inside"
     buy_text = "Get the bundle" if is_bundle else "Get the planner"
     cards = "\n".join(f'          <li><strong>{a}</strong>{b}</li>' for a, b in inside)
@@ -325,8 +325,8 @@ def planner_detail(t):
       <p>{tm}</p>
       <p>Made by FocusFlow Lab. Questions: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a>. Purchases are processed by Gumroad; see the <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy policy</a>.</p>
     </aside>"""
-    full_title = f"{h1.replace(' (14 days)', '')} (Printable PDF) | FocusFlow Lab" if not is_bundle else "All 14 Exam Study Planners Bundle (Printable PDFs) | FocusFlow Lab"
-    return path, shell(path=path, title=full_title, desc=desc, og_title=h1, ld=ld, body=body, css_depth=2,
+    full_title = f"{h1.replace(' (14 days)', '')} ({'PDF' if len(h1) > 30 else 'Printable PDF'}) | FocusFlow Lab" if not is_bundle else "All 14 Exam Study Planners Bundle, $15 | FocusFlow Lab"
+    return path, shell(path=path, title=full_title, desc=desc[:160].rsplit(" ", 1)[0] if len(desc) > 160 else desc, og_title=h1, ld=ld, body=body, css_depth=2, og_image=f"{SITE}/assets/products/planners/{thumb}.png",
                        extra_head='\n  <link rel="stylesheet" href="../../study-plan/assets/plan.css">')
 
 pages = [("planners/index.html", planners_page()), ("about/index.html", about_page())]

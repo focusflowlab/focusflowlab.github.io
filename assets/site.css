@@ -744,3 +744,7 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .reading > h2 { margin: 0; line-height: 1.1; }
 .reading > p, .reading > ul, .reading > .prose { margin-top: 0; }
 .reading .prose > :first-child { margin-top: 0; }
+
+/* Breadcrumbs sit above the hero wash band (which extends up behind them) */
+.crumbs { position: relative; z-index: 1; }
+@media (max-width: 860px) { .pd-hero { padding: var(--space-xl) 0 var(--space-xl); } }
