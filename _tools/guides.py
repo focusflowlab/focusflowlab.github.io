@@ -215,7 +215,8 @@ GUIDES = [
          ("How the NCLEX works", """<p>The NCLEX-RN is a computerized adaptive test. It gives you between 85 and 150 questions in up to 5 hours, and each question adapts to how you answered the last one. Since April 2023 it has been the Next Generation NCLEX, which includes case studies that test clinical judgment across several linked questions.</p>
 <p>Because the test adapts, you can’t cram a few topics and hope they come up. You need steady practice across all of it, and the habit of reasoning through each question.</p>"""),
          ("Split your time by the test plan", """<p>NCSBN publishes the share of questions in each client needs category. The biggest are Management of Care and Pharmacological and Parenteral Therapies, so they deserve the most hours. Smaller areas still need regular practice because every category appears on the exam.</p>
-<p>Start with a practice assessment to find your weak categories, then give those extra time. The free <a href="/study-plan/nclex/">NCLEX study plan generator</a> does this split for you from your exam date and hours.</p>"""),
+<p>Start with a practice assessment to find your weak categories, then give those extra time. The free <a href="/study-plan/nclex/">NCLEX study plan generator</a> does this split for you from your exam date and hours.</p>
+<p>Prefer paper? The <a href="/planners/nclex-rn-8-week-planner/">NCLEX-RN 8-week planner</a> and the <a href="/planners/nclex-pn-6-week-planner/">NCLEX-PN 6-week planner</a> have an exam map, weekly and daily pages and an error log for $5 each. They are independent study materials, not from NCSBN.</p>"""),
          ("A 6-week plan", """<ul>
 <li><strong>Weeks 1 to 3: content plus questions.</strong> Review one or two categories a day, biggest first. End each day with 50 to 75 practice questions on what you covered, and read every rationale, including for questions you got right.</li>
 <li><strong>Weeks 4 and 5: mixed practice.</strong> Do larger blocks of mixed questions, including case studies. Keep an error log: the concept you missed and why. Review that log instead of re-reading notes.</li>
@@ -318,7 +319,8 @@ GUIDES = [
 <li><strong>Week 3:</strong> reading and English, keeping up a little science and math. Do timed section practice.</li>
 <li><strong>Week 4:</strong> a full timed practice test early in the week, then review your mistakes. Light review only in the last two days.</li>
 </ul>
-<p>Most people plan 30 to 80 hours in total, about 1 to 2 hours a day. The free <a href="/study-plan/teas/">TEAS study plan generator</a> builds this from your own test date and hours.</p>"""),
+<p>Most people plan 30 to 80 hours in total, about 1 to 2 hours a day. The free <a href="/study-plan/teas/">TEAS study plan generator</a> builds this from your own test date and hours.</p>
+<p>Prefer paper? The <a href="/planners/ati-teas-4-week-planner/">ATI TEAS 4-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material, not from ATI.</p>"""),
          ("Study smarter, not longer", """<ul>
 <li>Test yourself instead of re-reading. Read a topic once, close the book, write what you remember, then check.</li>
 <li>Use <a href="/tools/flashcards/">flashcards</a> for anatomy terms and science facts.</li>
@@ -353,7 +355,8 @@ GUIDES = [
 <tr><td>REG</td><td>90 to 150</td><td>6 to 10</td><td><a href="/study-plan/cpa-reg/">REG study plan</a></td></tr>
 <tr><td>Discipline (BAR, ISC or TCP)</td><td>roughly 80 to 150</td><td>6 to 10</td><td>Use the <a href="/tools/study-schedule-maker/">study schedule maker</a></td></tr>
 </tbody></table></div>
-<p>These are common planning ranges, not official figures. Your accounting background and how recently you studied each topic move you up or down.</p>"""),
+<p>These are common planning ranges, not official figures. Your accounting background and how recently you studied each topic move you up or down.</p>
+<p>Prefer paper? There is a printable planner for each section: <a href="/planners/cpa-far-10-week-planner/">FAR</a>, <a href="/planners/cpa-aud-8-week-planner/">AUD</a> and <a href="/planners/cpa-reg-8-week-planner/">REG</a>, $5 each. They are independent study materials, not from the AICPA.</p>"""),
          ("A full timeline", """<p>Studying part time while working, most candidates finish all four sections in about 12 to 18 months:</p>
 <ol>
 <li><strong>Months 1 to 3:</strong> FAR. Book your exam date before you start, so the plan has an end.</li>
