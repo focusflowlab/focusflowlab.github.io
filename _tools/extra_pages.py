@@ -40,17 +40,22 @@ def nowrap_first(title):
     first, _, rest = title.partition(" ")
     return f'<span class="nw">{first}</span> {rest}' if "-" in first else title
 
-def card(t, price="$5", meta=None, cta="Get the planner", free="Free plan"):
+GROUPS = [("Short on time", ("exam-sprint",)), ("Nursing", ("nclex", "ati-teas")), ("Medicine and health", ("mcat", "usmle", "pance", "naplex", "dat")),
+          ("Accounting", ("cpa",)), ("Graduate and law school", ("gre", "gmat", "lsat"))]
+def group_of(t):  # shortcut: groups match by thumb-slug prefix, a new exam needs a key here
+    return next(n for n, keys in GROUPS if t[5].startswith(keys))
+
+def card(t, price="$5", meta=None, cta="Get the planner", group=True):
     title, dur, blurb, link, plan, thumb = t
-    meta = meta or f"{dur}, 9 pages, A4 and Letter PDFs"
-    url = STORE + link
-    return f'''        <li class="planner-card">
-          <img src="/assets/products/planners/{thumb}.png" alt="{title} cover" width="112" height="112" loading="lazy" decoding="async">
-          <div class="planner-body">
-            <h2>{nowrap_first(title)}</h2>
-            <p>{blurb}</p>
-            <p class="planner-meta">{meta}</p>
-            <div class="planner-buy"><span class="planner-price">{price}</span><a class="btn" href="{url}?wanted=true">{cta}</a><a class="text-link" href="/planners/{link}/">Details</a><a class="text-link" href="{plan}">{free}</a></div>
+    meta = meta or dur
+    g = group_of(t) if group else ""
+    return f'''        <li class="pc" data-group="{g}" data-name="{title.lower()} {link}">
+          <a class="pc-img" href="/planners/{link}/" tabindex="-1" aria-hidden="true"><img src="/assets/products/planners/{thumb}.png" alt="" width="240" height="240" loading="lazy" decoding="async"></a>
+          <div class="pc-body">
+            <p class="pc-tag">{g or "Bundle"} · {meta}</p>
+            <h3><a href="/planners/{link}/">{nowrap_first(title)}</a></h3>
+            <p class="pc-blurb">{blurb}</p>
+            <div class="pc-buy"><span class="pc-price">{price}</span><a class="btn" href="{STORE}{link}?wanted=true">{cta}</a><a class="text-link" href="/planners/{link}/">Details</a></div>
           </div>
         </li>'''
 
@@ -83,15 +88,9 @@ def planners_page():
              "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + BUNDLE[3], **offer_extra}}}]}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]},
         crumb_ld]}
-    groups = [("Short on time", ("exam-sprint",)), ("Nursing", ("nclex", "ati-teas")), ("Medicine and health", ("mcat", "usmle", "pance", "naplex", "dat")),
-              ("Accounting", ("cpa",)), ("Graduate and law school", ("gre", "gmat", "lsat"))]
-    cards = ""
-    placed = 0
-    for name, keys in groups:  # shortcut: groups match by thumb-slug prefix, a new exam needs a key here
-        rows = [t for t in ITEMS if t[5].startswith(keys)]
-        placed += len(rows)
-        cards += f'      <h2 class="planner-group">{name}</h2>\n      <ul class="planner-grid">\n' + "\n".join(card(t) for t in rows) + "\n      </ul>\n"
-    assert placed == len(ITEMS), "a planner has no group"
+    cards = "\n".join(card(t) for t in sorted(ITEMS, key=lambda t: [n for n, _ in GROUPS].index(group_of(t))))
+    chips = "".join(f'<button type="button" class="chip" aria-pressed="false" data-filter="{n}">{n}</button>' for n, _ in GROUPS)
+    bundle_links = "".join(f'<li><a href="/planners/{i[3]}/">{i[0].replace(" Study Planner", "")}</a></li>' for i in ITEMS[1:])
     faq = "\n".join(f"        <h3>{q}</h3>\n        <p>{a}</p>" for q, a in FAQ)
     body = f"""{crumb_html}
 
@@ -102,10 +101,40 @@ def planners_page():
           <p class="lead">One plan per exam, laid out week by week. Print it, pin it up, follow it. $5 each, or all 14 exam planners for $15, with a 14-day no-questions refund.</p>
         </div>
       </section>
-      <ul class="planner-grid planner-bundle">
-{card(BUNDLE, "$15", "14 planners, A4 and US Letter PDFs", "Get the bundle", "Free study plans")}
-      </ul>
+      <section class="choose" aria-labelledby="choose-title">
+        <h2 id="choose-title">Not sure which one to get?</h2>
+        <ul class="choose-grid">
+          <li><strong>Your exam is within two weeks</strong><p>The Exam Sprint Planner lays out the last 14 days.</p><a class="text-link" href="/planners/exam-sprint-planner/">See the Sprint Planner</a></li>
+          <li><strong>One exam, a month or more away</strong><p>Pick your exam below. Each plan matches that exam&rsquo;s length and sections.</p><a class="text-link" href="#find">Find your exam</a></li>
+          <li><strong>Two or more exams, or still deciding</strong><p>Three single planners cost $15, the same as the bundle of all 14.</p><a class="text-link" href="/planners/all-exam-planners-bundle/">See the bundle</a></li>
+        </ul>
+      </section>
+
+      <section class="bundle-band" aria-labelledby="bundle-title">
+        <div>
+          <p class="pc-tag">Best value</p>
+          <h2 id="bundle-title">All 14 exam planners, $15</h2>
+          <p>Every exam-specific planner in one purchase, instead of $70 bought one by one. The Exam Sprint Planner is sold separately.</p>
+          <div class="pc-buy"><span class="pc-price">$15</span><a class="btn" href="{STORE}{BUNDLE[3]}?wanted=true">Get the bundle</a><a class="text-link" href="/planners/{BUNDLE[3]}/">Details</a></div>
+        </div>
+        <ul class="bundle-links" aria-label="Planners in the bundle">{bundle_links}</ul>
+      </section>
+
+      <section id="find" class="finder" aria-labelledby="find-title">
+        <h2 id="find-title">Find your planner</h2>
+        <div class="finder-bar">
+          <label for="planner-q">Search by exam</label>
+          <input id="planner-q" type="search" placeholder="NCLEX, MCAT, CPA, GRE" autocomplete="off">
+          <div class="chips" role="group" aria-label="Filter by area"><button type="button" class="chip" aria-pressed="true" data-filter="">All</button>{chips}</div>
+        </div>
+        <p class="finder-count" id="finder-count" aria-live="polite"></p>
+        <ul class="pc-grid" id="pc-grid">
 {cards}
+        </ul>
+        <p class="finder-empty" id="finder-empty" hidden>No planner matches that yet. Try another exam name, or <a href="mailto:hello@thefocusflowlab.com">email us which exam you need</a>.</p>
+      </section>
+      <script src="/assets/planner-filter.js" defer></script>
+
       <section class="reading">
         <h2>Free first</h2>
         <p>Every exam on this site also has a <a href="/study-plan/">free study plan generator</a>, and the <a href="/#free-kit">free Study Focus Kit</a> includes a printable study planner. The paid planners are the same system on paper, with logs and a checklist you can write on.</p>
@@ -212,6 +241,8 @@ def planner_detail(t):
         inside_h = "What is inside"
     buy_text = "Get the bundle" if is_bundle else "Get the planner"
     cards = "\n".join(f'          <li><strong>{a}</strong>{b}</li>' for a, b in inside)
+    if is_bundle:
+        cards = "\n".join(f'          <li class="pd-link"><a href="/planners/{i[3]}/"><img src="/assets/products/planners/{i[5]}.png" alt="" width="96" height="96" loading="lazy" decoding="async"><span><strong>{i[0].replace(" Study Planner", "")}</strong>{i[1]} · $5 · See details</span></a></li>' for i in sorted(ITEMS[1:], key=lambda t: [n for n, _ in GROUPS].index(group_of(t))))
     day = "" if (is_bundle or is_mcat) else f'''
       <section class="pd-section pd-split" aria-labelledby="day-title">
         <div>
@@ -232,8 +263,8 @@ def planner_detail(t):
     rel = RELATED.get(plan.strip("/").split("/")[-1], [])
     free_links = f'<a href="{plan}">free study plan for {for_}</a>' if plan.startswith("/study-plan/") and plan != "/study-plan/" else '<a href="/study-plan/">free study plan generators</a>'
     guides = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in rel)
-    sib = [i for i in ITEMS if i[3] != link and i[5].split("-")[0] == thumb.split("-")[0]][:3] or [i for i in ITEMS if i[3] != link][:3]
-    sibs = "".join(f'<li><a href="/planners/{i[3]}/">{i[0]}</a></li>' for i in sib) + ('' if is_bundle else '<li><a href="/planners/all-exam-planners-bundle/">All 14 exam planners, $15</a></li>')
+    sib = ITEMS[:3] if is_bundle else ([i for i in ITEMS if i[3] != link and group_of(i) == group_of(t)] + [i for i in ITEMS if i[3] != link and group_of(i) != group_of(t)])[:3]
+    sibs = "\n".join(card(i) for i in sib)
     faq = [("What do I get?", FAQ[0][1])] if not (is_mcat or is_sprint or is_bundle) else [(
         "What do I get?", {"mcat-16-week-planner": "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map, a 16-week overview, weekly pages, daily focus pages, a full-length test log with section scores, an error log and a test-day checklist.",
                            "exam-sprint-planner": "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map and priority grid, a sprint calendar with four focus blocks a day, daily pages that end each block with a self-test, and an active-recall tracker."}.get(
@@ -282,10 +313,13 @@ def planner_detail(t):
         </div>
       </section>
 
-      <section class="pd-section reading" aria-labelledby="more-title">
-        <h2 id="more-title">More planners</h2>
-        <ul>{sibs}<li><a href="/planners/">All printable planners</a></li></ul>
-      </section>
+{"" if is_bundle else f'''      <section class="pd-section" aria-labelledby="more-title">
+        <h2 id="more-title">{"Or buy one at a time" if is_bundle else "More planners"}</h2>
+        <ul class="pc-grid">
+{sibs}
+        </ul>
+        <p class="pd-more">{"" if is_bundle else '<a href="/planners/all-exam-planners-bundle/">All 14 exam planners, $15</a> · '}<a href="/planners/">See every planner</a></p>
+      </section>''' }
     </main>
     <aside class="page-note" aria-label="About this page">
       <p>{tm}</p>
