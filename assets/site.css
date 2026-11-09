@@ -739,3 +739,8 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .pd-link span { display: block; }
 .pd-more { margin: var(--space-lg) 0 0; }
 .pd-link { overflow: hidden; }
+
+/* Two-column reading sections: both columns start at the same top edge */
+.reading > h2 { margin: 0; line-height: 1.1; }
+.reading > p, .reading > ul, .reading > .prose { margin-top: 0; }
+.reading .prose > :first-child { margin-top: 0; }
