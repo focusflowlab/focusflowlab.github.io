@@ -50,23 +50,25 @@ def card(t, price="$5", meta=None, cta="Get the planner", free="Free plan"):
             <h2>{nowrap_first(title)}</h2>
             <p>{blurb}</p>
             <p class="planner-meta">{meta}</p>
-            <div class="planner-buy"><span class="planner-price">{price}</span><a class="btn" href="{url}?wanted=true">{cta}</a><a class="text-link" href="{plan}">{free}</a></div>
+            <div class="planner-buy"><span class="planner-price">{price}</span><a class="btn" href="{url}?wanted=true">{cta}</a><a class="text-link" href="/planners/{link}/">Details</a><a class="text-link" href="{plan}">{free}</a></div>
           </div>
         </li>'''
 
+# same shipping/return blocks as the home-page products, so Google's merchant listing checks pass
+_cc = ["US", "GB", "CA", "AU"]
+_zero = {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+OFFER_EXTRA = {
+    "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "USD"},
+                        "shippingDestination": {"@type": "DefinedRegion", "addressCountry": _cc},
+                        "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": _zero, "transitTime": _zero}},
+    "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": _cc,
+                                "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 14,
+                                "returnFees": "https://schema.org/FreeReturn",
+                                "refundType": "https://schema.org/FullRefund", "merchantReturnLink": SITE + "/terms.html#planner-refunds"}}
+
 def planners_page():
     path = "/planners/"
-    # same shipping/return blocks as the home-page products, so Google's merchant listing checks pass
-    cc = ["US", "GB", "CA", "AU"]
-    zero = {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
-    offer_extra = {
-        "shippingDetails": {"@type": "OfferShippingDetails", "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "USD"},
-                            "shippingDestination": {"@type": "DefinedRegion", "addressCountry": cc},
-                            "deliveryTime": {"@type": "ShippingDeliveryTime", "handlingTime": zero, "transitTime": zero}},
-        "hasMerchantReturnPolicy": {"@type": "MerchantReturnPolicy", "applicableCountry": cc,
-                                    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow", "merchantReturnDays": 14,
-                                    "returnFees": "https://schema.org/FreeReturn",
-                                    "refundType": "https://schema.org/FullRefund", "merchantReturnLink": SITE + "/terms.html#planner-refunds"}}
+    offer_extra = OFFER_EXTRA
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Planners", path)])
     desc = "Printable study planners for NCLEX, MCAT, USMLE, GRE, LSAT, CPA and more. Weekly and daily pages, an error log and a test-day checklist. $5 each or all 14 for $15, 14-day refund."
     ld = {"@context": "https://schema.org", "@graph": [
@@ -150,9 +152,154 @@ def about_page():
     </main>"""
     return shell(path=path, title="About FocusFlow Lab: Free Study Tools and Printable Planners", desc=desc, og_title="About FocusFlow Lab", ld=ld, body=body, css_depth=1)
 
-for rel, html in (("planners", planners_page()), ("about", about_page())):
-    out = ROOT / rel / "index.html"
-    out.parent.mkdir(exist_ok=True)
+# ---- one page per planner: /planners/<store permalink>/ ----
+# Facts below are copied from each product's own Gumroad description; do not add claims that are not in it.
+RELATED = literal("RELATED")
+_FOR = {  # permalink: (what the plan is for, exam-map wording, trademark / non-affiliation note)
+    "nclex-rn-8-week-planner": ("the NCLEX-RN", "Weighted to the client-needs categories.", "NCLEX and NCLEX-RN are registered trademarks of NCSBN. FocusFlow Lab is not affiliated with or endorsed by NCSBN."),
+    "nclex-pn-6-week-planner": ("the NCLEX-PN", "Weighted to the client-needs categories.", "NCLEX and NCLEX-PN are registered trademarks of the National Council of State Boards of Nursing (NCSBN). FocusFlow Lab is not affiliated with or endorsed by NCSBN."),
+    "ati-teas-4-week-planner": ("the ATI TEAS", "Rough shares by section.", "TEAS and ATI are registered trademarks of Assessment Technologies Institute, LLC. FocusFlow Lab is not affiliated with or endorsed by ATI."),
+    "naplex-8-week-planner": ("the NAPLEX", "Rough shares by competency area.", "NAPLEX is a registered trademark of the National Association of Boards of Pharmacy (NABP). FocusFlow Lab is not affiliated with or endorsed by NABP."),
+    "pance-8-week-planner": ("the PANCE", "Rough shares by organ system.", "The PANCE is the Physician Assistant National Certifying Exam, run by the National Commission on Certification of Physician Assistants (NCCPA). FocusFlow Lab is not affiliated with or endorsed by the NCCPA."),
+    "dat-10-week-planner": ("the DAT", "Rough shares by section.", "DAT is a program of the American Dental Association. FocusFlow Lab is not affiliated with or endorsed by the ADA."),
+    "usmle-step-1-8-week-planner": ("USMLE Step 1", "Weighted to the content outline.", "USMLE is a joint program of the Federation of State Medical Boards (FSMB) and the National Board of Medical Examiners (NBME). FocusFlow Lab is not affiliated with or endorsed by either."),
+    "gre-8-week-planner": ("the GRE", "Rough shares by area.", "GRE is a registered trademark of ETS. FocusFlow Lab is not affiliated with or endorsed by ETS."),
+    "lsat-12-week-planner": ("the LSAT", "Rough shares by question type.", "LSAT is a registered trademark of the Law School Admission Council (LSAC). FocusFlow Lab is not affiliated with or endorsed by LSAC."),
+    "gmat-8-week-planner": ("the GMAT", "Rough shares by section.", "GMAT is a registered trademark of the Graduate Management Admission Council (GMAC). FocusFlow Lab is not affiliated with or endorsed by GMAC."),
+    "cpa-far-10-week-planner": ("the CPA Exam FAR section", "Rough shares by content area.", ""),
+    "cpa-aud-8-week-planner": ("the CPA Exam AUD section", "Rough shares by content area.", ""),
+    "cpa-reg-8-week-planner": ("the CPA Exam REG section", "Rough shares by content area.", ""),
+    "mcat-16-week-planner": ("the MCAT", "A map of the exam.", "MCAT is a registered trademark of the AAMC. FocusFlow Lab is not affiliated with or endorsed by the AAMC."),
+}
+_CPA_TM = "CPA is a designation granted by state boards of accountancy. The Uniform CPA Examination is developed by the AICPA. FocusFlow Lab is not affiliated with or endorsed by the AICPA, NASBA or any board of accountancy."
+CHECK = "Rough planning figures only: check the official exam outline for the current version."
+
+def planner_detail(t):
+    title, dur, blurb, link, plan, thumb = t
+    is_bundle, is_sprint, is_mcat = t is BUNDLE, link == "exam-sprint-planner", link == "mcat-16-week-planner"
+    path = f"/planners/{link}/"
+    price = "$15" if is_bundle else "$5"
+    weeks = re.match(r"(\d+)", dur).group(1) if not (is_bundle or is_sprint) else None
+    for_, emap, tm = _FOR.get(link, ("", "", ""))
+    tm = tm or (_CPA_TM if link.startswith("cpa-") else "Exam names belong to their owners. FocusFlow Lab is not affiliated with or endorsed by any exam owner.")
+    if is_bundle:
+        h1 = "All 14 Exam Study Planners Bundle"
+        lead = "All 14 exam study planners in one purchase. Each has 9 pages, in A4 and US Letter, so you can print the one for your exam tonight."
+        inside = [(i[0].replace(" Study Planner", ""), f"{i[1]} plan.") for i in ITEMS[1:]]
+        desc = "All 14 exam study planners in one purchase for $15: NCLEX, TEAS, NAPLEX, MCAT, USMLE, PANCE, DAT, GRE, LSAT, GMAT and CPA. A4 and US Letter PDFs, 14-day refund."
+        inside_h = "The 14 planners in the bundle"
+    elif is_sprint:
+        h1 = "Exam Sprint Planner (14 days)"
+        lead = "A 14-day printable plan for the two weeks before your exams. Nine pages, in A4 and US Letter, ready to print tonight."
+        inside = [("Exam map and priority grid", "Map the exam and set your priorities."), ("Sprint calendar", "Four focus blocks a day across the 14 days."),
+                  ("Daily pages", "Each block ends with a self-test."), ("Active-recall tracker", "An active-recall tracker for your sprint.")]
+        desc = "A printable 14-day plan for the two weeks before your exams: exam map, priority grid, four focus blocks a day, self-tests. $5, A4 and US Letter PDFs, 14-day refund."
+        inside_h = "What is inside"
+    else:
+        h1 = title
+        lead = f"{'An' if weeks == '8' else 'A'} {weeks}-week printable plan for {for_}. Nine pages, in A4 and US Letter, ready to print tonight."
+        if is_mcat:
+            lead = "A 16-week printable plan for the MCAT. Content review in the first half, full-length tests in the second, CARS every week. Nine pages, in A4 and US Letter."
+            inside = [("Exam map", emap), (f"{weeks}-week overview", f"The whole plan across {weeks} weeks."), ("Weekly pages", "One page for each week."),
+                      ("Daily focus pages", "Daily pages across the 16 weeks."), ("Full-length test log", "Record your section scores."),
+                      ("Error log", "Write down the questions you missed."), ("Test-day checklist", "What to do and bring on the day.")]
+        else:
+            inside = [("Exam map", emap), (f"{weeks}-week overview", f"The whole plan across {weeks} weeks."), ("Weekly pages", "One page for each week."),
+                      ("Daily focus pages", "Four focus blocks a day, with a self-test after each."),
+                      ("Practice test log and error log", "Record your scores, and the questions you missed."), ("Test-day checklist", "What to do and bring on the day.")]
+        desc = (f"Printable {weeks}-week plan for {for_}: exam map, weekly and daily pages, error log and test-day checklist. $5, A4 and US Letter PDFs, 14-day refund."
+                if not is_mcat else "Printable 16-week MCAT plan: content review first, full-length tests second, CARS every week. $5, A4 and US Letter PDFs, 14-day refund.")
+        inside_h = "What is inside"
+    buy_text = "Get the bundle" if is_bundle else "Get the planner"
+    cards = "\n".join(f'          <li><strong>{a}</strong>{b}</li>' for a, b in inside)
+    day = "" if (is_bundle or is_mcat) else f'''
+      <section class="pd-section pd-split" aria-labelledby="day-title">
+        <div>
+          <h2 id="day-title">Four focus blocks, each ending with a self-test</h2>
+          <p>Each daily page splits your study time into four focus blocks. At the end of a block you test yourself before you move on, so you find the gaps while there is still time to fix them.</p>
+        </div>
+        <div class="sheet day-sheet" aria-label="A study day from the planner">
+          <p class="sheet-title">Study day <span>focus blocks</span></p>
+          <ol>
+            <li><span class="n">01</span><strong>Focus block</strong><label><input type="checkbox"> Self-test</label></li>
+            <li><span class="n">02</span><strong>Focus block</strong><label><input type="checkbox"> Self-test</label></li>
+            <li><span class="n">03</span><strong>Focus block</strong><label><input type="checkbox"> Self-test</label></li>
+            <li><span class="n">04</span><strong>Focus block</strong><label><input type="checkbox"> Self-test</label></li>
+          </ol>
+          <p class="foot">Four focus blocks a day, each ending with a self-test.</p>
+        </div>
+      </section>'''
+    rel = RELATED.get(plan.strip("/").split("/")[-1], [])
+    free_links = f'<a href="{plan}">free study plan for {for_}</a>' if plan.startswith("/study-plan/") and plan != "/study-plan/" else '<a href="/study-plan/">free study plan generators</a>'
+    guides = "".join(f'<li><a href="{u}">{n}</a></li>' for n, u in rel)
+    sib = [i for i in ITEMS if i[3] != link and i[5].split("-")[0] == thumb.split("-")[0]][:3] or [i for i in ITEMS if i[3] != link][:3]
+    sibs = "".join(f'<li><a href="/planners/{i[3]}/">{i[0]}</a></li>' for i in sib) + ('' if is_bundle else '<li><a href="/planners/all-exam-planners-bundle/">All 14 exam planners, $15</a></li>')
+    faq = [("What do I get?", FAQ[0][1])] if not (is_mcat or is_sprint or is_bundle) else [(
+        "What do I get?", {"mcat-16-week-planner": "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map, a 16-week overview, weekly pages, daily focus pages, a full-length test log with section scores, an error log and a test-day checklist.",
+                           "exam-sprint-planner": "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map and priority grid, a sprint calendar with four focus blocks a day, daily pages that end each block with a self-test, and an active-recall tracker."}.get(
+            link, "All 14 exam-specific planners as A4 and US Letter PDFs. Each planner has 9 pages: an exam map, a week-by-week overview, weekly and daily focus pages, a practice test log, an error log and a test-day checklist."))]
+    faq += FAQ[1:]
+    faq_html = "\n".join(f"        <h3>{q}</h3>\n        <p>{a}</p>" for q, a in faq)
+    note_exam = "" if (is_bundle or is_sprint) else f"        <p>{CHECK}</p>\n" if emap.startswith("Rough") else ""
+    crumb_html, crumb_ld = crumbs([("Home", "/"), ("Planners", "/planners/"), (h1.replace(" (14 days)", ""), path)])
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Product", "name": title if not is_sprint else "Exam Sprint Planner", "description": desc, "url": SITE + path,
+         "image": f"{SITE}/assets/products/planners/{thumb}.png", "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
+         "offers": {"@type": "Offer", "price": "15.00" if is_bundle else "5.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+                    "url": STORE + link, **OFFER_EXTRA}},
+        {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
+        crumb_ld]}
+    body = f"""{crumb_html}
+
+    <main id="main">
+      <section class="pd-hero wash">
+        <div>
+          <h1>{nowrap_first(h1)}</h1>
+          <p class="lead">{lead}</p>
+          <div class="pd-buy"><span class="pd-price">{price}</span><a class="btn" href="{STORE}{link}?wanted=true">{buy_text}</a><a class="btn btn-soft" href="{plan}">{"Free study plans" if is_bundle else "Try the free plan first"}</a></div>
+          <ul class="pd-facts"><li>Instant download</li><li>A4 and US Letter PDFs</li><li>14-day no-questions refund</li></ul>
+        </div>
+        <img src="/assets/products/planners/{thumb}.png" alt="{title} cover" width="400" height="400" decoding="async">
+      </section>
+
+      <section class="pd-section" aria-labelledby="inside-title">
+        <h2 id="inside-title">{inside_h}</h2>
+        <ul class="pd-list">
+{cards}
+        </ul>
+{note_exam}      </section>
+{day}
+      <section class="pd-section reading" aria-labelledby="free-title">
+        <h2 id="free-title">Use it with the free plan</h2>
+        <p>Not sure yet? Our {free_links} builds a week-by-week schedule from your test date and free hours, and the free <a href="/#free-kit">Study Focus Kit</a> includes a printable planner. The paid planner is the same system on paper, with logs and a checklist you can write on.</p>
+{f'        <ul>{guides}</ul>' if guides else ''}
+      </section>
+
+      <section class="pd-section reading faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Questions people ask</h2>
+        <div class="prose">
+{faq_html}
+        </div>
+      </section>
+
+      <section class="pd-section reading" aria-labelledby="more-title">
+        <h2 id="more-title">More planners</h2>
+        <ul>{sibs}<li><a href="/planners/">All printable planners</a></li></ul>
+      </section>
+    </main>
+    <aside class="page-note" aria-label="About this page">
+      <p>{tm}</p>
+      <p>Made by FocusFlow Lab. Questions: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a>. Purchases are processed by Gumroad; see the <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy policy</a>.</p>
+    </aside>"""
+    full_title = f"{h1.replace(' (14 days)', '')} (Printable PDF) | FocusFlow Lab" if not is_bundle else "All 14 Exam Study Planners Bundle (Printable PDFs) | FocusFlow Lab"
+    return path, shell(path=path, title=full_title, desc=desc, og_title=h1, ld=ld, body=body, css_depth=2,
+                       extra_head='\n  <link rel="stylesheet" href="../../study-plan/assets/plan.css">')
+
+pages = [("planners/index.html", planners_page()), ("about/index.html", about_page())]
+pages += [(planner_detail(t)[0].strip("/") + "/index.html", planner_detail(t)[1]) for t in ITEMS + [BUNDLE]]
+for rel, html in pages:
+    out = ROOT / rel
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8", newline="\n")
     print("wrote", out.relative_to(ROOT).as_posix())
 

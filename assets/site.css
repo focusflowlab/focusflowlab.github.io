@@ -676,3 +676,24 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .planner-group + .planner-grid { margin-top: 0; }
 
 @media (min-width: 861px) { #menu-guides .mega-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 0.9fr); } }
+
+/* planner detail pages (/planners/<slug>/) */
+.pd-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: var(--space-xl); align-items: center; padding: var(--space-xl) 0 var(--space-lg); }
+.pd-hero h1 { margin: 0 0 var(--space-sm); }
+.pd-hero img { width: 100%; max-width: 360px; height: auto; justify-self: center; border-radius: var(--radius-card); box-shadow: var(--shadow-lift); }
+.pd-buy { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-md); margin: var(--space-lg) 0 var(--space-sm); }
+.pd-price { font: 700 2rem/1 var(--font-display); letter-spacing: var(--tracking-display); }
+.pd-facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-md); color: var(--color-muted); font-size: var(--text-sm); }
+.pd-section { margin-top: var(--section-gap-s); }
+.pd-section > h2, .pd-split h2 { font-size: var(--text-section); margin: 0 0 var(--space-sm); }
+.pd-section > p { max-width: var(--measure); margin: var(--space-md) 0 0; }
+.pd-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-xl); align-items: center; }
+.pd-list { list-style: none; margin: var(--space-md) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-md); }
+.pd-list li { border: 1px solid var(--color-rule); border-radius: var(--radius-card); padding: var(--space-md); color: var(--color-muted); }
+.pd-list strong { display: block; margin-bottom: var(--space-3xs); color: var(--color-ink); font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.25; }
+.pd-section .nw, .pd-hero .nw { white-space: nowrap; }
+@media (max-width: 860px) {
+  .pd-hero, .pd-split { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); }
+  .pd-hero img { order: -1; max-width: 260px; }
+  .pd-section { margin-top: var(--section-gap-s); }
+}
