@@ -293,7 +293,7 @@ GUIDES = [
 </ul>
 <p>These are starting points. Your own pattern matters more than any rule.</p>"""),
          ("Where it fits in your schedule", """<p>Fill in the log right after every question set and every full-length exam, and spend at least as long reviewing as you spent testing. The <a href="/guides/mcat-study-schedule-3-months/">3-month MCAT schedule</a> shows where the practice exams go, and the free <a href="/study-plan/mcat/">MCAT study schedule generator</a> builds the same structure from your test date.</p>
-<p>Prefer paper? The <a href="/planners/">MCAT 16-week planner</a> has an error log page, a full-length test log and a weekly page for $5.</p>"""),
+<p>Prefer paper? The <a href="/planners/mcat-16-week-planner/">MCAT 16-week planner</a> has an error log page, a full-length test log and a weekly page for $5.</p>"""),
        ]),
   dict(slug="how-to-study-for-the-teas", tag="Exam plans", signup="teas", date="2026-10-28",
        title="How to Study for the TEAS 7: Sections, Timing and a 4-Week Plan",
@@ -396,7 +396,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One more self-assessment early in the week, then your error log and short question sets. Keep the last two days light, check your test centre route and ID, and sleep. A full-length exam the day before only adds fatigue.</p>"""),
          ("How many hours?", """<p>Many students use 4 to 8 weeks of dedicated study, with 8 to 10 hours a day on study days. That is a common planning range, not an official figure, and it depends on how recently you finished the basic science courses. If you are short on time, cut the weeks and keep the daily question blocks.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/usmle-step-1/">USMLE Step 1 study schedule generator</a> builds a systems-based plan from your exam date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/">USMLE Step 1 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the USMLE.</p>"""),
+<p>Prefer paper? The <a href="/planners/usmle-step-1-8-week-planner/">USMLE Step 1 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the USMLE.</p>"""),
        ]),
   dict(slug="lsat-study-schedule-12-weeks", tag="Exam plans", date="2026-11-02",
        title="LSAT Study Schedule: A 12-Week Plan, Week by Week",
@@ -427,7 +427,7 @@ GUIDES = [
          ("Week 12: taper", """<p>One last full test early in the week, then error-log review and a few short timed sets. Rest the last two days. Complete your writing sample ahead of time so nothing delays your score.</p>"""),
          ("How many hours?", """<p>Many students plan roughly 100 to 300 hours in total, spread over two to six months. That is a common estimate, not an official number. Starting score, target score and time between tests all move it, so use your first practice test to judge where you fall.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 12 weeks? The free <a href="/study-plan/lsat/">LSAT study schedule generator</a> builds this structure from your test date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/">LSAT 12-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by LSAC.</p>"""),
+<p>Prefer paper? The <a href="/planners/lsat-12-week-planner/">LSAT 12-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by LSAC.</p>"""),
        ]),
   dict(slug="gre-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
        title="GRE Study Plan: An 8-Week Plan for the Shorter Test",
@@ -458,7 +458,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One last practice test early in the week, then your error log and a few short timed sets. No new topics in the last two days. Check your ID and test-centre or at-home setup, and sleep.</p>"""),
          ("How many hours?", """<p>Many students plan about 50 to 120 hours over 6 to 12 weeks. That is a common estimate, not an official figure. A strong starting score or a lower target needs fewer; a long break from maths needs more.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gre/">GRE study plan generator</a> builds this structure from your test date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/">GRE 8-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by ETS.</p>"""),
+<p>Prefer paper? The <a href="/planners/gre-8-week-planner/">GRE 8-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by ETS.</p>"""),
        ]),
   dict(slug="naplex-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
        title="NAPLEX Study Plan: An 8-Week Schedule by Content Domain",
@@ -499,7 +499,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One more mixed practice set early in the week, then your error log and calculations. Keep the last two days light, check your ID and test-centre details, and sleep.</p>"""),
          ("How many hours?", """<p>Many graduates study for 4 to 8 weeks, often around 120 to 300 hours. That is a common planning range, not an official figure. If you are short on time, shorten the therapeutics weeks and keep the daily calculations and practice questions.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/naplex/">NAPLEX study plan generator</a> builds a plan from your exam date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/">NAPLEX 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NABP.</p>"""),
+<p>Prefer paper? The <a href="/planners/naplex-8-week-planner/">NAPLEX 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NABP.</p>"""),
        ]),
   dict(slug="pance-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
        title="PANCE Study Plan: An 8-Week Schedule by Organ System",
@@ -533,7 +533,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One more mixed question set early in the week, then your error log. Keep the last two days light. Bring two valid IDs with matching names, arrive at least 30 minutes early, and sleep.</p>"""),
          ("How many hours?", """<p>Many students give the PANCE 4 to 12 weeks after graduation, often around 150 to 350 hours, depending on how their rotations went. That is a common planning range, not an official figure. If you are short on time, cut weeks from the middle and keep the daily question blocks.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/pance/">PANCE study plan generator</a> builds a plan from your exam date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/">PANCE 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NCCPA.</p>"""),
+<p>Prefer paper? The <a href="/planners/pance-8-week-planner/">PANCE 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NCCPA.</p>"""),
        ]),
   dict(slug="gmat-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
        title="GMAT Study Plan: An 8-Week Schedule for the Focus Edition",
@@ -566,7 +566,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One last full test early in the week, then error-log review and short timed sets. Keep the last two days light, check your ID and test setup, and sleep.</p>"""),
          ("How many hours?", """<p>Many students plan about 80 to 150 hours over 6 to 12 weeks. That is a common planning range, not an official figure. A high starting score or a modest target needs fewer; a long break from maths needs more.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gmat/">GMAT study plan generator</a> builds a plan from your test date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/">GMAT 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by GMAC.</p>"""),
+<p>Prefer paper? The <a href="/planners/gmat-8-week-planner/">GMAT 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by GMAC.</p>"""),
        ]),
   dict(slug="dat-study-schedule-10-weeks", tag="Exam plans", date="2026-11-02",
        title="DAT Study Schedule: A 10-Week Plan for the Four Tests",
@@ -598,7 +598,7 @@ GUIDES = [
          ("Week 10: taper", """<p>One last mock early in the week, then your error log and short timed sets. No new topics in the last two days. Check your ID and test-centre details, and sleep.</p>"""),
          ("How many hours?", """<p>Many students plan around 2 to 3 months at 4 or more hours a day, roughly 200 to 350 hours, depending on how recently they took the sciences. That is a common estimate, not an official figure.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 10 weeks? The free <a href="/study-plan/dat/">DAT study plan generator</a> builds a plan from your test date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/">DAT 10-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the ADA.</p>"""),
+<p>Prefer paper? The <a href="/planners/dat-10-week-planner/">DAT 10-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the ADA.</p>"""),
        ]),
 ]
 
