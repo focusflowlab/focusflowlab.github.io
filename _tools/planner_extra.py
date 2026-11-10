@@ -50,7 +50,7 @@ OFFICIAL = {
     "gmat-8-week-planner": (["64 questions in 2 hours 15 minutes across three sections: Quantitative Reasoning, Verbal Reasoning and Data Insights.",
                              "You choose the section order, and you can review and change up to 3 answers in each section. The total score runs from 205 to 805."],
                             [("GMAC: GMAT Focus exam policies", "https://mba.com/exams/gmat-focus-edition/register/exam-policies")]),
-    "nclex-pn-6-week-planner": (["The NCLEX-PN gives you between 85 and 150 questions, with up to 5 hours to finish.",
+    "nclex-pn-6-week-planner": (["The NCLEX-PN gives you between 85 and 205 questions, with up to 5 hours to finish.",
                                  "Retakes need at least 45 days between attempts, and some jurisdictions allow fewer attempts a year than the standard limit."],
                                 [("NCSBN: NCLEX candidate bulletin", "https://www.ncsbn.org/public-files/NCLEX_Examination_Candidate_Bulletin_April_2026.pdf")]),
 }

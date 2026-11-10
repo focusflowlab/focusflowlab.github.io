@@ -181,7 +181,7 @@ GUIDES = [
 <thead><tr><th scope="col">Exam</th><th scope="col">Test length</th><th scope="col">Common prep time</th><th scope="col">Hours, roughly</th></tr></thead>
 <tbody>
 <tr><td><a href="/study-plan/nclex/">NCLEX-RN</a></td><td>85 to 150 questions, up to 5 hours</td><td>6 to 8 weeks</td><td>150 to 300</td></tr>
-<tr><td><a href="/study-plan/nclex-pn/">NCLEX-PN</a></td><td>85 to 150 questions, up to 5 hours</td><td>5 to 8 weeks</td><td>120 to 250</td></tr>
+<tr><td><a href="/study-plan/nclex-pn/">NCLEX-PN</a></td><td>85 to 205 questions, up to 5 hours</td><td>5 to 8 weeks</td><td>120 to 250</td></tr>
 <tr><td><a href="/study-plan/teas/">ATI TEAS</a></td><td>170 questions, about 3.5 hours</td><td>4 to 8 weeks</td><td>30 to 80</td></tr>
 <tr><td><a href="/study-plan/mcat/">MCAT</a></td><td>230 questions, about 7.5 hours with breaks</td><td>3 to 6 months</td><td>300 to 500</td></tr>
 <tr><td><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></td><td>Up to 280 questions, one 8-hour day</td><td>6 to 8 weeks dedicated</td><td>300 to 600</td></tr>
@@ -603,9 +603,106 @@ GUIDES = [
          ("Make it fit your dates", """<p>Not exactly 10 weeks? The free <a href="/study-plan/dat/">DAT study plan generator</a> builds a plan from your test date and daily hours.</p>
 <p>Prefer paper? The <a href="/planners/dat-10-week-planner/">DAT 10-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the ADA.</p>"""),
        ]),
+  dict(slug="how-to-create-a-study-schedule", tag="Planning", date="2026-11-10",
+       title="How to Create a Study Schedule That You Will Follow",
+       h1="How to create a study schedule you will follow",
+       desc="Build a study schedule in five steps: list your exams, count the hours you really have, split them by need, plan breaks and leave slack. Free tool included.",
+       lead="Five steps, about twenty minutes, and a schedule that survives a bad day.",
+       card="Five steps to a schedule that survives a bad day.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("Start from the dates, not the subjects", """<p>Write down every exam or deadline with its date. Count the days between today and each one. A schedule only works backwards from a date, so this list comes first, before any timetable.</p>"""),
+         ("Count the hours you really have", """<p>Take each day and subtract classes, work, meals, travel and sleep. What is left is your real study time, and it is almost always less than you hoped. Plan on the real number. A schedule built on the hours you wish you had fails by day three.</p>"""),
+         ("Split the hours by need", """<p>Give each subject a share of the hours based on two things: how much you still have to learn, and how many marks it carries. Weak and heavy subjects get the most time. Then split each subject into small, named tasks such as “chapter 4 practice questions” instead of “study biology”.</p>
+<p>The <a href="/tools/study-schedule-maker/">study schedule maker</a> does this split for you from your subjects, exam dates and daily hours. For a big exam with a blueprint, the <a href="/study-plan/">free exam study plans</a> weight the topics for you.</p>"""),
+         ("Plan in blocks with breaks", """<p>Work in blocks of 25 to 50 minutes with a 5 to 10 minute break, and put the hardest task in your best-energy block. Mix two or three subjects in a day instead of one, and end each day with a short recall of what you covered. The <a href="/tools/focus-timer/">focus timer</a> runs the blocks.</p>"""),
+         ("Leave slack and review it weekly", """<ul>
+<li>Leave one catch-up block each week, or about 20% of your hours empty, for the plan that slips.</li>
+<li>Look at the schedule every Sunday. Move what you missed instead of deleting it.</li>
+<li>Add spaced review: come back to each topic after a day, a few days and a week. The <a href="/tools/spaced-review/">spaced review calendar</a> sets those dates.</li>
+</ul>
+<p>If you are short of time, the <a href="/guides/how-to-study-for-finals-in-a-week/">finals-in-a-week guide</a> shows how to cut a plan down.</p>"""),
+       ]),
+  dict(slug="how-to-calculate-what-you-need-on-your-final", tag="Finals", date="2026-11-10",
+       title="What Do I Need on My Final? The Formula and Examples",
+       h1="What do I need on my final to get the grade I want?",
+       desc="Work out the score you need on your final exam with one formula, two worked examples, and what to do when the answer is over 100%.",
+       lead="One formula, two worked examples, and what to do when the answer is over 100%.",
+       card="The formula for the score you need, with examples.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("The formula", """<p>You need three numbers: your current grade, the weight of the final (as a percentage of the course) and the grade you want. Then:</p>
+<p><strong>Needed score = (target − current × (1 − weight)) ÷ weight</strong></p>
+<p>Use decimals for the percentages: a 30% final has a weight of 0.30. The current grade must be the grade on everything before the final.</p>
+<p>The <a href="/tools/final-grade-calculator/">final grade calculator</a> does this in one step. If your course has several weighted categories, work out the current grade with the <a href="/tools/weighted-grade-calculator/">weighted grade calculator</a> first.</p>"""),
+         ("Example 1: a score you can reach", """<p>You have 78% going into a final worth 40%, and you want an 80% overall.</p>
+<p>(80 − 78 × 0.60) ÷ 0.40 = (80 − 46.8) ÷ 0.40 = <strong>83%</strong> on the final.</p>"""),
+         ("Example 2: a score that cannot be reached", """<p>You have 85% going into a final worth 30%, and you want a 90% overall.</p>
+<p>(90 − 85 × 0.70) ÷ 0.30 = (90 − 59.5) ÷ 0.30 = <strong>101.7%</strong>.</p>
+<p>Anything over 100% means that grade is out of reach unless the course offers extra credit. Check the next grade down: for an 88% overall the same sum gives 95%.</p>"""),
+         ("What to do with the number", """<ul>
+<li><strong>Under 60%:</strong> comfortable. Review the basics and keep the exam low stress.</li>
+<li><strong>60 to 85%:</strong> a normal study plan. Give the exam the hours you would give any final.</li>
+<li><strong>Over 90%:</strong> it will take your best work. Put this exam first in your schedule, and check with your teacher whether rounding or extra credit applies.</li>
+</ul>
+<p>With several finals, share your time by this number: the exam that needs the highest score gets the most hours. The <a href="/guides/how-to-study-for-multiple-exams/">multiple exams guide</a> shows the split.</p>"""),
+         ("Check your syllabus", """<p>Some courses drop the lowest score, scale grades or round up. This formula assumes none of that, so treat the answer as a close estimate and confirm with your instructor.</p>"""),
+       ]),
+  dict(slug="how-to-study-for-the-nclex-pn", tag="Exam plans", date="2026-11-10",
+       title="How to Study for the NCLEX-PN: A 6-Week Plan",
+       h1="How to study for the NCLEX-PN",
+       desc="How to study for the NCLEX-PN in 5 to 8 weeks: how the exam works, how it differs from the NCLEX-RN, where to spend your hours and a week-by-week plan.",
+       lead="How the PN exam works, how it differs from the RN exam, and a plan you can start this week.",
+       card="A 6-week NCLEX-PN plan built on the test plan.",
+       kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
+       sections=[
+         ("How the NCLEX-PN works", """<p>The NCLEX-PN is a computerized adaptive test for practical and vocational nurses. It gives you between 85 and 205 questions in up to 5 hours, and each question adapts to how you answered the last one. It includes Next Generation NCLEX items, so expect case studies as well as standard multiple-choice questions.</p>
+<p>The test stops when it is confident of your result, so the number of questions you get says nothing about how you did. Do not read anything into it.</p>"""),
+         ("How it differs from the NCLEX-RN", """<ul>
+<li>The question range is wider: up to 205 questions on the PN exam, up to 150 on the <a href="/guides/how-to-study-for-the-nclex/">NCLEX-RN</a>.</li>
+<li>The test plan is written for the scope of practical nursing, so the weighting differs from the RN exam.</li>
+<li>The same client needs categories apply, so the study method is the same. Only the emphasis shifts. Read the current PN test plan at <a href="https://www.ncsbn.org/" rel="noopener">ncsbn.org</a> and weight your hours by it.</li>
+</ul>"""),
+         ("A 6-week plan", """<ul>
+<li><strong>Weeks 1 to 3: content plus questions.</strong> Review one or two categories a day. End each day with 40 to 60 practice questions on what you covered, and read every rationale.</li>
+<li><strong>Weeks 4 and 5: mixed practice.</strong> Do larger mixed blocks, including case studies. Keep an error log of the concept you missed and why, and review it instead of re-reading notes.</li>
+<li><strong>Week 6: readiness and rest.</strong> One or two readiness assessments early in the week, then light review of your error log. No new content in the last two days.</li>
+</ul>
+<p>The free <a href="/study-plan/nclex-pn/">NCLEX-PN study plan generator</a> turns your exam date and daily hours into this schedule. Prefer paper? The <a href="/planners/nclex-pn-6-week-planner/">NCLEX-PN 6-week planner</a> is $5 and independent of NCSBN.</p>"""),
+         ("How many hours", """<p>Many graduates plan around 120 to 250 hours in total over 5 to 8 weeks. That is a common planning range, not an official figure. A recent graduate with good practice scores sits at the low end. A long gap since school sits at the high end. See the <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> for other exams.</p>"""),
+         ("Test week", """<p>Know the route to the test centre, bring the ID your registration requires, sleep, and eat. If you do not pass, NCSBN requires at least 45 days before a retake, and some jurisdictions allow fewer attempts a year, so check with your board.</p>"""),
+       ]),
+  dict(slug="how-to-pace-yourself-on-a-timed-exam", tag="Exam plans", date="2026-11-10",
+       title="How to Pace Yourself on a Timed Exam: Minutes Per Question",
+       h1="How to pace yourself on a timed exam",
+       desc="Work out minutes per question, set checkpoints and decide what to skip. Pacing examples for the GMAT, PANCE and NAPLEX, plus a free calculator.",
+       lead="Minutes per question, checkpoints to check on the clock, and what to do when you fall behind.",
+       card="Minutes per question and checkpoints for any timed test.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("Start with minutes per question", """<p>Divide the time you have by the number of questions. Then take off a review buffer, 5 to 10% of the time, for flagged questions. The <a href="/tools/test-time-calculator/">test time calculator</a> does the sum and gives you checkpoints.</p>"""),
+         ("Three examples", """<ul>
+<li><strong>GMAT:</strong> 64 questions in 2 hours 15 minutes is about 2 minutes 6 seconds each, before any review time.</li>
+<li><strong>PANCE:</strong> 300 questions in 5 hours is exactly 1 minute each, so pace is tight and quick decisions matter.</li>
+<li><strong>NAPLEX:</strong> 225 questions in 6 hours is about 1 minute 36 seconds each.</li>
+</ul>
+<p>Question counts and times can change, so confirm them on the exam body’s site before you plan. The exam guides link to each one.</p>"""),
+         ("Set checkpoints", """<p>Do not check the clock after every question. Check at the quarter marks. At 25%, 50% and 75% of the questions you should be at 25%, 50% and 75% of your working time. If you are more than a few minutes behind, speed up on the next block instead of panicking.</p>"""),
+         ("Decide what to skip", """<ul>
+<li>If you are not close to an answer after about twice your average time, make your best guess, flag it if the exam allows, and move on.</li>
+<li>An easy question left unanswered costs the same as a hard one. Bank the easy points first.</li>
+<li>Never leave a question blank if there is no penalty for a wrong answer.</li>
+</ul>
+<p>Check each exam’s rules on flagging and going back, because some do not let you return to earlier questions.</p>"""),
+         ("Practise the pace", """<p>Do timed question blocks in your last weeks, at real exam pace, and review the ones you rushed. Pace is a skill that improves with practice. For the planning side, see the <a href="/guides/how-long-to-study-for-exams/">study hours guide</a>.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "how-to-create-a-study-schedule": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
+  "how-to-calculate-what-you-need-on-your-final": "Weighted-average grade formula. Check your syllabus for the weights and any drop, scaling or rounding rules.",
+  "how-to-study-for-the-nclex-pn": "NCSBN. NCLEX-PN test plan, Next Generation NCLEX information and candidate bulletin, ncsbn.org.",
+  "how-to-pace-yourself-on-a-timed-exam": "GMAC, mba.com. NCCPA, nccpa.net. NABP, nabp.pharmacy. Confirm current test lengths on each site.",
   "gmat-study-plan-8-weeks": "GMAC. GMAT Focus Edition exam structure, mba.com.",
   "dat-study-schedule-10-weeks": "American Dental Association. Dental Admission Test (DAT) 2026 Candidate Guide and exam page, ada.org.",
   "pance-study-plan-8-weeks": "NCCPA. PANCE content blueprint (effective January 2025) and What to Expect on Test Day, nccpa.net.",
@@ -657,6 +754,10 @@ def KIT_BOX(g):
         </aside>'''
 
 RELATED = {
+    "how-to-create-a-study-schedule": [("Study schedule maker", "/tools/study-schedule-maker/"), ("All free exam study plans", "/study-plan/"), ("Printable planners", "/planners/")],
+    "how-to-calculate-what-you-need-on-your-final": [("Final grade calculator", "/tools/final-grade-calculator/"), ("Weighted grade calculator", "/tools/weighted-grade-calculator/"), ("GPA calculator", "/tools/gpa-calculator/")],
+    "how-to-study-for-the-nclex-pn": [("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("How to study for the NCLEX-RN", "/guides/how-to-study-for-the-nclex/"), ("NCLEX-PN 6-week printable planner", "/planners/nclex-pn-6-week-planner/")],
+    "how-to-pace-yourself-on-a-timed-exam": [("Test time calculator", "/tools/test-time-calculator/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("All free exam study plans", "/study-plan/")],
     "gmat-study-plan-8-weeks": [("GMAT study plan generator", "/study-plan/gmat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("GMAT 8-week printable planner", "/planners/")],
     "dat-study-schedule-10-weeks": [("DAT study plan generator", "/study-plan/dat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("DAT 10-week printable planner", "/planners/")],
     "pance-study-plan-8-weeks": [("PANCE study plan generator", "/study-plan/pance/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("PANCE 8-week printable planner", "/planners/")],
@@ -664,10 +765,10 @@ RELATED = {
     "usmle-step-1-study-schedule": [("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("USMLE Step 1 8-week printable planner", "/planners/")],
     "lsat-study-schedule-12-weeks": [("LSAT study plan generator", "/study-plan/lsat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("LSAT 12-week printable planner", "/planners/")],
     "gre-study-plan-8-weeks": [("GRE study plan generator", "/study-plan/gre/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("GRE 8-week printable planner", "/planners/")],
-    "how-to-study-for-the-nclex": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/")],
+    "how-to-study-for-the-nclex": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("How to study for the NCLEX-PN", "/guides/how-to-study-for-the-nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/")],
     "how-to-study-for-the-teas": [("TEAS study plan generator", "/study-plan/teas/"), ("How to study for the NCLEX", "/guides/how-to-study-for-the-nclex/"), ("Printable planners", "/planners/")],
     "cpa-study-schedule": [("CPA FAR plan generator", "/study-plan/cpa-far/"), ("CPA AUD plan generator", "/study-plan/cpa-aud/"), ("CPA REG plan generator", "/study-plan/cpa-reg/"), ("CPA FAR 10-week printable planner", "/planners/")],
-    "how-long-to-study-for-exams": [("All free exam study plans", "/study-plan/"), ("Exam countdown calculator", "/tools/exam-countdown/"), ("Printable planners", "/planners/")],
+    "how-long-to-study-for-exams": [("All free exam study plans", "/study-plan/"), ("How to pace a timed exam", "/guides/how-to-pace-yourself-on-a-timed-exam/"), ("How to create a study schedule", "/guides/how-to-create-a-study-schedule/"), ("Exam countdown calculator", "/tools/exam-countdown/"), ("Printable planners", "/planners/")],
     "mcat-error-log-template": [("MCAT study plan generator", "/study-plan/mcat/"), ("A 3-month MCAT study schedule", "/guides/mcat-study-schedule-3-months/"), ("MCAT 16-week printable planner", "/planners/")],
     "mcat-study-schedule-3-months": [("MCAT study plan generator", "/study-plan/mcat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("MCAT 16-week printable planner", "/planners/")],
 }
