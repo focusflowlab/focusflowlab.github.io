@@ -64,7 +64,7 @@
       const json = await res.json();
       if (json.success) {
         form.reset();
-        say('Check your inbox! Confirm your email and the kit is on its way. If it isn\u2019t there in a few minutes, check your Promotions or Spam folder.');
+        say('Check your inbox! First you get an email called \u201cConfirmation email\u201d from FocusFlow Lab: open its link, and the kit arrives within a minute or two. If you don\u2019t see either, check Promotions or Spam.');
       } else {
         const msg = json.errors && json.errors.fields && json.errors.fields.email ? json.errors.fields.email[0] : 'Something went wrong. Please try again.';
         say(msg, true);
