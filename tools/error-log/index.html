@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Error Log: Track Missed Questions and Why You Missed Them</title>
+  <meta name="description" content="A free online error log for exam prep. Record each missed question, why you missed it and your fix, get a retest date, and see which kind of mistake costs you most.">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/error-log/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="Error log from FocusFlow Lab">
+  <meta property="og:description" content="A free online error log for exam prep. Record each missed question, why you missed it and your fix, get a retest date, and see which kind of mistake costs you most.">
+  <meta property="og:url" content="https://thefocusflowlab.com/tools/error-log/">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Error log",
+      "url": "https://thefocusflowlab.com/tools/error-log/",
+      "description": "A free online error log for exam prep. Record each missed question, why you missed it and your fix, get a retest date, and see which kind of mistake costs you most.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thefocusflowlab.com/#org",
+        "name": "FocusFlow Lab",
+        "url": "https://thefocusflowlab.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "FocusFlow Lab",
+          "item": "https://thefocusflowlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://thefocusflowlab.com/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Error log",
+          "item": "https://thefocusflowlab.com/tools/error-log/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Where is my log stored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In this browser only. Nothing is sent anywhere. Use “Download as CSV” to keep a copy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I write in the log?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A few words: the concept or the question, the reason you missed it, and one concrete step to fix it. Long notes do not get reviewed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are retest dates set?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Knowledge gaps come back after 7 days, so you have time to relearn them first. Misreads, careless slips and guesses come back after 2 days, and timing and approach errors after 3. These are planning defaults, so change your own plan if you need to."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the log replace practice questions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It tells you what to practise next. Pair it with the practice score tracker to see which topics are weak."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-head -->
+<script>try{var t=localStorage.getItem("ffl-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
+    <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
+    <nav aria-label="Main">
+      <div class="nav-item">
+        <a class="nav-trigger" href="/study-plan/" aria-expanded="false" aria-controls="menu-plans">Study plans</a>
+        <div class="mega" id="menu-plans">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Nursing and pharmacy</p>
+              <ul>
+                <li><a href="/study-plan/nclex/"><strong>NCLEX-RN</strong><span>Weighted to the client-needs categories</span></a></li>
+                <li><a href="/study-plan/nclex-pn/"><strong>NCLEX-PN</strong><span>For practical and vocational nurses</span></a></li>
+                <li><a href="/study-plan/teas/"><strong>TEAS</strong><span>Nursing school entrance exam</span></a></li>
+                <li><a href="/study-plan/naplex/"><strong>NAPLEX</strong><span>Pharmacy, calculations every week</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Medicine and dentistry</p>
+              <ul>
+                <li><a href="/study-plan/mcat/"><strong>MCAT</strong><span>All four sections, CARS every week</span></a></li>
+                <li><a href="/study-plan/usmle-step-1/"><strong>USMLE Step 1</strong><span>Systems-based dedicated period</span></a></li>
+                <li><a href="/study-plan/pance/"><strong>PANCE</strong><span>Organ systems, heaviest first</span></a></li>
+                <li><a href="/study-plan/dat/"><strong>DAT</strong><span>Dental admission, PAT every week</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Grad, law, business, CPA</p>
+              <ul>
+                <li><a href="/study-plan/gre/"><strong>GRE</strong><span>Verbal, quant and the essay</span></a></li>
+                <li><a href="/study-plan/lsat/"><strong>LSAT</strong><span>Logical reasoning and reading</span></a></li>
+                <li><a href="/study-plan/gmat/"><strong>GMAT</strong><span>Quant, verbal and data insights</span></a></li>
+                <li><a href="/guides/cpa-study-schedule/"><strong>CPA Exam</strong><span>All sections: order, hours, plans</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Put in your test date and hours, get a week-by-week plan you can print.</p>
+              <a class="btn btn-soft" href="/study-plan/">All study plans</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/tools/" aria-current="page" aria-expanded="false" aria-controls="menu-tools">Tools</a>
+        <div class="mega" id="menu-tools">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Grades</p>
+              <ul>
+                <li><a href="/tools/final-grade-calculator/"><strong>Final grade calculator</strong><span>What you need on the final</span></a></li>
+                <li><a href="/tools/gpa-calculator/"><strong>GPA calculator</strong><span>Semester and cumulative, 4.0 scale</span></a></li>
+                <li><a href="/tools/weighted-grade-calculator/"><strong>Weighted grade calculator</strong><span>Course grade from categories</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Planning</p>
+              <ul>
+                <li><a href="/tools/study-schedule-maker/"><strong>Study schedule maker</strong><span>Weekly hours for every exam</span></a></li>
+                <li><a href="/tools/exam-countdown/"><strong>Exam countdown</strong><span>Real study hours left</span></a></li>
+                <li><a href="/tools/reading-planner/"><strong>Reading planner</strong><span>Pages a day to finish on time</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Focus and memory</p>
+              <ul>
+                <li><a href="/tools/focus-timer/"><strong>Focus timer</strong><span>Focus blocks with a self-test</span></a></li>
+                <li><a href="/tools/flashcards/"><strong>Flashcards</strong><span>Spaced repetition, no sign-up</span></a></li>
+                <li><a href="/tools/spaced-review/"><strong>Spaced review calendar</strong><span>When to review each topic</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Exam prep</p>
+              <ul>
+                <li><a href="/tools/practice-score-tracker/"><strong>Practice score tracker</strong><span>Weak topics and hours</span></a></li>
+                <li><a href="/tools/error-log/"><strong>Error log</strong><span>Misses, reasons, retest dates</span></a></li>
+                <li><a href="/tools/test-time-calculator/"><strong>Test time calculator</strong><span>Minutes per question</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Free tools that run in your browser. Nothing to install.</p>
+              <a class="btn btn-soft" href="/tools/">All tools</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/guides/" aria-expanded="false" aria-controls="menu-guides">Guides</a>
+        <div class="mega" id="menu-guides">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Focus</p>
+              <ul>
+                <li><a href="/guides/stop-checking-phone-while-studying/"><strong>Stop checking your phone</strong><span>Distance and friction, not willpower</span></a></li>
+                <li><a href="/guides/brain-dump-before-studying/"><strong>Clear mental clutter</strong><span>A 3-minute brain dump</span></a></li>
+                <li><a href="/guides/stop-procrastinating-studying/"><strong>Stop procrastinating</strong><span>Make starting easy</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Memory</p>
+              <ul>
+                <li><a href="/guides/active-recall-notes/"><strong>Why highlighting fails</strong><span>Take notes you remember</span></a></li>
+                <li><a href="/guides/stop-rereading-cover-syllabus-faster/"><strong>Stop re-reading</strong><span>Cover your syllabus faster</span></a></li>
+                <li><a href="/guides/why-exam-marathons-fail/"><strong>Why exam marathons fail</strong><span>Study in 90-minute blocks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Finals and planning</p>
+              <ul>
+                <li><a href="/guides/how-to-study-for-finals-in-a-week/"><strong>Finals in a week</strong><span>A day-by-day plan</span></a></li>
+                <li><a href="/guides/how-to-study-for-multiple-exams/"><strong>Several exams at once</strong><span>Split your time on purpose</span></a></li>
+                <li><a href="/guides/does-cramming-work/"><strong>Does cramming work?</strong><span>And how to cram if you must</span></a></li>
+                <li><a href="/guides/how-long-to-study-for-exams/"><strong>How long to study</strong><span>Hours for 14 exams, side by side</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Exam schedules</p>
+              <ul>
+                <li><a href="/guides/usmle-step-1-study-schedule/"><strong>USMLE Step 1</strong><span>8-week dedicated plan</span></a></li>
+                <li><a href="/guides/lsat-study-schedule-12-weeks/"><strong>LSAT</strong><span>12 weeks, blind review</span></a></li>
+                <li><a href="/guides/gre-study-plan-8-weeks/"><strong>GRE</strong><span>8 weeks for the shorter test</span></a></li>
+                <li><a href="/guides/pance-study-plan-8-weeks/"><strong>PANCE, NAPLEX, GMAT, DAT</strong><span>See all in the guides list</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Short guides that go with the FocusFlow videos. New ones arrive with each video.</p>
+              <a class="btn btn-soft" href="/guides/">All guides</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="/about/">About</a>
+      <a class="nav-link" href="/#free-kit">Free kit</a>
+      <div class="nav-item nav-item-cta">
+        <a class="nav-trigger nav-cta" href="/planners/" aria-expanded="false" aria-controls="menu-planners">Planners</a>
+        <div class="mega" id="menu-planners">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Nursing and pharmacy</p>
+              <ul>
+                <li><a href="/planners/nclex-rn-8-week-planner/"><strong>NCLEX-RN</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/nclex-pn-6-week-planner/"><strong>NCLEX-PN</strong><span>6 weeks</span></a></li>
+                <li><a href="/planners/ati-teas-4-week-planner/"><strong>ATI TEAS</strong><span>4 weeks</span></a></li>
+                <li><a href="/planners/naplex-8-week-planner/"><strong>NAPLEX</strong><span>8 weeks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Medicine and dentistry</p>
+              <ul>
+                <li><a href="/planners/mcat-16-week-planner/"><strong>MCAT</strong><span>16 weeks</span></a></li>
+                <li><a href="/planners/usmle-step-1-8-week-planner/"><strong>USMLE Step 1</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/pance-8-week-planner/"><strong>PANCE</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/dat-10-week-planner/"><strong>DAT</strong><span>10 weeks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Grad, law, business, CPA</p>
+              <ul>
+                <li><a href="/planners/gre-8-week-planner/"><strong>GRE</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/lsat-12-week-planner/"><strong>LSAT</strong><span>12 weeks</span></a></li>
+                <li><a href="/planners/gmat-8-week-planner/"><strong>GMAT</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/cpa-far-10-week-planner/"><strong>CPA FAR, AUD, REG</strong><span>One planner per section</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>$5 each, or all 14 for $15. Printable PDFs with a 14-day refund.</p>
+              <a class="btn btn-soft" href="/planners/">All planners</a>
+              <a class="btn btn-soft" href="/planners/all-exam-planners-bundle/">The $15 bundle</a>
+              <a class="btn btn-soft" href="/planners/exam-sprint-planner/">Exam in 2 weeks?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme"><svg class="ico-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M21 14.5A9 9 0 0 1 9.5 3 9 9 0 1 0 21 14.5z"/></svg><svg class="ico-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
+  </div>
+</header>
+<!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/tools/">Tools</a> / Error log</nav>
+
+    <main id="main">
+      <section class="hero tool-hero">
+        <div>
+          <h1>Turn every miss into a retest.</h1>
+          <p class="lead">Write down what you missed and why. Get a retest date for each one.</p>
+          <p class="hero-note">Free, no sign-up. Works in your browser.</p>
+        </div>
+        <form class="sheet" id="el-form" novalidate aria-label="Add a missed question">
+          <p class="sheet-title">Add a miss</p>
+          <div class="fields fields-2b">
+            <div><label for="el-exam">Exam</label><select id="el-exam"></select></div>
+            <div><label for="el-topic">Topic</label><select id="el-topic"></select></div>
+          </div>
+          <div class="fields" style="margin-top:var(--space-sm)"><div><label for="el-what">What did you miss?</label><input type="text" id="el-what" maxlength="120" placeholder="Heparin antidote"></div></div>
+          <div class="fields fields-2b" style="margin-top:var(--space-sm)">
+            <div><label for="el-reason">Why did you miss it?</label><select id="el-reason"></select></div>
+            <div><label for="el-fix">What will you do about it? (optional)</label><input type="text" id="el-fix" maxlength="120" placeholder="Make 5 flashcards"></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Add to the log</button></div>
+          <p class="error" id="el-error" role="alert"></p>
+        </form>
+      </section>
+      <section class="plan sc-result" aria-labelledby="el-title" aria-live="polite">
+        <div class="plan-head"><h2 id="el-title">Your log</h2></div>
+        <dl class="totals">
+          <div><dt>Logged</dt><dd id="el-total">0</dd></div>
+          <div><dt>Still open</dt><dd id="el-open">0</dd></div>
+          <div><dt>Due to retest</dt><dd id="el-due">0</dd></div>
+        </dl>
+        <p id="el-insight" class="sc-advice"></p>
+        <dl class="alloc" id="el-bars" aria-label="Misses by reason"></dl>
+        <h3>To review</h3>
+        <p id="el-empty" class="muted">Nothing open. Add a miss above.</p>
+        <ul class="sc-list el-list" id="el-list"></ul>
+        <div class="sheet-actions no-print"><button class="btn btn-soft" type="button" id="el-csv">Download as CSV</button></div>
+      </section>
+
+      <section class="reading">
+        <h2>How to use it</h2>
+        <div class="prose">
+          <p>An error log works when each miss is sorted by its cause, because each cause has a different fix. Write what you missed, pick the reason, and the log gives you a retest date.</p>
+          <ul>
+            <li><strong>Knowledge gap:</strong> relearn it from the source and retest it after a week.</li>
+            <li><strong>Misread the question or a careless slip:</strong> retest in two days, and add a check step before you answer.</li>
+            <li><strong>Ran out of time:</strong> practise timed blocks. The <a href="/tools/test-time-calculator/">test time calculator</a> gives you checkpoints.</li>
+            <li><strong>Guessed and got lucky:</strong> count it as a miss, because you did not know it.</li>
+          </ul>
+          <p>Log every miss for a few days, then look at the bars. If most are careless slips, more content review will not help.</p>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>Where is my log stored?</summary>
+            <p>In this browser only. Nothing is sent anywhere. Use “Download as CSV” to keep a copy.</p></details>
+          <details><summary>What should I write in the log?</summary>
+            <p>A few words: the concept or the question, the reason you missed it, and one concrete step to fix it. Long notes do not get reviewed.</p></details>
+          <details><summary>How are retest dates set?</summary>
+            <p>Knowledge gaps come back after 7 days, so you have time to relearn them first. Misreads, careless slips and guesses come back after 2 days, and timing and approach errors after 3. These are planning defaults, so change your own plan if you need to.</p></details>
+          <details><summary>Does the log replace practice questions?</summary>
+            <p>No. It tells you what to practise next. Pair it with the practice score tracker to see which topics are weak.</p></details>
+        </div>
+      </section>
+
+      <section class="band related" aria-labelledby="related-title">
+        <h2 id="related-title">Related tools</h2>
+        <ul class="cards">
+          <li><a href="/tools/practice-score-tracker/"><span class="card-tag">Exams</span><span class="card-name">Practice score tracker</span><span class="card-note">Log practice scores and see where to spend your hours.</span><span class="card-go">Track my scores</span></a></li>
+          <li><a href="/tools/spaced-review/"><span class="card-tag">Memory</span><span class="card-name">Spaced review calendar</span><span class="card-note">When to review a topic again so it sticks.</span><span class="card-go">Make my calendar</span></a></li>
+          <li><a href="/tools/flashcards/"><span class="card-tag">Memory</span><span class="card-name">Flashcards</span><span class="card-note">Make flashcards and review them with spaced repetition.</span><span class="card-go">Make cards</span></a></li>
+        </ul>
+      </section>
+
+
+
+      <aside class="feedback" aria-label="Feedback">
+        <p><strong>Something not right, or a tool you wish we had?</strong> Tell us and we’ll fix or build it.</p>
+        <a class="btn btn-soft" href="mailto:hello@thefocusflowlab.com?subject=Feedback:%20Error%20log">Send feedback</a>
+      </aside>
+
+      <aside class="kit" aria-label="Next step">
+        <div>
+          <h2>Turn misses into a plan.</h2>
+          <p>Pick your exam for a free week-by-week plan, or print the error log pages that come with the planners. <a href="/planners/">See the $5 printable planners.</a></p>
+        </div>
+        <a class="btn" href="/study-plan/">Free exam study plans</a>
+      </aside>
+
+      <aside class="kit" aria-label="Free Study Focus Kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+  </div>
+
+<!-- site-foot -->
+<nav class="container hub-link" aria-label="Back to section"><a href="/tools/">← All study tools</a></nav>
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+          <li><a href="/study-plan/">All study plans</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/final-grade-calculator/">Final grade calculator</a></li>
+          <li><a href="/tools/gpa-calculator/">GPA calculator</a></li>
+          <li><a href="/tools/study-schedule-maker/">Study schedule maker</a></li>
+          <li><a href="/tools/flashcards/">Flashcards</a></li>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/">All study tools</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+          <li><a href="https://www.pinterest.com/focusflowlabofficial/" rel="me noopener">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. NAPLEX® is a registered trademark of NABP. The PANCE is run by the NCCPA. The CPA Exam is developed by the AICPA. TEAS is a registered trademark of ATI. DAT is a program of the ADA. GMAT is a registered trademark of GMAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/about/">About</a> &nbsp; <a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- Cloudflare Web Analytics: cookie-free page view counts -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3d7d2afbf78f49eba33293c0abd20ab1"}'></script>
+<!-- /site-foot -->
+<script src="/assets/tools/exam-topics.js" defer></script>
+<script src="/assets/tools/error-log.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice Score Tracker: Find Weak Topics and Plan Your Hours</title>
+  <meta name="description" content="Log practice question sets by topic for 14 exams. See accuracy per topic, your trend, and a suggested split of next week’s study hours. Free, saved in your browser.">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/practice-score-tracker/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="Practice score tracker from FocusFlow Lab">
+  <meta property="og:description" content="Log practice question sets by topic for 14 exams. See accuracy per topic, your trend, and a suggested split of next week’s study hours. Free, saved in your browser.">
+  <meta property="og:url" content="https://thefocusflowlab.com/tools/practice-score-tracker/">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Practice score tracker",
+      "url": "https://thefocusflowlab.com/tools/practice-score-tracker/",
+      "description": "Log practice question sets by topic for 14 exams. See accuracy per topic, your trend, and a suggested split of next week’s study hours. Free, saved in your browser.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thefocusflowlab.com/#org",
+        "name": "FocusFlow Lab",
+        "url": "https://thefocusflowlab.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "FocusFlow Lab",
+          "item": "https://thefocusflowlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://thefocusflowlab.com/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Practice score tracker",
+          "item": "https://thefocusflowlab.com/tools/practice-score-tracker/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Where are my scores stored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In this browser only. Nothing is sent anywhere. Use “Download as CSV” to keep a copy or move to another device."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is the suggested share worked out?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each topic starts from its rough weight in the exam outline. A topic below your target accuracy gets a larger share, in proportion to how far below it is. A topic with no data gets a small boost until you test it. Then the shares are scaled to add up to 100%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the topic weights official?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. They are the rough shares the free plan generators use, based on each exam’s published outline. Check the official outline for the current version."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What target should I use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use your own practice-test goal. If you are unsure, 70 to 80% is a common planning target, but it is not an official passing mark for any exam."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which exams does it cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NCLEX-RN, NCLEX-PN, ATI TEAS, MCAT, USMLE Step 1, PANCE, NAPLEX, DAT, GRE, GMAT Focus, LSAT and the three CPA sections."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-head -->
+<script>try{var t=localStorage.getItem("ffl-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
+    <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
+    <nav aria-label="Main">
+      <div class="nav-item">
+        <a class="nav-trigger" href="/study-plan/" aria-expanded="false" aria-controls="menu-plans">Study plans</a>
+        <div class="mega" id="menu-plans">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Nursing and pharmacy</p>
+              <ul>
+                <li><a href="/study-plan/nclex/"><strong>NCLEX-RN</strong><span>Weighted to the client-needs categories</span></a></li>
+                <li><a href="/study-plan/nclex-pn/"><strong>NCLEX-PN</strong><span>For practical and vocational nurses</span></a></li>
+                <li><a href="/study-plan/teas/"><strong>TEAS</strong><span>Nursing school entrance exam</span></a></li>
+                <li><a href="/study-plan/naplex/"><strong>NAPLEX</strong><span>Pharmacy, calculations every week</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Medicine and dentistry</p>
+              <ul>
+                <li><a href="/study-plan/mcat/"><strong>MCAT</strong><span>All four sections, CARS every week</span></a></li>
+                <li><a href="/study-plan/usmle-step-1/"><strong>USMLE Step 1</strong><span>Systems-based dedicated period</span></a></li>
+                <li><a href="/study-plan/pance/"><strong>PANCE</strong><span>Organ systems, heaviest first</span></a></li>
+                <li><a href="/study-plan/dat/"><strong>DAT</strong><span>Dental admission, PAT every week</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Grad, law, business, CPA</p>
+              <ul>
+                <li><a href="/study-plan/gre/"><strong>GRE</strong><span>Verbal, quant and the essay</span></a></li>
+                <li><a href="/study-plan/lsat/"><strong>LSAT</strong><span>Logical reasoning and reading</span></a></li>
+                <li><a href="/study-plan/gmat/"><strong>GMAT</strong><span>Quant, verbal and data insights</span></a></li>
+                <li><a href="/guides/cpa-study-schedule/"><strong>CPA Exam</strong><span>All sections: order, hours, plans</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Put in your test date and hours, get a week-by-week plan you can print.</p>
+              <a class="btn btn-soft" href="/study-plan/">All study plans</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/tools/" aria-current="page" aria-expanded="false" aria-controls="menu-tools">Tools</a>
+        <div class="mega" id="menu-tools">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Grades</p>
+              <ul>
+                <li><a href="/tools/final-grade-calculator/"><strong>Final grade calculator</strong><span>What you need on the final</span></a></li>
+                <li><a href="/tools/gpa-calculator/"><strong>GPA calculator</strong><span>Semester and cumulative, 4.0 scale</span></a></li>
+                <li><a href="/tools/weighted-grade-calculator/"><strong>Weighted grade calculator</strong><span>Course grade from categories</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Planning</p>
+              <ul>
+                <li><a href="/tools/study-schedule-maker/"><strong>Study schedule maker</strong><span>Weekly hours for every exam</span></a></li>
+                <li><a href="/tools/exam-countdown/"><strong>Exam countdown</strong><span>Real study hours left</span></a></li>
+                <li><a href="/tools/reading-planner/"><strong>Reading planner</strong><span>Pages a day to finish on time</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Focus and memory</p>
+              <ul>
+                <li><a href="/tools/focus-timer/"><strong>Focus timer</strong><span>Focus blocks with a self-test</span></a></li>
+                <li><a href="/tools/flashcards/"><strong>Flashcards</strong><span>Spaced repetition, no sign-up</span></a></li>
+                <li><a href="/tools/spaced-review/"><strong>Spaced review calendar</strong><span>When to review each topic</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Exam prep</p>
+              <ul>
+                <li><a href="/tools/practice-score-tracker/"><strong>Practice score tracker</strong><span>Weak topics and hours</span></a></li>
+                <li><a href="/tools/error-log/"><strong>Error log</strong><span>Misses, reasons, retest dates</span></a></li>
+                <li><a href="/tools/test-time-calculator/"><strong>Test time calculator</strong><span>Minutes per question</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Free tools that run in your browser. Nothing to install.</p>
+              <a class="btn btn-soft" href="/tools/">All tools</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/guides/" aria-expanded="false" aria-controls="menu-guides">Guides</a>
+        <div class="mega" id="menu-guides">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Focus</p>
+              <ul>
+                <li><a href="/guides/stop-checking-phone-while-studying/"><strong>Stop checking your phone</strong><span>Distance and friction, not willpower</span></a></li>
+                <li><a href="/guides/brain-dump-before-studying/"><strong>Clear mental clutter</strong><span>A 3-minute brain dump</span></a></li>
+                <li><a href="/guides/stop-procrastinating-studying/"><strong>Stop procrastinating</strong><span>Make starting easy</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Memory</p>
+              <ul>
+                <li><a href="/guides/active-recall-notes/"><strong>Why highlighting fails</strong><span>Take notes you remember</span></a></li>
+                <li><a href="/guides/stop-rereading-cover-syllabus-faster/"><strong>Stop re-reading</strong><span>Cover your syllabus faster</span></a></li>
+                <li><a href="/guides/why-exam-marathons-fail/"><strong>Why exam marathons fail</strong><span>Study in 90-minute blocks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Finals and planning</p>
+              <ul>
+                <li><a href="/guides/how-to-study-for-finals-in-a-week/"><strong>Finals in a week</strong><span>A day-by-day plan</span></a></li>
+                <li><a href="/guides/how-to-study-for-multiple-exams/"><strong>Several exams at once</strong><span>Split your time on purpose</span></a></li>
+                <li><a href="/guides/does-cramming-work/"><strong>Does cramming work?</strong><span>And how to cram if you must</span></a></li>
+                <li><a href="/guides/how-long-to-study-for-exams/"><strong>How long to study</strong><span>Hours for 14 exams, side by side</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Exam schedules</p>
+              <ul>
+                <li><a href="/guides/usmle-step-1-study-schedule/"><strong>USMLE Step 1</strong><span>8-week dedicated plan</span></a></li>
+                <li><a href="/guides/lsat-study-schedule-12-weeks/"><strong>LSAT</strong><span>12 weeks, blind review</span></a></li>
+                <li><a href="/guides/gre-study-plan-8-weeks/"><strong>GRE</strong><span>8 weeks for the shorter test</span></a></li>
+                <li><a href="/guides/pance-study-plan-8-weeks/"><strong>PANCE, NAPLEX, GMAT, DAT</strong><span>See all in the guides list</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Short guides that go with the FocusFlow videos. New ones arrive with each video.</p>
+              <a class="btn btn-soft" href="/guides/">All guides</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="/about/">About</a>
+      <a class="nav-link" href="/#free-kit">Free kit</a>
+      <div class="nav-item nav-item-cta">
+        <a class="nav-trigger nav-cta" href="/planners/" aria-expanded="false" aria-controls="menu-planners">Planners</a>
+        <div class="mega" id="menu-planners">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Nursing and pharmacy</p>
+              <ul>
+                <li><a href="/planners/nclex-rn-8-week-planner/"><strong>NCLEX-RN</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/nclex-pn-6-week-planner/"><strong>NCLEX-PN</strong><span>6 weeks</span></a></li>
+                <li><a href="/planners/ati-teas-4-week-planner/"><strong>ATI TEAS</strong><span>4 weeks</span></a></li>
+                <li><a href="/planners/naplex-8-week-planner/"><strong>NAPLEX</strong><span>8 weeks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Medicine and dentistry</p>
+              <ul>
+                <li><a href="/planners/mcat-16-week-planner/"><strong>MCAT</strong><span>16 weeks</span></a></li>
+                <li><a href="/planners/usmle-step-1-8-week-planner/"><strong>USMLE Step 1</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/pance-8-week-planner/"><strong>PANCE</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/dat-10-week-planner/"><strong>DAT</strong><span>10 weeks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Grad, law, business, CPA</p>
+              <ul>
+                <li><a href="/planners/gre-8-week-planner/"><strong>GRE</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/lsat-12-week-planner/"><strong>LSAT</strong><span>12 weeks</span></a></li>
+                <li><a href="/planners/gmat-8-week-planner/"><strong>GMAT</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/cpa-far-10-week-planner/"><strong>CPA FAR, AUD, REG</strong><span>One planner per section</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>$5 each, or all 14 for $15. Printable PDFs with a 14-day refund.</p>
+              <a class="btn btn-soft" href="/planners/">All planners</a>
+              <a class="btn btn-soft" href="/planners/all-exam-planners-bundle/">The $15 bundle</a>
+              <a class="btn btn-soft" href="/planners/exam-sprint-planner/">Exam in 2 weeks?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme"><svg class="ico-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M21 14.5A9 9 0 0 1 9.5 3 9 9 0 1 0 21 14.5z"/></svg><svg class="ico-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
+  </div>
+</header>
+<!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/tools/">Tools</a> / Practice score tracker</nav>
+
+    <main id="main">
+      <section class="hero tool-hero">
+        <div>
+          <h1>Where should your hours go next?</h1>
+          <p class="lead">Log each practice set. See your weak topics and a suggested split of next week’s hours.</p>
+          <p class="hero-note">Free, no sign-up. Works in your browser.</p>
+        </div>
+        <form class="sheet" id="sc-form" novalidate aria-label="Add a practice set">
+          <p class="sheet-title">Add a practice set</p>
+          <div class="fields fields-2b">
+            <div><label for="sc-exam">Exam</label><select id="sc-exam"></select></div>
+            <div><label for="sc-topic">Topic</label><select id="sc-topic"></select></div>
+          </div>
+          <div class="fields fields-date" style="margin-top:var(--space-sm)">
+            <div><label for="sc-right">Right</label><input type="number" id="sc-right" min="0" step="1" inputmode="numeric" placeholder="32"></div>
+            <div><label for="sc-total">Out of</label><input type="number" id="sc-total" min="1" step="1" inputmode="numeric" placeholder="40"></div>
+            <div><label for="sc-date">Date</label><input type="date" id="sc-date"></div>
+          </div>
+          <div class="fields" style="margin-top:var(--space-sm)"><div><label for="sc-note">Note (optional)</label><input type="text" id="sc-note" maxlength="60" placeholder="Question bank, set 3"></div></div>
+          <div class="sheet-actions"><button class="btn" type="submit">Add this set</button></div>
+          <p class="error" id="sc-error" role="alert"></p>
+          <div class="fields fields-2b" style="margin-top:var(--space-md)">
+            <div><label for="sc-target">Your target accuracy (%)</label><input type="number" id="sc-target" min="1" max="100" step="1" inputmode="numeric" value="75"></div>
+            <div><label for="sc-hours">Study hours next week</label><input type="number" id="sc-hours" min="0" max="100" step="0.5" inputmode="decimal" value="20"></div>
+          </div>
+        </form>
+      </section>
+      <section class="plan sc-result" aria-labelledby="sc-title" aria-live="polite">
+        <div class="plan-head"><h2 id="sc-title">Your scores</h2></div>
+        <dl class="totals">
+          <div><dt>Overall accuracy</dt><dd id="sc-overall">-</dd></div>
+          <div><dt>Questions logged</dt><dd id="sc-count">0</dd></div>
+          <div><dt>Trend</dt><dd id="sc-trend">-</dd></div>
+        </dl>
+        <p id="sc-advice" class="sc-advice"></p>
+        <div class="table-scroll"><table class="mini-table sc-table">
+          <thead><tr><th scope="col">Topic</th><th scope="col">Your accuracy</th><th scope="col">Status</th><th scope="col">Plan share</th><th scope="col">Suggested share</th></tr></thead>
+          <tbody id="sc-table"></tbody></table></div>
+        <p class="muted">Plan share is the rough weight in the exam outline, not an official number. Suggested share raises topics below your target and gives topics with no data a small boost, until you test them.</p>
+        <h3>Your entries</h3>
+        <p id="sc-empty" class="muted">Nothing logged for this exam yet.</p>
+        <ul class="sc-list" id="sc-list"></ul>
+        <div class="sheet-actions no-print"><button class="btn btn-soft" type="button" id="sc-csv">Download as CSV</button><button class="btn btn-quiet" type="button" id="sc-clear">Delete this exam’s scores</button></div>
+      </section>
+
+      <section class="reading">
+        <h2>How to use it</h2>
+        <div class="prose">
+          <p>After each practice set, add how many you got right and the topic. The table shows your accuracy per topic and where your next week’s hours should go.</p>
+          <ul>
+            <li><strong>Log the topic, not just the total.</strong> A 70% overall can hide one topic at 40%.</li>
+            <li><strong>Small sets are noisy.</strong> Under about 20 questions in a topic, treat the number as a hint, not a verdict.</li>
+            <li><strong>Redo what you missed.</strong> Pair this with the <a href="/tools/error-log/">error log</a> so each miss gets a retest date.</li>
+            <li><strong>Feed it back into your plan.</strong> Use the suggested split to set next week’s hours in the <a href="/study-plan/">free exam study plan</a>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>Where are my scores stored?</summary>
+            <p>In this browser only. Nothing is sent anywhere. Use “Download as CSV” to keep a copy or move to another device.</p></details>
+          <details><summary>How is the suggested share worked out?</summary>
+            <p>Each topic starts from its rough weight in the exam outline. A topic below your target accuracy gets a larger share, in proportion to how far below it is. A topic with no data gets a small boost until you test it. Then the shares are scaled to add up to 100%.</p></details>
+          <details><summary>Are the topic weights official?</summary>
+            <p>No. They are the rough shares the free plan generators use, based on each exam’s published outline. Check the official outline for the current version.</p></details>
+          <details><summary>What target should I use?</summary>
+            <p>Use your own practice-test goal. If you are unsure, 70 to 80% is a common planning target, but it is not an official passing mark for any exam.</p></details>
+          <details><summary>Which exams does it cover?</summary>
+            <p>NCLEX-RN, NCLEX-PN, ATI TEAS, MCAT, USMLE Step 1, PANCE, NAPLEX, DAT, GRE, GMAT Focus, LSAT and the three CPA sections.</p></details>
+        </div>
+      </section>
+
+      <section class="band related" aria-labelledby="related-title">
+        <h2 id="related-title">Related tools</h2>
+        <ul class="cards">
+          <li><a href="/tools/error-log/"><span class="card-tag">Exams</span><span class="card-name">Error log</span><span class="card-note">Log missed questions, the reason, and a retest date.</span><span class="card-go">Open the log</span></a></li>
+          <li><a href="/tools/exam-countdown/"><span class="card-tag">Planning</span><span class="card-name">Exam countdown</span><span class="card-note">Days and real study hours left before your exam.</span><span class="card-go">Count my hours</span></a></li>
+          <li><a href="/tools/test-time-calculator/"><span class="card-tag">Exam day</span><span class="card-name">Test time calculator</span><span class="card-note">Minutes per question and pacing checkpoints.</span><span class="card-go">Work out my pace</span></a></li>
+        </ul>
+      </section>
+
+
+
+      <aside class="feedback" aria-label="Feedback">
+        <p><strong>Something not right, or a tool you wish we had?</strong> Tell us and we’ll fix or build it.</p>
+        <a class="btn btn-soft" href="mailto:hello@thefocusflowlab.com?subject=Feedback:%20Practice%20score%20tracker">Send feedback</a>
+      </aside>
+
+      <aside class="kit" aria-label="Next step">
+        <div>
+          <h2>Turn the weak topics into a plan.</h2>
+          <p>Pick your exam for a free week-by-week plan, then use your suggested split to set each week’s hours. You can also add the plan to your calendar. <a href="/planners/">See the $5 printable planners.</a></p>
+        </div>
+        <a class="btn" href="/study-plan/">Free exam study plans</a>
+      </aside>
+
+      <aside class="kit" aria-label="Free Study Focus Kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+  </div>
+
+<!-- site-foot -->
+<nav class="container hub-link" aria-label="Back to section"><a href="/tools/">← All study tools</a></nav>
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+          <li><a href="/study-plan/">All study plans</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/final-grade-calculator/">Final grade calculator</a></li>
+          <li><a href="/tools/gpa-calculator/">GPA calculator</a></li>
+          <li><a href="/tools/study-schedule-maker/">Study schedule maker</a></li>
+          <li><a href="/tools/flashcards/">Flashcards</a></li>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/">All study tools</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+          <li><a href="https://www.pinterest.com/focusflowlabofficial/" rel="me noopener">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. NAPLEX® is a registered trademark of NABP. The PANCE is run by the NCCPA. The CPA Exam is developed by the AICPA. TEAS is a registered trademark of ATI. DAT is a program of the ADA. GMAT is a registered trademark of GMAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/about/">About</a> &nbsp; <a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- Cloudflare Web Analytics: cookie-free page view counts -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3d7d2afbf78f49eba33293c0abd20ab1"}'></script>
+<!-- /site-foot -->
+<script src="/assets/tools/exam-topics.js" defer></script>
+<script src="/assets/tools/score-tracker.js" defer></script>
+</body>
+</html>

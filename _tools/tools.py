@@ -408,9 +408,115 @@ TOOLS = [
             ("How does the spacing work?", "Cards you get right come back after 1, 3, 7, 14, 30 and then 60 days. Cards you miss come back tomorrow, and once more before you finish today."),
             ("Can I import cards?", "You can import a file you downloaded from this page. Other apps use different formats, so their files won’t import.")],
        script="flashcards.js"),
+  dict(slug="practice-score-tracker", name="Practice score tracker", tag="Exams",
+       title="Practice Score Tracker: Find Weak Topics and Plan Your Hours",
+       desc="Log practice question sets by topic for 14 exams. See accuracy per topic, your trend, and a suggested split of next week’s study hours. Free, saved in your browser.",
+       h1="Where should your hours go next?",
+       lead="Log each practice set. See your weak topics and a suggested split of next week’s hours.",
+       card="Log practice scores and see where to spend your hours.",
+       go="Track my scores",
+       tool="""        <form class="sheet" id="sc-form" novalidate aria-label="Add a practice set">
+          <p class="sheet-title">Add a practice set</p>
+          <div class="fields fields-2b">
+            <div><label for="sc-exam">Exam</label><select id="sc-exam"></select></div>
+            <div><label for="sc-topic">Topic</label><select id="sc-topic"></select></div>
+          </div>
+          <div class="fields fields-date" style="margin-top:var(--space-sm)">
+            <div><label for="sc-right">Right</label><input type="number" id="sc-right" min="0" step="1" inputmode="numeric" placeholder="32"></div>
+            <div><label for="sc-total">Out of</label><input type="number" id="sc-total" min="1" step="1" inputmode="numeric" placeholder="40"></div>
+            <div><label for="sc-date">Date</label><input type="date" id="sc-date"></div>
+          </div>
+          <div class="fields" style="margin-top:var(--space-sm)"><div><label for="sc-note">Note (optional)</label><input type="text" id="sc-note" maxlength="60" placeholder="Question bank, set 3"></div></div>
+          <div class="sheet-actions"><button class="btn" type="submit">Add this set</button></div>
+          <p class="error" id="sc-error" role="alert"></p>
+          <div class="fields fields-2b" style="margin-top:var(--space-md)">
+            <div><label for="sc-target">Your target accuracy (%)</label><input type="number" id="sc-target" min="1" max="100" step="1" inputmode="numeric" value="75"></div>
+            <div><label for="sc-hours">Study hours next week</label><input type="number" id="sc-hours" min="0" max="100" step="0.5" inputmode="decimal" value="20"></div>
+          </div>
+        </form>""",
+       after="""      <section class="plan sc-result" aria-labelledby="sc-title" aria-live="polite">
+        <div class="plan-head"><h2 id="sc-title">Your scores</h2></div>
+        <dl class="totals">
+          <div><dt>Overall accuracy</dt><dd id="sc-overall">-</dd></div>
+          <div><dt>Questions logged</dt><dd id="sc-count">0</dd></div>
+          <div><dt>Trend</dt><dd id="sc-trend">-</dd></div>
+        </dl>
+        <p id="sc-advice" class="sc-advice"></p>
+        <div class="table-scroll"><table class="mini-table sc-table">
+          <thead><tr><th scope="col">Topic</th><th scope="col">Your accuracy</th><th scope="col">Status</th><th scope="col">Plan share</th><th scope="col">Suggested share</th></tr></thead>
+          <tbody id="sc-table"></tbody></table></div>
+        <p class="muted">Plan share is the rough weight in the exam outline, not an official number. Suggested share raises topics below your target and gives topics with no data a small boost, until you test them.</p>
+        <h3>Your entries</h3>
+        <p id="sc-empty" class="muted">Nothing logged for this exam yet.</p>
+        <ul class="sc-list" id="sc-list"></ul>
+        <div class="sheet-actions no-print"><button class="btn btn-soft" type="button" id="sc-csv">Download as CSV</button><button class="btn btn-quiet" type="button" id="sc-clear">Delete this exam’s scores</button></div>
+      </section>""",
+       how="""<p>After each practice set, add how many you got right and the topic. The table shows your accuracy per topic and where your next week’s hours should go.</p>
+          <ul>
+            <li><strong>Log the topic, not just the total.</strong> A 70% overall can hide one topic at 40%.</li>
+            <li><strong>Small sets are noisy.</strong> Under about 20 questions in a topic, treat the number as a hint, not a verdict.</li>
+            <li><strong>Redo what you missed.</strong> Pair this with the <a href="/tools/error-log/">error log</a> so each miss gets a retest date.</li>
+            <li><strong>Feed it back into your plan.</strong> Use the suggested split to set next week’s hours in the <a href="/study-plan/">free exam study plan</a>.</li>
+          </ul>""",
+       faq=[("Where are my scores stored?", "In this browser only. Nothing is sent anywhere. Use “Download as CSV” to keep a copy or move to another device."),
+            ("How is the suggested share worked out?", "Each topic starts from its rough weight in the exam outline. A topic below your target accuracy gets a larger share, in proportion to how far below it is. A topic with no data gets a small boost until you test it. Then the shares are scaled to add up to 100%."),
+            ("Are the topic weights official?", "No. They are the rough shares the free plan generators use, based on each exam’s published outline. Check the official outline for the current version."),
+            ("What target should I use?", "Use your own practice-test goal. If you are unsure, 70 to 80% is a common planning target, but it is not an official passing mark for any exam."),
+            ("Which exams does it cover?", "NCLEX-RN, NCLEX-PN, ATI TEAS, MCAT, USMLE Step 1, PANCE, NAPLEX, DAT, GRE, GMAT Focus, LSAT and the three CPA sections.")],
+       script="score-tracker.js", pre="exam-topics.js"),
+  dict(slug="error-log", name="Error log", tag="Exams",
+       title="Error Log: Track Missed Questions and Why You Missed Them",
+       desc="A free online error log for exam prep. Record each missed question, why you missed it and your fix, get a retest date, and see which kind of mistake costs you most.",
+       h1="Turn every miss into a retest.",
+       lead="Write down what you missed and why. Get a retest date for each one.",
+       card="Log missed questions, the reason, and a retest date.",
+       go="Open the log",
+       tool="""        <form class="sheet" id="el-form" novalidate aria-label="Add a missed question">
+          <p class="sheet-title">Add a miss</p>
+          <div class="fields fields-2b">
+            <div><label for="el-exam">Exam</label><select id="el-exam"></select></div>
+            <div><label for="el-topic">Topic</label><select id="el-topic"></select></div>
+          </div>
+          <div class="fields" style="margin-top:var(--space-sm)"><div><label for="el-what">What did you miss?</label><input type="text" id="el-what" maxlength="120" placeholder="Heparin antidote"></div></div>
+          <div class="fields fields-2b" style="margin-top:var(--space-sm)">
+            <div><label for="el-reason">Why did you miss it?</label><select id="el-reason"></select></div>
+            <div><label for="el-fix">What will you do about it? (optional)</label><input type="text" id="el-fix" maxlength="120" placeholder="Make 5 flashcards"></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Add to the log</button></div>
+          <p class="error" id="el-error" role="alert"></p>
+        </form>""",
+       after="""      <section class="plan sc-result" aria-labelledby="el-title" aria-live="polite">
+        <div class="plan-head"><h2 id="el-title">Your log</h2></div>
+        <dl class="totals">
+          <div><dt>Logged</dt><dd id="el-total">0</dd></div>
+          <div><dt>Still open</dt><dd id="el-open">0</dd></div>
+          <div><dt>Due to retest</dt><dd id="el-due">0</dd></div>
+        </dl>
+        <p id="el-insight" class="sc-advice"></p>
+        <dl class="alloc" id="el-bars" aria-label="Misses by reason"></dl>
+        <h3>To review</h3>
+        <p id="el-empty" class="muted">Nothing open. Add a miss above.</p>
+        <ul class="sc-list el-list" id="el-list"></ul>
+        <div class="sheet-actions no-print"><button class="btn btn-soft" type="button" id="el-csv">Download as CSV</button></div>
+      </section>""",
+       how="""<p>An error log works when each miss is sorted by its cause, because each cause has a different fix. Write what you missed, pick the reason, and the log gives you a retest date.</p>
+          <ul>
+            <li><strong>Knowledge gap:</strong> relearn it from the source and retest it after a week.</li>
+            <li><strong>Misread the question or a careless slip:</strong> retest in two days, and add a check step before you answer.</li>
+            <li><strong>Ran out of time:</strong> practise timed blocks. The <a href="/tools/test-time-calculator/">test time calculator</a> gives you checkpoints.</li>
+            <li><strong>Guessed and got lucky:</strong> count it as a miss, because you did not know it.</li>
+          </ul>
+          <p>Log every miss for a few days, then look at the bars. If most are careless slips, more content review will not help.</p>""",
+       faq=[("Where is my log stored?", "In this browser only. Nothing is sent anywhere. Use “Download as CSV” to keep a copy."),
+            ("What should I write in the log?", "A few words: the concept or the question, the reason you missed it, and one concrete step to fix it. Long notes do not get reviewed."),
+            ("How are retest dates set?", "Knowledge gaps come back after 7 days, so you have time to relearn them first. Misreads, careless slips and guesses come back after 2 days, and timing and approach errors after 3. These are planning defaults, so change your own plan if you need to."),
+            ("Does the log replace practice questions?", "No. It tells you what to practise next. Pair it with the practice score tracker to see which topics are weak.")],
+       script="error-log.js", pre="exam-topics.js"),
 ]
 
 RELATED = {
+    "practice-score-tracker": ["error-log", "exam-countdown", "test-time-calculator"],
+    "error-log": ["practice-score-tracker", "spaced-review", "flashcards"],
     "test-time-calculator": ["exam-countdown", "focus-timer", "study-schedule-maker"],
     "focus-timer": ["exam-countdown", "study-schedule-maker", "flashcards"],
     "exam-countdown": ["study-schedule-maker", "test-time-calculator", "focus-timer"],
@@ -444,6 +550,10 @@ GRADES_FREE = ("Finals coming up?", "Turn your grade target into a study plan. R
 PLAN = ("Know your exam date? Get the plan.", "Pick your exam for a free week-by-week study plan, or print one.",
         "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/")
 NEXT_STEP = {
+    "practice-score-tracker": ("Turn the weak topics into a plan.", "Pick your exam for a free week-by-week plan, then use your suggested split to set each week’s hours. You can also add the plan to your calendar.",
+                               "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
+    "error-log": ("Turn misses into a plan.", "Pick your exam for a free week-by-week plan, or print the error log pages that come with the planners.",
+                  "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
     "final-grade-calculator": GRADES, "gpa-calculator": GRADES_FREE, "weighted-grade-calculator": GRADES_FREE,
     "exam-countdown": PLAN, "test-time-calculator": PLAN, "study-schedule-maker": PLAN, "reading-planner": PLAN,
     "spaced-review": ("Studying for a big exam?", "Reviews need dates to fit into. Build a free week-by-week plan for your exam, or print one.",
@@ -562,7 +672,7 @@ def tool_page(t):
     </main>"""
     return shell(path=path, title=t["title"] + " | FocusFlow Lab" if len(t["title"]) < 45 else t["title"], desc=t["desc"], og_title=t["name"] + " from FocusFlow Lab",
                  ld=ld, body=body, css_depth=2, extra_head=PLAN_CSS,
-                 scripts=f'\n<script src="/assets/tools/{t["script"]}" defer></script>')
+                 scripts=(f'\n<script src="/assets/tools/{t["pre"]}" defer></script>' if t.get("pre") else "") + f'\n<script src="/assets/tools/{t["script"]}" defer></script>')
 
 def index_page():
     path = "/tools/"

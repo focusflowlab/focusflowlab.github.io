@@ -100,12 +100,55 @@
         start,
         phase,
         hours,
+        studyDays,
+        daysInWeek,
         topics: splitTopicHours(hours, inputs.weak),
         tasks: config.tasks[phase](studyDays, weekIndex, totalWeeks),
       });
     }
 
-    return { daysLeft, totalWeeks, totalHours, weeks };
+    return { daysLeft, totalWeeks, totalHours, weeks, exam };
+  }
+
+  /** One calendar event per study session (no repeats), so any session can be moved or deleted. Times are local ("floating"). */
+  function buildIcs(plan) {
+    const pad = (n) => String(n).padStart(2, '0');
+    const ymd = (d) => d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+    const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+    const esc = (t) => String(t).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//FocusFlow Lab//Study plan//EN', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:' + esc(config.shortName + ' study plan')];
+    let uid = 0;
+    const add = (ev) => { lines.push('BEGIN:VEVENT', 'UID:ffl-' + stamp + '-' + (uid++) + '@thefocusflowlab.com', 'DTSTAMP:' + stamp, ...ev, 'END:VEVENT'); };
+    plan.weeks.forEach((week) => {
+      const perDay = week.hours / week.studyDays;
+      const top = week.topics.slice(0, 2).map((t) => t.name).join(' and ');
+      const desc = 'Week ' + week.number + ', ' + PHASES[week.phase].label + '. Most time this week: ' + top + '. ' + week.tasks.join(' ') + ' Free plan from thefocusflowlab.com';
+      for (let i = 0; i < week.studyDays; i++) {
+        const day = new Date(week.start.getTime() + Math.floor((i * week.daysInWeek) / week.studyDays) * MS_PER_DAY);
+        const startMin = 18 * 60;
+        const endMin = startMin + Math.round(perDay * 60);
+        const at = (m) => ymd(day) + 'T' + pad(Math.floor(m / 60) % 24) + pad(m % 60) + '00';
+        add(['DTSTART:' + at(startMin), 'DTEND:' + at(endMin), 'SUMMARY:' + esc(config.shortName + ': ' + top), 'DESCRIPTION:' + esc(desc)]);
+      }
+    });
+    const next = new Date(plan.exam.getTime() + MS_PER_DAY);
+    add(['DTSTART;VALUE=DATE:' + ymd(plan.exam), 'DTEND;VALUE=DATE:' + ymd(next), 'SUMMARY:' + esc(config.shortName + ' exam day'), 'DESCRIPTION:' + esc('Good luck. Plan made with thefocusflowlab.com')]);
+    lines.push('END:VCALENDAR');
+    // Fold long lines (RFC 5545): continuation lines start with a space. 60 characters keeps multi-byte text under 75 bytes.
+    const fold = (l) => { const out = []; for (let i = 0; i < l.length; i += 60) out.push((i ? ' ' : '') + l.slice(i, i + 60)); return out.join('\r\n'); };
+    return lines.map(fold).join('\r\n') + '\r\n';
+  }
+
+  function downloadIcs(plan) {
+    const blob = new Blob([buildIcs(plan)], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = config.shortName.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-study-plan.ics';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -157,9 +200,12 @@
       ${weeks}
       <div class="plan-actions">
         <button class="btn" type="button" id="print-plan">Print or save as PDF</button>
+        <button class="btn btn-soft" type="button" id="add-cal">Add to my calendar (.ics)</button>
         <a class="btn btn-quiet" href="#plan-form">Change my answers</a>
-      </div>`;
+      </div>
+      <p class="muted cal-note">The calendar file has one event per study session at 6 pm and your exam day. Move any session after you import it into Google Calendar, Apple Calendar or Outlook.</p>`;
     document.getElementById('print-plan').addEventListener('click', () => window.print());
+    document.getElementById('add-cal').addEventListener('click', () => downloadIcs(plan));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     output.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     const heading = output.querySelector('h2');
