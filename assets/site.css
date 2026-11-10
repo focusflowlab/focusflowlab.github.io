@@ -748,3 +748,12 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 /* Breadcrumbs sit above the hero wash band (which extends up behind them) */
 .crumbs { position: relative; z-index: 1; }
 @media (max-width: 860px) { .pd-hero { padding: var(--space-xl) 0 var(--space-xl); } }
+
+/* Planner hub: animated cue pointing down to the planners */
+.scroll-cue { justify-self: end; display: inline-flex; align-items: center; gap: var(--space-sm); min-height: 44px; padding: 0 var(--space-sm) 0 var(--space-md); border-radius: var(--radius-pill); background: var(--color-paper-2); border: 1px solid var(--color-rule); color: var(--color-ink); font-size: var(--text-sm); font-weight: 600; text-decoration: none; }
+.scroll-cue:hover { background: var(--color-accent-wash); }
+.scroll-cue svg { flex: none; animation: cue-bounce 1.6s ease-in-out infinite; }
+@keyframes cue-bounce { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(4px); } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue svg { animation: none; } }
+@media (max-width: 860px) { .scroll-cue { justify-self: center; } }
+.hero.single:has(.scroll-cue) { gap: var(--space-md); padding-bottom: var(--space-xl); }
