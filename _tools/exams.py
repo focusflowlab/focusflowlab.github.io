@@ -33,9 +33,14 @@ RELATED = {
 
 
 def related_block(e):
-    if e["slug"] not in RELATED:
-        return ""
-    return '      <p class="related-links"><strong>Related:</strong> ' + " · ".join(f'<a href="{u}">{t}</a>' for t, u in RELATED[e["slug"]]) + "</p>\n\n"
+    slug = e["slug"]
+    links = list(RELATED.get(slug, []))
+    if slug == "nclex-pn":
+        links = [("How to study for the NCLEX-PN", "/guides/how-to-study-for-the-nclex-pn/"), ("NCLEX-RN study plan", "/study-plan/nclex/")]
+    if slug in PLANNERS:
+        links.append((f"{e['short']} printable planner", f"/planners/{PLANNERS[slug][1]}/"))
+    links += [(f"{e['short']} test format and scoring", f"/exam-facts/#{slug}"), ("Test time calculator", "/tools/test-time-calculator/")]
+    return '      <p class="related-links"><strong>Related:</strong> ' + " · ".join(f'<a href="{u}">{t}</a>' for t, u in links) + "</p>\n\n"
 
 
 BUNDLE_URL = "https://store.thefocusflowlab.com/l/all-exam-planners-bundle"
