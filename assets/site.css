@@ -654,7 +654,7 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 /* planner detail pages (/planners/<slug>/) */
 .pd-hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: var(--space-xl); align-items: center; padding: var(--space-2xl) 0 var(--space-2xl); }
 .pd-hero h1 { margin: 0 0 var(--space-sm); }
-.pd-hero img { width: 100%; max-width: 360px; height: auto; justify-self: center; border-radius: var(--radius-card); box-shadow: var(--shadow-lift); }
+.pd-hero img { width: 100%; max-width: 360px; height: auto; justify-self: end; border-radius: var(--radius-card); box-shadow: var(--shadow-lift); }
 .pd-hero .lead { margin: 0; max-width: 46ch; }
 .pd-buy { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm) var(--space-md); margin: var(--space-lg) 0 var(--space-md); }
 .pd-price { font: 700 2rem/1 var(--font-display); letter-spacing: var(--tracking-display); }
@@ -669,7 +669,7 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .pd-section .nw, .pd-hero .nw { white-space: nowrap; }
 @media (max-width: 860px) {
   .pd-hero, .pd-split { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); }
-  .pd-hero img { order: -1; max-width: 260px; }
+  .pd-hero img { order: -1; max-width: 260px; justify-self: center; }
   .pd-section { margin-top: var(--section-gap-s); }
 }
 
