@@ -451,7 +451,7 @@ EXAMS = [
     "slug": "dat",
     "short": "DAT",
     "title": "DAT Study Schedule Generator: Free Weekly Plan",
-    "desc": "Put in your DAT test date and study hours. Get a week-by-week plan across biology, general and organic chemistry, perceptual ability, reading and quantitative reasoning.",
+    "desc": "Put in your DAT date and study hours. Get a week-by-week plan across biology, chemistry, perceptual ability, reading and quantitative reasoning.",
     "og_title": "DAT study schedule generator",
     "h1": "Your DAT study schedule, week by week.",
     "lead": "Put in your test date and the hours you have. You get a plan across every DAT section, with perceptual ability practice every week.",

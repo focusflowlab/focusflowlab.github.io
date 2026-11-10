@@ -52,12 +52,24 @@
 
 ## Products
 - [Free Study Focus Kit](https://thefocusflowlab.com/#free-kit): 5 printable worksheets (phone distractions, note-taking, mental clutter, syllabus coverage, focus reset), plus a free 3-page sample from the exam planners, sent by email.
-- [Exam Sprint Planner](https://thefocusflowlab.com/#planner): $5 printable PDF, 9 pages, A4 and US Letter. A 14-day plan for the two weeks before exams: exam map and priority grid, sprint calendar with four focus blocks a day, daily pages that end each block with a self-test, active-recall tracker.
-
-- [NCLEX-RN 8-Week Study Planner](https://thefocusflowlab.com/#exam-planners): $5 printable PDF, 9 pages, A4 and US Letter. Exam map, 8-week overview, weekly and daily pages, practice test log, error log, test-day checklist.
-- [MCAT 16-Week Study Planner](https://thefocusflowlab.com/#exam-planners): $5 printable PDF, 9 pages, A4 and US Letter. Content review then full-length tests, CARS every week, test log with section scores.
-- [All 14 Exam Planners Bundle](https://thefocusflowlab.com/planners/): $15 for all 14 exam planners (NCLEX-RN, NCLEX-PN, TEAS, NAPLEX, MCAT, USMLE Step 1, PANCE, DAT, GRE, LSAT, GMAT, CPA FAR, AUD, REG), each as A4 and US Letter PDFs. 14-day refund.
-- All planners come with a 14-day no-questions refund.
+- [Printable planners: all exams](https://thefocusflowlab.com/planners/): hub with search and filters, $5 each or all 14 exam planners for $15.
+- [Exam Sprint Planner](https://thefocusflowlab.com/planners/exam-sprint-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 14-day plan for the two weeks before exams. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [NCLEX-RN 8-Week Study Planner](https://thefocusflowlab.com/planners/nclex-rn-8-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 8 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [NCLEX-PN 6-Week Study Planner](https://thefocusflowlab.com/planners/nclex-pn-6-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 6 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [ATI TEAS 4-Week Study Planner](https://thefocusflowlab.com/planners/ati-teas-4-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 4 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [NAPLEX 8-Week Study Planner](https://thefocusflowlab.com/planners/naplex-8-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 8 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [MCAT 16-Week Study Planner](https://thefocusflowlab.com/planners/mcat-16-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 16 weeks, content review then full-length tests, CARS every week. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [USMLE Step 1 8-Week Study Planner](https://thefocusflowlab.com/planners/usmle-step-1-8-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 8 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [PANCE 8-Week Study Planner](https://thefocusflowlab.com/planners/pance-8-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 8 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [DAT 10-Week Study Planner](https://thefocusflowlab.com/planners/dat-10-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 10 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [GRE 8-Week Study Planner](https://thefocusflowlab.com/planners/gre-8-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 8 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [LSAT 12-Week Study Planner](https://thefocusflowlab.com/planners/lsat-12-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 12 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [GMAT 8-Week Study Planner](https://thefocusflowlab.com/planners/gmat-8-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 8 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [CPA FAR 10-Week Study Planner](https://thefocusflowlab.com/planners/cpa-far-10-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 10 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [CPA AUD 8-Week Study Planner](https://thefocusflowlab.com/planners/cpa-aud-8-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 8 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [CPA REG 8-Week Study Planner](https://thefocusflowlab.com/planners/cpa-reg-8-week-planner/): $5 printable PDF, 9 pages, A4 and US Letter. 8 weeks. Exam map, weekly and daily pages, practice test or error log, test-day checklist.
+- [All 14 Exam Planners Bundle](https://thefocusflowlab.com/planners/all-exam-planners-bundle/): $15 for all 14 exam planners (NCLEX-RN, NCLEX-PN, TEAS, NAPLEX, MCAT, USMLE Step 1, PANCE, DAT, GRE, LSAT, GMAT, CPA FAR, AUD, REG), each as A4 and US Letter PDFs.
+- All planners come with a 14-day no-questions refund and are sold through Gumroad.
 
 ## Videos
 - [YouTube: FocusFlow Lab](https://www.youtube.com/@YourFocusFlowLab)

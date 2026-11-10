@@ -344,7 +344,23 @@ def planner_detail(t):
     return path, shell(path=path, title=full_title, desc=desc[:160].rsplit(" ", 1)[0] if len(desc) > 160 else desc, og_title=h1, ld=ld, body=body, css_depth=2, og_image=f"{SITE}/assets/products/planners/{thumb}.png",
                        extra_head='\n  <link rel="stylesheet" href="../../study-plan/assets/plan.css">')
 
-pages = [("planners/index.html", planners_page()), ("about/index.html", about_page())]
+def not_found_page():
+    body = """    <main id="main">
+      <header class="doc-head">
+        <h1>Page not found</h1>
+        <p class="lead">That page does not exist, or it has moved. Try one of these instead.</p>
+      </header>
+      <ul class="choose-grid">
+        <li><strong>Free study plans</strong><p>Put in your test date and hours, get a week-by-week plan.</p><a class="text-link" href="/study-plan/">All study plans</a></li>
+        <li><strong>Printable planners</strong><p>One planner per exam, $5 each or all 14 for $15.</p><a class="text-link" href="/planners/">All planners</a></li>
+        <li><strong>Free tools and guides</strong><p>Calculators, timers and short study guides.</p><a class="text-link" href="/tools/">Study tools</a> <a class="text-link" href="/guides/">Study guides</a></li>
+      </ul>
+    </main>"""
+    html = shell(path="/404.html", title="Page not found | FocusFlow Lab", desc="This page could not be found.", og_title="Page not found", ld={"@context": "https://schema.org", "@graph": []},
+                 body=body, css_depth=0, extra_head='\n  <meta name="robots" content="noindex">')
+    return html.replace('href="assets/', 'href="/assets/').replace('  <link rel="canonical" href="https://thefocusflowlab.com/404.html">\n', '')
+
+pages = [("planners/index.html", planners_page()), ("about/index.html", about_page()), ("404.html", not_found_page())]
 pages += [(planner_detail(t)[0].strip("/") + "/index.html", planner_detail(t)[1]) for t in ITEMS + [BUNDLE]]
 for rel, html in pages:
     out = ROOT / rel

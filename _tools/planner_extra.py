@@ -9,6 +9,38 @@ HAND = {"nclex-rn-8-week-planner": ("nclex", 8, "NCLEX-RN", "The NCLEX-RN is a c
         "mcat-16-week-planner": ("mcat", 16, "MCAT", None)}
 
 
+# Facts confirmed on official pages in Nov 2026; anything not confirmed is left out. Update when the owner changes the exam.
+_AICPA = ("AICPA: what is tested on the CPA Exam", "https://www.aicpa-cima.com/resources/download/learn-what-is-tested-on-the-cpa-exam")
+_CPA_SCORE = ("AICPA: CPA Exam scoring", "https://www.aicpa-cima.com/resources/article/learn-more-about-cpa-exam-scoring-and-pass-rates")
+_CPA_COMMON = "Each section is 4 hours with two multiple-choice testlets and three task-based simulation testlets. It is scored 0 to 99, you need 75 to pass, and the score is not a percentage or a curve; multiple-choice and simulations count equally."
+OFFICIAL = {
+    "mcat-16-week-planner": (["230 questions in four sections: Chem/Phys 59 questions in 95 minutes, CARS 53 in 90 minutes, Bio/Biochem 59 in 95 minutes and Psych/Soc 59 in 95 minutes.",
+                              "About 6 hours 15 minutes of testing, and about 7 hours 30 minutes in the seat with breaks.",
+                              "You can take it up to 3 times in a testing year, 4 times over 2 consecutive years and 7 times in your lifetime."],
+                             [("AAMC: what is on the MCAT exam", "https://students-residents.aamc.org/whats-mcat-exam/publication-chapters/whats-mcat-exam"), ("AAMC: testing attempt limits", "https://students-residents.aamc.org/register-mcat-exam/publication-chapters/testing-attempt-limits")]),
+    "usmle-step-1-8-week-planner": (["Step 1 is one 8-hour test day. Since 14 May 2026 it runs as 30-minute blocks of up to 20 questions each; before that it was 60-minute blocks of up to 40.",
+                                     "Step 1 has been reported pass or fail only since 26 January 2022."],
+                                    [("USMLE: Step 1", "https://www.usmle.org/step-exams/step-1"), ("USMLE: examination results and scoring", "https://www.usmle.org/scores-transcripts/examination-results-and-scoring")]),
+    "nclex-rn-8-week-planner": (["The NCLEX-RN gives you between 85 and 150 questions, with up to 5 hours to finish.",
+                                 "You can retake it up to 8 times a year, at least 45 days apart, unless your jurisdiction sets a stricter limit."],
+                                [("NCSBN: NCLEX candidate bulletin", "https://www.ncsbn.org/public-files/NCLEX_Examination_Candidate_Bulletin_April_2026.pdf")]),
+    "cpa-far-10-week-planner": ([_CPA_COMMON + " FAR has 50 multiple-choice questions and 7 simulations.",
+                                 "FAR content areas: Financial Reporting 30 to 40%, Select Balance Sheet Accounts 30 to 40%, Select Transactions 25 to 35%."],
+                                [_AICPA, _CPA_SCORE, ("ThisWayToCPA: what every candidate should know about FAR", "https://www.thiswaytocpa.com/work-experience/articles/skill-development/going-farther-what-every-cpa-candidate-should-know-about-far/")]),
+    "cpa-aud-8-week-planner": ([_CPA_COMMON + " AUD has 78 multiple-choice questions and 7 simulations."], [_AICPA, _CPA_SCORE]),
+    "cpa-reg-8-week-planner": ([_CPA_COMMON + " REG has 72 multiple-choice questions and 8 simulations."], [_AICPA, _CPA_SCORE]),
+}
+
+
+def official_block(link):
+    if link not in OFFICIAL:
+        return ""
+    items, srcs = OFFICIAL[link]
+    lis = "".join(f"<li>{i}</li>" for i in items)
+    src = ", ".join(f'<a href="{u}" rel="noopener">{n}</a>' for n, u in srcs)
+    return f'<h3 class="pd-sub">The exam at a glance</h3><ul class="pd-bullets">{lis}</ul><p class="pd-note">Checked against the official pages in November 2026; the exam owner can change these. Sources: {src}.</p>'
+
+
 def _first_p(html):
     return re.search(r"<p>(.*?)</p>", html, re.S).group(1).strip()
 
@@ -56,6 +88,7 @@ def exam_sections(f, link, for_):
         <div class="reading-body">
           <p>{f['intro']}</p>
           <p>This {w}-week planner turns that into a calendar you can write on: the weekly overview shows the whole plan, and {blocks}.</p>
+          {official_block(link)}
         </div>
       </section>
 

@@ -11,7 +11,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 head = (ROOT / "_partials/site-head.html").read_text(encoding="utf-8").strip()
 foot = (ROOT / "_partials/site-foot.html").read_text(encoding="utf-8").strip()
 
-HUB = {"/study-plan/": "← All study plans", "/tools/": "← All study tools", "/guides/": "← All study guides"}
+HUB = {"/planners/": "← All planners", "/study-plan/": "← All study plans", "/tools/": "← All study tools", "/guides/": "← All study guides"}
 
 def url_of(path):
     rel = path.relative_to(ROOT).as_posix()
@@ -30,7 +30,7 @@ for page in pages:
     url = url_of(page)
     h = head
     f = foot
-    for section in ("/study-plan/", "/tools/", "/guides/"):
+    for section in ("/planners/", "/study-plan/", "/tools/", "/guides/"):
         if url.startswith(section):
             h = h.replace(f'href="{section}" aria-expanded', f'href="{section}" aria-current="page" aria-expanded')
             if url != section:

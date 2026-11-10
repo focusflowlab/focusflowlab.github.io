@@ -773,3 +773,7 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .reading-body > p + p { margin-top: var(--space-md); }
 .reading-body > ul.pd-steps { padding-left: 0; margin-top: 0; }
 .reading-body > .pd-table + p { margin-top: var(--space-md); }
+.pd-sub { font: 700 var(--text-lg)/1.25 var(--font-display); margin: var(--space-lg) 0 var(--space-xs); }
+.pd-bullets { margin: 0; padding-left: 1.25rem; max-width: var(--measure); display: grid; gap: var(--space-xs); }
+.reading-body > ul.pd-bullets { margin-top: 0; }
+.pd-sub + .pd-bullets + .pd-note { margin-top: var(--space-sm); }
