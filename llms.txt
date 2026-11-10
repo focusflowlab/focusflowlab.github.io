@@ -20,6 +20,7 @@
 - [All study plan generators](https://thefocusflowlab.com/study-plan/)
 - [Focus timer](https://thefocusflowlab.com/tools/focus-timer/): focus blocks with breaks and a self-test prompt.
 - [Exam countdown](https://thefocusflowlab.com/tools/exam-countdown/): days and real study hours left before an exam.
+- [Test time calculator](https://thefocusflowlab.com/tools/test-time-calculator/): minutes per question and pacing checkpoints for a timed test.
 - [Spaced review calendar](https://thefocusflowlab.com/tools/spaced-review/): review dates 1, 3, 7, 14 and 30 days out, exportable to a calendar.
 - [Final grade calculator](https://thefocusflowlab.com/tools/final-grade-calculator/): the score needed on a final exam to reach a target course grade.
 - [GPA calculator](https://thefocusflowlab.com/tools/gpa-calculator/): semester and cumulative GPA on the US 4.0 scale.

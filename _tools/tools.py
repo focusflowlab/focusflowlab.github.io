@@ -97,6 +97,43 @@ TOOLS = [
             ("Does it count today?", "It counts from today to the day before the exam."),
             ("Is my date saved?", "Yes, in this browser only, so the countdown is there next time you open the page.")],
        script="exam-countdown.js"),
+  dict(slug="test-time-calculator", name="Test time calculator", tag="Exam day",
+       title="Test Time Calculator: Minutes Per Question and Pacing Checkpoints",
+       desc="Enter your test time and number of questions to get minutes per question and checkpoints to check your pace during the exam.",
+       h1="How long can you spend on each question?",
+       lead="Put in the time and the number of questions. Get your pace and checkpoints.",
+       card="Minutes per question and pacing checkpoints.",
+       go="Work out my pace",
+       tool="""        <form class="sheet" id="pace-form" novalidate aria-label="Test time calculator">
+          <p class="sheet-title">Your test</p>
+          <div class="fields">
+            <div><label for="totalMin">Total time (minutes)</label><input type="number" id="totalMin" min="1" max="1000" step="1" value="120" inputmode="numeric"></div>
+            <div><label for="questions">Number of questions</label><input type="number" id="questions" min="1" max="1000" step="1" value="60" inputmode="numeric"></div>
+            <div><label for="reviewPct">Keep for review (%)</label><select id="reviewPct"><option>0</option><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Work out my pace</button></div>
+          <p class="error" id="pace-error" role="alert"></p>
+          <div id="pace-result" class="count-result" hidden aria-live="polite">
+            <dl class="totals">
+              <div><dt>Per question</dt><dd id="r-min"></dd></div>
+              <div><dt>In seconds</dt><dd id="r-sec"></dd></div>
+              <div><dt>Review time</dt><dd id="r-review"></dd></div>
+            </dl>
+            <p class="muted">Checkpoints: <span id="r-points"></span></p>
+            <p><a href="/study-plan/">Build a free study plan for your exam</a></p>
+          </div>
+        </form>""",
+       how="""<p>Divide the time by the questions and you have your average. The number is only useful if you check it while you test, so the calculator also gives checkpoints: where you should be a quarter, half and three quarters of the way through.</p>
+          <ul>
+            <li><strong>Keep time for review.</strong> Setting aside 5 to 15 percent lets you go back to flagged questions.</li>
+            <li><strong>Averages are not limits.</strong> Some questions take 30 seconds and some take three minutes. Move on from the ones that stall you.</li>
+            <li><strong>Practise with a clock.</strong> Do timed practice sets at this pace before test day so it feels normal.</li>
+            <li><strong>Check the official rules.</strong> Your exam may have timed sections, breaks or a different number of scored questions. Use the numbers from the exam owner.</li>
+          </ul>""",
+       faq=[("How is minutes per question worked out?", "Total time minus the review time you keep, divided by the number of questions."),
+            ("Does this work for any exam?", "Yes, for any test with one time limit. For tests with separate timed sections, run it once per section."),
+            ("Is anything saved?", "Only your last numbers, in this browser. Nothing is sent anywhere.")],
+       script="test-time.js"),
   dict(slug="spaced-review", name="Spaced review calendar", tag="Memory",
        title="Spaced Repetition Calendar: Free Review Schedule Maker",
        desc="Add a topic and the day you studied it. Get review dates 1, 3, 7, 14 and 30 days later, and add them to Google, Apple or Outlook calendar.",
@@ -370,8 +407,9 @@ TOOLS = [
 ]
 
 RELATED = {
+    "test-time-calculator": ["exam-countdown", "focus-timer", "study-schedule-maker"],
     "focus-timer": ["exam-countdown", "study-schedule-maker", "flashcards"],
-    "exam-countdown": ["study-schedule-maker", "final-grade-calculator", "focus-timer"],
+    "exam-countdown": ["study-schedule-maker", "test-time-calculator", "focus-timer"],
     "spaced-review": ["flashcards", "reading-planner", "focus-timer"],
     "final-grade-calculator": ["weighted-grade-calculator", "gpa-calculator", "exam-countdown"],
     "gpa-calculator": ["final-grade-calculator", "weighted-grade-calculator", "study-schedule-maker"],
@@ -403,7 +441,7 @@ PLAN = ("Know your exam date? Get the plan.", "Pick your exam for a free week-by
         "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/")
 NEXT_STEP = {
     "final-grade-calculator": GRADES, "gpa-calculator": GRADES_FREE, "weighted-grade-calculator": GRADES_FREE,
-    "exam-countdown": PLAN, "study-schedule-maker": PLAN, "reading-planner": PLAN,
+    "exam-countdown": PLAN, "test-time-calculator": PLAN, "study-schedule-maker": PLAN, "reading-planner": PLAN,
     "spaced-review": ("Studying for a big exam?", "Reviews need dates to fit into. Build a free week-by-week plan for your exam, or print one.",
                       "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
     "flashcards": ("Studying for a big exam?", "Cards work best inside a plan. Build a free week-by-week study plan for your exam, or print one.",

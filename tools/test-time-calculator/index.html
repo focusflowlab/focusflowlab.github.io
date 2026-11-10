@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Time Calculator: Minutes Per Question and Pacing Checkpoints</title>
+  <meta name="description" content="Enter your test time and number of questions to get minutes per question and checkpoints to check your pace during the exam.">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/test-time-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FocusFlow Lab">
+  <meta property="og:title" content="Test time calculator from FocusFlow Lab">
+  <meta property="og:description" content="Enter your test time and number of questions to get minutes per question and checkpoints to check your pace during the exam.">
+  <meta property="og:url" content="https://thefocusflowlab.com/tools/test-time-calculator/">
+  <meta property="og:image" content="https://thefocusflowlab.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/icon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Test time calculator",
+      "url": "https://thefocusflowlab.com/tools/test-time-calculator/",
+      "description": "Enter your test time and number of questions to get minutes per question and checkpoints to check your pace during the exam.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thefocusflowlab.com/#org",
+        "name": "FocusFlow Lab",
+        "url": "https://thefocusflowlab.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "FocusFlow Lab",
+          "item": "https://thefocusflowlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://thefocusflowlab.com/tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Test time calculator",
+          "item": "https://thefocusflowlab.com/tools/test-time-calculator/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is minutes per question worked out?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Total time minus the review time you keep, divided by the number of questions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this work for any exam?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, for any test with one time limit. For tests with separate timed sections, run it once per section."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is anything saved?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only your last numbers, in this browser. Nothing is sent anywhere."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<!-- site-head -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="container masthead">
+    <a class="wordmark" href="/" aria-label="FocusFlow Lab home"><img src="/assets/icon-64.png" alt="" width="32" height="32">FocusFlow Lab</a>
+    <nav aria-label="Main">
+      <div class="nav-item">
+        <a class="nav-trigger" href="/study-plan/" aria-expanded="false" aria-controls="menu-plans">Study plans</a>
+        <div class="mega" id="menu-plans">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Nursing and pharmacy</p>
+              <ul>
+                <li><a href="/study-plan/nclex/"><strong>NCLEX-RN</strong><span>Weighted to the client-needs categories</span></a></li>
+                <li><a href="/study-plan/nclex-pn/"><strong>NCLEX-PN</strong><span>For practical and vocational nurses</span></a></li>
+                <li><a href="/study-plan/teas/"><strong>TEAS</strong><span>Nursing school entrance exam</span></a></li>
+                <li><a href="/study-plan/naplex/"><strong>NAPLEX</strong><span>Pharmacy, calculations every week</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Medicine and dentistry</p>
+              <ul>
+                <li><a href="/study-plan/mcat/"><strong>MCAT</strong><span>All four sections, CARS every week</span></a></li>
+                <li><a href="/study-plan/usmle-step-1/"><strong>USMLE Step 1</strong><span>Systems-based dedicated period</span></a></li>
+                <li><a href="/study-plan/pance/"><strong>PANCE</strong><span>Organ systems, heaviest first</span></a></li>
+                <li><a href="/study-plan/dat/"><strong>DAT</strong><span>Dental admission, PAT every week</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Grad, law, business, CPA</p>
+              <ul>
+                <li><a href="/study-plan/gre/"><strong>GRE</strong><span>Verbal, quant and the essay</span></a></li>
+                <li><a href="/study-plan/lsat/"><strong>LSAT</strong><span>Logical reasoning and reading</span></a></li>
+                <li><a href="/study-plan/gmat/"><strong>GMAT</strong><span>Quant, verbal and data insights</span></a></li>
+                <li><a href="/guides/cpa-study-schedule/"><strong>CPA Exam</strong><span>All sections: order, hours, plans</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Put in your test date and hours, get a week-by-week plan you can print.</p>
+              <a class="btn btn-soft" href="/study-plan/">All study plans</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/tools/" aria-current="page" aria-expanded="false" aria-controls="menu-tools">Tools</a>
+        <div class="mega" id="menu-tools">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Grades</p>
+              <ul>
+                <li><a href="/tools/final-grade-calculator/"><strong>Final grade calculator</strong><span>What you need on the final</span></a></li>
+                <li><a href="/tools/gpa-calculator/"><strong>GPA calculator</strong><span>Semester and cumulative, 4.0 scale</span></a></li>
+                <li><a href="/tools/weighted-grade-calculator/"><strong>Weighted grade calculator</strong><span>Course grade from categories</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Planning</p>
+              <ul>
+                <li><a href="/tools/study-schedule-maker/"><strong>Study schedule maker</strong><span>Weekly hours for every exam</span></a></li>
+                <li><a href="/tools/exam-countdown/"><strong>Exam countdown</strong><span>Real study hours left</span></a></li>
+                <li><a href="/tools/reading-planner/"><strong>Reading planner</strong><span>Pages a day to finish on time</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Focus and memory</p>
+              <ul>
+                <li><a href="/tools/focus-timer/"><strong>Focus timer</strong><span>Focus blocks with a self-test</span></a></li>
+                <li><a href="/tools/flashcards/"><strong>Flashcards</strong><span>Spaced repetition, no sign-up</span></a></li>
+                <li><a href="/tools/spaced-review/"><strong>Spaced review calendar</strong><span>When to review each topic</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Free tools that run in your browser. Nothing to install.</p>
+              <a class="btn btn-soft" href="/tools/">All tools</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a class="nav-trigger" href="/guides/" aria-expanded="false" aria-controls="menu-guides">Guides</a>
+        <div class="mega" id="menu-guides">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Focus</p>
+              <ul>
+                <li><a href="/guides/stop-checking-phone-while-studying/"><strong>Stop checking your phone</strong><span>Distance and friction, not willpower</span></a></li>
+                <li><a href="/guides/brain-dump-before-studying/"><strong>Clear mental clutter</strong><span>A 3-minute brain dump</span></a></li>
+                <li><a href="/guides/stop-procrastinating-studying/"><strong>Stop procrastinating</strong><span>Make starting easy</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Memory</p>
+              <ul>
+                <li><a href="/guides/active-recall-notes/"><strong>Why highlighting fails</strong><span>Take notes you remember</span></a></li>
+                <li><a href="/guides/stop-rereading-cover-syllabus-faster/"><strong>Stop re-reading</strong><span>Cover your syllabus faster</span></a></li>
+                <li><a href="/guides/why-exam-marathons-fail/"><strong>Why exam marathons fail</strong><span>Study in 90-minute blocks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Finals and planning</p>
+              <ul>
+                <li><a href="/guides/how-to-study-for-finals-in-a-week/"><strong>Finals in a week</strong><span>A day-by-day plan</span></a></li>
+                <li><a href="/guides/how-to-study-for-multiple-exams/"><strong>Several exams at once</strong><span>Split your time on purpose</span></a></li>
+                <li><a href="/guides/does-cramming-work/"><strong>Does cramming work?</strong><span>And how to cram if you must</span></a></li>
+                <li><a href="/guides/how-long-to-study-for-exams/"><strong>How long to study</strong><span>Hours for 14 exams, side by side</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Exam schedules</p>
+              <ul>
+                <li><a href="/guides/usmle-step-1-study-schedule/"><strong>USMLE Step 1</strong><span>8-week dedicated plan</span></a></li>
+                <li><a href="/guides/lsat-study-schedule-12-weeks/"><strong>LSAT</strong><span>12 weeks, blind review</span></a></li>
+                <li><a href="/guides/gre-study-plan-8-weeks/"><strong>GRE</strong><span>8 weeks for the shorter test</span></a></li>
+                <li><a href="/guides/pance-study-plan-8-weeks/"><strong>PANCE, NAPLEX, GMAT, DAT</strong><span>See all in the guides list</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>Short guides that go with the FocusFlow videos. New ones arrive with each video.</p>
+              <a class="btn btn-soft" href="/guides/">All guides</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="nav-link" href="/#free-kit">Free kit</a>
+      <div class="nav-item nav-item-cta">
+        <a class="nav-trigger nav-cta" href="/planners/" aria-expanded="false" aria-controls="menu-planners">Planners</a>
+        <div class="mega" id="menu-planners">
+          <div class="container mega-grid">
+            <div>
+              <p class="mega-title">Nursing and pharmacy</p>
+              <ul>
+                <li><a href="/planners/nclex-rn-8-week-planner/"><strong>NCLEX-RN</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/nclex-pn-6-week-planner/"><strong>NCLEX-PN</strong><span>6 weeks</span></a></li>
+                <li><a href="/planners/ati-teas-4-week-planner/"><strong>ATI TEAS</strong><span>4 weeks</span></a></li>
+                <li><a href="/planners/naplex-8-week-planner/"><strong>NAPLEX</strong><span>8 weeks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Medicine and dentistry</p>
+              <ul>
+                <li><a href="/planners/mcat-16-week-planner/"><strong>MCAT</strong><span>16 weeks</span></a></li>
+                <li><a href="/planners/usmle-step-1-8-week-planner/"><strong>USMLE Step 1</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/pance-8-week-planner/"><strong>PANCE</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/dat-10-week-planner/"><strong>DAT</strong><span>10 weeks</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="mega-title">Grad, law, business, CPA</p>
+              <ul>
+                <li><a href="/planners/gre-8-week-planner/"><strong>GRE</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/lsat-12-week-planner/"><strong>LSAT</strong><span>12 weeks</span></a></li>
+                <li><a href="/planners/gmat-8-week-planner/"><strong>GMAT</strong><span>8 weeks</span></a></li>
+                <li><a href="/planners/cpa-far-10-week-planner/"><strong>CPA FAR, AUD, REG</strong><span>One planner per section</span></a></li>
+              </ul>
+            </div>
+            <div class="mega-cta">
+              <p>$5 each, or all 14 for $15. Printable PDFs with a 14-day refund.</p>
+              <a class="btn btn-soft" href="/planners/">All planners</a>
+              <a class="btn btn-soft" href="/planners/all-exam-planners-bundle/">The $15 bundle</a>
+              <a class="btn btn-soft" href="/planners/exam-sprint-planner/">Exam in 2 weeks?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /site-head -->
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/tools/">Tools</a> / Test time calculator</nav>
+
+    <main id="main">
+      <section class="hero tool-hero">
+        <div>
+          <h1>How long can you spend on each question?</h1>
+          <p class="lead">Put in the time and the number of questions. Get your pace and checkpoints.</p>
+          <p class="hero-note">Free, no sign-up. Works in your browser.</p>
+        </div>
+        <form class="sheet" id="pace-form" novalidate aria-label="Test time calculator">
+          <p class="sheet-title">Your test</p>
+          <div class="fields">
+            <div><label for="totalMin">Total time (minutes)</label><input type="number" id="totalMin" min="1" max="1000" step="1" value="120" inputmode="numeric"></div>
+            <div><label for="questions">Number of questions</label><input type="number" id="questions" min="1" max="1000" step="1" value="60" inputmode="numeric"></div>
+            <div><label for="reviewPct">Keep for review (%)</label><select id="reviewPct"><option>0</option><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Work out my pace</button></div>
+          <p class="error" id="pace-error" role="alert"></p>
+          <div id="pace-result" class="count-result" hidden aria-live="polite">
+            <dl class="totals">
+              <div><dt>Per question</dt><dd id="r-min"></dd></div>
+              <div><dt>In seconds</dt><dd id="r-sec"></dd></div>
+              <div><dt>Review time</dt><dd id="r-review"></dd></div>
+            </dl>
+            <p class="muted">Checkpoints: <span id="r-points"></span></p>
+            <p><a href="/study-plan/">Build a free study plan for your exam</a></p>
+          </div>
+        </form>
+      </section>
+
+
+      <section class="reading">
+        <h2>How to use it</h2>
+        <div class="prose">
+          <p>Divide the time by the questions and you have your average. The number is only useful if you check it while you test, so the calculator also gives checkpoints: where you should be a quarter, half and three quarters of the way through.</p>
+          <ul>
+            <li><strong>Keep time for review.</strong> Setting aside 5 to 15 percent lets you go back to flagged questions.</li>
+            <li><strong>Averages are not limits.</strong> Some questions take 30 seconds and some take three minutes. Move on from the ones that stall you.</li>
+            <li><strong>Practise with a clock.</strong> Do timed practice sets at this pace before test day so it feels normal.</li>
+            <li><strong>Check the official rules.</strong> Your exam may have timed sections, breaks or a different number of scored questions. Use the numbers from the exam owner.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="reading faq">
+        <h2>Questions people ask</h2>
+        <div class="prose">
+          <details><summary>How is minutes per question worked out?</summary>
+            <p>Total time minus the review time you keep, divided by the number of questions.</p></details>
+          <details><summary>Does this work for any exam?</summary>
+            <p>Yes, for any test with one time limit. For tests with separate timed sections, run it once per section.</p></details>
+          <details><summary>Is anything saved?</summary>
+            <p>Only your last numbers, in this browser. Nothing is sent anywhere.</p></details>
+        </div>
+      </section>
+
+      <section class="band related" aria-labelledby="related-title">
+        <h2 id="related-title">Related tools</h2>
+        <ul class="cards">
+          <li><a href="/tools/exam-countdown/"><span class="card-tag">Planning</span><span class="card-name">Exam countdown</span><span class="card-note">Days and real study hours left before your exam.</span><span class="card-go">Count my hours</span></a></li>
+          <li><a href="/tools/focus-timer/"><span class="card-tag">Focus</span><span class="card-name">Focus timer</span><span class="card-note">Focus blocks with a break and a self-test prompt at the end.</span><span class="card-go">Start a block</span></a></li>
+          <li><a href="/tools/study-schedule-maker/"><span class="card-tag">Planning</span><span class="card-name">Study schedule maker</span><span class="card-note">Weekly hours per subject, up to each exam.</span><span class="card-go">Make my schedule</span></a></li>
+        </ul>
+      </section>
+
+
+
+      <aside class="feedback" aria-label="Feedback">
+        <p><strong>Something not right, or a tool you wish we had?</strong> Tell us and we’ll fix or build it.</p>
+        <a class="btn btn-soft" href="mailto:hello@thefocusflowlab.com?subject=Feedback:%20Test%20time%20calculator">Send feedback</a>
+      </aside>
+
+      <aside class="kit" aria-label="Next step">
+        <div>
+          <h2>Know your exam date? Get the plan.</h2>
+          <p>Pick your exam for a free week-by-week study plan, or print one. <a href="/planners/">See the $5 printable planners.</a></p>
+        </div>
+        <a class="btn" href="/study-plan/">Free exam study plans</a>
+      </aside>
+
+      <aside class="kit" aria-label="Free Study Focus Kit">
+        <div>
+          <h2>Staying focused is the hard part.</h2>
+          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>
+        </div>
+        <a class="btn" href="/#free-kit">Get the free kit</a>
+      </aside>
+    </main>
+  </div>
+
+<!-- site-foot -->
+<nav class="container hub-link" aria-label="Back to section"><a href="/tools/">← All study tools</a></nav>
+<footer class="site-foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="/"><img src="/assets/icon-64.png" alt="" width="32" height="32" loading="lazy">FocusFlow Lab</a>
+        <p>Simple study systems for fewer distractions, notes that stick and calmer exam weeks.</p>
+        <p><a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      </div>
+      <div>
+        <h2>Study plans</h2>
+        <ul>
+          <li><a href="/study-plan/nclex/">NCLEX-RN</a></li>
+          <li><a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+          <li><a href="/study-plan/mcat/">MCAT</a></li>
+          <li><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+          <li><a href="/study-plan/gre/">GRE</a></li>
+          <li><a href="/study-plan/lsat/">LSAT</a></li>
+          <li><a href="/study-plan/">All study plans</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Tools and guides</h2>
+        <ul>
+          <li><a href="/tools/final-grade-calculator/">Final grade calculator</a></li>
+          <li><a href="/tools/gpa-calculator/">GPA calculator</a></li>
+          <li><a href="/tools/study-schedule-maker/">Study schedule maker</a></li>
+          <li><a href="/tools/flashcards/">Flashcards</a></li>
+          <li><a href="/tools/focus-timer/">Focus timer</a></li>
+          <li><a href="/tools/">All study tools</a></li>
+          <li><a href="/guides/">Study guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>FocusFlow Lab</h2>
+        <ul>
+          <li><a href="/#free-kit">Free Study Focus Kit</a></li>
+          <li><a href="/#planner">Exam Sprint Planner</a></li>
+          <li><a href="https://www.youtube.com/@YourFocusFlowLab" rel="me noopener">YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@focusflowlabofficial" rel="me noopener">TikTok</a></li>
+          <li><a href="https://www.instagram.com/focusflowlabofficial/" rel="me noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/focusflowlabofficial" rel="me noopener">Facebook</a></li>
+          <li><a href="https://www.pinterest.com/focusflowlabofficial/" rel="me noopener">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <p>NCLEX® is a registered trademark of NCSBN. MCAT® is a registered trademark of the AAMC. USMLE® is a joint program of the FSMB and NBME. GRE® is a registered trademark of ETS. LSAT® is a registered trademark of LSAC. NAPLEX® is a registered trademark of NABP. The PANCE is run by the NCCPA. The CPA Exam is developed by the AICPA. TEAS is a registered trademark of ATI. DAT is a program of the ADA. GMAT is a registered trademark of GMAC. FocusFlow Lab isn’t affiliated with or endorsed by any of them.</p>
+      <p><a href="/about/">About</a> &nbsp; <a href="/privacy.html">Privacy</a> &nbsp; <a href="/terms.html">Terms</a> &nbsp; © 2026 FocusFlow Lab</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+<!-- Cloudflare Web Analytics: cookie-free page view counts -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3d7d2afbf78f49eba33293c0abd20ab1"}'></script>
+<!-- /site-foot -->
+<script src="/assets/tools/test-time.js" defer></script>
+</body>
+</html>
