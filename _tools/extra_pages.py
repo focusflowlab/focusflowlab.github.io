@@ -158,7 +158,7 @@ def planners_page():
 def about_page():
     path = "/about/"
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("About", path)])
-    desc = "Who runs FocusFlow Lab, how the free study tools work, how to get help and how refunds work."
+    desc = "Who runs FocusFlow Lab, why the study plans exist, how they are built from official exam outlines, and how refunds work."
     ld = {"@context": "https://schema.org", "@graph": [{"@type": "AboutPage", "name": "About FocusFlow Lab", "url": SITE + path, "description": desc, "publisher": ORG, "about": {"@id": SITE + "/#org"}}, {**ORG, "logo": SITE + "/assets/logo-512.png", "email": "hello@thefocusflowlab.com", "address": {"@type": "PostalAddress", "addressLocality": "Lahore", "addressCountry": "PK"}, "founder": {"@type": "Person", "name": "Ahsan Raza", "url": SITE + "/about/"}, "sameAs": ["https://www.youtube.com/@YourFocusFlowLab", "https://www.tiktok.com/@focusflowlabofficial", "https://www.pinterest.com/focusflowlabofficial/"]}, crumb_ld]}
     body = f"""{crumb_html}
 
@@ -171,6 +171,18 @@ def about_page():
         <article class="prose">
 <h2>Who runs it</h2>
 <p>FocusFlow Lab is run by Ahsan Raza in Lahore, Pakistan. It started as a study-focus YouTube channel, and this site turns the same ideas into free tools, exam study plans, guides and printable planners.</p>
+<h2>Why it exists</h2>
+<p>I’m a software engineer, not a teacher, tutor or exam-prep professional, and I don’t claim to be one. What I do is build systems: take a big, vague job, break it into parts, and track whether it is working. Exam prep is that kind of problem. Most people do not fail for lack of effort. They fail to turn a date and a long syllabus into a week they can actually follow.</p>
+<p>So I built what I would want: plans that start from the exam’s own outline, give each topic hours in proportion to its weight, put practice tests and review on the calendar, and leave a rest day. The free tools handle the arithmetic that people usually do badly in their heads: days left, study hours, the grade you need on a final, your pace per question.</p>
+<h2>How the plans are made</h2>
+<ul>
+<li><strong>Official sources first.</strong> Exam formats, section names and timings come from the exam owner’s own pages. The planner pages show a short “official facts” block, with the month we last checked.</li>
+<li><strong>Estimates are labelled.</strong> Where an exam owner does not publish a figure, such as how study time should be shared out, we say it is a rough guide and not an official number. If we could not confirm a fact, we leave it out.</li>
+<li><strong>Cross-checked.</strong> Each plan’s weeks, hours and totals are checked against the outline and against each other before it goes live.</li>
+<li><strong>Corrected when you tell us.</strong> Exams change. If something is out of date, <a href="mailto:hello@thefocusflowlab.com">email me</a> and I will fix it and note the date.</li>
+</ul>
+<h2>What this is not</h2>
+<p>These are planning tools. They do not replace your official exam materials, your school’s advice or a qualified tutor, and nothing here promises a score or a pass. Study plans help most with consistency, which is the part most people find hardest.</p>
 <h2>What’s free</h2>
 <p>The <a href="/study-plan/">study plan generators</a>, the <a href="/tools/">study tools</a> and the <a href="/guides/">guides</a> are free. The tools run in your browser and keep what you type on your own device. The <a href="/#free-kit">Study Focus Kit</a> is free by email.</p>
 <h2>What’s paid</h2>
