@@ -159,7 +159,7 @@ def about_page():
     path = "/about/"
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("About", path)])
     desc = "Who runs FocusFlow Lab, how the free study tools work, how to get help and how refunds work."
-    ld = {"@context": "https://schema.org", "@graph": [{"@type": "AboutPage", "name": "About FocusFlow Lab", "url": SITE + path, "description": desc, "publisher": ORG}, crumb_ld]}
+    ld = {"@context": "https://schema.org", "@graph": [{"@type": "AboutPage", "name": "About FocusFlow Lab", "url": SITE + path, "description": desc, "publisher": ORG, "about": {"@id": SITE + "/#org"}}, {**ORG, "logo": SITE + "/assets/logo-512.png", "email": "hello@thefocusflowlab.com", "address": {"@type": "PostalAddress", "addressLocality": "Lahore", "addressCountry": "PK"}, "founder": {"@type": "Person", "name": "Ahsan Raza", "url": SITE + "/about/"}, "sameAs": ["https://www.youtube.com/@YourFocusFlowLab", "https://www.tiktok.com/@focusflowlabofficial", "https://www.pinterest.com/focusflowlabofficial/"]}, crumb_ld]}
     body = f"""{crumb_html}
 
     <main id="main">
