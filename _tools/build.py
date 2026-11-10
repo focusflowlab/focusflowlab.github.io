@@ -34,7 +34,7 @@ for page in pages:
         if url.startswith(section):
             h = h.replace(f'href="{section}" aria-expanded', f'href="{section}" aria-current="page" aria-expanded')
             if url != section:
-                f = f'<nav class="container hub-link" aria-label="Back to section"><a href="{section}">{HUB[section]}</a></nav>' + chr(10) + foot
+                f = f'<nav class="container hub-link{" hub-float" if section == "/planners/" else ""}" aria-label="Back to section"><a href="{section}">{HUB[section]}</a></nav>' + chr(10) + foot
     html = re.sub(r"<!-- site-head -->.*?<!-- /site-head -->", lambda m: f"<!-- site-head -->\n{h}\n<!-- /site-head -->", html, flags=re.S)
     html = re.sub(r"<!-- site-foot -->.*?<!-- /site-foot -->", lambda m: f"<!-- site-foot -->\n{f}\n<!-- /site-foot -->", html, flags=re.S)
     page.write_text(html, encoding="utf-8", newline="\n")

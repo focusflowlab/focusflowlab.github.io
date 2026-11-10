@@ -178,3 +178,32 @@ document.querySelectorAll('[data-example-for]').forEach((btn) => {
     a.href = u.toString();
   });
 })();
+
+// Theme switch: light or dark, remembered in this browser. Without it the page follows the device setting.
+(() => {
+  const btn = document.querySelector('.theme-toggle');
+  if (!btn) return;
+  const root = document.documentElement;
+  const current = () => root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const label = () => btn.setAttribute('aria-label', current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+  label();
+  btn.addEventListener('click', () => {
+    const next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('ffl-theme', next); } catch {}
+    label();
+  });
+})();
+
+// The "All planners" pill on planner pages fades in once you scroll past the top.
+(() => {
+  const pill = document.querySelector('.hub-float');
+  if (!pill) return;
+  let on = false;
+  const update = () => {
+    const show = scrollY > 400;
+    if (show !== on) { on = show; pill.classList.toggle('is-visible', show); }
+  };
+  addEventListener('scroll', update, { passive: true });
+  update();
+})();

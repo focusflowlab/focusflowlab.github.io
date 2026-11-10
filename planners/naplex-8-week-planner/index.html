@@ -195,6 +195,7 @@
 </head>
 <body>
 <!-- site-head -->
+<script>try{var t=localStorage.getItem("ffl-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head">
   <div class="container masthead">
@@ -361,6 +362,7 @@
         </div>
       </div>
     </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark theme"><svg class="ico-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M21 14.5A9 9 0 0 1 9.5 3 9 9 0 1 0 21 14.5z"/></svg><svg class="ico-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
   </div>
 </header>
 <!-- /site-head -->
@@ -511,7 +513,7 @@
   </div>
 
 <!-- site-foot -->
-<nav class="container hub-link" aria-label="Back to section"><a href="/planners/">← All planners</a></nav>
+<nav class="container hub-link hub-float" aria-label="Back to section"><a href="/planners/">← All planners</a></nav>
 <footer class="site-foot">
   <div class="container">
     <div class="foot-grid">
