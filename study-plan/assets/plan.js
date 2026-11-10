@@ -107,7 +107,66 @@
       });
     }
 
-    return { daysLeft, totalWeeks, totalHours, weeks, exam };
+    return { daysLeft, totalWeeks, totalHours, weeks, exam, inputs };
+  }
+
+  /** Daily pages for the first week: your dates, your topics, four focus blocks with a self-test. Printed from a hidden block. */
+  function buildDailyPages(plan) {
+    const week = plan.weeks[0];
+    const n = week.studyDays;
+    const slots = n * 4;
+    // Share the block slots between topics by hours (largest remainder), then deal them out round-robin so a day mixes topics.
+    const total = week.topics.reduce((s, t) => s + t.hours, 0) || 1;
+    const raw = week.topics.map((t) => (t.hours / total) * slots);
+    const counts = raw.map(Math.floor);
+    let spare = slots - counts.reduce((a, b) => a + b, 0);
+    raw.map((v, i) => [v - Math.floor(v), i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (spare > 0) { counts[i]++; spare--; } });
+    const queue = [];
+    while (queue.length < slots) {
+      let added = false;
+      counts.forEach((c, i) => { if (c > 0 && queue.length < slots) { queue.push(week.topics[i].name); counts[i]--; added = true; } });
+      if (!added) break;
+    }
+    const minutes = Math.max(15, Math.round((plan.inputs.hoursPerDay * 60) / 4 / 5) * 5);
+    const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const fmtLong = (d) => d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    const top = week.topics.slice(0, 5);
+    const cover = `<section class="day-page">
+        <p class="dp-kicker">My ${esc(config.shortName)} plan</p>
+        <h2>${esc(config.shortName)} on ${esc(plan.exam.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }))}</h2>
+        <p class="dp-lead">${plan.daysLeft} days to go. ${plan.inputs.hoursPerDay} hours a day, ${plan.inputs.daysPerWeek} days a week, about ${Math.round(plan.totalHours)} hours in total.</p>
+        <h3>Where week 1 goes</h3>
+        <ul class="dp-list">${top.map((t) => `<li><span>${esc(t.name)}</span><strong>${roundHalf(t.hours)} h</strong></li>`).join('')}</ul>
+        <h3>How each day works</h3>
+        <ol class="dp-steps"><li>Four focus blocks of about ${minutes} minutes, phone in another room.</li><li>After each block, close your notes and write what you remember. Tick the self-test.</li><li>Write every miss in the error log at the bottom of the page.</li><li>Tomorrow, start with five minutes of recall from today.</li></ol>
+        <p class="dp-foot">Made with the free plan generator at thefocusflowlab.com. The full ${plan.totalWeeks}-week schedule is in your plan on screen. Want every week on paper, with an exam map and a test log? See the printable planners at thefocusflowlab.com/planners.</p>
+      </section>`;
+    const days = [];
+    for (let i = 0; i < n; i++) {
+      const day = new Date(week.start.getTime() + Math.floor((i * week.daysInWeek) / n) * MS_PER_DAY);
+      const blocks = [0, 1, 2, 3].map((b) => `<li><span class="dp-n">${b + 1}</span><div><strong>${esc(queue[i * 4 + b] || week.topics[0].name)}</strong><span class="dp-sub">${minutes} minutes</span></div><span class="dp-box" aria-hidden="true"></span><span class="dp-lbl">Self-test done</span></li>`).join('');
+      days.push(`<section class="day-page">
+        <p class="dp-kicker">${esc(config.shortName)} · day ${i + 1} of ${n} this week · ${Math.max(0, Math.round((plan.exam - day) / MS_PER_DAY))} days to the exam</p>
+        <h2>${esc(fmtLong(day))}</h2>
+        <ol class="dp-blocks">${blocks}</ol>
+        <h3>What I remember from block 4, without notes</h3>
+        <div class="dp-lines"><i></i><i></i><i></i><i></i></div>
+        <h3>Error log: what I missed, and why</h3>
+        <div class="dp-lines"><i></i><i></i><i></i></div>
+        <p class="dp-foot">Start tomorrow with five minutes of recall from today. Plan from thefocusflowlab.com</p>
+      </section>`);
+    }
+    return cover + days.join('');
+  }
+
+  function printDailyPages(plan) {
+    let root = document.getElementById('daily-print');
+    if (!root) { root = document.createElement('div'); root.id = 'daily-print'; root.className = 'daily-print'; document.body.appendChild(root); }
+    root.innerHTML = buildDailyPages(plan);
+    document.body.classList.add('print-days');
+    const done = () => { document.body.classList.remove('print-days'); window.removeEventListener('afterprint', done); };
+    window.addEventListener('afterprint', done);
+    window.print();
   }
 
   /** One calendar event per study session (no repeats), so any session can be moved or deleted. Times are local ("floating"). */
@@ -200,12 +259,14 @@
       ${weeks}
       <div class="plan-actions">
         <button class="btn" type="button" id="print-plan">Print or save as PDF</button>
+        <button class="btn btn-soft" type="button" id="print-days">Print my first week, day by day</button>
         <button class="btn btn-soft" type="button" id="add-cal">Add to my calendar (.ics)</button>
         <a class="btn btn-quiet" href="#plan-form">Change my answers</a>
       </div>
       <p class="muted cal-note">The calendar file has one event per study session at 6 pm and your exam day. Move any session after you import it into Google Calendar, Apple Calendar or Outlook.</p>`;
     document.getElementById('print-plan').addEventListener('click', () => window.print());
     document.getElementById('add-cal').addEventListener('click', () => downloadIcs(plan));
+    document.getElementById('print-days').addEventListener('click', () => printDailyPages(plan));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     output.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     const heading = output.querySelector('h2');
