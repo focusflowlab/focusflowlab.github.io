@@ -845,7 +845,7 @@ html { scroll-behavior: smooth; }
 .fd-len label:has(input:disabled) { opacity: .6; cursor: default; }
 .fd-btns { display: flex; gap: var(--space-xs); }
 .fd-btns .btn { min-height: 40px; padding-inline: var(--space-md); font-size: var(--text-sm); flex: 1; }
-.focus-day ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-xs); margin-top: var(--space-sm); }
+.focus-day ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-xs); margin-top: var(--space-lg); }
 .focus-day li { display: flex; flex-direction: column; align-items: center; gap: 0; padding: var(--space-xs) var(--space-2xs); border: 1px solid var(--color-rule); border-bottom: 1px solid var(--color-rule); border-radius: var(--radius-control); text-align: center; }
 .focus-day li:last-child { border-bottom: 1px solid var(--color-rule); }
 .focus-day li .n { font-size: 1.1rem; }
