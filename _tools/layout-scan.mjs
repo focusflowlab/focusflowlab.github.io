@@ -1,4 +1,4 @@
-// Layout fault scan: every page, three widths. Flags clipped inputs, wrapped short labels/buttons,
+// Layout fault scan: every page, three widths, after filling and submitting forms (plans, tools, focus day). Flags clipped inputs, wrapped short labels/buttons, overflow, horizontal scroll, touching blocks, clipped scroll boxes and tiny tap targets.
 // elements wider than their container, horizontal scroll, touching blocks and tiny tap targets.
 import puppeteer from 'puppeteer-core';
 import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
@@ -20,6 +20,16 @@ for (const width of [375, 768, 1280]) {
     await p.evaluate(() => {
       document.querySelectorAll('input[type=date]').forEach((i) => { if (!i.value) i.value = '2026-11-17'; });
       document.querySelectorAll('input[type=number]').forEach((i) => { if (!i.value) i.value = i.placeholder || '100'; });
+    });
+    await p.evaluate(async () => {
+      const plus = (n) => { const d = new Date(Date.now() + n * 864e5); return d.toISOString().slice(0, 10); };
+      document.querySelectorAll('main input[type=date]').forEach((i) => { i.value = plus(40); });
+      const f = document.getElementById('plan-form') || document.querySelector('main form');
+      if (f && !f.classList.contains('kit-form')) { try { f.requestSubmit(); } catch {} }
+      const go = document.getElementById('fd-go'); if (go) go.click();
+      if (document.getElementById('sc-form')) { const t = document.getElementById('sc-total'); const r = document.getElementById('sc-right'); t.value = 40; r.value = 30; document.getElementById('sc-form').requestSubmit(); }
+      if (document.getElementById('el-form')) { document.getElementById('el-what').value = 'Heparin antidote'; document.getElementById('el-form').requestSubmit(); }
+      await new Promise((r) => setTimeout(r, 700));
     });
     const issues = await p.evaluate((width) => {
       const res = [];
@@ -54,14 +64,23 @@ for (const width of [375, 768, 1280]) {
         const r = e.getBoundingClientRect(), q = pr.getBoundingClientRect();
         if (r.right > q.right + 2 && r.width > 20 && q.width > 0) res.push(`OVERFLOW ${name(e)} sticks out ${Math.round(r.right - q.right)}px`);
       });
-      // touching blocks: consecutive block siblings with no gap (text/button groups)
-      document.querySelectorAll('main p, main ul, main ol, main .sheet-actions, main .fields, main form, main table, main .btn').forEach((e) => {
-        if (!vis(e)) return;
+      // touching blocks: consecutive block siblings in the same column with no gap
+      document.querySelectorAll('main p, main ul, main ol, main div, main section, main form, main table, main .btn, main h2, main h3, main aside, main details, main dl, main figure').forEach((e) => {
+        if (!vis(e) || e.closest('svg, .table-scroll, .alloc, .totals, .mega, .cards, .toc')) return;
         const nx = e.nextElementSibling; if (!nx || !vis(nx)) return;
-        if (getComputedStyle(nx).display.includes('inline') || getComputedStyle(e).display.includes('inline')) return;
-        const gap = nx.getBoundingClientRect().top - e.getBoundingClientRect().bottom;
-        if (gap >= 0 && gap < 4 && (nx.textContent || '').trim()) res.push(`TOUCHING ${name(e)} -> ${name(nx)} gap ${Math.round(gap)}px`);
+        const se = getComputedStyle(e), sn = getComputedStyle(nx);
+        if (se.display.includes('inline') || sn.display.includes('inline') || sn.position === 'absolute' || sn.position === 'fixed') return;
+        if (se.display === 'flex' && se.flexDirection === 'row' && e.parentElement && getComputedStyle(e.parentElement).display.includes('flex')) return;
+        const px = (v) => parseFloat(v) || 0;
+        const solid = (st) => st.backgroundColor !== 'rgba(0, 0, 0, 0)' && st.backgroundColor !== 'transparent';
+        if (px(se.paddingBottom) >= 8 || px(sn.paddingTop) >= 8 || px(se.borderBottomWidth) > 0 || px(sn.borderTopWidth) > 0 || solid(se) || solid(sn) || e.tagName === 'DETAILS') return;
+        const a = e.getBoundingClientRect(), b = nx.getBoundingClientRect();
+        const ov = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+        if (ov < Math.min(a.width, b.width) * 0.5) return;
+        const gap = b.top - a.bottom;
+        if (gap >= 0 && gap < 4 && (nx.textContent || '').trim() && (e.textContent || '').trim()) res.push(`TOUCHING ${name(e)} -> ${name(nx)} gap ${Math.round(gap)}px`);
       });
+      document.querySelectorAll('.table-scroll, .mega, .sc-list, pre').forEach((e) => { if (e.classList.contains('mega')) return; if (e.scrollHeight > e.clientHeight + 2 && getComputedStyle(e).overflowY !== 'visible') res.push(`V-CLIPPED ${name(e)} ${e.clientHeight}px of ${e.scrollHeight}px`); });
       // small tap targets on phones
       if (width <= 400) document.querySelectorAll('main button, main .btn, main select, main input:not([type=checkbox]):not([type=radio]):not([type=hidden])').forEach((e) => {
         if (!vis(e)) return; const r = e.getBoundingClientRect(); if (r.height < 36) res.push(`SMALL-TAP ${name(e)} ${Math.round(r.height)}px`);

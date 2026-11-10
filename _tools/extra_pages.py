@@ -57,7 +57,7 @@ def card(t, price="$5", meta=None, cta="Get the planner", group=True):
             <p class="pc-tag">{g or "Bundle"} · {meta}</p>
             <h3><a href="/planners/{link}/">{nowrap_first(title)}</a></h3>
             <p class="pc-blurb">{blurb}</p>
-            <div class="pc-buy"><span class="pc-price">{price}</span><a class="btn" href="{STORE}{link}?wanted=true">{cta}</a><a class="text-link" href="/planners/{link}/">Details</a></div>
+            <div class="pc-buy"><span class="pc-price">{price}</span><a class="btn" href="/planners/{link}/">{"See the bundle" if "bundle" in link else "See the planner"}</a></div>
           </div>
         </li>'''
 
@@ -118,7 +118,7 @@ def planners_page():
           <p class="pc-tag">Best value</p>
           <h2 id="bundle-title">All 14 exam planners, $15</h2>
           <p>Every exam-specific planner in one purchase, instead of $70 bought one by one. The Exam Sprint Planner is sold separately.</p>
-          <div class="pc-buy"><span class="pc-price">$15</span><a class="btn" href="{STORE}{BUNDLE[3]}?wanted=true">Get the bundle</a><a class="text-link" href="/planners/{BUNDLE[3]}/">Details</a></div>
+          <div class="pc-buy"><span class="pc-price">$15</span><a class="btn" href="/planners/{BUNDLE[3]}/">See the bundle</a></div>
         </div>
         <ul class="bundle-links" aria-label="Planners in the bundle">{bundle_links}</ul>
       </section>
