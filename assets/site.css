@@ -777,3 +777,6 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .pd-bullets { margin: 0; padding-left: 1.25rem; max-width: var(--measure); display: grid; gap: var(--space-xs); }
 .reading-body > ul.pd-bullets { margin-top: 0; }
 .pd-sub + .pd-bullets + .pd-note { margin-top: var(--space-sm); }
+
+.byline { margin-top: var(--space-sm); font-size: var(--text-sm); }
+.byline a { color: inherit; }

@@ -309,6 +309,7 @@ def planner_detail(t):
         <div>
           <h1>{nowrap_first(h1)}</h1>
           <p class="lead">{lead}</p>
+          <p class="muted byline">Plans by <a href="/about/">Ahsan Raza</a>, built from the official exam outlines.</p>
           <div class="pd-buy"><span class="pd-price">{price}</span><a class="btn" href="{STORE}{link}?wanted=true">{buy_text}</a><a class="btn btn-soft" href="{plan}">{"Free study plans" if is_bundle else "Try the free plan first"}</a></div>
           <ul class="pd-facts"><li>Instant download</li><li>A4 and US Letter PDFs</li><li>14-day no-questions refund</li></ul>
         </div>
