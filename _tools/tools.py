@@ -353,7 +353,11 @@ TOOLS = [
             <li><strong>Read once, properly.</strong> Close the book after each section and write down the main points from memory. The <a href="/guides/stop-rereading-cover-syllabus-faster/">re-reading guide</a> explains why this beats a second read.</li>
             <li><strong>Use the review days</strong> to recall, not re-read: skim your notes and test yourself on the main points.</li>
             <li><strong>Behind schedule?</strong> Put in the pages you’ve read so far and the plan resets from today.</li>
-          </ul>""",
+          </ul>
+          <h3>Pages a day: some quick examples</h3>
+          <div class="table-scroll"><table class="mini-table"><thead><tr><th scope="col">Pages left</th><th scope="col">Reading days</th><th scope="col">Pages a day</th></tr></thead>
+          <tbody><tr><td>300</td><td>10</td><td>30</td></tr><tr><td>300</td><td>15</td><td>20</td></tr><tr><td>300</td><td>20</td><td>15</td></tr><tr><td>600</td><td>20</td><td>30</td></tr></tbody></table></div>
+          <p>Count only days you will really read. A 300-page book due in three weeks with five reading days a week is 15 reading days, so 20 pages a day. If the daily number looks too big, start earlier or ask whether every chapter needs a full read. For a textbook, read the headings and summary first, then read the sections that matter most.</p>""",
        faq=[("How many pages a day should I read?", "Enough to finish by your deadline with a couple of days spare for review. Put in your page count and deadline above and the planner works it out."),
             ("How are pages per day worked out?", "Pages left ÷ reading days before the deadline, rounded up. Review days and rest days aren’t counted as reading days."),
             ("Does it count today?", "Yes. The plan starts today and ends the day before your deadline."),
@@ -467,7 +471,7 @@ def feedback_block(t):
         <a class="btn btn-soft" href="mailto:hello@thefocusflowlab.com?subject={subject}">Send feedback</a>
       </aside>"""
 
-EMBEDS = {"final-grade-calculator": 820, "gpa-calculator": 1000}
+EMBEDS = {"final-grade-calculator": 820, "gpa-calculator": 1000, "weighted-grade-calculator": 800, "test-time-calculator": 760, "reading-planner": 760, "exam-countdown": 720}
 
 def embed_snippet(t):
     h = EMBEDS[t["slug"]]

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exam countdown | FocusFlow Lab</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/exam-countdown/">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+</head>
+<body class="embed">
+  <main id="main" class="embed-main">
+    <h1 class="visually-hidden">Exam countdown</h1>
+        <form class="sheet" id="countdown-form" novalidate aria-label="Exam countdown">
+          <p class="sheet-title">Your exam</p>
+          <div class="fields">
+            <div><label for="examDate">Exam date</label><input type="date" id="examDate" name="examDate" required></div>
+            <div><label for="hoursPerDay">Hours a day</label><input type="number" id="hoursPerDay" min="0.5" max="14" step="0.5" value="3" inputmode="decimal"></div>
+            <div><label for="daysPerWeek">Days a week</label><select id="daysPerWeek"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option></select></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Count my hours</button></div>
+          <p class="error" id="countdown-error" role="alert"></p>
+          <div id="countdown-result" class="count-result" hidden aria-live="polite">
+            <dl class="totals">
+              <div><dt>Days left</dt><dd id="r-days"></dd></div>
+              <div><dt>Study days</dt><dd id="r-study"></dd></div>
+              <div><dt>Study hours</dt><dd id="r-hours"></dd></div>
+            </dl>
+            <p class="muted">That’s <span id="r-weeks"></span>. <span id="r-tip"></span></p>
+            <p><a href="/study-plan/">Turn these hours into a week-by-week plan</a></p>
+          </div>
+        </form>
+    <p class="embed-credit">Free <a href="https://thefocusflowlab.com/tools/exam-countdown/" target="_blank" rel="noopener">exam countdown</a> by FocusFlow Lab</p>
+  </main>
+<script src="/assets/tools/exam-countdown.js" defer></script>
+</body>
+</html>

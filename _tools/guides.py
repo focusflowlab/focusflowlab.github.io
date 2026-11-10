@@ -151,6 +151,17 @@ GUIDES = [
 <li><strong>Take short breaks</strong> every 45 to 50 minutes. The <a href="/tools/focus-timer/">focus timer</a> keeps you honest.</li>
 <li><strong>Sleep.</strong> An all-nighter costs you on the easy questions. Stop in time to get some sleep.</li>
 </ol>"""),
+         ("The same 6 hours, two ways", """<p>Say you have six hours to give one exam. Here is how cramming and spacing use them:</p>
+<div class="table-scroll"><table class="mini-table">
+<thead><tr><th scope="col">Plan</th><th scope="col">How the hours are used</th><th scope="col">What you get</th></tr></thead>
+<tbody>
+<tr><td>Cram</td><td>6 hours the night before</td><td>One long read-through. Familiar by morning, but no practice at recalling it, and little time to repeat anything.</td></tr>
+<tr><td>Spaced</td><td>Three 2-hour sessions over three days: learn and test, review and test, test again</td><td>Each topic is recalled three times, with a night’s sleep between. Weak spots show up while you can still fix them.</td></tr>
+</tbody></table></div>
+<p>The hours are the same. The spaced plan only needs you to start three days earlier. If you have just one night, use the cram steps above and still test yourself instead of re-reading.</p>"""),
+         ("Common questions", """<p><strong>Is it better to cram or sleep?</strong> If you have to choose, sleep. Staying up all night costs you attention on the exam itself, and you can’t recall what you can’t think clearly about.</p>
+<p><strong>Can I cram for an exam I’ll need again later?</strong> You can pass tomorrow, but it won’t last. Cumulative exams, such as a final or a board exam, need spaced review from the start. The <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> shows typical prep times.</p>
+<p><strong>How many days before an exam should I start?</strong> More than one, and ideally enough to review each topic at least twice. The <a href="/tools/exam-countdown/">exam countdown calculator</a> shows how many study days you have left, and the <a href="/guides/how-to-create-a-study-schedule/">study schedule guide</a> turns them into a plan.</p>"""),
          ("Next time, space it out", """<p>Study the same hours across more days instead. Review each topic a day later, a few days later and a week later. The <a href="/tools/spaced-review/">spaced review calendar</a> and <a href="/tools/flashcards/">flashcards</a> do the scheduling for you.</p>"""),
        ]),
   dict(slug="stop-procrastinating-studying", tag="Focus", date="2026-10-27",
@@ -757,7 +768,7 @@ RELATED = {
     "how-to-create-a-study-schedule": [("Study schedule maker", "/tools/study-schedule-maker/"), ("All free exam study plans", "/study-plan/"), ("Printable planners", "/planners/")],
     "how-to-calculate-what-you-need-on-your-final": [("Final grade calculator", "/tools/final-grade-calculator/"), ("Weighted grade calculator", "/tools/weighted-grade-calculator/"), ("GPA calculator", "/tools/gpa-calculator/")],
     "how-to-study-for-the-nclex-pn": [("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("How to study for the NCLEX-RN", "/guides/how-to-study-for-the-nclex/"), ("NCLEX-PN 6-week printable planner", "/planners/nclex-pn-6-week-planner/")],
-    "how-to-pace-yourself-on-a-timed-exam": [("Test time calculator", "/tools/test-time-calculator/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("All free exam study plans", "/study-plan/")],
+    "how-to-pace-yourself-on-a-timed-exam": [("Test time calculator", "/tools/test-time-calculator/"), ("Exam formats at a glance", "/exam-facts/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("All free exam study plans", "/study-plan/")],
     "gmat-study-plan-8-weeks": [("GMAT study plan generator", "/study-plan/gmat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("GMAT 8-week printable planner", "/planners/")],
     "dat-study-schedule-10-weeks": [("DAT study plan generator", "/study-plan/dat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("DAT 10-week printable planner", "/planners/")],
     "pance-study-plan-8-weeks": [("PANCE study plan generator", "/study-plan/pance/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("PANCE 8-week printable planner", "/planners/")],
@@ -768,7 +779,7 @@ RELATED = {
     "how-to-study-for-the-nclex": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("How to study for the NCLEX-PN", "/guides/how-to-study-for-the-nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/")],
     "how-to-study-for-the-teas": [("TEAS study plan generator", "/study-plan/teas/"), ("How to study for the NCLEX", "/guides/how-to-study-for-the-nclex/"), ("Printable planners", "/planners/")],
     "cpa-study-schedule": [("CPA FAR plan generator", "/study-plan/cpa-far/"), ("CPA AUD plan generator", "/study-plan/cpa-aud/"), ("CPA REG plan generator", "/study-plan/cpa-reg/"), ("CPA FAR 10-week printable planner", "/planners/")],
-    "how-long-to-study-for-exams": [("All free exam study plans", "/study-plan/"), ("How to pace a timed exam", "/guides/how-to-pace-yourself-on-a-timed-exam/"), ("How to create a study schedule", "/guides/how-to-create-a-study-schedule/"), ("Exam countdown calculator", "/tools/exam-countdown/"), ("Printable planners", "/planners/")],
+    "how-long-to-study-for-exams": [("All free exam study plans", "/study-plan/"), ("Exam formats at a glance", "/exam-facts/"), ("How to pace a timed exam", "/guides/how-to-pace-yourself-on-a-timed-exam/"), ("How to create a study schedule", "/guides/how-to-create-a-study-schedule/"), ("Exam countdown calculator", "/tools/exam-countdown/"), ("Printable planners", "/planners/")],
     "mcat-error-log-template": [("MCAT study plan generator", "/study-plan/mcat/"), ("A 3-month MCAT study schedule", "/guides/mcat-study-schedule-3-months/"), ("MCAT 16-week printable planner", "/planners/")],
     "mcat-study-schedule-3-months": [("MCAT study plan generator", "/study-plan/mcat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("MCAT 16-week printable planner", "/planners/")],
 }

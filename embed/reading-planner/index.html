@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading planner | FocusFlow Lab</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/reading-planner/">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+</head>
+<body class="embed">
+  <main id="main" class="embed-main">
+    <h1 class="visually-hidden">Reading planner</h1>
+        <form class="sheet" id="reading-form" novalidate aria-label="Reading planner">
+          <p class="sheet-title">Your reading</p>
+          <div class="fields fields-date">
+            <div><label for="totalPages">Total pages</label><input type="number" id="totalPages" min="1" max="20000" step="1" placeholder="320" inputmode="numeric"></div>
+            <div><label for="pagesRead">Already read</label><input type="number" id="pagesRead" min="0" step="1" placeholder="0" inputmode="numeric"></div>
+            <div><label for="deadline">Finish by</label><input type="date" id="deadline"></div>
+          </div>
+          <div class="fields fields-2b" style="margin-top:var(--space-sm)">
+            <div><label for="readDays">Reading days a week</label><select id="readDays"><option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option></select></div>
+            <div><label class="check" style="margin-top:28px"><input type="checkbox" id="reviewDays" checked> Keep the last 2 days for review</label></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Plan my reading</button></div>
+          <p class="error" id="reading-error" role="alert"></p>
+          <div id="reading-result" class="count-result" hidden aria-live="polite">
+            <dl class="totals">
+              <div><dt>Pages a day</dt><dd id="r-per"></dd></div>
+              <div><dt>Reading days</dt><dd id="r-days"></dd></div>
+              <div><dt>Pages left</dt><dd id="r-left"></dd></div>
+            </dl>
+            <div class="table-scroll"><table class="mini-table"><thead><tr><th>Day</th><th>Pages</th></tr></thead><tbody id="r-table"></tbody></table></div>
+          </div>
+        </form>
+    <p class="embed-credit">Free <a href="https://thefocusflowlab.com/tools/reading-planner/" target="_blank" rel="noopener">reading planner</a> by FocusFlow Lab</p>
+  </main>
+<script src="/assets/tools/reading-planner.js" defer></script>
+</body>
+</html>

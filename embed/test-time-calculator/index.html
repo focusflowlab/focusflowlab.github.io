@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test time calculator | FocusFlow Lab</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://thefocusflowlab.com/tools/test-time-calculator/">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../study-plan/assets/plan.css">
+</head>
+<body class="embed">
+  <main id="main" class="embed-main">
+    <h1 class="visually-hidden">Test time calculator</h1>
+        <form class="sheet" id="pace-form" novalidate aria-label="Test time calculator">
+          <p class="sheet-title">Your test</p>
+          <div class="fields">
+            <div><label for="totalMin">Total time (minutes)</label><input type="number" id="totalMin" min="1" max="1000" step="1" value="120" inputmode="numeric"></div>
+            <div><label for="questions">Number of questions</label><input type="number" id="questions" min="1" max="1000" step="1" value="60" inputmode="numeric"></div>
+            <div><label for="reviewPct">Keep for review (%)</label><select id="reviewPct"><option>0</option><option>5</option><option selected>10</option><option>15</option><option>20</option></select></div>
+          </div>
+          <div class="sheet-actions"><button class="btn" type="submit">Work out my pace</button></div>
+          <p class="error" id="pace-error" role="alert"></p>
+          <div id="pace-result" class="count-result" hidden aria-live="polite">
+            <dl class="totals">
+              <div><dt>Per question</dt><dd id="r-min"></dd></div>
+              <div><dt>In seconds</dt><dd id="r-sec"></dd></div>
+              <div><dt>Review time</dt><dd id="r-review"></dd></div>
+            </dl>
+            <p class="muted">Checkpoints: <span id="r-points"></span></p>
+            <p><a href="/study-plan/">Build a free study plan for your exam</a></p>
+          </div>
+        </form>
+    <p class="embed-credit">Free <a href="https://thefocusflowlab.com/tools/test-time-calculator/" target="_blank" rel="noopener">test time calculator</a> by FocusFlow Lab</p>
+  </main>
+<script src="/assets/tools/test-time.js" defer></script>
+</body>
+</html>
