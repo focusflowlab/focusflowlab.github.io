@@ -6,6 +6,7 @@ Add a planner by adding its slug to PLANNERS in exams.py and a thumbnail to asse
 """
 import ast, json, pathlib, re
 from common import SITE, shell, crumbs, ORG
+import planner_extra
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 STORE = "https://store.thefocusflowlab.com/l/"
@@ -14,6 +15,7 @@ def literal(name):
     return next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign) and getattr(n.targets[0], "id", "") == name)
 EXAMS = {e["slug"]: e for e in literal("EXAMS")}
 PLANNERS = literal("PLANNERS")
+PLANNERS_MAP = PLANNERS
 
 # (title, weeks label, blurb, store permalink, free plan page, thumbnail slug)
 ITEMS = [("Exam Sprint Planner", "14 days", "The two weeks before any exam: exam map, priority grid, four focus blocks a day, a self-test after each.", "exam-sprint-planner", "/#planner", "exam-sprint-planner"),
@@ -270,6 +272,15 @@ def planner_detail(t):
         "What do I get?", {"mcat-16-week-planner": "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map, a 16-week overview, weekly pages, daily focus pages, a full-length test log with section scores, an error log and a test-day checklist.",
                            "exam-sprint-planner": "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map and priority grid, a sprint calendar with four focus blocks a day, daily pages that end each block with a self-test, and an active-recall tracker."}.get(
             link, "All 14 exam-specific planners as A4 and US Letter PDFs. Each planner has 9 pages: an exam map, a week-by-week overview, weekly and daily focus pages, a practice test log, an error log and a test-day checklist."))]
+    fx = None if (is_bundle or is_sprint) else planner_extra.facts(link, PLANNERS_MAP, EXAMS)
+    if fx:
+        faq += [(q, a) for q, a in fx["faq"]]
+        extra = planner_extra.exam_sections(fx, link, for_)
+    elif is_sprint:
+        faq += planner_extra.SPRINT_FAQ
+        extra = planner_extra.sprint_sections()
+    else:
+        extra = planner_extra.bundle_sections(ITEMS, PLANNERS_MAP, EXAMS)
     faq += FAQ[1:]
     faq_html = "\n".join(f"        <h3>{q}</h3>\n        <p>{a}</p>" for q, a in faq)
     note_exam = "" if (is_bundle or is_sprint) else f"        <p>{CHECK}</p>\n" if emap.startswith("Rough") else ""
@@ -300,6 +311,7 @@ def planner_detail(t):
 {cards}
         </ul>
 {note_exam}      </section>
+{extra}
 {day}
       <section class="pd-section reading" aria-labelledby="free-title">
         <h2 id="free-title">Use it with the free plan</h2>

@@ -759,3 +759,17 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 .hero.single:has(.scroll-cue) { gap: var(--space-md); padding-bottom: var(--space-xl); }
 .reading-body > p { margin: 0; max-width: var(--measure); }
 .reading-body > ul { margin: var(--space-md) 0 0; padding-left: 1.25rem; }
+
+/* Planner detail pages: step list and tables */
+.pd-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-sm); max-width: var(--measure); }
+.pd-steps li { padding-left: var(--space-md); border-left: 3px solid var(--color-accent); }
+.pd-steps strong { display: block; color: var(--color-ink); }
+.pd-table { width: 100%; max-width: var(--measure); border-collapse: collapse; margin: var(--space-md) 0 0; font-size: var(--text-sm); }
+.pd-table th, .pd-table td { text-align: left; padding: var(--space-xs) var(--space-sm); border-bottom: 1px solid var(--color-rule); }
+.pd-table thead th { font-weight: 600; color: var(--color-muted); }
+.pd-table tbody th { font-weight: 500; }
+.reading-body > .pd-table, .reading-body > .pd-note { margin-top: var(--space-md); }
+.pd-note { color: var(--color-muted); font-size: var(--text-sm); max-width: var(--measure); }
+.reading-body > p + p { margin-top: var(--space-md); }
+.reading-body > ul.pd-steps { padding-left: 0; margin-top: 0; }
+.reading-body > .pd-table + p { margin-top: var(--space-md); }
