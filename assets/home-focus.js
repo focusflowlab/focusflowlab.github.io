@@ -48,7 +48,7 @@
       li.classList.toggle('is-done', s.focus[k]);
       li.classList.toggle('is-now', k === i);
       li.querySelector('input').checked = s.tested[k];
-      li.querySelector('.fd-tag').textContent = s.focus[k] ? 'Done. Now test yourself' : (k === i ? 'Up next' : '');
+      li.querySelector('.fd-tag').textContent = s.focus[k] ? 'Done. Now test yourself' : (k === i ? 'Up next' : 'Focus block');
       li.querySelector('strong').textContent = s.subject.trim() ? s.subject.trim() : 'Focus block';
     });
     streak.textContent = s.streak.n >= 2 && s.streak.last === today() ? s.streak.n + '-day streak' : '';
