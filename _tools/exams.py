@@ -43,7 +43,7 @@ def related_block(e):
     return '      <p class="related-links"><strong>Related:</strong> ' + " · ".join(f'<a href="{u}">{t}</a>' for t, u in links) + "</p>\n\n"
 
 
-BUNDLE_URL = "https://store.thefocusflowlab.com/l/all-exam-planners-bundle"
+BUNDLE_URL = "/planners/all-exam-planners-bundle/"
 BUNDLE_LINE = {
     "teas": "Want the whole collection?", "nclex-pn": "Want the whole collection?", "usmle-step-1": "Want the whole collection?",
 }
@@ -65,7 +65,7 @@ def planner_offer(e):
           <h2>Want it on paper?</h2>
           <p>The {e['short']} {weeks}-Week Study Planner. Weekly and daily pages, a practice test log, an error log and a test-day checklist to print. $5, 14-day no-questions refund. <a href="/planners/{link}/">See what's inside</a></p>{bundle_line(e['slug'])}
         </div>
-        <a class="btn" href="{url}?wanted=true">Get the planner</a>
+        <a class="btn" href="/planners/{link}/">See the planner</a>
       </aside>
 
 '''
