@@ -75,21 +75,25 @@ TRACKER_EXAM = {"nclex": "NCLEX-RN", "mcat": "MCAT", "teas": "ATI TEAS"}
 
 def TRACKER_FORM(exam, indent="        "):
     title, text = TRACKERS[exam]
-    html = f'''<aside class="sheet guide-kit tracker-offer" aria-label="{title}">
-  <h2 class="tracker-title">{title}</h2>
-  <p>{text} Enter your email and it arrives with the free Study Focus Kit.</p>
-  <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
-    <label for="kit-email">Email address</label>
-    <div class="kit-row">
-      <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">
-      <button class="btn" type="submit">Send me the tracker</button>
-    </div>
-    <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
-    <input type="hidden" name="fields[exam]" value="{TRACKER_EXAM[exam]}">
-    <input type="hidden" name="ml-submit" value="1">
-    <input type="hidden" name="anticsrf" value="true">
-    <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>
-  </form>
-  <p class="form-note">You’ll also get a few study emails and occasional planner news. Unsubscribe any time. <a href="/privacy.html#focusflow-lab-email-list-and-shop">How we use your email</a>.</p>
+    html = f'''<aside class="sheet tracker-offer" aria-label="{title}">
+  <div class="tracker-copy">
+    <h2 class="tracker-title">{title}</h2>
+    <p>{text} Enter your email and it arrives with the free Study Focus Kit.</p>
+  </div>
+  <div class="tracker-action">
+    <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
+      <label for="kit-email">Email address</label>
+      <div class="kit-row">
+        <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">
+        <button class="btn" type="submit">Send me the tracker</button>
+      </div>
+      <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <input type="hidden" name="fields[exam]" value="{TRACKER_EXAM[exam]}">
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+      <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>
+    </form>
+    <p class="form-note">You’ll also get a few study emails and occasional planner news. Unsubscribe any time. <a href="/privacy.html#focusflow-lab-email-list-and-shop">How we use your email</a>.</p>
+  </div>
 </aside>'''
     return "\n".join(indent + l for l in html.splitlines())

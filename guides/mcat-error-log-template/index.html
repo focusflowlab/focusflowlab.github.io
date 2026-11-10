@@ -283,7 +283,7 @@
 <p>Keep it short enough to finish. If filling in a row takes longer than the question did, you will stop by week three.</p>
         <h2 id="the-template">The template</h2>
         <p>Copy these columns into a notebook or a spreadsheet. The first row is an example.</p>
-<div class="table-scroll"><table class="mini-table">
+<div class="table-scroll"><table class="mini-table template-table">
 <thead><tr><th scope="col">Date</th><th scope="col">Source</th><th scope="col">Section</th><th scope="col">Topic</th><th scope="col">Why (C, M or T)</th><th scope="col">Next time I will</th></tr></thead>
 <tbody>
 <tr><td>Example</td><td>Practice exam</td><td>Bio/Biochem</td><td>Enzyme inhibition graph</td><td>M</td><td>Say what each axis shows before I read the answers</td></tr>
@@ -291,7 +291,9 @@
 <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 </tbody></table></div>
-<p>The free MCAT tracker has a printable version of this log. You can get it with the form at the end of this page.</p>
+<p class="download-row"><a class="btn" href="/assets/templates/mcat-error-log-template.xlsx" download>Download the spreadsheet (.xlsx)</a> <a class="btn btn-soft" href="/assets/templates/mcat-error-log-template.csv" download>Download as CSV</a></p>
+<p>The spreadsheet works in Excel, Numbers and Google Sheets (upload it to Google Drive, or use File, then Import). It has drop-down lists for the section and the reason, fills in a retest date for you (7 days after a content gap, 2 days after the others), and counts your reasons on a second tab.</p>
+<p>Prefer to keep it online? The free <a href="/tools/error-log/">error log tool</a> does the same job for any exam and saves in your browser. Prefer paper? The free MCAT tracker has a printable version of this log. You can get it with the form at the end of this page.</p>
         <h2 id="the-three-reasons">The three reasons</h2>
         <p>Pick one letter for every miss. If two apply, pick the one you can fix first.</p>
 <ul>
@@ -319,22 +321,26 @@
 <p>Prefer paper? The <a href="/planners/mcat-16-week-planner/">MCAT 16-week planner</a> has an error log page, a full-length test log and a weekly page for $5.</p>
 
 <p class="related-links"><strong>Related:</strong> <a href="/study-plan/mcat/">MCAT study plan generator</a> · <a href="/guides/mcat-study-schedule-3-months/">A 3-month MCAT study schedule</a> · <a href="/planners/">MCAT 16-week printable planner</a></p>
-        <aside class="sheet guide-kit tracker-offer" aria-label="Free MCAT 12-week tracker">
-          <h2 class="tracker-title">Free MCAT 12-week tracker</h2>
-          <p>A printable tracker for all four sections, a practice exam score log, an error log and a final-week checklist. Enter your email and it arrives with the free Study Focus Kit.</p>
-          <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
-            <label for="kit-email">Email address</label>
-            <div class="kit-row">
-              <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">
-              <button class="btn" type="submit">Send me the tracker</button>
-            </div>
-            <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
-            <input type="hidden" name="fields[exam]" value="MCAT">
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
-            <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>
-          </form>
-          <p class="form-note">You’ll also get a few study emails and occasional planner news. Unsubscribe any time. <a href="/privacy.html#focusflow-lab-email-list-and-shop">How we use your email</a>.</p>
+        <aside class="sheet tracker-offer" aria-label="Free MCAT 12-week tracker">
+          <div class="tracker-copy">
+            <h2 class="tracker-title">Free MCAT 12-week tracker</h2>
+            <p>A printable tracker for all four sections, a practice exam score log, an error log and a final-week checklist. Enter your email and it arrives with the free Study Focus Kit.</p>
+          </div>
+          <div class="tracker-action">
+            <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
+              <label for="kit-email">Email address</label>
+              <div class="kit-row">
+                <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">
+                <button class="btn" type="submit">Send me the tracker</button>
+              </div>
+              <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
+              <input type="hidden" name="fields[exam]" value="MCAT">
+              <input type="hidden" name="ml-submit" value="1">
+              <input type="hidden" name="anticsrf" value="true">
+              <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>
+            </form>
+            <p class="form-note">You’ll also get a few study emails and occasional planner news. Unsubscribe any time. <a href="/privacy.html#focusflow-lab-email-list-and-shop">How we use your email</a>.</p>
+          </div>
         </aside>
         <p class="refs"><strong>Source:</strong> AAMC. Official MCAT practice exams, students-residents.aamc.org.</p>
         </article>

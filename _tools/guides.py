@@ -276,7 +276,7 @@ GUIDES = [
          ("What an MCAT error log does", """<p>An error log is a running list of the questions you get wrong, with the reason you got each one wrong. Re-doing a missed question fixes that question. Logging the reason shows the pattern behind many of them, and a pattern is something you can change.</p>
 <p>Keep it short enough to finish. If filling in a row takes longer than the question did, you will stop by week three.</p>"""),
          ("The template", """<p>Copy these columns into a notebook or a spreadsheet. The first row is an example.</p>
-<div class="table-scroll"><table class="mini-table">
+<div class="table-scroll"><table class="mini-table template-table">
 <thead><tr><th scope="col">Date</th><th scope="col">Source</th><th scope="col">Section</th><th scope="col">Topic</th><th scope="col">Why (C, M or T)</th><th scope="col">Next time I will</th></tr></thead>
 <tbody>
 <tr><td>Example</td><td>Practice exam</td><td>Bio/Biochem</td><td>Enzyme inhibition graph</td><td>M</td><td>Say what each axis shows before I read the answers</td></tr>
@@ -284,7 +284,9 @@ GUIDES = [
 <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 </tbody></table></div>
-<p>The free MCAT tracker has a printable version of this log. You can get it with the form at the end of this page.</p>"""),
+<p class="download-row"><a class="btn" href="/assets/templates/mcat-error-log-template.xlsx" download>Download the spreadsheet (.xlsx)</a> <a class="btn btn-soft" href="/assets/templates/mcat-error-log-template.csv" download>Download as CSV</a></p>
+<p>The spreadsheet works in Excel, Numbers and Google Sheets (upload it to Google Drive, or use File, then Import). It has drop-down lists for the section and the reason, fills in a retest date for you (7 days after a content gap, 2 days after the others), and counts your reasons on a second tab.</p>
+<p>Prefer to keep it online? The free <a href="/tools/error-log/">error log tool</a> does the same job for any exam and saves in your browser. Prefer paper? The free MCAT tracker has a printable version of this log. You can get it with the form at the end of this page.</p>"""),
          ("The three reasons", """<p>Pick one letter for every miss. If two apply, pick the one you can fix first.</p>
 <ul>
 <li><strong>C, content gap.</strong> You didn’t know the fact or concept, or couldn’t recall it.</li>
@@ -399,7 +401,7 @@ GUIDES = [
          ("Weeks 1 to 5: systems, one at a time", """<ul>
 <li>Study one organ system at a time, such as cardiovascular, respiratory, renal and so on, with the basic science behind it: physiology, pathology and pharmacology together.</li>
 <li>Do a timed block of practice questions every day, then review every question, right or wrong, before moving on.</li>
-<li>Keep an <a href="/guides/mcat-error-log-template/">error log</a> with one line per miss: a content gap, a misread, or a timing problem.</li>
+<li>Keep an <a href="/tools/error-log/">error log</a> with one line per miss: a content gap, a misread, or a timing problem.</li>
 <li>Review flashcards for drugs, pathways and findings a little every day. The free <a href="/tools/flashcards/">flashcards</a> space the reviews for you.</li>
 </ul>"""),
          ("Weeks 6 and 7: mixed blocks and self-assessment", """<ul>
@@ -426,7 +428,7 @@ GUIDES = [
 <li>Take one full practice test first, untimed if you need to, to see where you start.</li>
 <li>For Logical Reasoning, learn the common types, such as assumption, flaw, strengthen and weaken, and practise each without a clock.</li>
 <li>For Reading Comprehension, practise summarising each paragraph in a few words, then the passage’s main point.</li>
-<li>Start an <a href="/guides/mcat-error-log-template/">error log</a> now: one line per miss, with the reason.</li>
+<li>Start an <a href="/tools/error-log/">error log</a> now: one line per miss, with the reason.</li>
 </ul>"""),
          ("Weeks 4 to 8: timed sections and blind review", """<ul>
 <li>Do timed 35-minute sections several times a week, mixing Logical Reasoning and Reading Comprehension.</li>
@@ -462,7 +464,7 @@ GUIDES = [
 <li>Practise Reading Comprehension, Text Completion and Sentence Equivalence in short timed sets.</li>
 <li>Do timed quant sets, and learn to skip a question that is eating your time and come back to it.</li>
 <li>Write one essay a week from week 3, 30 minutes, then reread it and cut anything that does not support your point.</li>
-<li>Keep an <a href="/guides/mcat-error-log-template/">error log</a> with the reason for each miss.</li>
+<li>Keep an <a href="/tools/error-log/">error log</a> with the reason for each miss.</li>
 </ul>"""),
          ("Weeks 6 and 7: full practice tests", """<ul>
 <li>Take a full-length practice test each week, essay included, at the time of day of your real test.</li>
@@ -497,7 +499,7 @@ GUIDES = [
 <li>Take a practice exam first to see which domains are weakest.</li>
 <li>Review foundational science that supports therapeutics: pharmacology, pharmacokinetics, and pharmaceutics.</li>
 <li>Start a daily set of calculations. Write out every step; most misses come from units and rounding.</li>
-<li>Start an <a href="/guides/mcat-error-log-template/">error log</a>: one line per miss, with the reason.</li>
+<li>Start an <a href="/tools/error-log/">error log</a>: one line per miss, with the reason.</li>
 </ul>"""),
          ("Weeks 3 to 6: therapeutics by body system", """<ul>
 <li>Go through therapeutics one system or condition group at a time, with guideline-based first-line choices, monitoring and patient counselling.</li>
@@ -531,7 +533,7 @@ GUIDES = [
 <li>Take a practice exam first to see which systems are weakest.</li>
 <li>Start with cardiovascular and pulmonary, the two biggest shares.</li>
 <li>Do a block of practice questions daily and review every one, right or wrong.</li>
-<li>Start an <a href="/guides/mcat-error-log-template/">error log</a>: one line per miss, with the reason.</li>
+<li>Start an <a href="/tools/error-log/">error log</a>: one line per miss, with the reason.</li>
 </ul>"""),
          ("Weeks 3 to 6: the remaining systems", """<ul>
 <li>Take about two systems a week, ordered by weight and by your weak spots: GI, musculoskeletal, infectious disease, neurologic, psychiatry, reproductive, then the smaller ones.</li>
@@ -564,7 +566,7 @@ GUIDES = [
 <li>Take a full practice test to see where you stand.</li>
 <li>Review quant basics: arithmetic, algebra, word problems. Work untimed.</li>
 <li>Learn the Data Insights question types: data sufficiency, table analysis, graphics interpretation, multi-source reasoning and two-part analysis.</li>
-<li>Start an <a href="/guides/mcat-error-log-template/">error log</a> with the reason for each miss.</li>
+<li>Start an <a href="/tools/error-log/">error log</a> with the reason for each miss.</li>
 </ul>"""),
          ("Weeks 3 to 5: build speed by section", """<ul>
 <li>Do timed sets for each section, about two minutes a question on average.</li>
@@ -596,7 +598,7 @@ GUIDES = [
          ("Weeks 1 and 2: baseline and plan", """<ul>
 <li>Take a full practice test to see which tests and which science subjects are weakest.</li>
 <li>Start 20 to 30 minutes of Perceptual Ability every day, such as keyhole, angle ranking, hole punching, cube counting and pattern folding.</li>
-<li>Start an <a href="/guides/mcat-error-log-template/">error log</a> with the reason for each miss.</li>
+<li>Start an <a href="/tools/error-log/">error log</a> with the reason for each miss.</li>
 </ul>"""),
          ("Weeks 3 to 7: sciences, rotating subjects", """<ul>
 <li>Rotate biology, general chemistry and organic chemistry through the week so none goes cold.</li>
