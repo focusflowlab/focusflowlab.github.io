@@ -757,3 +757,5 @@ ul.cards + section.reading { margin-top: var(--space-lg); }
 @media (prefers-reduced-motion: reduce) { .scroll-cue svg { animation: none; } }
 @media (max-width: 860px) { .scroll-cue { justify-self: center; } }
 .hero.single:has(.scroll-cue) { gap: var(--space-md); padding-bottom: var(--space-xl); }
+.reading-body > p { margin: 0; max-width: var(--measure); }
+.reading-body > ul { margin: var(--space-md) 0 0; padding-left: 1.25rem; }

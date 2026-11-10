@@ -303,8 +303,10 @@ def planner_detail(t):
 {day}
       <section class="pd-section reading" aria-labelledby="free-title">
         <h2 id="free-title">Use it with the free plan</h2>
+        <div class="reading-body">
         <p>Not sure yet? Our {free_links} builds a week-by-week schedule from your test date and free hours, and the free <a href="/#free-kit">Study Focus Kit</a> includes a printable planner. The paid planner is the same system on paper, with logs and a checklist you can write on.</p>
 {f'        <ul>{guides}</ul>' if guides else ''}
+        </div>
       </section>
 
       <section class="pd-section reading faq" aria-labelledby="faq-title">
