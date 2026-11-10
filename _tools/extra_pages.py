@@ -171,15 +171,15 @@ def about_page():
         <nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#who">Who runs it</a></li><li><a href="#why">Why it exists</a></li><li><a href="#how">How the plans are made</a></li><li><a href="#free">What’s free</a></li><li><a href="#paid">What’s paid</a></li><li><a href="#names">Exam names</a></li><li><a href="#contact">Get in touch</a></li></ol></nav>
         <article class="prose">
 <h2 id="who">Who runs it</h2>
-<p>FocusFlow Lab is run by Ahsan Raza, a software engineer. I have worked through many of these exams myself, one at a time, over months and years of study, and I have taught many students along the way. What I kept running into is what a good plan needs and what most plans leave out. This site started as a study-focus YouTube channel, and it turns what I learned into free tools, exam study plans, guides and printable planners.</p>
+<p>FocusFlow Lab is run by Ahsan Raza. Ahsan has worked through many of these exams and has taught many students along the way. What kept coming up was what a good plan needs and what most plans leave out. The site started as a study-focus YouTube channel, and it turns what came out of that work into free tools, exam study plans, guides and printable planners.</p>
 <h2 id="why">Why it exists</h2>
-<p>Most people do not fail for lack of effort. They fail to turn an exam date and a long syllabus into a week they can actually follow. So I build plans that start from the exam’s own outline, give each topic hours in proportion to its weight, put practice tests and review on the calendar, and leave a rest day. The free tools handle the arithmetic people usually do badly in their heads: days left, study hours, the grade you need on a final, your pace per question.</p>
+<p>Most people do not fail for lack of effort. They fail to turn an exam date and a long syllabus into a week they can actually follow. So the plans here start from the exam’s own outline, give each topic hours in proportion to its weight, put practice tests and review on the calendar, and leave a rest day. The free tools handle the arithmetic people usually do badly in their heads: days left, study hours, the grade you need on a final, your pace per question.</p>
 <h2 id="how">How the plans are made</h2>
 <ul>
 <li><strong>Official sources first.</strong> Exam formats, section names and timings come from the exam owner’s own pages. The planner pages show a short “official facts” block, with the month we last checked.</li>
 <li><strong>Estimates are labelled.</strong> Where an exam owner does not publish a figure, such as how study time should be shared out, we say it is a rough guide and not an official number. If we could not confirm a fact, we leave it out.</li>
 <li><strong>Cross-checked.</strong> Each plan’s weeks, hours and totals are checked against the outline and against each other before it goes live.</li>
-<li><strong>Corrected when you tell us.</strong> Exams change. If something is out of date, <a href="mailto:hello@thefocusflowlab.com">email me</a> and I will fix it and note the date.</li>
+<li><strong>Corrected when you tell us.</strong> Exams change. If something is out of date, <a href="mailto:hello@thefocusflowlab.com">email hello@thefocusflowlab.com</a> and the page will be fixed and dated.</li>
 </ul>
 <h2 id="free">What’s free</h2>
 <p>The <a href="/study-plan/">study plan generators</a>, the <a href="/tools/">study tools</a> and the <a href="/guides/">guides</a> are free. The tools run in your browser and keep what you type on your own device. The <a href="/#free-kit">Study Focus Kit</a> is free by email.</p>
