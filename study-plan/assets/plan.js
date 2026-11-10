@@ -111,7 +111,7 @@
   }
 
   /** Daily pages for the first week: your dates, your topics, four focus blocks with a self-test. Printed from a hidden block. */
-  function buildDailyPages(plan) {
+  function buildDailyPages(plan, noCover) {
     const week = plan.weeks[0];
     const n = week.studyDays;
     const slots = n * 4;
@@ -156,18 +156,82 @@
         <p class="dp-foot">Start tomorrow with five minutes of recall from today. Plan from thefocusflowlab.com</p>
       </section>`);
     }
-    return cover + days.join('');
+    return (noCover ? '' : cover) + days.join('');
   }
 
-  function printDailyPages(plan) {
+  /** The whole plan as printable pages: cover, overview, a page per week, the first week day by day, error logs and a checklist. */
+  function buildFullPack(plan) {
+    const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const long = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const short = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const blank = (n) => Array.from({ length: n }, () => '<i></i>').join('');
+    const cover = `<section class="day-page pack-cover">
+        <p class="dp-kicker">My ${esc(config.shortName)} plan</p>
+        <h2>${esc(config.shortName)}<br>${plan.totalWeeks}-week plan</h2>
+        <p class="dp-lead">Exam day: ${esc(long(plan.exam))}. ${plan.daysLeft} days to go.</p>
+        <ul class="dp-list">
+          <li><span>Study time</span><strong>${plan.inputs.hoursPerDay} hours a day, ${plan.inputs.daysPerWeek} days a week</strong></li>
+          <li><span>Hours planned</span><strong>about ${Math.round(plan.totalHours)}</strong></li>
+          <li><span>Starts</span><strong>${esc(long(plan.weeks[0].start))}</strong></li>
+        </ul>
+        <div class="dp-fields"><div><span>Name</span><i></i></div><div><span>Target score or result</span><i></i></div></div>
+        <h3>What is inside</h3>
+        <ol class="dp-steps"><li>The plan at a glance, week by week.</li><li>One page for each week: tasks, hours per topic, days studied and a practice score.</li><li>Your first week, day by day, with four focus blocks and a self-test after each.</li><li>Error log pages and a final-week checklist.</li></ol>
+        <p class="dp-foot">Made with the free plan generator at thefocusflowlab.com. ${esc(config.shortName)} topic shares are rough planning figures, not official numbers.</p>
+      </section>`;
+    const rows = plan.weeks.map((w) => `<tr><td>${w.number}</td><td>${esc(short(w.start))}</td><td>${esc(PHASES[w.phase].label)}</td><td>${roundHalf(w.hours)} h</td><td>${esc(w.topics.slice(0, 2).map((t) => t.name).join(', '))}</td><td class="c"><span class="dp-box"></span></td></tr>`).join('');
+    const overview = `<section class="day-page">
+        <p class="dp-kicker">${esc(config.shortName)} plan</p>
+        <h2>The plan at a glance</h2>
+        <table class="dp-table"><thead><tr><th>Wk</th><th>From</th><th>Phase</th><th>Hours</th><th>Most time on</th><th class="c">Done</th></tr></thead><tbody>${rows}</tbody></table>
+        <p class="dp-foot">Content review first, practice and review in the middle, an easier final week so you arrive rested.</p>
+      </section>`;
+    const compact = plan.totalWeeks > 16;
+    const weekHtml = (w) => `<div class="wk${compact ? ' wk-compact' : ''}">
+        <p class="dp-kicker">Week ${w.number} of ${plan.totalWeeks} · from ${esc(long(w.start))} · ${esc(PHASES[w.phase].label)} · ${roundHalf(w.hours)} hours</p>
+        <h3>This week</h3>
+        <ul class="dp-checks">${w.tasks.map((t) => `<li><span class="dp-box"></span><span>${esc(t)}</span></li>`).join('')}</ul>
+        <h3>Where the hours go</h3>
+        <ul class="dp-list">${w.topics.slice(0, compact ? 4 : 6).map((t) => `<li><span>${esc(t.name)}</span><strong>${roundHalf(t.hours)} h</strong></li>`).join('')}</ul>
+        <div class="dp-days">${['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) => `<div><b>${d}</b><span class="dp-box"></span></div>`).join('')}</div>
+        <div class="dp-fields"><div><span>Practice score this week</span><i></i></div><div><span>Biggest gap</span><i></i></div></div>
+        ${compact ? '' : '<h3>Notes</h3><div class="dp-lines">' + blank(4) + '</div>'}
+      </div>`;
+    let weeks = '';
+    if (compact) {
+      for (let i = 0; i < plan.weeks.length; i += 2) weeks += `<section class="day-page">${weekHtml(plan.weeks[i])}${plan.weeks[i + 1] ? weekHtml(plan.weeks[i + 1]) : ''}</section>`;
+    } else {
+      weeks = plan.weeks.map((w) => `<section class="day-page">${weekHtml(w)}</section>`).join('');
+    }
+    const errRows = Array.from({ length: 14 }, () => '<tr><td></td><td></td><td></td></tr>').join('');
+    const errLog = (k) => `<section class="day-page">
+        <p class="dp-kicker">${esc(config.shortName)} plan</p>
+        <h2>Error log ${k} of 2</h2>
+        <p class="dp-lead">Write the concept, not the question. Was it a gap, a misread, a slip or timing? Review this log instead of re-reading notes.</p>
+        <table class="dp-table dp-err"><thead><tr><th>Concept I missed</th><th>Why</th><th>What I will do</th></tr></thead><tbody>${errRows}</tbody></table>
+      </section>`;
+    const checklist = ['Take your last full practice test early in the week', 'Review your error log, not new content', 'Do a short mixed question set each day', 'Confirm your test date, location and what to bring', 'Prepare your ID and anything the test centre requires', 'No new content in the last two days', 'Light review only the day before, then rest', 'Sleep at your normal time the night before', 'Arrive early and settle in'];
+    const finalPage = `<section class="day-page">
+        <p class="dp-kicker">${esc(config.shortName)} plan</p>
+        <h2>Final-week checklist</h2>
+        <ul class="dp-checks big">${checklist.map((t) => `<li><span class="dp-box"></span><span>${esc(t)}</span></li>`).join('')}</ul>
+        <p class="dp-foot">You have done the work. Good luck. Plan from thefocusflowlab.com</p>
+      </section>`;
+    return cover + overview + weeks + buildDailyPages(plan, true) + errLog(1) + errLog(2) + finalPage;
+  }
+
+  function printPack(html) {
     let root = document.getElementById('daily-print');
     if (!root) { root = document.createElement('div'); root.id = 'daily-print'; root.className = 'daily-print'; document.body.appendChild(root); }
-    root.innerHTML = buildDailyPages(plan);
+    root.innerHTML = html;
     document.body.classList.add('print-days');
     const done = () => { document.body.classList.remove('print-days'); window.removeEventListener('afterprint', done); };
     window.addEventListener('afterprint', done);
     window.print();
   }
+
+  function printDailyPages(plan) { printPack(buildDailyPages(plan)); }
+  function printFullPack(plan) { printPack(buildFullPack(plan)); }
 
   /** One calendar event per study session (no repeats), so any session can be moved or deleted. Times are local ("floating"). */
   function buildIcs(plan) {
@@ -259,6 +323,7 @@
       ${weeks}
       <div class="plan-actions">
         <button class="btn" type="button" id="print-plan">Print or save as PDF</button>
+        <button class="btn btn-soft" type="button" id="print-pack">Print my full plan pack</button>
         <button class="btn btn-soft" type="button" id="print-days">Print my first week, day by day</button>
         <button class="btn btn-soft" type="button" id="add-cal">Add to my calendar (.ics)</button>
         <a class="btn btn-quiet" href="#plan-form">Change my answers</a>
@@ -267,6 +332,7 @@
     document.getElementById('print-plan').addEventListener('click', () => window.print());
     document.getElementById('add-cal').addEventListener('click', () => downloadIcs(plan));
     document.getElementById('print-days').addEventListener('click', () => printDailyPages(plan));
+    document.getElementById('print-pack').addEventListener('click', () => printFullPack(plan));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     output.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     const heading = output.querySelector('h2');
@@ -289,10 +355,48 @@
     renderPlan(plan);
   }
 
+  /** If the practice score tracker has scores for this exam, offer to mark the topics below target as shaky. */
+  function offerTrackerTopics() {
+    try {
+      const slug = location.pathname.split('/').filter(Boolean)[1];
+      const data = JSON.parse(localStorage.getItem('ffl-scores') || 'null');
+      if (!data || !Array.isArray(data.entries)) return;
+      const target = Number(data.target) || 75;
+      const totals = {};
+      data.entries.filter((e) => e.exam === slug).forEach((e) => {
+        const t = totals[e.topic] || (totals[e.topic] = { right: 0, total: 0 });
+        t.right += e.right; t.total += e.total;
+      });
+      const weak = [];
+      config.topics.forEach((topic, index) => {
+        const t = totals[topic.name];
+        if (t && t.total >= 10 && (t.right / t.total) * 100 < target) weak.push(index);
+      });
+      if (!weak.length) return;
+      const names = weak.map((i) => config.topics[i].name);
+      const note = document.createElement('p');
+      note.className = 'tracker-note';
+      note.innerHTML = 'Your <a href="/tools/practice-score-tracker/">score tracker</a> shows ' + (weak.length === 1 ? 'one topic' : weak.length + ' topics') + ' below your ' + target + '% target: <strong></strong>. ';
+      note.querySelector('strong').textContent = names.join(', ');
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn btn-soft';
+      btn.textContent = 'Mark them as shaky';
+      btn.addEventListener('click', () => {
+        weak.forEach((i) => { const box = form.querySelector('input[name="weak"][value="' + i + '"]'); if (box) box.checked = true; });
+        btn.textContent = 'Marked';
+        btn.disabled = true;
+      });
+      note.appendChild(btn);
+      document.getElementById('weak-areas').insertAdjacentElement('beforebegin', note);
+    } catch (ignored) { /* no tracker data */ }
+  }
+
   renderTopicChoices();
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
     if (saved) fillInputs(saved);
   } catch (ignored) { /* storage blocked: start fresh */ }
+  offerTrackerTopics();
   form.addEventListener('submit', onSubmit);
 })();

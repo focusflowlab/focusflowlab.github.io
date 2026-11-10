@@ -627,6 +627,7 @@ GUIDES = [
          ("Start from the dates, not the subjects", """<p>Write down every exam or deadline with its date. Count the days between today and each one. A schedule only works backwards from a date, so this list comes first, before any timetable.</p>"""),
          ("Count the hours you really have", """<p>Take each day and subtract classes, work, meals, travel and sleep. What is left is your real study time, and it is almost always less than you hoped. Plan on the real number. A schedule built on the hours you wish you had fails by day three.</p>"""),
          ("Split the hours by need", """<p>Give each subject a share of the hours based on two things: how much you still have to learn, and how many marks it carries. Weak and heavy subjects get the most time. Then split each subject into small, named tasks such as “chapter 4 practice questions” instead of “study biology”.</p>
+<p class="download-row"><a class="btn btn-soft" href="/assets/templates/study-schedule-template.xlsx" download>Download a weekly schedule spreadsheet (.xlsx)</a></p>
 <p>The <a href="/tools/study-schedule-maker/">study schedule maker</a> does this split for you from your subjects, exam dates and daily hours. For a big exam with a blueprint, the <a href="/study-plan/">free exam study plans</a> weight the topics for you.</p>"""),
          ("Plan in blocks with breaks", """<p>Work in blocks of 25 to 50 minutes with a 5 to 10 minute break, and put the hardest task in your best-energy block. Mix two or three subjects in a day instead of one, and end each day with a short recall of what you covered. The <a href="/tools/focus-timer/">focus timer</a> runs the blocks.</p>"""),
          ("Leave slack and review it weekly", """<ul>
@@ -647,6 +648,7 @@ GUIDES = [
          ("The formula", """<p>You need three numbers: your current grade, the weight of the final (as a percentage of the course) and the grade you want. Then:</p>
 <p><strong>Needed score = (target − current × (1 − weight)) ÷ weight</strong></p>
 <p>Use decimals for the percentages: a 30% final has a weight of 0.30. The current grade must be the grade on everything before the final.</p>
+<p class="download-row"><a class="btn btn-soft" href="/assets/templates/final-grade-template.xlsx" download>Download the final grade spreadsheet (.xlsx)</a></p>
 <p>The <a href="/tools/final-grade-calculator/">final grade calculator</a> does this in one step. If your course has several weighted categories, work out the current grade with the <a href="/tools/weighted-grade-calculator/">weighted grade calculator</a> first.</p>"""),
          ("Example 1: a score you can reach", """<p>You have 78% going into a final worth 40%, and you want an 80% overall.</p>
 <p>(80 − 78 × 0.60) ÷ 0.40 = (80 − 46.8) ÷ 0.40 = <strong>83%</strong> on the final.</p>"""),

@@ -936,3 +936,37 @@ html { scroll-behavior: smooth; }
 .template-table th { vertical-align: bottom; line-height: 1.25; padding-block: var(--space-xs); }
 .template-table td { height: 2.75rem; vertical-align: middle; line-height: 1.3; }
 .template-table td:first-child { white-space: nowrap; }
+
+/* Full plan pack: extra print pieces */
+@media print {
+  .dp-table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 4pt; }
+  .dp-table th { text-align: left; font-size: 8.5pt; color: #555; border-bottom: 1.2pt solid #111; padding: 4pt 4pt; }
+  .dp-table td { border-bottom: .5pt solid #bbb; padding: 5pt 4pt; vertical-align: middle; }
+  .dp-table tr { break-inside: avoid; }
+  .dp-table .c { text-align: center; }
+  .dp-err td { height: 26pt; border-right: .5pt solid #ddd; }
+  .dp-checks { list-style: none; margin: 0; padding: 0; }
+  .dp-checks li { display: grid; grid-template-columns: 16pt minmax(0, 1fr); gap: 8pt; align-items: start; margin-bottom: 6pt; font-size: 10.5pt; }
+  .dp-checks.big li { margin-bottom: 14pt; font-size: 12pt; }
+  .dp-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5pt; margin: 14pt 0 8pt; }
+  .dp-days > div { border: .75pt solid #999; border-radius: 3pt; padding: 5pt 2pt; text-align: center; font-size: 8.5pt; }
+  .dp-days b { display: block; margin-bottom: 4pt; font-family: var(--font-mono); }
+  .dp-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; margin: 12pt 0; }
+  .dp-fields span { display: block; font-size: 8.5pt; color: #555; }
+  .dp-fields i { display: block; height: 18pt; border-bottom: .75pt solid #999; }
+  .pack-cover h2 { font-size: 34pt; line-height: 1.05; }
+  .wk { margin-bottom: 14pt; }
+  .wk-compact { font-size: 9pt; }
+  .wk-compact .dp-checks li { margin-bottom: 3pt; font-size: 9pt; }
+  .wk-compact .dp-days { margin: 6pt 0; }
+  .wk-compact .dp-fields { margin: 6pt 0; }
+}
+.tracker-note { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-sm); margin: 0 0 var(--space-sm); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-control); background: var(--color-accent-wash); font-size: var(--text-sm); }
+.tracker-note .btn { min-height: 40px; padding-inline: var(--space-md); }
+.sc-plan { margin: 0 0 var(--space-md); }
+
+@media print {
+  .wk-compact h3 { margin: 8pt 0 3pt; font-size: 10pt; }
+  .wk-compact .dp-list li { padding: 2.5pt 0; font-size: 9pt; }
+  .wk-compact .dp-days > div { padding: 3pt 2pt; }
+}

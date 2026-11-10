@@ -82,6 +82,10 @@
         ? 'Weakest so far: ' + weak.map((r) => r.name + ' (' + Math.round((r.right / r.total) * 100) + '%)').join(', ') + '. Give these the most time next week, and redo the missed questions.'
         : 'Every topic with data is at or above your target. Keep mixing topics and check the ones with no data yet.';
 
+    const planLink = $('sc-plan');
+    planLink.hidden = !weak.some((r) => r.total >= 10);
+    $('sc-plan-link').href = '/study-plan/' + state.exam + '/';
+
     const ul = $('sc-list');
     ul.replaceChildren();
     sorted.slice().reverse().forEach((e) => {

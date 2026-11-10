@@ -442,6 +442,7 @@ TOOLS = [
           <div><dt>Trend</dt><dd id="sc-trend">-</dd></div>
         </dl>
         <p id="sc-advice" class="sc-advice"></p>
+        <p id="sc-plan" class="sc-plan" hidden><a class="btn btn-soft" id="sc-plan-link" href="/study-plan/">Build my plan with these weak topics</a></p>
         <div class="table-scroll"><table class="mini-table sc-table">
           <thead><tr><th scope="col">Topic</th><th scope="col">Your accuracy</th><th scope="col">Status</th><th scope="col">Plan share</th><th scope="col">Suggested share</th></tr></thead>
           <tbody id="sc-table"></tbody></table></div>
@@ -455,6 +456,7 @@ TOOLS = [
           <ul>
             <li><strong>Log the topic, not just the total.</strong> A 70% overall can hide one topic at 40%.</li>
             <li><strong>Small sets are noisy.</strong> Under about 20 questions in a topic, treat the number as a hint, not a verdict.</li>
+            <li><strong>Prefer a spreadsheet?</strong> <a href="/assets/templates/practice-score-log.xlsx" download>Download the practice score log</a> (Excel or Google Sheets, with a % right chart).</li>
             <li><strong>Redo what you missed.</strong> Pair this with the <a href="/tools/error-log/">error log</a> so each miss gets a retest date.</li>
             <li><strong>Feed it back into your plan.</strong> Use the suggested split to set next week’s hours in the <a href="/study-plan/">free exam study plan</a>.</li>
           </ul>""",
