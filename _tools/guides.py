@@ -241,7 +241,7 @@ GUIDES = [
 <li><strong>Spaced review.</strong> Come back to weak topics after a day, a few days and a week. The <a href="/tools/spaced-review/">spaced review calendar</a> schedules it.</li>
 </ul>"""),
        ]),
-  dict(slug="mcat-study-schedule-3-months", tag="Exam plans", signup="mcat", date="2026-10-28",
+  dict(slug="mcat-study-schedule-3-months", tag="Exam plans", signup="mcat", video="afsZPhkmd4M", date="2026-10-28",
        title="MCAT Study Schedule: A 3-Month Plan, Week by Week",
        h1="A 3-month MCAT study schedule",
        desc="A 3-month MCAT study schedule: how to split time across the four sections, when to take full-length practice exams, and how many hours to plan.",
