@@ -13,7 +13,7 @@
   <meta property="og:title" content="{{ page.title | escape }}">
   <meta property="og:description" content="{{ page.description | escape }}">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-  <meta property="og:image" content="{% if page.video %}https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg{% else %}{{ site.url }}/assets/og-image.png{% endif %}">
+  <meta property="og:image" content="{% if page.video != "" and page.video %}https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg{% else %}{{ site.url }}/assets/og-image.png{% endif %}">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/assets/icon-64.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -27,7 +27,7 @@
       { "@type": "Article", "headline": {{ page.title | jsonify }}, "description": {{ page.description | jsonify }},
         "url": "{{ site.url }}{{ page.url }}", "datePublished": "{{ page.date | date: '%Y-%m-%d' }}", "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
         "author": { "@type": "Organization", "@id": "{{ site.url }}/#org", "name": "FocusFlow Lab", "url": "{{ site.url }}/" },
-        "publisher": { "@type": "Organization", "@id": "{{ site.url }}/#org", "name": "FocusFlow Lab", "url": "{{ site.url }}/" }{% if page.video %},
+        "publisher": { "@type": "Organization", "@id": "{{ site.url }}/#org", "name": "FocusFlow Lab", "url": "{{ site.url }}/" }{% if page.video != "" and page.video %},
         "image": "https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg"{% endif %} },
       { "@type": "BreadcrumbList", "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "FocusFlow Lab", "item": "{{ site.url }}/" },
@@ -55,7 +55,7 @@
         </nav>
         <article class="prose">
 {{ content }}
-        {% if page.video %}
+        {% if page.video != "" and page.video %}
         <h2 id="watch">Watch the video</h2>
         <a class="video" href="https://www.youtube.com/watch?v={{ page.video }}" data-video="{{ page.video }}">
           <span class="video-frame"><img src="https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
