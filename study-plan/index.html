@@ -256,6 +256,17 @@
           <p>More exams are on the way. If yours isn’t here, email <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a> and tell us which one.</p>
         </div>
       </section>
+
+      <section class="reading" id="videos">
+        <h2>Watch a plan walkthrough</h2>
+        <div class="prose">
+          <p>Short videos on how the exam works, how many hours to plan for and what to do each week. More are added to <a href="https://www.youtube.com/playlist?list=PLY1YfkQ2Ke20" rel="noopener">the Exam Study Plans playlist</a> as new exams are covered.</p>
+          <ul class="videos">
+          <li><a class="video" href="https://www.youtube.com/watch?v=4ktmRGfJkuI" data-video="4ktmRGfJkuI"><span class="video-frame"><img src="https://i.ytimg.com/vi/4ktmRGfJkuI/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"></span><span class="video-title">NCLEX-PN: a 6-week plan</span></a></li>
+          <li><a class="video" href="https://www.youtube.com/watch?v=afsZPhkmd4M" data-video="afsZPhkmd4M"><span class="video-frame"><img src="https://i.ytimg.com/vi/afsZPhkmd4M/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"></span><span class="video-title">MCAT study schedule: a 3-month plan</span></a></li>
+        </ul>
+        </div>
+      </section>
     </main>
     <aside class="page-note" aria-label="About this page">
       <p>Made by FocusFlow Lab. Exam names are trademarks of their owners, listed at the bottom of this page.</p>
@@ -319,5 +330,19 @@
 <!-- Cloudflare Web Analytics: cookie-free page view counts -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3d7d2afbf78f49eba33293c0abd20ab1"}'></script>
 <!-- /site-foot -->
+<script>
+  document.querySelectorAll('.video[data-video]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + link.dataset.video + '?autoplay=1&rel=0';
+      frame.title = link.querySelector('.video-title').textContent;
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+      frame.allowFullscreen = true;
+      link.querySelector('.video-frame').replaceChildren(frame);
+      link.replaceWith(...link.childNodes);
+    }, { once: true });
+  });
+</script>
 </body>
 </html>
