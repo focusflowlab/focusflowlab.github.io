@@ -272,7 +272,16 @@ if (run('mobile')) {
     await page.keyboard.press('Escape'); await wait(150); const closed = !(await vis('#' + id));
     res.push(opened && closed && over <= 0);
   }
-  await page.tap('[aria-controls="menu-tools"]'); await wait(150); await page.tap('main h1'); await wait(150);
+  await page.tap('[aria-controls="menu-tools"]'); await wait(150);
+  // Tap a plain spot outside the open panel (the panel covers part of the page on a phone; a link under the finger would navigate).
+  const spot = await page.evaluate(() => {
+    for (let y = innerHeight - 10; y > 60; y -= 20) for (const x of [10, innerWidth / 2, innerWidth - 10]) {
+      const e = document.elementFromPoint(x, y);
+      if (e && !e.closest('a, button, input, select, textarea, label, .nav-item, [role=button]')) return [x, y];
+    }
+    return null;
+  });
+  if (spot) await page.touchscreen.tap(spot[0], spot[1]); await wait(150);
   const tapOut = !(await vis('#menu-tools'));
   const th0 = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
   await page.tap('.theme-toggle'); await wait(100); const th1 = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
