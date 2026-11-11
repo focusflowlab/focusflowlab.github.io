@@ -44,7 +44,7 @@ for (const width of [375, 768, 1280]) {
         if (e.tagName === 'SELECT') { const t = e.options[e.selectedIndex]?.text || ''; const c = document.createElement('canvas').getContext('2d'); c.font = getComputedStyle(e).font; if (c.measureText(t).width + parseFloat(getComputedStyle(e).paddingLeft) + parseFloat(getComputedStyle(e).paddingRight) + 4 > r.width) res.push(`CLIPPED-SELECT ${name(e)} "${t}" in ${Math.round(r.width)}px`); }
       });
       // short labels / buttons / check labels that wrap
-      document.querySelectorAll('label, .btn, button, .card-tag, .nav-trigger, .nav-link, th').forEach((e) => {
+      document.querySelectorAll('label, .btn, button, .card-tag, .nav-trigger, .nav-link, th, dd').forEach((e) => {
         if (!vis(e)) return;
         const txt = (e.textContent || '').trim();
         if (!txt || txt.length > 40) return;
@@ -79,6 +79,15 @@ for (const width of [375, 768, 1280]) {
         if (ov < Math.min(a.width, b.width) * 0.5) return;
         const gap = b.top - a.bottom;
         if (gap >= 0 && gap < 4 && (nx.textContent || '').trim() && (e.textContent || '').trim()) res.push(`TOUCHING ${name(e)} -> ${name(nx)} gap ${Math.round(gap)}px`);
+      });
+      // underlined blocks (border-bottom 2px+): text must not crowd the line, above or below it
+      document.querySelectorAll('main *').forEach((e) => {
+        if (!vis(e) || e.closest('svg, table, .mega, .toc, .table-scroll')) return;
+        const se = getComputedStyle(e); if (parseFloat(se.borderBottomWidth) < 1.5 || se.borderBottomStyle === 'none') return; // a 2px border computes to 1.6px at some zooms
+        const a = e.getBoundingClientRect(); if (a.width < 60) return;
+        const last = [...e.querySelectorAll('*')].filter((c) => vis(c) && (c.textContent || '').trim() && !c.children.length).pop();
+        if (last) { const g = a.bottom - parseFloat(se.borderBottomWidth) - last.getBoundingClientRect().bottom; if (g >= -1 && g < 14) res.push(`TIGHT-ABOVE-RULE ${name(e)} text ${Math.round(g)}px above its underline`); }
+        const nx = e.nextElementSibling; if (nx && vis(nx) && (nx.textContent || '').trim() && getComputedStyle(nx).position !== 'absolute') { const g = nx.getBoundingClientRect().top - a.bottom; if (g >= -1 && g < 8) res.push(`TIGHT-BELOW-RULE ${name(e)} -> ${name(nx)} ${Math.round(g)}px under its underline`); }
       });
       document.querySelectorAll('.table-scroll, .mega, .sc-list, pre').forEach((e) => { if (e.classList.contains('mega')) return; if (e.scrollHeight > e.clientHeight + 2 && getComputedStyle(e).overflowY !== 'visible') res.push(`V-CLIPPED ${name(e)} ${e.clientHeight}px of ${e.scrollHeight}px`); });
       // small tap targets on phones

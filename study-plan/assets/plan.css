@@ -41,7 +41,7 @@ fieldset { border: 0; padding: 0; margin: var(--space-lg) 0 0; min-width: 0; }
 /* The plan: a timetable, one ruled row per week */
 .plan { padding: var(--space-xs) 0 var(--space-lg); scroll-margin-top: var(--space-md); }
 .plan:empty { display: none; }
-.plan-head { display: flex; justify-content: space-between; align-items: end; gap: var(--space-md); flex-wrap: wrap; border-bottom: 2px solid var(--color-ink); padding-bottom: var(--space-sm); }
+.plan-head { display: flex; justify-content: space-between; align-items: end; gap: var(--space-md); flex-wrap: wrap; border-bottom: 2px solid var(--color-ink); padding-bottom: var(--space-md); }
 .totals { display: flex; gap: var(--space-xl); flex-wrap: wrap; margin: 0; }
 .totals div { margin: 0; }
 .totals dt { font-size: var(--text-sm); color: var(--color-muted); }
@@ -68,9 +68,9 @@ fieldset { border: 0; padding: 0; margin: var(--space-lg) 0 0; min-width: 0; }
 .week li { margin: var(--space-3xs) 0; }
 
 .alloc { margin: 0; font-size: var(--text-sm); }
-.alloc-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: var(--space-3xs) var(--space-xs); margin-bottom: var(--space-xs); }
+.alloc-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-3xs) var(--space-xs); margin-bottom: var(--space-xs); }
 .alloc-row dt { color: var(--color-muted); }
-.alloc-row dd { margin: 0; text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.alloc-row dd { margin: 0; text-align: right; white-space: nowrap; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .bar { grid-column: 1 / -1; height: 4px; background: var(--color-rule); border-radius: 2px; }
 .bar i { display: block; height: 100%; background: var(--color-accent); border-radius: 2px; }
 

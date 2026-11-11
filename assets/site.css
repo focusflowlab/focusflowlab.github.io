@@ -893,7 +893,9 @@ html { scroll-behavior: smooth; }
   body.print-days > *:not(.daily-print) { display: none !important; }
   body.print-days .daily-print { display: block; }
   body.print-days { background: #fff; color: #111; }
-  .day-page { break-after: page; padding: 0; color: #111; font-family: var(--font-body); }
+  /* Margins big enough that the browser's own date/title header and footer sit clear of the content */
+  @page day { margin: 18mm 16mm 16mm; }
+  .day-page { page: day; break-after: page; padding: 0; color: #111; font-family: var(--font-body); }
   .day-page:last-child { break-after: auto; }
   .day-page h2 { font-size: 26pt; max-width: none; margin: 4pt 0 14pt; color: #0b2a2a; }
   .day-page h3 { font-size: 12pt; margin: 16pt 0 6pt; max-width: none; color: #0b2a2a; }
@@ -974,3 +976,7 @@ html { scroll-behavior: smooth; }
 /* /study-plan/ video walkthroughs: two wide thumbnails in the content column */
 #videos .videos { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: var(--space-lg); }
 @media (max-width: 560px) { #videos .videos { grid-template-columns: 1fr; } }
+
+/* Score tracker and error log: air between the heading, its underline and the totals below it */
+.sc-result .plan-head { padding-bottom: var(--space-md); margin-bottom: var(--space-md); }
+.sc-result .plan-head h2 { margin: 0; }
