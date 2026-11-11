@@ -62,3 +62,7 @@ for tpl in [*(ROOT / "_layouts").glob("*.html"), *(ROOT / "_includes").glob("*.h
     versioned = version_assets(text, tpl.parent)
     if versioned != text:
         tpl.write_text(versioned, encoding="utf-8", newline="\n")
+
+# sitemap.xml last, so its dates see the pages as written above
+import sitemap
+sitemap.main()

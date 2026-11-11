@@ -21,8 +21,8 @@
     const err = $('countdown-error');
     if (days < 1) { err.textContent = 'Pick a date after today.'; out.hidden = true; return; }
     // A blank or out-of-range field used to count silently as 0.5 h (or 14 h) a day.
-    const hours = parseFloat($('hoursPerDay').value);
-    if (!(hours >= 0.5 && hours <= 14)) { err.textContent = 'Enter your study hours per day, between 0.5 and 14.'; out.hidden = true; return; }
+    const H = ffField($('hoursPerDay')), hours = H.v;
+    if (hours === null || !H.ok) { err.textContent = 'Enter your study hours per day, between 0.5 and 14.'; out.hidden = true; return; }
     err.textContent = '';
     const perWeek = Number($('daysPerWeek').value);
     const studyDays = Math.round(days * perWeek / 7);

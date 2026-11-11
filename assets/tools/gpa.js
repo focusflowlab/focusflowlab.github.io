@@ -24,16 +24,23 @@
     list.appendChild(li);
   }
 
+  // A box is blank (null), a number inside its own min/max (shared reader), or bad (NaN).
+  const read = (el) => { const f = ffField(el); return f.v === null ? null : f.ok ? f.v : NaN; };
+  let badCredits = false;
   function rows() {
+    badCredits = false;
     return [...list.querySelectorAll('.gpa-row')].map((li) => {
       const [name, credits] = li.querySelectorAll('input');
       const [grade, level] = li.querySelectorAll('select');
-      return { name: name.value, credits: Math.max(0, parseFloat(credits.value) || 0), grade: grade.value, level: level.value };
+      const c = read(credits);
+      if (Number.isNaN(c)) badCredits = true;
+      return { name: name.value, credits: c || 0, grade: grade.value, level: level.value };
     });
   }
 
   function calc() {
     const r = rows();
+    const msgs = badCredits ? ['Credits per course are 0 to 12; a course outside that is left out.'] : [];
     const credits = r.reduce((s, x) => s + x.credits, 0);
     const points = r.reduce((s, x) => s + x.credits * POINTS[x.grade], 0);
     // Weighted points: an F stays 0 whatever the level, as most schools do.
@@ -43,16 +50,21 @@
     $('r-weighted').textContent = credits && anyWeighted ? (wpoints / credits).toFixed(2) : '–';
     $('r-credits').textContent = credits;
 
-    const prevGpa = parseFloat($('prevGpa').value);
-    const prevCredits = parseFloat($('prevCredits').value);
-    const hasPrev = !Number.isNaN(prevGpa) && !Number.isNaN(prevCredits) && prevCredits > 0 && prevGpa >= 0 && prevGpa <= 5;
+    // Box limits: GPA 0 to 5 (allows a weighted GPA), credits so far 1 to 1,000, next term 1 to 100.
+    const prevGpa = read($('prevGpa')), prevCredits = read($('prevCredits'));
+    const target = read($('targetGpa')), nextCredits = read($('nextCredits'));
+    if (Number.isNaN(prevGpa)) msgs.push('Current GPA is 0 to 5.');
+    if (Number.isNaN(prevCredits)) msgs.push('Credits so far are 1 to 1,000.');
+    if (Number.isNaN(target)) msgs.push('Target GPA is 0 to 5.');
+    if (Number.isNaN(nextCredits)) msgs.push('Credits next term are 1 to 100.');
+    $('gpa-error').textContent = msgs.join(' ');
+    const ok = (v) => v !== null && !Number.isNaN(v);
+    const hasPrev = ok(prevGpa) && ok(prevCredits);
     $('r-cum').textContent = hasPrev && credits ? ((prevGpa * prevCredits + points) / (prevCredits + credits)).toFixed(2) : '–';
 
     // What GPA do I need next term to reach a target?
-    const target = parseFloat($('targetGpa').value);
-    const nextCredits = parseFloat($('nextCredits').value);
     const out = $('r-need');
-    if (!Number.isNaN(target) && !Number.isNaN(nextCredits) && nextCredits > 0) {
+    if (ok(target) && ok(nextCredits)) {
       const baseCredits = (hasPrev ? prevCredits : 0) + credits;
       const basePoints = (hasPrev ? prevGpa * prevCredits : 0) + points;
       if (!baseCredits) { out.textContent = 'Add your courses or past GPA first.'; }

@@ -17,10 +17,11 @@
           <div class="row-head gpa-head" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span>Level</span><span></span></div>
           <ol class="tool-rows gpa-rows" id="gpa-rows"></ol>
           <div class="sheet-actions"><button class="btn btn-soft" type="button" id="add-course">Add a course</button></div>
+          <p class="error" id="gpa-error" role="alert"></p>
           <fieldset><legend>Past GPA (optional, for cumulative)</legend>
             <div class="fields fields-2b">
-              <div><label for="prevGpa">Current cumulative GPA</label><input type="number" id="prevGpa" min="0" max="4" step="0.01" placeholder="3.40" inputmode="decimal"></div>
-              <div><label for="prevCredits">Credits so far</label><input type="number" id="prevCredits" min="0" step="1" placeholder="45" inputmode="numeric"></div>
+              <div><label for="prevGpa">Current cumulative GPA</label><input type="number" id="prevGpa" min="0" max="5" step="0.01" placeholder="3.40" inputmode="decimal"></div>
+              <div><label for="prevCredits">Credits so far</label><input type="number" id="prevCredits" min="1" max="1000" step="0.5" placeholder="45" inputmode="numeric"></div>
             </div>
           </fieldset>
           <div class="count-result" aria-live="polite">
@@ -33,14 +34,15 @@
           </div>
           <fieldset><legend>Raise my GPA (optional)</legend>
             <div class="fields fields-2b">
-              <div><label for="targetGpa">Target cumulative GPA</label><input type="number" id="targetGpa" min="0" max="4" step="0.01" placeholder="3.50" inputmode="decimal"></div>
-              <div><label for="nextCredits">Credits next term</label><input type="number" id="nextCredits" min="1" step="1" placeholder="15" inputmode="numeric"></div>
+              <div><label for="targetGpa">Target cumulative GPA</label><input type="number" id="targetGpa" min="0" max="5" step="0.01" placeholder="3.50" inputmode="decimal"></div>
+              <div><label for="nextCredits">Credits next term</label><input type="number" id="nextCredits" min="1" max="100" step="0.5" placeholder="15" inputmode="numeric"></div>
             </div>
             <p class="gpa-need" id="r-need" aria-live="polite"></p>
           </fieldset>
         </form>
     <p class="embed-credit">Free <a href="https://thefocusflowlab.com/tools/gpa-calculator/" target="_blank" rel="noopener">gpa calculator</a> by FocusFlow Lab</p>
   </main>
-<script src="/assets/tools/gpa.js?v=9885dacc" defer></script>
+<script src="/assets/tools/field.js?v=0136fee8" defer></script>
+<script src="/assets/tools/gpa.js?v=95a4deb1" defer></script>
 </body>
 </html>

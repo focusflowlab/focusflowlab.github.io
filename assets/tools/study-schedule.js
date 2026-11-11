@@ -35,8 +35,8 @@
   function build() {
     // Keyed by row, not name: two rows called "Math" used to share one tally and both show the total.
     const subjects = read().map((s, i) => ({ ...s, key: 'r' + i })).filter((s) => s.name && s.date);
-    const rawHours = parseFloat($('ssHours').value);
-    const hours = Math.round(rawHours * 2) / 2; // the field steps by 0.5
+    const H = ffField($('ssHours'));
+    const hours = H.v === null || !H.ok ? NaN : Math.round(H.v * 2) / 2; // the field steps by 0.5
     const perWeek = parseInt($('ssDays').value, 10);
     try { localStorage.setItem(key, JSON.stringify({ rows: read(), hours: $('ssHours').value, days: $('ssDays').value })); } catch {}
     if (!subjects.length) { out.hidden = true; err.textContent = ''; return; }

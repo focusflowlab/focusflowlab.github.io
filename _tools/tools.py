@@ -216,10 +216,11 @@ TOOLS = [
           <div class="row-head gpa-head" aria-hidden="true"><span>Course</span><span>Credits</span><span>Grade</span><span>Level</span><span></span></div>
           <ol class="tool-rows gpa-rows" id="gpa-rows"></ol>
           <div class="sheet-actions"><button class="btn btn-soft" type="button" id="add-course">Add a course</button></div>
+          <p class="error" id="gpa-error" role="alert"></p>
           <fieldset><legend>Past GPA (optional, for cumulative)</legend>
             <div class="fields fields-2b">
-              <div><label for="prevGpa">Current cumulative GPA</label><input type="number" id="prevGpa" min="0" max="4" step="0.01" placeholder="3.40" inputmode="decimal"></div>
-              <div><label for="prevCredits">Credits so far</label><input type="number" id="prevCredits" min="0" step="1" placeholder="45" inputmode="numeric"></div>
+              <div><label for="prevGpa">Current cumulative GPA</label><input type="number" id="prevGpa" min="0" max="5" step="0.01" placeholder="3.40" inputmode="decimal"></div>
+              <div><label for="prevCredits">Credits so far</label><input type="number" id="prevCredits" min="1" max="1000" step="0.5" placeholder="45" inputmode="numeric"></div>
             </div>
           </fieldset>
           <div class="count-result" aria-live="polite">
@@ -232,8 +233,8 @@ TOOLS = [
           </div>
           <fieldset><legend>Raise my GPA (optional)</legend>
             <div class="fields fields-2b">
-              <div><label for="targetGpa">Target cumulative GPA</label><input type="number" id="targetGpa" min="0" max="4" step="0.01" placeholder="3.50" inputmode="decimal"></div>
-              <div><label for="nextCredits">Credits next term</label><input type="number" id="nextCredits" min="1" step="1" placeholder="15" inputmode="numeric"></div>
+              <div><label for="targetGpa">Target cumulative GPA</label><input type="number" id="targetGpa" min="0" max="5" step="0.01" placeholder="3.50" inputmode="decimal"></div>
+              <div><label for="nextCredits">Credits next term</label><input type="number" id="nextCredits" min="1" max="100" step="0.5" placeholder="15" inputmode="numeric"></div>
             </div>
             <p class="gpa-need" id="r-need" aria-live="polite"></p>
           </fieldset>
@@ -264,6 +265,7 @@ TOOLS = [
           <div class="row-head" aria-hidden="true"><span>Category</span><span>Weight %</span><span>Score %</span><span></span></div>
           <ol class="tool-rows" id="wg-rows"></ol>
           <div class="sheet-actions"><button class="btn btn-soft" type="button" id="add-category">Add a category</button></div>
+          <p class="error" id="wg-error" role="alert"></p>
           <div class="count-result" aria-live="polite">
             <dl class="totals">
               <div><dt>Grade</dt><dd id="r-grade">–</dd></div>
@@ -422,8 +424,8 @@ TOOLS = [
             <div><label for="sc-topic">Topic</label><select id="sc-topic"></select></div>
           </div>
           <div class="fields fields-date" style="margin-top:var(--space-sm)">
-            <div><label for="sc-right">Right</label><input type="number" id="sc-right" min="0" step="1" inputmode="numeric" placeholder="32"></div>
-            <div><label for="sc-total">Out of</label><input type="number" id="sc-total" min="1" step="1" inputmode="numeric" placeholder="40"></div>
+            <div><label for="sc-right">Right</label><input type="number" id="sc-right" min="0" max="5000" step="1" inputmode="numeric" placeholder="32"></div>
+            <div><label for="sc-total">Out of</label><input type="number" id="sc-total" min="1" max="5000" step="1" inputmode="numeric" placeholder="40"></div>
             <div><label for="sc-date">Date</label><input type="date" id="sc-date"></div>
           </div>
           <div class="fields" style="margin-top:var(--space-sm)"><div><label for="sc-note">Note (optional)</label><input type="text" id="sc-note" maxlength="60" placeholder="Question bank, set 3"></div></div>
@@ -623,6 +625,7 @@ def embed_page(t):
 {t['tool']}
     <p class="embed-credit">Free <a href="{url}" target="_blank" rel="noopener">{t['name'].lower()}</a> by FocusFlow Lab</p>
   </main>
+<script src="/assets/tools/field.js" defer></script>
 <script src="/assets/tools/{t['script']}" defer></script>
 </body>
 </html>
@@ -674,7 +677,7 @@ def tool_page(t):
     </main>"""
     return shell(path=path, title=t["title"] + " | FocusFlow Lab" if len(t["title"]) < 45 else t["title"], desc=t["desc"], og_title=t["name"] + " from FocusFlow Lab",
                  ld=ld, body=body, css_depth=2, extra_head=PLAN_CSS,
-                 scripts=(f'\n<script src="/assets/tools/{t["pre"]}" defer></script>' if t.get("pre") else "") + f'\n<script src="/assets/tools/{t["script"]}" defer></script>')
+                 scripts=(f'\n<script src="/assets/tools/{t["pre"]}" defer></script>' if t.get("pre") else "") + '\n<script src="/assets/tools/field.js" defer></script>' + f'\n<script src="/assets/tools/{t["script"]}" defer></script>')
 
 def index_page():
     path = "/tools/"

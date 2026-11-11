@@ -16,10 +16,14 @@
   }
 
   function calc() {
+    // Weights 0 to 100 and scores 0 to 150, as the boxes say (the form is novalidate). A value outside is left out, with a note.
+    let bad = false;
+    const num = (el) => { const f = ffField(el); if (f.v === null) return NaN; if (f.ok) return f.v; bad = true; return NaN; };
     const rows = [...list.querySelectorAll('.wg-row')].map((li) => {
       const [n, w, s] = li.querySelectorAll('input');
-      return { name: n.value, weight: parseFloat(w.value), score: parseFloat(s.value), rw: w.value, rs: s.value };
+      return { name: n.value, weight: num(w), score: num(s), rw: w.value, rs: s.value };
     });
+    $('wg-error').textContent = bad ? 'Weights are 0 to 100 and scores 0 to 150 (percent). A box outside that is left out.' : '';
     const graded = rows.filter((r) => !Number.isNaN(r.weight) && !Number.isNaN(r.score) && r.weight > 0);
     const totalWeight = rows.reduce((s, r) => s + (Number.isNaN(r.weight) ? 0 : r.weight), 0);
     const gradedWeight = graded.reduce((s, r) => s + r.weight, 0);

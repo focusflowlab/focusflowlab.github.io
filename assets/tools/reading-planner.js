@@ -14,13 +14,16 @@
   const day0 = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
   const nice = (d) => d.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
 
-  function calc() {
-    const total = parseInt($('totalPages').value, 10);
-    const done = Math.max(0, parseInt($('pagesRead').value || '0', 10) || 0);
+  function calc(submitted) {
+    // The boxes' own limits (shared reader; parseInt used to read "1e3" as 1 and "2.5" as 2).
+    const T = ffField($('totalPages')), D = ffField($('pagesRead'));
+    const total = T.v, done = D.v ?? 0;
     const deadline = $('deadline').value;
     const perWeek = parseInt($('readDays').value, 10);
     const review = $('reviewDays').checked;
-    if (!total || !deadline) { out.hidden = true; err.textContent = ''; return; }
+    if (total === null || !deadline) { out.hidden = true; err.textContent = submitted === true ? 'Enter the total pages and your deadline.' : ''; return; }
+    if (!T.ok) { err.textContent = 'Total pages: a whole number from 1 to 20,000.'; out.hidden = true; return; }
+    if (!D.ok) { err.textContent = 'Pages already read: a whole number, 0 or more.'; out.hidden = true; return; }
     if (done >= total) { err.textContent = 'You’ve already read it all.'; out.hidden = true; return; }
     const end = new Date(deadline + 'T00:00:00');
     const days = Math.round((end - day0()) / 86400000);
@@ -54,7 +57,7 @@
     } catch {}
   }
 
-  form.addEventListener('submit', (e) => { e.preventDefault(); calc(); });
-  form.addEventListener('input', calc);
+  form.addEventListener('submit', (e) => { e.preventDefault(); calc(true); });
+  form.addEventListener('input', () => calc());
   calc();
 })();

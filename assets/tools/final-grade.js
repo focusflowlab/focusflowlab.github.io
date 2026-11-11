@@ -21,13 +21,13 @@
     return 'Very doable with a steady plan.';
   }
 
-  function calc() {
-    const current = parseFloat($('current').value);
-    const weight = parseFloat($('weight').value) / 100;
-    const target = parseFloat($('target').value);
-    if ([current, weight, target].some((v) => Number.isNaN(v))) { out.hidden = true; err.textContent = ''; return; }
-    if (weight <= 0 || weight >= 1) { err.textContent = 'The final should be worth more than 0% and less than 100%.'; out.hidden = true; return; }
-    if (current < 0 || current > 150 || target < 0 || target > 150) { err.textContent = 'Use percentages, for example 82 for 82%.'; out.hidden = true; return; }
+  function calc(submitted) {
+    // The boxes' own limits (shared reader); a blank box only gets a message when the button is pressed.
+    const C = ffField($('current')), W = ffField($('weight')), G = ffField($('target'));
+    if ([C, W, G].some((f) => f.v === null)) { out.hidden = true; err.textContent = submitted === true ? 'Fill in all three boxes, as percentages.' : ''; return; }
+    if (!W.ok) { err.textContent = 'The final should be worth 1% to 99% of your grade.'; out.hidden = true; return; }
+    if (!C.ok || !G.ok) { err.textContent = 'Use percentages from 0 to 150, for example 82 for 82%.'; out.hidden = true; return; }
+    const current = C.v, weight = W.v / 100, target = G.v;
     err.textContent = '';
     const n = need(current, weight, target);
     $('r-need').textContent = n <= 0 ? '0%' : fmt(n) + '%';
@@ -42,7 +42,7 @@
     try { localStorage.setItem(key, JSON.stringify({ current: $('current').value, weight: $('weight').value, target: $('target').value })); } catch {}
   }
 
-  form.addEventListener('submit', (e) => { e.preventDefault(); calc(); });
-  form.addEventListener('input', calc);
+  form.addEventListener('submit', (e) => { e.preventDefault(); calc(true); });
+  form.addEventListener('input', () => calc());
   calc();
 })();

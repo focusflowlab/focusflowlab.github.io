@@ -4,6 +4,8 @@
   const $ = (id) => document.getElementById(id);
   const TOPICS = window.EXAM_TOPICS || {};
   const KEY = 'ffl-scores';
+  const MAX = 5000; // questions per entry; above this it is almost always a typo (one entry once read 30 of 4,566,505)
+  const counted = (e) => e.total <= MAX;
   const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
   let state = { exam: 'nclex', target: 75, hours: 20, entries: [] };
   try {
@@ -35,8 +37,9 @@
 
   function stats() {
     const list = state.entries.filter((e) => e.exam === state.exam);
+    // Entries saved before the limit stay listed (so they can be removed) but are left out of every figure.
     const by = new Map(TOPICS[state.exam].topics.map(([n, w]) => [n, { name: n, weight: w, right: 0, total: 0 }]));
-    list.forEach((e) => { const t = by.get(e.topic); if (t) { t.right += e.right; t.total += e.total; } });
+    list.filter(counted).forEach((e) => { const t = by.get(e.topic); if (t) { t.right += e.right; t.total += e.total; } });
     return { list, rows: [...by.values()] };
   }
 
@@ -54,15 +57,16 @@
   function render() {
     const { list, rows } = stats();
     const target = state.target;
-    const right = list.reduce((a, e) => a + e.right, 0), total = list.reduce((a, e) => a + e.total, 0);
+    const used = list.filter(counted);
+    const right = used.reduce((a, e) => a + e.right, 0), total = used.reduce((a, e) => a + e.total, 0);
     $('sc-overall').textContent = total ? Math.round((right / total) * 100) + '%' : '-';
     $('sc-count').textContent = String(total);
-    const sorted = [...list].sort((a, b) => (a.date < b.date ? -1 : 1));
+    const sorted = [...list].sort((a, b) => (a.date < b.date ? -1 : 1)), sortedUsed = sorted.filter(counted);
     let trend = '-';
-    if (sorted.length >= 4) {
-      const half = Math.floor(sorted.length / 2);
+    if (sortedUsed.length >= 4) {
+      const half = Math.floor(sortedUsed.length / 2);
       const pct = (arr) => { const t = arr.reduce((a, e) => a + e.total, 0); return t ? (arr.reduce((a, e) => a + e.right, 0) / t) * 100 : 0; };
-      const d = Math.round(pct(sorted.slice(half)) - pct(sorted.slice(0, half)));
+      const d = Math.round(pct(sortedUsed.slice(half)) - pct(sortedUsed.slice(0, half)));
       trend = (d > 0 ? '+' : '') + d + ' pts';
     }
     $('sc-trend').textContent = trend;
@@ -108,7 +112,7 @@
     ul.replaceChildren();
     sorted.slice().reverse().forEach((e) => {
       const li = el('li');
-      li.append(el('span', e.date + ': ' + e.topic + ', ' + e.right + ' of ' + e.total + (e.note ? ' (' + e.note + ')' : '')));
+      li.append(el('span', e.date + ': ' + e.topic + ', ' + e.right + ' of ' + e.total + (e.note ? ' (' + e.note + ')' : '') + (counted(e) ? '' : ' (not counted: over ' + MAX.toLocaleString('en-US') + ' questions, please remove)')));
       const b = el('button', 'Remove', 'btn btn-quiet');
       b.type = 'button';
       b.setAttribute('aria-label', 'Remove entry from ' + e.date + ' for ' + e.topic);
@@ -120,13 +124,23 @@
   }
 
   examSel.addEventListener('change', () => { state.exam = examSel.value; save(); fillTopics(); render(); });
-  $('sc-target').addEventListener('change', () => { state.target = Math.min(100, Math.max(1, Number($('sc-target').value) || 75)); save(); render(); });
-  $('sc-hours').addEventListener('change', () => { state.hours = Math.max(0, Number($('sc-hours').value) || 0); save(); render(); });
+  // Target 1 to 100 and hours 0 to 100 (the boxes' limits): a value outside is refused with a message and the box goes back.
+  const setting = (id, key, msg) => $(id).addEventListener('change', () => {
+    const f = ffField($(id));
+    if (f.v === null || !f.ok) { $('sc-error').textContent = msg; $(id).value = state[key]; return; }
+    $('sc-error').textContent = ''; state[key] = f.v; save(); render();
+  });
+  setting('sc-target', 'target', 'Target accuracy is a whole number from 1 to 100.');
+  setting('sc-hours', 'hours', 'Study hours next week: 0 to 100.');
   $('sc-form').addEventListener('submit', (ev) => {
     ev.preventDefault();
-    const right = Math.floor(Number($('sc-right').value)), total = Math.floor(Number($('sc-total').value));
+    // The boxes' own limits (shared reader): a blank box is not 0, and 2.5 is not quietly saved as 2.
+    const R = ffField($('sc-right')), T = ffField($('sc-total'));
+    const right = R.v, total = T.v;
     const err = $('sc-error');
-    if (!(total >= 1) || !(right >= 0) || right > total) { err.textContent = 'Enter how many you got right and the total, with right not more than total.'; return; }
+    if (right === null || total === null) { err.textContent = 'Enter how many you got right and how many questions in total.'; return; }
+    if (Number.isFinite(total) && total > MAX) { err.textContent = 'One entry can be at most ' + MAX.toLocaleString('en-US') + ' questions. Check the total, or log a big question bank in parts.'; return; }
+    if (!R.ok || !T.ok || right > total) { err.textContent = 'Use whole numbers, with right not more than the total (at least 1).'; return; }
     err.textContent = '';
     state.entries.push({ id: Date.now() + Math.random(), exam: state.exam, topic: topicSel.value, date: $('sc-date').value || today(), right, total, note: $('sc-note').value.trim().slice(0, 60) });
     $('sc-right').value = ''; $('sc-total').value = ''; $('sc-note').value = '';

@@ -237,7 +237,7 @@ for (const [t, q, r] of [['239', '4', '0'], ['179', '2', '0'], ['60', '1', '10']
 }
 
 // 9. Reading planner: every reading day has pages, pages run from the next unread page to the last page, no negatives.
-for (const [total, done, days, per] of [['10', '0', 6, '7'], ['100', '0', 6, '7'], ['50', '-5', 4, '7'], ['301', '17', 30, '5']]) {
+for (const [total, done, days, per] of [['10', '0', 6, '7'], ['100', '0', 6, '7'], ['50', '', 4, '7'], ['301', '17', 30, '5']]) {
   const page = await newPage();
   await page.goto(`${BASE}/tools/reading-planner/`, { waitUntil: 'networkidle0' });
   const res = await page.evaluate((total, done, deadline, per) => {
@@ -453,6 +453,34 @@ for (const [slug, setup, out] of [
   await page.close();
 }
 
+// 19b. Score tracker: a total over 5,000 is refused; an old saved one stays listed (removable) but is left out of every figure.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/practice-score-tracker/`, { waitUntil: 'networkidle0' });
+  const t = 'Management of Care';
+  await page.evaluate((t) => localStorage.setItem('ffl-scores', JSON.stringify({ exam: 'nclex', target: 75, hours: 10, entries: [
+    { id: 1, exam: 'nclex', topic: t, date: '2026-11-01', right: 30, total: 4566505, note: '' },
+    { id: 2, exam: 'nclex', topic: t, date: '2026-11-02', right: 8, total: 10, note: '' }] })), t);
+  await page.reload({ waitUntil: 'networkidle0' });
+  const r = await page.evaluate((t) => {
+    const $ = (id) => document.getElementById(id);
+    const row = [...$('sc-table').rows].find((tr) => tr.cells[0].textContent === t);
+    const out = { count: $('sc-count').textContent, overall: $('sc-overall').textContent, row: row ? row.cells[1].textContent : '', items: $('sc-list').children.length,
+      flagged: $('sc-list').textContent.includes('not counted') };
+    $('sc-right').value = '30'; $('sc-total').value = '4566505'; $('sc-form').requestSubmit();
+    out.err = $('sc-error').textContent; out.saved = JSON.parse(localStorage.getItem('ffl-scores')).entries.length;
+    $('sc-right').value = '30'; $('sc-total').value = '5000'; $('sc-form').requestSubmit();
+    out.okErr = $('sc-error').textContent; out.count2 = $('sc-count').textContent;
+    [...$('sc-list').querySelectorAll('button')].find((b) => b.getAttribute('aria-label').includes('2026-11-01')).click();
+    out.after = JSON.parse(localStorage.getItem('ffl-scores')).entries.map((e) => e.total).sort((a, b) => a - b).join(',');
+    return out;
+  }, t);
+  check(r.count === '10' && r.overall === '80%' && r.row === '80% (8/10)' && r.items === 2 && r.flagged, `score tracker old 4,566,505 entry left out: count ${r.count}, overall ${r.overall}, row ${r.row}, listed ${r.items}, flagged ${r.flagged}`);
+  check(r.err.includes('at most 5,000') && r.saved === 2, `score tracker refuses total 4,566,505: "${r.err}", saved ${r.saved}`);
+  check(r.okErr === '' && r.count2 === '5010' && r.after === '10,5000', `score tracker accepts 5,000 and removes the bad row: count ${r.count2}, left ${r.after}`);
+  await page.close();
+}
+
 // 20. Downloads: score tracker CSV quotes commas and quotes; flashcards export/import round trip.
 {
   const page = await newPage();
@@ -616,6 +644,181 @@ for (const [slug, setup, out] of [
       check(!problems.length, `plan ${slug} in ${tz}: ${problems.length ? problems.slice(0, 4).join(' | ') : cases.length + ' cases clean (ics parsed, pack counted)'}`);
       await page.close();
     }
+  }
+}
+
+// 23. Real keyboard input (the sections above mostly set .value in page script). Each odd value is typed or pasted into
+// one box, the button is pressed twice, then the box is retyped with a good value and pressed again.
+// Checks: no script error or NaN/Infinity/undefined/1e+ on the page; a value outside the box's own min/max (or a
+// decimal in a whole-number box) gets a visible message; after the fix the result is exactly the result of a clean
+// page with the good values (so a bad entry never blocks or skews the next one).
+// Date boxes are set in script: typing a date depends on the browser's locale.
+{
+  const ODD = ['99999999', '-5', '2.5', '', '1e3', '0', 'PASTE: 42 ', 'PASTE:12abc'];
+  const typeInto = async (page, h, v) => {
+    await h.focus(); await page.keyboard.down('Control'); await page.keyboard.press('KeyA'); await page.keyboard.up('Control'); await page.keyboard.press('Backspace');
+    if (v.startsWith('PASTE:')) await page.keyboard.sendCharacter(v.slice(6)); else if (v) await page.keyboard.type(v);
+  };
+  // First press with the Enter key (still in the box), later presses with a mouse click on the button.
+  const press = async (page, enter) => {
+    const s = await page.$('main form:not(.kit-form) button[type=submit]');
+    if (enter) await page.keyboard.press('Enter');
+    if (!enter && s) await s.click();
+    if (!s) await page.click('main h1'); // live forms with no button: leave the box
+    await wait(150);
+  };
+  const look = (page) => page.evaluate(() => {
+    const m = document.querySelector('main'), keep = (e) => !e.closest('.kit-form, .tracker-offer, .kit') && e.offsetParent !== null;
+    const result = [...m.querySelectorAll('[aria-live], output, [id^="r-"]')].filter(keep).map((e) => e.innerText.trim()).join('|');
+    const error = [...m.querySelectorAll('.error, [role=alert]')].filter(keep).map((e) => e.innerText.trim()).join(' ');
+    return { result, error, bad: (m.innerText.match(/NaN|undefined|Infinity|\de\+\d/g) || []).join(',') };
+  });
+  const T = [
+    ['test-time-calculator', { '#totalMin': '90', '#questions': '60' }, ['#totalMin', '#questions']],
+    ['final-grade-calculator', { '#current': '82', '#weight': '30', '#target': '85' }, ['#current', '#weight', '#target']],
+    ['exam-countdown', { '#hoursPerDay': '3', $date: ['examDate', 30] }, ['#hoursPerDay']],
+    ['reading-planner', { '#totalPages': '420', '#pagesRead': '60', $date: ['deadline', 16] }, ['#totalPages', '#pagesRead']],
+    ['gpa-calculator', { '#prevGpa': '3.2', '#prevCredits': '45', '#targetGpa': '3.5', '#nextCredits': '15' }, ['.gpa-row input[type=number]', '#prevGpa', '#prevCredits', '#targetGpa', '#nextCredits']],
+    ['weighted-grade-calculator', { '.wg-row:nth-child(1) input:nth-of-type(2)': '40', '.wg-row:nth-child(1) input:nth-of-type(3)': '80' }, ['.wg-row:nth-child(1) input:nth-of-type(2)', '.wg-row:nth-child(1) input:nth-of-type(3)']],
+    ['study-schedule-maker', { '#ssHours': '3', $subjects: [['Math', 20], ['Biology', 25]] }, ['#ssHours']],
+    ['/study-plan/gre/', { '#hoursPerDay': '2', $date: ['examDate', 60] }, ['#hoursPerDay']],
+    ['/study-plan/nclex/', { '#hoursPerDay': '3', $date: ['examDate', 40] }, ['#hoursPerDay']],
+  ];
+  const fresh = async (path, good) => {
+    const page = await newPage(); const errs = []; page.on('pageerror', (e) => errs.push(e.message));
+    await page.goto(BASE + (path.startsWith('/') ? path : `/tools/${path}/`), { waitUntil: 'networkidle0' }); await page.evaluate(() => localStorage.clear()); await page.reload({ waitUntil: 'networkidle0' });
+    for (const [sel, v] of Object.entries(good)) {
+      if (sel === '$date') await page.evaluate((id, iso) => { const e = document.getElementById(id); e.value = iso; e.dispatchEvent(new Event('input', { bubbles: true })); }, v[0], dateIn(v[1]));
+      else if (sel === '$subjects') await page.evaluate((rows) => rows.forEach(([n, iso], i) => { const li = document.querySelectorAll('#ss-form li')[i]; li.querySelector('input[type=text]').value = n; li.querySelector('input[type=date]').value = iso; }), v.map(([n, d]) => [n, dateIn(d)]));
+      else await typeInto(page, await page.$(sel), v);
+    }
+    return { page, errs };
+  };
+  for (const [path, good, fields] of T) {
+    const clean = await fresh(path, good); await press(clean.page);
+    const want = await look(clean.page); await clean.page.close();
+    check(want.result && !want.error && !want.bad, `keyboard ${path}: good values give a result (${want.result.slice(0, 60)}..)`);
+    for (const sel of fields) for (const v of ODD) {
+      const { page, errs } = await fresh(path, good);
+      const h = await page.$(sel);
+      const [min, max, step] = await h.evaluate((e) => [e.min, e.max, e.step]);
+      await typeInto(page, h, v); await press(page, true); await press(page);
+      // Judge what the box holds: the browser drops letters from a paste ("12abc" becomes 12).
+      const got = await look(page), typed = (await h.evaluate((e) => e.value)).trim();
+      const n = Number(typed), stepWhole = step !== '' && Number(step) >= 1;
+      const outside = typed !== '' && (!Number.isFinite(n) || (min !== '' && n < Number(min)) || (max !== '' && n > Number(max)) || (stepWhole && !Number.isInteger(n)));
+      await typeInto(page, h, good[sel] ?? (sel.includes('gpa-row') ? '3' : '')); await press(page);
+      const after = await look(page);
+      const label = `keyboard ${path} ${sel.replace(/^#/, '')}=${JSON.stringify(v)}`;
+      check(!errs.length && !got.bad && !after.bad, `${label}: no script error or NaN (${errs[0] || got.bad || after.bad || 'ok'})`);
+      if (outside) check(got.error !== '', `${label}: outside ${min}..${max}${stepWhole ? ' whole' : ''}, message shown ("${got.error.slice(0, 70)}")`);
+      check(after.result === want.result && after.error === want.error, `${label}: fixed box gives the clean result${after.result === want.result ? '' : ` (got ${after.result.slice(0, 80)} | ${after.error})`}`);
+      await page.close();
+    }
+  }
+
+  // Loggers: the owner's case (a huge total, then a fixed one), blank and whitespace-only entries, the same entry twice, a long paste.
+  {
+    const { page } = await fresh('practice-score-tracker', {});
+    const count = () => page.evaluate(() => JSON.parse(localStorage.getItem('ffl-scores') || '{"entries":[]}').entries.length);
+    await typeInto(page, await page.$('#sc-right'), '30'); await typeInto(page, await page.$('#sc-total'), '4566505'); await press(page);
+    const e1 = (await look(page)).error, c1 = await count();
+    await typeInto(page, await page.$('#sc-total'), '40'); await press(page);
+    const s2 = await page.evaluate(() => [document.getElementById('sc-count').textContent, document.getElementById('sc-overall').textContent]);
+    await press(page); const c3 = await count();
+    for (const [r, t] of [['7', '10'], ['7', '10']]) { await typeInto(page, await page.$('#sc-right'), r); await typeInto(page, await page.$('#sc-total'), t); await press(page); }
+    const s4 = await page.evaluate(() => document.getElementById('sc-count').textContent);
+    check(e1.includes('5,000') && c1 === 0 && s2[0] === '40' && s2[1] === '75%' && c3 === 1 && s4 === '60', `keyboard score tracker: huge total refused (${c1} saved), fixed total logged (${s2}), empty resubmit adds nothing (${c3}), same set twice counted twice (${s4})`);
+    await page.close();
+  }
+  for (const [path, key, fill, list] of [
+    ['error-log', 'ffl-errorlog', ['#el-what'], (s) => s.items.length],
+    ['spaced-review', 'ffl-spaced-review', ['#topic'], (s) => s.length],
+    ['flashcards', 'ffl-flashcards', ['#fcFront', '#fcBack'], (s) => s.length],
+  ]) {
+    const { page, errs } = await fresh(path, {});
+    const n = () => page.evaluate((k) => localStorage.getItem(k), key).then((v) => (v ? list(JSON.parse(v)) : 0));
+    const put = async (v) => { for (const sel of fill) await typeInto(page, await page.$(sel), v); await press(page); };
+    await put(''); const blank = [await n(), (await look(page)).error];
+    await put('PASTE:    '); const spaces = await n();
+    await put('Beta blockers'); await put('Beta blockers'); const two = await n();
+    await put('PASTE:' + 'x'.repeat(5000)); const long = await n();
+    const bad = (await look(page)).bad;
+    check(blank[0] === 0 && blank[1] !== '' && spaces === 0 && two === 2 && long === 3 && !errs.length && !bad, `keyboard ${path}: blank refused with a message, spaces refused, two entries saved, long paste saved (${blank[0]}/${spaces}/${two}/${long}${errs[0] ? ', ' + errs[0] : ''})`);
+    // Double-click the button on a filled form: one entry, not two (the form clears after the first).
+    for (const sel of fill) await typeInto(page, await page.$(sel), 'Renal dosing');
+    await (await page.$('main form button[type=submit]')).click({ count: 2 }); await wait(200);
+    const dbl = await n();
+    // Reload: entries persist. Then delete one with a real click.
+    await page.reload({ waitUntil: 'networkidle0' });
+    const kept = await n();
+    const del = await page.evaluateHandle(() => [...document.querySelectorAll('main button')].find((b) => /^(Delete|Remove)$/.test(b.textContent.trim())));
+    await del.click(); await wait(150);
+    const afterDel = await n();
+    check(dbl === 4 && kept === 4 && afterDel === 3 && !errs.length, `click ${path}: double-click adds one (${dbl}), reload keeps all (${kept}), Delete removes one (${afterDel})`);
+    await page.close();
+  }
+
+  // Score tracker: double-click logs once; Remove by click; reload keeps the rest; target/hours boxes refuse odd values.
+  {
+    const { page, errs } = await fresh('practice-score-tracker', {});
+    const count = () => page.evaluate(() => JSON.parse(localStorage.getItem('ffl-scores') || '{"entries":[]}').entries.length);
+    for (const t of ['10', '20']) { await typeInto(page, await page.$('#sc-right'), '5'); await typeInto(page, await page.$('#sc-total'), t); await (await page.$('#sc-form button[type=submit]')).click({ count: 2 }); await wait(150); }
+    const two = await count();
+    await page.click('#sc-list button'); await wait(150);
+    await page.reload({ waitUntil: 'networkidle0' });
+    const one = await count(), shown = await page.evaluate(() => document.getElementById('sc-count').textContent);
+    await typeInto(page, await page.$('#sc-hours'), '99999999'); await page.click('main h1'); await wait(150);
+    const hoursMsg = (await look(page)).error, hoursBox = await page.$eval('#sc-hours', (e) => e.value);
+    await typeInto(page, await page.$('#sc-target'), '2.5'); await page.click('main h1'); await wait(150);
+    const targetMsg = (await look(page)).error;
+    check(two === 2 && one === 1 && shown === '10' && hoursMsg.includes('0 to 100') && hoursBox === '20' && targetMsg.includes('1 to 100') && !errs.length,
+      `click score tracker: double-clicks log ${two}, Remove + reload leave ${one} (${shown} questions), 99999999 h refused (box back to ${hoursBox}), target 2.5 refused`);
+    await page.close();
+  }
+
+  // Error log "Fixed it" (edit) by click survives a reload.
+  {
+    const { page, errs } = await fresh('error-log', {});
+    await typeInto(page, await page.$('#el-what'), 'Loop diuretics'); await press(page, true);
+    const fix = await page.evaluateHandle(() => [...document.querySelectorAll('main button')].find((b) => b.textContent.trim() === 'Fixed it'));
+    await fix.click(); await wait(150); await page.reload({ waitUntil: 'networkidle0' });
+    const st = await page.evaluate(() => JSON.parse(localStorage.getItem('ffl-errorlog')).items.map((i) => Object.keys(i).filter((k) => /fix|done|status/i.test(k)).map((k) => k + '=' + i[k]).join(',')));
+    check(st.length === 1 && /true|done|fixed|\d{4}-/.test(st[0]) && !errs.length, `click error log: "Fixed it" saved and kept after reload (${st})`);
+    await page.close();
+  }
+
+  // Signup forms (home kit, plan-page tracker): the MailerLite request is intercepted and answered here, never sent.
+  for (const path of ['/', '/study-plan/gre/']) {
+    const page = await newPage(); const errs = []; page.on('pageerror', (e) => errs.push(e.message));
+    const sent = [];
+    await page.setRequestInterception(true);
+    page.on('request', (r) => { if (r.url().includes('mailerlite.com')) { sent.push(r.postData() || ''); r.respond({ status: 200, contentType: 'application/json', headers: { 'Access-Control-Allow-Origin': '*' }, body: '{"success":true}' }); } else r.continue(); });
+    await page.goto(BASE + path, { waitUntil: 'networkidle0' });
+    const box = await page.$('#kit-email'), btn = await page.$('#kit-form button[type=submit]');
+    const tries = [];
+    for (const v of ['', 'abc', 'a@b', 'PASTE:  x @y.com', 'PASTE:' + 'x'.repeat(300)]) { await typeInto(page, box, v); await page.keyboard.press('Enter'); await wait(100); tries.push(await page.$eval('#kit-status', (e) => e.textContent)); }
+    const refused = sent.length === 0 && tries.every((t) => t.includes('valid email'));
+    await typeInto(page, box, 'PASTE:  test+ui@example.com '); await btn.click({ count: 2 }); await wait(400);
+    const ok = await page.$eval('#kit-status', (e) => e.textContent);
+    const examField = (sent[0] || '').includes('fields[exam]');
+    check(refused && sent.length === 1 && ok.includes('Check your inbox') && (path === '/' || examField) && !errs.length,
+      `signup ${path}: 5 bad emails refused, nothing sent; good email (pasted with spaces, double-clicked) sent once (${sent.length})${path === '/' ? '' : ', exam field included ' + examField}`);
+    await page.close();
+  }
+
+  // Focus timer: Start runs, a second click pauses, Reset goes back; Enter on the focused button starts it.
+  {
+    const { page, errs } = await fresh('focus-timer', {});
+    const clock = () => page.$eval('#time', (e) => e.textContent.trim());
+    const start = await page.evaluateHandle(() => [...document.querySelectorAll('main button')].find((b) => /Start/.test(b.textContent)));
+    const c0 = await clock(); await start.click(); await wait(1600); const c1 = await clock();
+    await start.click(); await wait(1200); const c2 = await clock(); await wait(1200); const c3 = await clock();
+    const reset = await page.evaluateHandle(() => [...document.querySelectorAll('main button')].find((b) => /Reset/.test(b.textContent)));
+    await reset.click(); await wait(300); const c4 = await clock();
+    await start.focus(); await page.keyboard.press('Enter'); await wait(1600); const c5 = await clock();
+    check(c0 && c1 !== c0 && c2 === c3 && c4 === c0 && c5 !== c0 && !errs.length, `click focus timer: runs (${c0} -> ${c1}), pause holds (${c2} = ${c3}), reset (${c4}), Enter starts (${c5})`);
+    await page.close();
   }
 }
 
