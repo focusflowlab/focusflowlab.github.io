@@ -75,18 +75,38 @@
     render();
   }
 
+  // Keep the running block across a reload or a closed tab: it carries on, or finishes once if it ended meanwhile.
+  const RUN = 'ffl-timer-run';
+  const pick = (name) => document.querySelector(`input[name="${name}"]:checked`)?.value;
+  const keep = () => { try { localStorage.setItem(RUN, JSON.stringify({ phase, remaining, endsAt, running: !!tick, focus: pick('focus'), brk: pick('break') })); } catch {} };
+
   startBtn.addEventListener('click', () => {
-    if (tick) { stop(); render(); return; }
+    if (tick) { stop(); render(); keep(); return; }
     if (phase === 'focus') prompt.hidden = true;
-    run();
+    run(); keep();
   });
   resetBtn.addEventListener('click', () => {
     stop(); phase = 'focus'; prompt.hidden = true;
-    remaining = minutes('focus') * 60_000; render();
+    remaining = minutes('focus') * 60_000; render(); keep();
   });
   document.querySelectorAll('input[name="focus"], input[name="break"]').forEach((el) => el.addEventListener('change', () => {
-    if (!tick) { remaining = minutes(phase) * 60_000; render(); }
+    if (!tick) { remaining = minutes(phase) * 60_000; render(); keep(); }
   }));
+  const finishAndKeep = finish;
+  finish = () => { finishAndKeep(); keep(); };
+
+  try {
+    const s = JSON.parse(localStorage.getItem(RUN) || 'null');
+    if (s && (s.phase === 'focus' || s.phase === 'break') && Number.isFinite(s.remaining)) {
+      [['focus', s.focus], ['break', s.brk]].forEach(([n, v]) => { const r = document.querySelector(`input[name="${n}"][value="${v}"]`); if (r) r.checked = true; });
+      phase = s.phase;
+      remaining = Math.min(Math.max(0, s.remaining), minutes(phase) * 60_000);
+      if (s.running && Number.isFinite(s.endsAt)) {
+        remaining = Math.min(s.endsAt - Date.now(), minutes(phase) * 60_000); // a damaged far-future end cannot run longer than a block
+        if (remaining <= 0) finish(); else run();
+      }
+    }
+  } catch {}
 
   showDone();
   render();

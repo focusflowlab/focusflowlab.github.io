@@ -24,7 +24,7 @@
       if (typeof s.exam === 'string') state.exam = s.exam;
     }
   } catch {}
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
+  const save = () => ffSave(KEY, state);
   const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   const today = () => iso(new Date());
   const plus = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };

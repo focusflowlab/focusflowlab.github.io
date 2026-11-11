@@ -15,7 +15,7 @@
   const valid = (c) => c && typeof c.front === 'string' && typeof c.back === 'string';
   let cards = [];
   try { const v = JSON.parse(localStorage.getItem(key) || '[]'); cards = Array.isArray(v) ? v.filter(valid).map(clean) : []; } catch {}
-  const save = () => { try { localStorage.setItem(key, JSON.stringify(cards)); } catch {} };
+  const save = () => ffSave(key, cards);
   const due = () => cards.filter((c) => c.due <= today());
 
   let queue = [];
@@ -90,10 +90,15 @@
     if (!file) return;
     try {
       const data = JSON.parse(await file.text());
-      const ok = Array.isArray(data) ? data.filter(valid) : [];
-      cards = cards.concat(ok.map(clean));
-      save(); renderList();
-      $('fc-error').textContent = `${ok.length} card${ok.length === 1 ? '' : 's'} imported.`;
+      const ok = Array.isArray(data) ? data.filter(valid).map(clean) : [];
+      if (!ok.length) throw new Error('no cards');
+      // Skip cards already in the deck (same front and back), so importing a file twice does not double it.
+      const have = new Set(cards.map((c) => c.front + '\n' + c.back));
+      const add = ok.filter((c) => { const k = c.front + '\n' + c.back; if (have.has(k)) return false; have.add(k); return true; });
+      cards = cards.concat(add);
+      const saved = save(); renderList();
+      const skipped = ok.length - add.length;
+      $('fc-error').textContent = `${add.length} card${add.length === 1 ? '' : 's'} imported` + (skipped ? `, ${skipped} already in your deck` : '') + (saved ? '.' : ', for this visit only.');
     } catch { $('fc-error').textContent = 'That file isn’t a FocusFlow flashcard file.'; }
     e.target.value = '';
   });

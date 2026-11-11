@@ -32,14 +32,15 @@
     });
   }
 
-  function build() {
+  function build(submitted) {
     // Keyed by row, not name: two rows called "Math" used to share one tally and both show the total.
     const subjects = read().map((s, i) => ({ ...s, key: 'r' + i })).filter((s) => s.name && s.date);
     const H = ffField($('ssHours'));
     const hours = H.v === null || !H.ok ? NaN : Math.round(H.v * 2) / 2; // the field steps by 0.5
     const perWeek = parseInt($('ssDays').value, 10);
     try { localStorage.setItem(key, JSON.stringify({ rows: read(), hours: $('ssHours').value, days: $('ssDays').value })); } catch {}
-    if (!subjects.length) { out.hidden = true; err.textContent = ''; return; }
+    // A row with no name or no (possible) date only gets a message when the button is pressed.
+    if (!subjects.length) { out.hidden = true; err.textContent = submitted === true ? 'Add a subject and its exam date.' : ''; return; }
     // A blank or out-of-range field used to count silently as 0.5 h (or 14 h) a day.
     if (!(hours >= 0.5 && hours <= 14) || !(perWeek >= 1 && perWeek <= 7)) { err.textContent = 'Enter your study hours per day (0.5 to 14) and days per week.'; out.hidden = true; return; }
     const today = day0();
@@ -96,7 +97,7 @@
 
   $('add-subject').addEventListener('click', () => { addRow(); list.lastElementChild.querySelector('input').focus(); });
   list.addEventListener('click', (e) => { if (e.target.closest('.row-remove')) { e.target.closest('.ss-row').remove(); build(); } });
-  $('ss-form').addEventListener('submit', (e) => { e.preventDefault(); build(); out.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  $('ss-form').addEventListener('submit', (e) => { e.preventDefault(); build(true); out.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   $('ss-print').addEventListener('click', () => window.print());
   build();
 })();

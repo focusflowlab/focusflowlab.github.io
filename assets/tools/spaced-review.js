@@ -17,7 +17,7 @@
       return Array.isArray(v) ? v.filter((t) => t && typeof t.name === 'string' && t.name.trim() && validDate(t.date)) : [];
     } catch { return []; }
   };
-  const save = (items) => { try { localStorage.setItem(key, JSON.stringify(items)); } catch {} };
+  const save = (items) => ffSave(key, items);
   let topics = load();
 
   // Local calendar dates (toISOString is UTC, which is yesterday or tomorrow near midnight, e.g. before 5 AM in Lahore).
@@ -47,6 +47,7 @@
     const name = $('topic').value.trim();
     const date = $('studied').value || today;
     if (!name) { $('review-error').textContent = 'Add a topic name first.'; return; }
+    if (date > today) { $('review-error').textContent = 'Pick the day you studied it: today or earlier.'; return; }
     $('review-error').textContent = '';
     topics.push({ name: name.slice(0, 80), date });
     save(topics); render();

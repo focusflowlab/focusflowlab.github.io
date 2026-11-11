@@ -19,7 +19,7 @@
       if (Number(s.hours) >= 0) state.hours = Number(s.hours);
     }
   } catch {}
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
+  const save = () => ffSave(KEY, state);
   const el = (tag, text, cls) => { const e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; };
 
   const examSel = $('sc-exam'), topicSel = $('sc-topic');

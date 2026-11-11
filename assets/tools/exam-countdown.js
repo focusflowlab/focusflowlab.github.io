@@ -12,9 +12,10 @@
 
   function startOfDay(d) { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; }
 
-  function calc() {
+  function calc(submitted) {
     const value = $('examDate').value;
-    if (!value) { out.hidden = true; return; }
+    // A blank or impossible date (e.g. 30 Feb, which the box empties) only gets a message when the button is pressed.
+    if (!value) { out.hidden = true; $('countdown-error').textContent = submitted === true ? 'Pick your exam date.' : ''; return; }
     const exam = startOfDay(value + 'T00:00:00');
     const today = startOfDay(new Date());
     const days = Math.round((exam - today) / 86400000);
@@ -39,7 +40,7 @@
     try { localStorage.setItem(key, JSON.stringify({ examDate: value, hoursPerDay: $('hoursPerDay').value, daysPerWeek: $('daysPerWeek').value })); } catch {}
   }
 
-  form.addEventListener('submit', (e) => { e.preventDefault(); calc(); });
-  form.addEventListener('change', calc);
+  form.addEventListener('submit', (e) => { e.preventDefault(); calc(true); });
+  form.addEventListener('change', () => calc());
   calc();
 })();
