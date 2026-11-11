@@ -35,10 +35,13 @@
   function build() {
     // Keyed by row, not name: two rows called "Math" used to share one tally and both show the total.
     const subjects = read().map((s, i) => ({ ...s, key: 'r' + i })).filter((s) => s.name && s.date);
-    const hours = Math.round(Math.min(14, Math.max(0.5, parseFloat($('ssHours').value) || 0)) * 2) / 2; // the field steps by 0.5
+    const rawHours = parseFloat($('ssHours').value);
+    const hours = Math.round(rawHours * 2) / 2; // the field steps by 0.5
     const perWeek = parseInt($('ssDays').value, 10);
     try { localStorage.setItem(key, JSON.stringify({ rows: read(), hours: $('ssHours').value, days: $('ssDays').value })); } catch {}
     if (!subjects.length) { out.hidden = true; err.textContent = ''; return; }
+    // A blank or out-of-range field used to count silently as 0.5 h (or 14 h) a day.
+    if (!(hours >= 0.5 && hours <= 14) || !(perWeek >= 1 && perWeek <= 7)) { err.textContent = 'Enter your study hours per day (0.5 to 14) and days per week.'; out.hidden = true; return; }
     const today = day0();
     const future = subjects.filter((s) => parse(s.date) > today);
     if (!future.length) { err.textContent = 'Add at least one exam date after today.'; out.hidden = true; return; }

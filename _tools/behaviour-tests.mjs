@@ -287,6 +287,206 @@ for (const [exam, hours] of [['nclex', '7'], ['mcat', '20'], ['gre', '3'], ['usm
   await page.close();
 }
 
+// 12. Final grade: the guide's worked examples, and the A-D table agrees with the formula.
+for (const [cur, w, tgt, want] of [['78', '40', '80', '83%'], ['85', '30', '90', '101.7%'], ['85', '30', '88', '95%'], ['95', '20', '70', '0%'], ['0', '50', '50', '100%']]) {
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/final-grade-calculator/`, { waitUntil: 'networkidle0' });
+  const res = await page.evaluate((c, w, t) => {
+    document.getElementById('current').value = c; document.getElementById('weight').value = w; document.getElementById('target').value = t;
+    document.getElementById('final-form').requestSubmit();
+    return { need: document.getElementById('r-need').textContent, rows: [...document.querySelectorAll('#r-table tr')].map((tr) => tr.textContent) };
+  }, cur, w, tgt);
+  const table = res.rows.every((r) => { const t = Number(r.match(/\((\d+)%\)/)[1]); const v = (t - cur * (1 - w / 100)) / (w / 100); const cell = r.replace(/^.*?\)\s*/, ''); return v <= 0 ? cell === 'Already there' : v > 100 ? cell === 'Out of reach' : cell === Math.round(v * 10) / 10 + '%'; });
+  check(res.need === want && table, `final grade ${cur}% now, final ${w}%, want ${tgt}%: needs ${res.need} (want ${want}), A-D table ${table ? 'matches' : 'WRONG ' + res.rows.join(' | ')}`);
+  await page.close();
+}
+
+// 13. Weighted grade: blank scores are left out; totals are the sums entered.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/weighted-grade-calculator/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.clear());
+  await page.reload({ waitUntil: 'networkidle0' });
+  const res = await page.evaluate(() => {
+    const rows = [...document.querySelectorAll('.wg-row')];
+    [['20', '90'], ['15', ''], ['25', '80'], ['40', '']].forEach(([w, s], i) => { const [, wi, si] = rows[i].querySelectorAll('input'); wi.value = w; si.value = s; });
+    document.getElementById('wg-form').dispatchEvent(new Event('input'));
+    return ['r-grade', 'r-weight', 'r-done'].map((id) => document.getElementById(id).textContent);
+  });
+  // (20 x 90 + 25 x 80) / 45 = 84.4
+  check(JSON.stringify(res) === JSON.stringify(['84.4%', '100%', '45%']), `weighted grade with two ungraded categories: ${res.join(', ')} (want 84.4%, 100%, 45%)`);
+  await page.close();
+}
+
+// 14. GPA: term, cumulative and the GPA needed next term.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/gpa-calculator/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.clear());
+  await page.reload({ waitUntil: 'networkidle0' });
+  const res = await page.evaluate(() => {
+    const set = (id, v) => { document.getElementById(id).value = v; };
+    set('prevGpa', '3.0'); set('prevCredits', '30'); set('targetGpa', '3.2'); set('nextCredits', '15');
+    document.getElementById('gpa-form').dispatchEvent(new Event('input'));
+    return ['r-term', 'r-cum', 'r-need'].map((id) => document.getElementById(id).textContent);
+  });
+  // default rows A(3), B+(3), B(4): 33.9 / 10 = 3.39; cumulative (90 + 33.9) / 40 = 3.0975; need (3.2 x 55 - 123.9) / 15 = 3.473
+  check(res[0] === '3.39' && res[1] === '3.10' && res[2].includes('3.47'), `GPA term ${res[0]}, cumulative ${res[1]}, next term: ${res[2]} (want 3.39, 3.10, 3.47)`);
+  await page.close();
+}
+
+// 15. Exam countdown: a blank hours field must not quietly count as half an hour a day.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/exam-countdown/`, { waitUntil: 'networkidle0' });
+  const res = await page.evaluate((exam) => {
+    const set = (id, v) => { const e = document.getElementById(id); e.value = v; e.dispatchEvent(new Event('change', { bubbles: true })); };
+    set('examDate', exam); set('daysPerWeek', '7'); set('hoursPerDay', '3');
+    const full = [document.getElementById('r-days').textContent, document.getElementById('r-hours').textContent];
+    set('hoursPerDay', '');
+    return { full, hidden: document.getElementById('countdown-result').hidden, hours: document.getElementById('r-hours').textContent };
+  }, dateIn(28));
+  check(res.full[0] === '28' && res.full[1] === '84', `countdown 28 days x 3 h: ${res.full.join(' days, ')} hours (want 28, 84)`);
+  check(res.hidden, `countdown with blank hours shows no total (showed ${res.hours} h)`);
+  await page.close();
+}
+
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/study-schedule-maker/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.clear());
+  await page.reload({ waitUntil: 'networkidle0' });
+  const res = await page.evaluate(async (d) => {
+    const [n, dt] = document.querySelector('.ss-row').querySelectorAll('input'); n.value = 'Bio'; dt.value = d;
+    document.getElementById('ssHours').value = '';
+    document.getElementById('ss-form').requestSubmit();
+    await new Promise((r) => setTimeout(r, 200));
+    return { hidden: document.getElementById('ss-result').hidden, err: document.getElementById('ss-error').textContent };
+  }, dateIn(14));
+  check(res.hidden && res.err, `schedule maker with blank hours shows no schedule ("${res.err}")`);
+  await page.close();
+}
+
+// 16. Plan generator edges: exam today/past rejected, 3 days accepted, leap day, max range, total hours match the weeks.
+{
+  const page = await newPage({ tz: 'America/New_York', fixed: Date.UTC(2028, 1, 1, 17) });
+  const ics = await icsOf(page, '2028-02-29', '1.5', '7');
+  const starts = [...ics.matchAll(/DTSTART:(\d{8})T/g)].map((m) => m[1]);
+  check(starts.length === 28 && starts[27] === '20280228' && /DTSTART;VALUE=DATE:20280229\r\nDTEND;VALUE=DATE:20280301/.test(ics), `plan to leap day 29 Feb 2028: ${starts.length} sessions, last ${starts[starts.length - 1]}, exam event 29 Feb to 1 Mar`);
+  await page.close();
+}
+for (const [days, hours, perWeek, ok] of [[0, '2', '5', false], [-3, '2', '5', false], [2, '2', '5', false], [3, '2', '5', true], [3, '14', '7', true], [180, '0.5', '3', true], [181, '2', '5', false], [30, '2', '1', false], [30, '', '5', false]]) {
+  const page = await newPage();
+  await page.goto(`${BASE}/study-plan/nclex/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.clear());
+  const res = await page.evaluate((exam, hours, perWeek) => {
+    const set = (id, v) => { document.getElementById(id).value = v; };
+    set('examDate', exam); set('hoursPerDay', hours); set('daysPerWeek', perWeek);
+    document.querySelector('form').requestSubmit();
+    const weeks = [...document.querySelectorAll('.week')].map((w) => parseFloat(w.querySelector('.week-when span:last-child').textContent));
+    const planned = document.querySelector('.totals div:nth-child(3) dd');
+    const daysLeft = document.querySelector('.totals div:nth-child(1) dd');
+    return { err: document.getElementById('form-error').textContent, weeks, planned: planned ? Number(planned.textContent) : null, daysLeft: daysLeft ? Number(daysLeft.textContent) : null, html: document.getElementById('plan').innerHTML };
+  }, dateIn(days), hours, perWeek);
+  const sum = res.weeks.reduce((a, b) => a + b, 0);
+  const good = ok
+    ? !res.err && res.daysLeft === days && res.weeks.length === Math.ceil(days / 7) && res.weeks.every((h) => h > 0) && Math.abs(res.planned - sum) <= 0.5 && !/NaN|undefined|Infinity/.test(res.html)
+    : !!res.err && !res.weeks.length;
+  check(good, `plan NCLEX exam in ${days} days, ${hours} h x ${perWeek}: ${ok ? `${res.weeks.length} weeks, planned ${res.planned} h vs weeks ${sum} h` : `rejected: "${res.err.slice(0, 60)}"`}`);
+  await page.close();
+}
+
+// 17. Home focus day: a block that ended while away is counted once, and the streak follows calendar days.
+for (const [lastAgo, nBefore, want] of [[1, 3, 4], [2, 3, 1], [0, 5, 5]]) {
+  const page = await newPage();
+  await page.goto(`${BASE}/`, { waitUntil: 'networkidle0' });
+  const res = await page.evaluate(async (lastAgo, nBefore) => {
+    const ld = (k) => { const d = new Date(); d.setDate(d.getDate() - k); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+    localStorage.setItem('ffl-home-focus', JSON.stringify({ subject: '', len: 25, day: ld(0), focus: [lastAgo === 0, false, false, false], tested: [false, false, false, false], run: { endAt: Date.now() - 5000 }, streak: { last: ld(lastAgo), n: nBefore } }));
+    return 0;
+  }, lastAgo, nBefore);
+  await page.reload({ waitUntil: 'networkidle0' });
+  const s = await page.evaluate(() => JSON.parse(localStorage.getItem('ffl-home-focus')));
+  const doneBlocks = s.focus.filter(Boolean).length;
+  check(s.streak.n === want && doneBlocks === (lastAgo === 0 ? 2 : 1) && !s.run, `home focus: last streak day ${lastAgo} day(s) ago, ${nBefore} days -> streak ${s.streak.n} (want ${want}), blocks done ${doneBlocks}`);
+  await page.close();
+}
+
+// 18. Topic names in the tracker / error log match each plan page, so "Mark them as shaky" finds them.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/practice-score-tracker/`, { waitUntil: 'networkidle0' });
+  const topics = await page.evaluate(() => window.EXAM_TOPICS);
+  await page.close();
+  for (const [slug, e] of Object.entries(topics)) {
+    const p = await newPage();
+    const r = await p.goto(`${BASE}/study-plan/${slug}/`, { waitUntil: 'domcontentloaded' });
+    const names = r && r.status() < 400 ? await p.evaluate(() => (window.EXAM_CONFIG ? window.EXAM_CONFIG.topics.map((t) => t.name) : null)) : null;
+    const wsum = e.topics.reduce((a, t) => a + t[1], 0);
+    check(names && JSON.stringify(names) === JSON.stringify(e.topics.map((t) => t[0])) && wsum > 0, `exam topics ${slug}: ${names ? names.length : 'no plan page'} topics match the plan page`);
+    await p.close();
+  }
+}
+
+// 19. Embed pages load without script errors and still calculate.
+for (const [slug, setup, out] of [
+  ['final-grade-calculator', { current: '78', weight: '40', target: '80' }, ['r-need', '83%']],
+  ['test-time-calculator', { totalMin: '120', questions: '60', reviewPct: '0' }, ['r-sec', '120 sec']],
+  ['gpa-calculator', {}, ['r-term', '3.39']],
+  ['weighted-grade-calculator', {}, ['r-weight', '100%']],
+  ['exam-countdown', { examDate: dateIn(10), hoursPerDay: '2', daysPerWeek: '7' }, ['r-hours', '20']],
+  ['reading-planner', { totalPages: '100', pagesRead: '0', deadline: dateIn(10), readDays: '7' }, ['r-left', '100']],
+]) {
+  const page = await newPage();
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.goto(`${BASE}/embed/${slug}/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.clear());
+  await page.reload({ waitUntil: 'networkidle0' });
+  const got = await page.evaluate((setup, id) => {
+    Object.entries(setup).forEach(([k, v]) => { const e = document.getElementById(k); e.value = v; });
+    const f = document.querySelector('form'); f.dispatchEvent(new Event('input', { bubbles: true })); f.dispatchEvent(new Event('change', { bubbles: true })); f.requestSubmit();
+    return document.getElementById(id).textContent.trim();
+  }, setup, out[0]);
+  check(!errors.length && got === out[1], `embed ${slug}: ${out[0]} = ${got} (want ${out[1]})${errors.length ? ' errors: ' + errors.join('; ') : ''}`);
+  await page.close();
+}
+
+// 20. Downloads: score tracker CSV quotes commas and quotes; flashcards export/import round trip.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/practice-score-tracker/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.setItem('ffl-scores', JSON.stringify({ exam: 'nclex', target: 75, hours: 10, entries: [] })));
+  await page.reload({ waitUntil: 'networkidle0' });
+  await page.evaluate(() => { window.__blobs = []; const real = URL.createObjectURL.bind(URL); URL.createObjectURL = (b) => { window.__blobs.push(b); return real(b); }; HTMLAnchorElement.prototype.click = function () {}; });
+  const csv = await page.evaluate(async () => {
+    const set = (id, v) => { document.getElementById(id).value = v; };
+    set('sc-right', '7'); set('sc-total', '10'); set('sc-note', 'Kaplan, set "B"');
+    document.getElementById('sc-form').requestSubmit();
+    document.getElementById('sc-csv').click();
+    return window.__blobs[0] ? await window.__blobs[0].text() : '';
+  });
+  check(csv.split('\r\n').length === 2 && csv.includes('"7","10","Kaplan, set ""B"""'), `score tracker CSV: ${JSON.stringify(csv.split('\r\n')[1])}`);
+  await page.close();
+
+  const p2 = await newPage();
+  await p2.goto(`${BASE}/tools/flashcards/`, { waitUntil: 'networkidle0' });
+  await p2.evaluate(() => localStorage.setItem('ffl-flashcards', JSON.stringify([{ front: 'Q, "1"', back: 'A <b>', step: 3, due: '2030-01-02' }])));
+  await p2.reload({ waitUntil: 'networkidle0' });
+  await p2.evaluate(() => { window.__blobs = []; const real = URL.createObjectURL.bind(URL); URL.createObjectURL = (b) => { window.__blobs.push(b); return real(b); }; HTMLAnchorElement.prototype.click = function () {}; });
+  const json = await p2.evaluate(async () => { document.getElementById('fc-export').click(); return window.__blobs[0].text(); });
+  await p2.evaluate(() => localStorage.setItem('ffl-flashcards', '[]'));
+  await p2.reload({ waitUntil: 'networkidle0' });
+  const input = await p2.$('#fc-import');
+  const fs = await import('fs'); const os = await import('os'); const path = await import('path');
+  const tmp = path.join(os.tmpdir(), 'ffl-cards.json'); fs.writeFileSync(tmp, json);
+  await input.uploadFile(tmp);
+  await wait(400);
+  const cards = await p2.evaluate(() => JSON.parse(localStorage.getItem('ffl-flashcards')));
+  check(cards.length === 1 && cards[0].front === 'Q, "1"' && cards[0].back === 'A <b>' && cards[0].step === 3 && cards[0].due === '2030-01-02', `flashcards export then import keeps the card: ${JSON.stringify(cards)}`);
+  await p2.close();
+}
+
 await browser.close();
 console.log(failed ? `\n${failed} FAILED` : '\nALL PASSED');
 process.exit(failed ? 1 : 0);

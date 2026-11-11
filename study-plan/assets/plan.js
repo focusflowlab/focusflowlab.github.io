@@ -58,6 +58,7 @@
     if (!(daysLeft >= 3)) return "Your exam is less than 3 days away. Rest, skim your notes, and trust the work you've done.";
     if (daysLeft > config.maxDays) return `That's more than ${Math.round(config.maxDays / 30)} months away. Come back nearer the date for a tighter plan.`;
     if (!(inputs.hoursPerDay >= 0.5 && inputs.hoursPerDay <= 14)) return 'Hours per day should be somewhere between 0.5 and 14.';
+    if (!(inputs.daysPerWeek >= 1 && inputs.daysPerWeek <= 7)) return 'Pick how many days a week you can study.';
     return '';
   }
 

@@ -131,7 +131,7 @@ def final_grade():
     ws["B15"] = '=IFERROR(SUMPRODUCT(B5:B10,C5:C10)/SUMIF(C5:C10,"<>",B5:B10),"")'
     ws["B15"].number_format = "0.0%"
     ws["A16"] = "Score needed on the final"
-    ws["B16"] = '=IF(OR(B15="",B12<=0),"",(B13-B15*(1-B12))/B12)'
+    ws["B16"] = '=IF(OR(B15="",B12<=0),"",MAX(0,(B13-B15*(1-B12))/B12))'  # never a negative score
     ws["B16"].number_format = "0.0%"
     ws["A17"] = "What that means"
     ws["B17"] = '=IF(B16="","Fill in the cells above",IF(B16>1,"Out of reach unless there is extra credit: try a lower target",IF(B16<=0,"You already have it: any score keeps this grade","Aim for "&TEXT(B16,"0.0%")&" or more")))'
@@ -157,8 +157,8 @@ def score_log():
     from datetime import date
     rows = 200
     for r in range(2, rows + 2):
-        ws[f"F{r}"] = f'=IF(OR(D{r}="",E{r}="",E{r}=0),"",D{r}/E{r})'
-        ws[f"H{r}"] = f'=IF(OR(F{r}="",G{r}=""),"",IF(F{r}>=G{r},"Yes","Not yet"))'
+        ws[f"F{r}"] = f'=IF(OR(D{r}="",E{r}="",E{r}=0),"",IF(D{r}>E{r},"Right > total?",D{r}/E{r}))'
+        ws[f"H{r}"] = f'=IF(OR(NOT(ISNUMBER(F{r})),G{r}=""),"",IF(F{r}>=G{r},"Yes","Not yet"))'
         ws[f"G{r}"] = 0.75
         ws[f"F{r}"].number_format = "0%"
         ws[f"G{r}"].number_format = "0%"
