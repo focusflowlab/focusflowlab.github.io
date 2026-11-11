@@ -5,9 +5,22 @@ Each page marks the spots with <!-- site-head --><!-- /site-head --> and
 <!-- site-foot --><!-- /site-foot -->. The nav link for the current section
 gets aria-current="page".
 """
-import pathlib, re
+import pathlib, re, hashlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+
+ASSET = re.compile(r'(href|src)="([^"#:?]+\.(?:css|js))(?:\?v=[0-9a-f]+)?"')
+
+def version_assets(html, base):
+    """Add ?v=<hash of the file> to local css/js links so a changed file is never served from a stale browser cache (GitHub Pages caches 10 min).
+    Re-run this script after editing any css or js file; the tag only changes when the file's contents change."""
+    def one(m):
+        ref = m.group(2)
+        f = (ROOT / ref.lstrip("/")) if ref.startswith("/") else (base / ref).resolve()
+        if not f.is_file():
+            return m.group(0)
+        return f'{m.group(1)}="{ref}?v={hashlib.sha1(f.read_bytes()).hexdigest()[:8]}"'
+    return ASSET.sub(one, html)
 head = (ROOT / "_partials/site-head.html").read_text(encoding="utf-8").strip()
 foot = (ROOT / "_partials/site-foot.html").read_text(encoding="utf-8").strip()
 
@@ -26,6 +39,9 @@ pages = [p for p in ROOT.rglob("*.html") if not any(part.startswith(("_", ".")) 
 for page in pages:
     html = page.read_text(encoding="utf-8")
     if "<!-- site-head -->" not in html:
+        versioned = version_assets(html, page.parent)
+        if versioned != html:
+            page.write_text(versioned, encoding="utf-8", newline="\n")
         continue
     url = url_of(page)
     h = head
@@ -37,5 +53,12 @@ for page in pages:
                 f = f'<nav class="container hub-link{" hub-float" if section == "/planners/" else ""}" aria-label="Back to section"><a href="{section}">{HUB[section]}</a></nav>' + chr(10) + foot
     html = re.sub(r"<!-- site-head -->.*?<!-- /site-head -->", lambda m: f"<!-- site-head -->\n{h}\n<!-- /site-head -->", html, flags=re.S)
     html = re.sub(r"<!-- site-foot -->.*?<!-- /site-foot -->", lambda m: f"<!-- site-foot -->\n{f}\n<!-- /site-foot -->", html, flags=re.S)
-    page.write_text(html, encoding="utf-8", newline="\n")
+    page.write_text(version_assets(html, page.parent), encoding="utf-8", newline="\n")
     print("built", url)
+
+# Jekyll layouts and includes (guides) get the same tags; their links are absolute.
+for tpl in [*(ROOT / "_layouts").glob("*.html"), *(ROOT / "_includes").glob("*.html")]:
+    text = tpl.read_text(encoding="utf-8")
+    versioned = version_assets(text, tpl.parent)
+    if versioned != text:
+        tpl.write_text(versioned, encoding="utf-8", newline="\n")
