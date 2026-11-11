@@ -14,57 +14,60 @@ Here is how to build computer focus using real system limits.
 
 ## The steps
 
-### 1. Separate your personal and work user accounts
+No single step below works for everyone, and none is a guarantee. The idea is distance and friction instead of willpower: make a distraction a few steps away rather than one click away. Keep every change easy to undo, so you never lock yourself out of an account, a login page or coursework you need.
 
-Start by creating two separate local user accounts on your laptop operating system. Name one account for focused work and the other account for personal relaxation. Keep all your video games, social media logins, and entertainment apps strictly on your personal profile. Keep your work profile completely clean with only essential software installed. When you need to study, sign out of your personal profile entirely. Logging out forces you to type a password and wait for the system to switch profiles. That small delay breaks the automatic habit of opening fun apps while you work. For example, if you want to watch videos, you must save your work and switch accounts first. A common mistake is leaving your personal account logged in, which lets you switch back too easily.
+### 1. Use a separate browser profile for study
 
-**Tip:** Log out of your personal profile completely before starting any work session.
+Create a second profile in the browser you already use, and name it something like "Study". Keep your social media, video and shopping logins in your personal profile only. In the study profile, sign in only to what you need: your course site, email and notes. Switching to the personal profile now takes a deliberate click instead of a stray tab. For example, you can open your study profile for a block and leave your personal profile closed. A common mistake is signing in to everything in both profiles, which removes the friction. Keep using your password manager and autofill in both. They keep your accounts safe and cost you almost no time.
 
-### 2. Hide your main web browser from quick access
+**Tip:** Pin the study profile to your taskbar and leave the personal one unpinned.
 
-Remove your primary web browser shortcut from your desktop screen and main taskbar. Hide the application inside a deep subfolder buried on your hard drive. Set a basic, stripped down browser as your default option for opening links. Strip that default browser of all saved passwords, auto-fill data, and personal bookmarks. When you click a link while working, it opens in a plain window with no easy shortcuts. If you want to visit your favorite distracting sites, you must search through folders to open your main browser. For instance, you will have to open your file manager, click through three subfolders, and launch the file manually. A common mistake is keeping browser shortcuts pinned right to your taskbar where your mouse naturally clicks.
+### 2. Clear the study workspace
 
-**Tip:** Keep your primary browser hidden inside nested folders so opening it takes manual effort.
+Close tabs you are not using and remove entertainment shortcuts and bookmarks from the study profile. Move distracting apps off your desktop, dock or taskbar, but leave them installed so nothing breaks. When you open the browser for work, you should see only work. For instance, a study profile with three bookmarks (your course page, your notes and your practice questions) leaves little to wander into. A common mistake is deleting things you will want later. Moving or hiding them is enough and is easy to reverse.
 
-### 3. Set your display screen to full black and white
+**Tip:** Start each block with only the tabs that block needs.
 
-Turn your entire laptop screen into full grayscale using your system accessibility settings. Colorful social media feeds and online video thumbnails suddenly look dull and unappealing without bright red notifications. Your eyes will feel less drawn to vibrant advertisements and flashing browser tabs while you read work documents. You can set up a quick keyboard shortcut to toggle grayscale on and off when needed. For example, reading a colorful article becomes boring when every image looks like an old grey newspaper page. A common mistake is turning colors back on the moment you feel a little bit bored.
+### 3. Set your screen to black and white
 
-**Tip:** Leave your monitor in black and white mode for your entire work window.
+Use your operating system's colour filter or grayscale setting in its accessibility options. Colourful feeds and video thumbnails look less appealing without colour and red badges. Many systems let you set a shortcut to switch it on and off. For example, a bright news page looks dull in grayscale, which makes it easier to go back to your notes. A common mistake is switching colour back on the moment you feel bored. Turn it off whenever you genuinely need colour, such as for charts or diagrams in your course.
 
-### 4. Disconnect your home Wi-Fi network with one click
+**Tip:** Keep grayscale on for the study block and switch it off afterwards.
 
-Turn off your Wi-Fi card completely before you open your project files or assignment documents. Download all necessary research papers, software tools, and assignment prompts to your hard drive beforehand. Put your laptop into airplane mode so your computer cannot automatically reconnect to the internet. If you open a new browser tab out of habit, you will see a blank offline error page. That offline message reminds you that you are supposed to be working right now. For example, save your reference articles as PDF files on your desktop the night before you write. A common mistake is leaving your Wi-Fi active while doing tasks that only require local text editors.
+### 4. Use Focus mode and mute notifications
 
-**Tip:** Download your essential files first so you can work completely offline without internet access.
+Both Windows and macOS have built-in focus or do-not-disturb modes. Turn one on for your study block, and allow only the apps you need, such as a calendar alert or a message from your tutor. Notification badges are a frequent cause of "just a quick look". Set the phone to do not disturb too, and place it out of reach. For example, schedule the mode to turn on during your usual study hours so you do not need to remember. A common mistake is allowing every app "just in case". Allow the few you really need.
 
-### 5. Lock your open application windows into full screen
+**Tip:** Schedule the focus mode so it starts without a decision.
 
-Put your active word processor or project software into full screen focus mode right away. This simple action hides your bottom taskbar, top web browser tabs, and system clock from view. When you cannot see other open icons, your eyes stay focused on the text in front of you. You will not notice incoming badges or feel tempted to click around your desktop. For instance, writing your report in full screen mode removes the visual distraction of twenty open web tabs. It takes conscious effort to press the escape key and leave full screen view to browse. A common mistake is keeping your work window minimized or shared next to an open video window.
+### 5. Go full screen with one task
 
-**Tip:** Use full screen focus mode to cover your taskbar and browser tabs entirely.
+Put your word processor, notes app or practice test into full screen or focus mode. This hides the taskbar, the tab strip and the clock, so there are fewer things to click. When you cannot see other open icons, your eyes stay on the text in front of you. For instance, writing a report full screen removes the sight of twenty open tabs. Leaving full screen takes a deliberate key press. A common mistake is working in a small window next to an open video.
 
-### 6. Unsave your passwords from all web accounts
+**Tip:** Open the one document or tool you need, then go full screen.
 
-Log out of every social network, message board, and entertainment site on your browser. Turn off your browser feature that saves your login credentials and automatically fills in passwords. Store your complex passwords on a physical piece of paper kept in another room down the hall. When you feel a sudden urge to check a distracting site, you face a big wall. You must stand up, walk to the other room, read the long password, and type it manually. For example, typing a thirty character password by hand gives you time to reconsider your choice. A common mistake is letting your web browser stay logged in to fun websites permanently.
+### 6. Use a reputable blocker with settings you can change
 
-**Tip:** Sign out of entertainment sites so you must type long passwords by hand.
+A website blocker can still help, as long as you can undo it. Choose a well-known blocking app or browser extension, check its reviews and what permissions it asks for, and set it up with a schedule or timer that ends by itself. Block the few sites that pull you in most, not the whole internet. For example, block two video sites and one social site during study hours, and leave everything else open so research is never blocked. A common mistake is a block so strict that it stops you opening your course materials, which makes you switch it off for good. Make sure you know how to turn it off, and never block your course site, email or login pages.
 
-### 7. Use terminal tools to edit your local host files
+**Tip:** Start with a 25 to 50 minute timer and the two sites you visit most.
 
-Modify your local system hosts file to redirect distracting web domains straight to a blank page. Unlike simple browser extensions, system level blocks cannot be bypassed with a simple click in browser menus. Removing these blocks requires opening your system command line and typing specific administrative override text. That technical step creates a huge physical hurdle when you feel like wasting time online. For instance, trying to visit a news site will simply load a plain blank screen on your computer. You will have to restart your computer or run administrative commands to undo the restriction. A common mistake is relying on lightweight browser extensions that you can disable in two simple clicks.
+### 7. Download what you need, and go offline only if you can
 
-**Tip:** Block unwanted domains inside your local computer settings rather than simple web browser extensions.
+If your work does not need the internet, download the papers, readings and practice material first, then turn on airplane mode for the block. Reconnect when the block ends. If your coursework needs the internet, such as an online test, a course portal or a shared document, stay connected and rely on the other steps instead. For example, saving your reference articles as files the night before lets you write without opening a browser. A common mistake is going offline and then losing access to something required, such as a submission page or a live class. Use this step only when it clearly fits the task.
 
-### 8. Close your laptop lid during short study breaks
+**Tip:** Decide before the block whether you need the internet, and plan to reconnect on your break.
 
-Shut your laptop lid completely whenever you step away from your desk for a brief break. Walking away from an open glowing screen makes it easy to sit back down and browse endlessly. Closing the lid puts your computer to sleep and locks your active screen behind your system password. When you return to your desk, you must consciously unlock your machine to resume your session. For example, taking a five minute water break with a shut laptop keeps your mind off open tabs. You come back ready to type your password and dive straight back into your main task. A common mistake is leaving your laptop wide open with bright tabs visible while you rest.
+### 8. Close your laptop on short breaks
 
-**Tip:** Shut your laptop screen every time you step away to preserve your working momentum.
+Close the lid, or lock the screen, when you step away for a short break. Walking away from an open screen makes it easy to sit back down and browse. Locking it with your normal login means you come back deliberately and unlock it, rather than drifting back to open tabs. For example, a five minute water break with the lid closed keeps your attention off your tabs. A common mistake is leaving the screen open with bright tabs showing while you rest.
+
+**Tip:** Stand up and move away from the screen during breaks.
 
 ## Quick recap
 
-- Separate your personal and work profiles completely to add system friction.
-- Turn off Wi-Fi and hide browser shortcuts to stay focused on your work.
+- Add friction, not extra risk: a study browser profile, a clean workspace and a focus mode.
+- Keep your password manager and autofill on, and keep every restriction reversible.
+- Use a reputable blocker with a timer, and go offline only when your work allows it.
 
-Hard limits on your laptop make real focus automatic every single day.
+Distance and friction work better than willpower alone, and none of them is a guarantee.
