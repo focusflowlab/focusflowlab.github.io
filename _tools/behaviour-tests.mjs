@@ -24,7 +24,8 @@ const newPage = async (opts = {}) => {
   }
   return page;
 };
-const dateIn = (days) => { const d = new Date(Date.now() + days * 864e5); return d.toISOString().slice(0, 10); };
+// local calendar date (toISOString gave the UTC date, a day early from 00:00 to 05:00 in Karachi)
+const dateIn = (days) => { const t = new Date(); const d = new Date(t.getFullYear(), t.getMonth(), t.getDate() + days); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
 
 // 1. Schedule maker: the hours shown always add up to the hours entered, and no subject is starved.
 for (const [hours, n] of [[3, 4], [3, 5], [3, 14], [0.5, 3], [2.5, 7], [14, 5], [1, 9]]) {

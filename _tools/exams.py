@@ -39,8 +39,10 @@ def related_block(e):
         links = [("How to study for the NCLEX-PN", "/guides/how-to-study-for-the-nclex-pn/"), ("NCLEX-RN study plan", "/study-plan/nclex/")]
     if slug in PLANNERS:
         links.append((f"{e['short']} printable planner", f"/planners/{PLANNERS[slug][1]}/"))
-    links += [(f"{e['short']} test format and scoring", f"/exam-facts/#{slug}"), ("Test time calculator", "/tools/test-time-calculator/")]
-    return '      <p class="related-links"><strong>Related:</strong> ' + " · ".join(f'<a href="{u}">{t}</a>' for t, u in links) + "</p>\n\n"
+    links += [(f"{e['short']} test format and scoring", f"/exam-facts/#{slug}"), ("Practice score tracker", "/tools/practice-score-tracker/"), ("Test time calculator", "/tools/test-time-calculator/")]
+    if slug == "nclex-pn":
+        links.insert(1, ("NCLEX-PN study video", "/guides/how-to-study-for-the-nclex-pn/#watch"))
+    return f'      <p class="related-links"><strong>More for {e["short"]}:</strong> ' +" · ".join(f'<a href="{u}">{t}</a>' for t, u in links) + "</p>\n\n"
 
 
 BUNDLE_URL = "/planners/all-exam-planners-bundle/"
