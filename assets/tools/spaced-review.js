@@ -9,7 +9,14 @@
   const empty = $('review-empty');
   const actions = $('review-actions');
 
-  const load = () => { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; } };
+  // Keep only well-formed saved topics (a damaged or old entry used to stop the whole calendar).
+  const validDate = (s) => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !Number.isNaN(new Date(s + 'T12:00:00').getTime());
+  const load = () => {
+    try {
+      const v = JSON.parse(localStorage.getItem(key) || '[]');
+      return Array.isArray(v) ? v.filter((t) => t && typeof t.name === 'string' && t.name.trim() && validDate(t.date)) : [];
+    } catch { return []; }
+  };
   const save = (items) => { try { localStorage.setItem(key, JSON.stringify(items)); } catch {} };
   let topics = load();
 

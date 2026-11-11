@@ -68,8 +68,13 @@
 
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(key) || 'null'); } catch {}
-  (saved?.rows?.length ? saved.rows : [{ name: '', credits: 3, grade: 'A' }, { name: '', credits: 3, grade: 'B+' }, { name: '', credits: 4, grade: 'B' }]).forEach(addRow);
-  if (saved) ['prevGpa', 'prevCredits', 'targetGpa', 'nextCredits'].forEach((k) => { if (saved[k] != null) $(k).value = saved[k]; });
+  // Keep only well-formed saved rows (a damaged or old entry used to stop the whole calculator).
+  if (!saved || typeof saved !== 'object') saved = null;
+  const rowsOk = saved && Array.isArray(saved.rows) ? saved.rows.filter((r) => r && typeof r === 'object').map((r) => ({
+    name: typeof r.name === 'string' ? r.name : '', credits: Math.max(0, Number(r.credits) || 0),
+    grade: r.grade in POINTS ? r.grade : 'A', level: r.level in BONUS ? r.level : 'regular' })) : [];
+  (rowsOk.length ? rowsOk : [{ name: '', credits: 3, grade: 'A' }, { name: '', credits: 3, grade: 'B+' }, { name: '', credits: 4, grade: 'B' }]).forEach(addRow);
+  if (saved) ['prevGpa', 'prevCredits', 'targetGpa', 'nextCredits'].forEach((k) => { if (saved[k] != null && Number.isFinite(Number(saved[k]))) $(k).value = saved[k]; });
 
   $('add-course').addEventListener('click', () => { addRow(); calc(); list.lastElementChild.querySelector('input').focus(); });
   list.addEventListener('click', (e) => {

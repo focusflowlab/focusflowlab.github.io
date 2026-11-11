@@ -37,6 +37,10 @@
 
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(key) || 'null'); } catch {}
+  // Keep only well-formed saved rows (a damaged or old entry used to stop the whole calculator).
+  const okRow = (r) => r && typeof r === 'object';
+  const num = (v) => (v === '' || Number.isFinite(Number(v)) ? v : '');
+  saved = Array.isArray(saved) ? saved.filter(okRow).map((r) => ({ name: typeof r.name === 'string' ? r.name : '', weight: num(r.weight ?? ''), score: num(r.score ?? '') })) : null;
   (saved?.length ? saved : [
     { name: 'Homework', weight: 20, score: '' },
     { name: 'Quizzes', weight: 15, score: '' },

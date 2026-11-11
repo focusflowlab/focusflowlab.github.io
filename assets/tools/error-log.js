@@ -14,7 +14,16 @@
     guess: ['Guessed and got lucky', 2, 'Treat it as a miss: you did not know it, so learn it now.'],
   };
   let state = { exam: 'nclex', items: [] };
-  try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && Array.isArray(s.items)) state = { ...state, ...s }; } catch {}
+  try {
+    // Keep only well-formed saved items (an unknown reason or a damaged entry used to stop the log).
+    const s = JSON.parse(localStorage.getItem(KEY) || 'null');
+    const ymd = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
+    if (s && Array.isArray(s.items)) {
+      state.items = s.items.filter((i) => i && typeof i.exam === 'string' && typeof i.topic === 'string' && typeof i.what === 'string' && i.reason in REASONS && ymd(i.review))
+        .map((i) => ({ ...i, fix: typeof i.fix === 'string' ? i.fix : '', added: ymd(i.added) ? i.added : i.review, fixed: !!i.fixed }));
+      if (typeof s.exam === 'string') state.exam = s.exam;
+    }
+  } catch {}
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
   const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   const today = () => iso(new Date());

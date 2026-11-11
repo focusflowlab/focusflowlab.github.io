@@ -10,8 +10,11 @@
   const addDays = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return localDate(d); };
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
+  // Keep only well-formed saved cards (a damaged or old entry used to stop the whole tool).
+  const clean = (c) => ({ front: c.front.slice(0, 300), back: c.back.slice(0, 600), step: Math.min(Math.max(Math.floor(Number(c.step)) || 0, 0), STEPS.length), due: /^\d{4}-\d{2}-\d{2}$/.test(c.due) ? c.due : today() });
+  const valid = (c) => c && typeof c.front === 'string' && typeof c.back === 'string';
   let cards = [];
-  try { cards = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+  try { const v = JSON.parse(localStorage.getItem(key) || '[]'); cards = Array.isArray(v) ? v.filter(valid).map(clean) : []; } catch {}
   const save = () => { try { localStorage.setItem(key, JSON.stringify(cards)); } catch {} };
   const due = () => cards.filter((c) => c.due <= today());
 
@@ -87,8 +90,8 @@
     if (!file) return;
     try {
       const data = JSON.parse(await file.text());
-      const ok = Array.isArray(data) ? data.filter((c) => c && typeof c.front === 'string' && typeof c.back === 'string') : [];
-      cards = cards.concat(ok.map((c) => ({ front: c.front.slice(0, 300), back: c.back.slice(0, 600), step: Math.min(Math.max(Number(c.step) || 0, 0), STEPS.length), due: /^\d{4}-\d{2}-\d{2}$/.test(c.due) ? c.due : today() })));
+      const ok = Array.isArray(data) ? data.filter(valid) : [];
+      cards = cards.concat(ok.map(clean));
       save(); renderList();
       $('fc-error').textContent = `${ok.length} card${ok.length === 1 ? '' : 's'} imported.`;
     } catch { $('fc-error').textContent = 'That file isn’t a FocusFlow flashcard file.'; }

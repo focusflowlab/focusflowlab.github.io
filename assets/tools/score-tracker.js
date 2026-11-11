@@ -4,10 +4,20 @@
   const $ = (id) => document.getElementById(id);
   const TOPICS = window.EXAM_TOPICS || {};
   const KEY = 'ffl-scores';
-  let state = { exam: 'nclex', target: 75, hours: 20, entries: [] };
-  try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && Array.isArray(s.entries)) state = { ...state, ...s }; } catch {}
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
   const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+  let state = { exam: 'nclex', target: 75, hours: 20, entries: [] };
+  try {
+    // Keep only well-formed saved data (a damaged or old entry could show NaN or stop the tracker).
+    const s = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (s && Array.isArray(s.entries)) {
+      state.entries = s.entries.filter((e) => e && typeof e.exam === 'string' && typeof e.topic === 'string' && Number.isInteger(e.right) && Number.isInteger(e.total) && e.total >= 1 && e.right >= 0 && e.right <= e.total)
+        .map((e) => ({ ...e, date: /^\d{4}-\d{2}-\d{2}$/.test(e.date) ? e.date : today(), note: typeof e.note === 'string' ? e.note : '' }));
+      if (typeof s.exam === 'string') state.exam = s.exam;
+      if (Number(s.target) >= 1 && Number(s.target) <= 100) state.target = Number(s.target);
+      if (Number(s.hours) >= 0) state.hours = Number(s.hours);
+    }
+  } catch {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
   const el = (tag, text, cls) => { const e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; };
 
   const examSel = $('sc-exam'), topicSel = $('sc-topic');

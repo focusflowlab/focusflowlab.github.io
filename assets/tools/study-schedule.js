@@ -87,8 +87,12 @@
 
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(key) || 'null'); } catch {}
-  if (saved) { $('ssHours').value = saved.hours; $('ssDays').value = saved.days; }
-  (saved?.rows?.length ? saved.rows : [{ name: '', date: '', priority: '2' }, { name: '', date: '', priority: '2' }]).forEach(addRow);
+  // Keep only well-formed saved data (a damaged or old entry used to stop the whole tool).
+  if (!saved || typeof saved !== 'object') saved = null;
+  if (saved) { if (Number.isFinite(Number(saved.hours))) $('ssHours').value = saved.hours; if (['3', '4', '5', '6', '7'].includes(String(saved.days))) $('ssDays').value = saved.days; }
+  const rowsOk = saved && Array.isArray(saved.rows) ? saved.rows.filter((r) => r && typeof r === 'object').map((r) => ({
+    name: typeof r.name === 'string' ? r.name : '', date: /^\d{4}-\d{2}-\d{2}$/.test(r.date) ? r.date : '', priority: ['1', '2', '3'].includes(String(r.priority)) ? String(r.priority) : '2' })) : [];
+  (rowsOk.length ? rowsOk : [{ name: '', date: '', priority: '2' }, { name: '', date: '', priority: '2' }]).forEach(addRow);
 
   $('add-subject').addEventListener('click', () => { addRow(); list.lastElementChild.querySelector('input').focus(); });
   list.addEventListener('click', (e) => { if (e.target.closest('.row-remove')) { e.target.closest('.ss-row').remove(); build(); } });

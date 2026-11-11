@@ -487,6 +487,137 @@ for (const [slug, setup, out] of [
   await p2.close();
 }
 
+// 21. Corrupt or old saved data never breaks a tool: no script error, no "NaN" or "undefined" on the page.
+{
+  const junk = ['{', '"text"', '123', 'null', '[]', '{}', '[1,"x",null]',
+    '{"rows":"abc","entries":"abc","items":"abc","focus":"abc","weak":"abc","hours":"x","target":"x"}',
+    '{"exam":"zzz","entries":[{"exam":"nclex","topic":5,"right":"x","total":null,"date":3}],"items":[{"exam":"nclex","reason":"zzz","review":5,"what":null}],"focus":[1,2],"tested":"x","streak":null,"len":"25","run":{"endAt":"x"},"subject":5,"rows":[{"name":{},"credits":"x","grade":"Z","level":"q","date":"bad","priority":"9","weight":"x","score":"y"}]}',
+    '[{"front":1},{"front":"Q","back":"A","step":"x","due":5},{"name":null,"date":"bad"},{"name":"T","date":"2026-13-45"}]',
+    '{"exam":"nclex","target":"x","hours":"y","entries":[{"exam":"nclex","topic":"Pharmacological and Parenteral Therapies","right":"x","total":null},{"exam":"nclex","topic":5,"right":20,"total":10}],"items":[{"exam":"nclex","topic":"x","what":"q","reason":"zzz","review":"2026-01-01"},{"exam":"nclex","what":5,"reason":"gap"}]}'];
+  const day = (() => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); })();
+  const pages = [['ffl-final-grade', '/tools/final-grade-calculator/'], ['ffl-weighted-grade', '/tools/weighted-grade-calculator/'], ['ffl-gpa', '/tools/gpa-calculator/'],
+    ['ffl-pace', '/tools/test-time-calculator/'], ['ffl-reading', '/tools/reading-planner/'], ['ffl-countdown', '/tools/exam-countdown/'], ['ffl-study-schedule', '/tools/study-schedule-maker/'],
+    ['ffl-scores', '/tools/practice-score-tracker/'], ['ffl-errorlog', '/tools/error-log/'], ['ffl-spaced-review', '/tools/spaced-review/'], ['ffl-flashcards', '/tools/flashcards/'],
+    ['ffl-home-focus', '/'], ['ffl-timer-' + day, '/tools/focus-timer/'], ['ffl-plan-gre', '/study-plan/gre/'], ['ffl-scores', '/study-plan/nclex/']];
+  for (const [key, url] of pages) {
+    const page = await newPage();
+    const errors = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    await page.goto(`${BASE}${url}`, { waitUntil: 'networkidle0' });
+    const bad = [];
+    for (const v of junk) {
+      errors.length = 0;
+      await page.evaluate((k, v) => { localStorage.clear(); localStorage.setItem(k, v); }, key, v);
+      await page.reload({ waitUntil: 'networkidle0' });
+      const text = await page.evaluate(() => document.body.innerText);
+      const m = text.match(/.{0,30}\b(NaN|undefined|Infinity)\b.{0,30}/);
+      if (errors.length || m) bad.push(v.slice(0, 30) + ' -> ' + (errors[0] || m[0]).slice(0, 90));
+    }
+    check(!bad.length, `corrupt saved data on ${url} (${key}): ${bad.length ? bad.join(' || ') : 'all ' + junk.length + ' cases load cleanly'}`);
+    await page.close();
+  }
+}
+
+// 21b. Good saved data still loads after the clean-up above (the filters must not drop real entries).
+{
+  const d = dateIn(0), later = dateIn(3);
+  const cases = [
+    ['/tools/practice-score-tracker/', 'ffl-scores', { exam: 'nclex', target: 80, hours: 10, entries: [{ id: 1, exam: 'nclex', topic: 'Pharmacological and Parenteral Therapies', date: d, right: 7, total: 10, note: 'x' }] }, () => document.getElementById('sc-count').textContent + '|' + document.getElementById('sc-target').value, '10|80'],
+    ['/tools/error-log/', 'ffl-errorlog', { exam: 'nclex', items: [{ id: 1, exam: 'nclex', topic: 'Pharmacological and Parenteral Therapies', what: 'q', reason: 'gap', fix: '', added: d, review: later, fixed: false }] }, () => document.getElementById('el-total').textContent, '1'],
+    ['/tools/spaced-review/', 'ffl-spaced-review', [{ name: 'Topic', date: d }], () => String(document.querySelectorAll('.review-topic').length), '1'],
+    ['/tools/gpa-calculator/', 'ffl-gpa', { rows: [{ name: 'Bio', credits: 4, grade: 'B+', level: 'honors' }], prevGpa: '', prevCredits: '', targetGpa: '', nextCredits: '' }, () => document.getElementById('r-term').textContent + '|' + document.getElementById('r-weighted').textContent, '3.30|3.80'],
+    ['/tools/weighted-grade-calculator/', 'ffl-weighted-grade', [{ name: 'Exams', weight: '60', score: '90' }, { name: 'HW', weight: '40', score: '80' }], () => document.getElementById('r-grade').textContent, '86.0%'],
+    ['/tools/study-schedule-maker/', 'ffl-study-schedule', { rows: [{ name: 'Bio', date: dateIn(10), priority: '3' }], hours: '2', days: '7' }, () => document.querySelector('.ss-row input').value + '|' + document.querySelector('.ss-row select').value + '|' + document.getElementById('ssDays').value, 'Bio|3|7'],
+    ['/', 'ffl-home-focus', { subject: 'Chem', len: 45, day: d, focus: [true, false, false, false], tested: [true, false, false, false], run: null, streak: { last: d, n: 3 } }, () => document.getElementById('fd-subject').value + '|' + document.getElementById('fd-count').textContent + '|' + document.getElementById('fd-streak').textContent, 'Chem|1 of 4 blocks|3-day streak'],
+  ];
+  for (const [url, key, value, read, want] of cases) {
+    const page = await newPage();
+    await page.goto(`${BASE}${url}`, { waitUntil: 'networkidle0' });
+    await page.evaluate((k, v) => { localStorage.clear(); localStorage.setItem(k, v); }, key, JSON.stringify(value));
+    await page.reload({ waitUntil: 'networkidle0' });
+    const got = await page.evaluate(read);
+    check(got === want, `saved data reloads on ${url}: ${got} (want ${want})`);
+    await page.close();
+  }
+}
+
+// 22. Every plan generator, extreme inputs, several time zones: plan, topic hours, calendar file (read by a real parser) and print pack agree.
+{
+  const ICAL = (await import('ical.js')).default;
+  const slugs = Object.keys(await (async () => { const p = await newPage(); await p.goto(`${BASE}/tools/practice-score-tracker/`, { waitUntil: 'networkidle0' }); const t = await p.evaluate(() => window.EXAM_TOPICS); await p.close(); return t; })());
+  const zones = [['Asia/Karachi', Date.UTC(2026, 10, 11, 20)], ['America/Los_Angeles', Date.UTC(2027, 2, 1, 7)], ['Pacific/Auckland', Date.UTC(2027, 2, 20, 11)], ['Europe/London', Date.UTC(2027, 9, 20, 23, 30)], ['Australia/Lord_Howe', Date.UTC(2026, 9, 1, 13)]];
+  const ymd = (d) => d.getUTCFullYear() + String(d.getUTCMonth() + 1).padStart(2, '0') + String(d.getUTCDate()).padStart(2, '0');
+  for (const slug of slugs) {
+    for (const [tz, fixed] of zones) {
+      if (slug !== 'mcat' && slug !== 'teas' && tz !== 'Asia/Karachi') continue; // every exam in one zone, two exams in every zone
+      const page = await newPage({ tz, fixed });
+      const errors = [];
+      page.on('pageerror', (e) => errors.push(e.message));
+      await page.goto(`${BASE}/study-plan/${slug}/`, { waitUntil: 'networkidle0' });
+      await page.evaluate(() => { localStorage.clear(); window.__blobs = []; const real = URL.createObjectURL.bind(URL); URL.createObjectURL = (b) => { window.__blobs.push(b); return real(b); }; HTMLAnchorElement.prototype.click = function () {}; window.print = () => {}; });
+      const maxDays = await page.evaluate(() => window.EXAM_CONFIG.maxDays);
+      // local "today" in that zone at the frozen instant
+      const local = await page.evaluate(() => { const d = new Date(); return [d.getFullYear(), d.getMonth(), d.getDate()]; });
+      const dayStr = (n) => { const d = new Date(Date.UTC(local[0], local[1], local[2] + n)); return d.toISOString().slice(0, 10); };
+      const problems = [];
+      const cases = [[0, '2', '5', false], [-1, '2', '5', false], [2, '2', '5', false], [maxDays + 1, '2', '5', false], [20, '0', '5', false], [20, '24', '5', false], [20, '', '5', false], [20, 'abc', '5', false],
+        [3, '0.5', '3', true], [7, '14', '7', true], [8, '1.5', '4', true], [45, '3', '6', true], [maxDays, '0.5', '3', true], [maxDays, '14', '7', true]];
+      for (const [days, hours, per, ok] of cases) {
+        const exam = dayStr(days);
+        const r = await page.evaluate(async (exam, hours, per) => {
+          window.__blobs = [];
+          document.getElementById('plan').innerHTML = '';
+          const f = document.querySelector('form');
+          f.examDate.value = exam; f.hoursPerDay.value = hours; f.daysPerWeek.value = per;
+          // submit the way the button does, but without the browser's own field validation, so the script's checks are tested
+          f.dispatchEvent(new Event('submit', { cancelable: true }));
+          const plan = document.getElementById('plan');
+          const weeks = [...plan.querySelectorAll('.week')].map((w) => ({ h: parseFloat(w.querySelector('.week-when span:last-child').textContent), parts: [...w.querySelectorAll('.alloc dd')].map((d) => parseFloat(d.textContent)) }));
+          const out = { err: document.getElementById('form-error').textContent, weeks, text: plan.innerText, days: plan.querySelector('.totals dd') ? Number(plan.querySelector('.totals dd').textContent) : null };
+          if (!weeks.length) return out;
+          document.getElementById('add-cal').click();
+          out.ics = window.__blobs[0] ? await window.__blobs[0].text() : '';
+          document.getElementById('print-pack').click();
+          const pack = document.getElementById('daily-print');
+          out.packPages = pack.querySelectorAll(':scope > .day-page').length; out.packText = pack.innerText;
+          out.dayDates = [...pack.querySelectorAll('.day-page h2')].map((h) => h.textContent);
+          out.compact = !!pack.querySelector('.wk-compact');
+          return out;
+        }, exam, hours, per);
+        const tag = `${days}d ${hours || 'blank'}h x${per}`;
+        if (!ok) { if (!r.err || r.weeks.length) problems.push(`${tag}: not rejected`); continue; }
+        if (r.err) { problems.push(`${tag}: rejected "${r.err}"`); continue; }
+        if (/\b(NaN|undefined|Infinity)\b/.test(r.text + r.packText)) problems.push(`${tag}: NaN/undefined in output`);
+        if (r.days !== days) problems.push(`${tag}: days left ${r.days}`);
+        if (r.weeks.length !== Math.ceil(days / 7)) problems.push(`${tag}: ${r.weeks.length} weeks`);
+        r.weeks.forEach((w, i) => { const s = w.parts.reduce((a, b) => a + b, 0); if (!(w.h > 0) || Math.abs(s - w.h) > 1e-9) problems.push(`${tag}: week ${i + 1} ${w.h} h vs topics ${s} h`); });
+        // calendar: parse with ical.js
+        let comp; try { comp = new ICAL.Component(ICAL.parse(r.ics)); } catch (e) { problems.push(`${tag}: ics does not parse: ${e.message}`); continue; }
+        const evs = comp.getAllSubcomponents('vevent').map((v) => new ICAL.Event(v));
+        const uids = new Set(evs.map((e) => e.uid));
+        if (uids.size !== evs.length) problems.push(`${tag}: duplicate UIDs`);
+        const examEv = evs.filter((e) => e.startDate.isDate);
+        const sess = evs.filter((e) => !e.startDate.isDate);
+        if (examEv.length !== 1 || examEv[0].startDate.toString() !== exam || examEv[0].endDate.toString() !== dayStr(days + 1)) problems.push(`${tag}: exam event ${examEv.map((e) => e.startDate + '..' + e.endDate)}`);
+        const first = dayStr(0).replace(/-/g, ''), last = dayStr(days - 1).replace(/-/g, '');
+        const sessDays = sess.map((e) => e.startDate.toString().slice(0, 10).replace(/-/g, ''));
+        if (new Set(sessDays).size !== sessDays.length) problems.push(`${tag}: two sessions on one day`);
+        if (sessDays.some((d) => d < first || d > last)) problems.push(`${tag}: session outside ${first}-${last}: ${sessDays.filter((d) => d < first || d > last)[0]}`);
+        sess.forEach((e) => { const s = e.startDate.toJSDate(), en = e.endDate.toJSDate(); if (!(en > s) || e.endDate.toString().slice(0, 10) !== e.startDate.toString().slice(0, 10) && !e.endDate.toString().endsWith('T00:00:00')) problems.push(`${tag}: bad session ${e.startDate}..${e.endDate}`); });
+        const studyDays = r.weeks.length; // sanity: sessions >= weeks
+        if (sess.length < studyDays) problems.push(`${tag}: ${sess.length} sessions for ${studyDays} weeks`);
+        // print pack: cover + overview + week pages + first-week days + 2 error logs + checklist
+        const weekPages = r.compact ? Math.ceil(r.weeks.length / 2) : r.weeks.length;
+        const week1Sessions = sess.filter((e) => e.description && /Week 1,/.test(e.description)).length;
+        if (r.packPages !== 1 + 1 + weekPages + week1Sessions + 3) problems.push(`${tag}: pack ${r.packPages} pages, want ${1 + 1 + weekPages + week1Sessions + 3}`);
+      }
+      if (errors.length) problems.push('script error: ' + errors[0]);
+      check(!problems.length, `plan ${slug} in ${tz}: ${problems.length ? problems.slice(0, 4).join(' | ') : cases.length + ' cases clean (ics parsed, pack counted)'}`);
+      await page.close();
+    }
+  }
+}
+
 await browser.close();
 console.log(failed ? `\n${failed} FAILED` : '\nALL PASSED');
 process.exit(failed ? 1 : 0);

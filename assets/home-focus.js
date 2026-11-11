@@ -11,7 +11,20 @@
   const dayBefore = () => { const d = new Date(); d.setDate(d.getDate() - 1); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
   const blank = () => ({ subject: '', len: 25, day: today(), focus: Array(BLOCKS).fill(false), tested: Array(BLOCKS).fill(false), run: null, streak: { last: '', n: 0 } });
   let s = blank();
-  try { const saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved && Array.isArray(saved.focus)) s = { ...s, ...saved }; } catch {}
+  try {
+    // Take each saved field only if it has the right shape (a damaged entry used to stop the focus day).
+    const v = JSON.parse(localStorage.getItem(KEY) || 'null');
+    const flags = (a) => Array.isArray(a) && a.length === BLOCKS ? a.map(Boolean) : null;
+    if (v && typeof v === 'object') {
+      if (typeof v.subject === 'string') s.subject = v.subject.slice(0, 40);
+      if ([25, 45, 50].includes(v.len)) s.len = v.len;
+      if (typeof v.day === 'string') s.day = v.day;
+      if (flags(v.focus)) s.focus = flags(v.focus);
+      if (flags(v.tested)) s.tested = flags(v.tested);
+      if (v.run && (Number.isFinite(v.run.endAt) || Number.isFinite(v.run.left))) s.run = Number.isFinite(v.run.endAt) ? { endAt: v.run.endAt } : { left: v.run.left };
+      if (v.streak && typeof v.streak.last === 'string' && Number.isFinite(v.streak.n)) s.streak = { last: v.streak.last, n: v.streak.n };
+    }
+  } catch {}
   if (s.day !== today()) { s.day = today(); s.focus = Array(BLOCKS).fill(false); s.tested = Array(BLOCKS).fill(false); s.run = null; }
   if (![25, 45, 50].includes(s.len)) s.len = 25;
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };

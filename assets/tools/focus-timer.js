@@ -32,7 +32,7 @@
     document.title = tick ? fmt(remaining) + ' · ' + baseTitle : baseTitle;
     startBtn.textContent = tick ? 'Pause' : (remaining < minutes(phase) * 60_000 ? 'Resume' : 'Start');
   }
-  function readDone() { try { return Number(localStorage.getItem(dayKey()) || 0); } catch { return 0; } }
+  function readDone() { try { return Math.max(0, Math.floor(Number(localStorage.getItem(dayKey()))) || 0); } catch { return 0; } }
   function writeDone(n) { try { localStorage.setItem(dayKey(), String(n)); } catch {} }
   function showDone() { const n = readDone(); doneCount.textContent = n === 1 ? '1 focus block done today' : n + ' focus blocks done today'; }
 
