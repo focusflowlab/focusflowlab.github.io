@@ -62,7 +62,7 @@
     topics.forEach((t, ti) => GAPS.forEach((g, n) => {
       const d = addDays(t.date, g).replace(/-/g, '');
       const end = addDays(t.date, g + 1).replace(/-/g, '');
-      events.push(['BEGIN:VEVENT', `UID:ffl-${ti}-${n}-${d}@thefocusflowlab.com`, `DTSTAMP:${stamp}`,
+      events.push(['BEGIN:VEVENT', `UID:ffl-${t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}-${t.date}-${n}-${d}@thefocusflowlab.com`, `DTSTAMP:${stamp}`,
         `DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${end}`, `SUMMARY:${icsEsc('Review: ' + t.name)} (${n + 1} of ${GAPS.length})`,
         'DESCRIPTION:Recall first\\, then check your notes. From thefocusflowlab.com/tools/spaced-review/', 'END:VEVENT'].join('\r\n'));
     }));

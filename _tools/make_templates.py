@@ -38,15 +38,7 @@ def mcat_error_log():
         ws[f"F{r}"].alignment = Alignment(wrap_text=True, vertical="top")
         for col in "ABCDEFGH":
             ws[f"{col}{r}"].border = Border(bottom=thin)
-    # example row (row 2)
-    for col, v in zip("ABCDEFH", [None, EXAMPLE[1], EXAMPLE[2], EXAMPLE[3], EXAMPLE[4], EXAMPLE[5], EXAMPLE[7]]):
-        if v is not None:
-            ws[f"{col}2"] = v
-    from datetime import date
-    ws["A2"] = date.today()
-    ws["A2"].number_format = "yyyy-mm-dd"
-    for col in "ABCDEFGH":
-        ws[f"{col}2"].font = Font(italic=True, color="5B6B7F")
+    # no example row: it would be counted on the Weekly count tab
     dv_sec = DataValidation(type="list", formula1='"' + ",".join(SECTIONS) + '"', allow_blank=True)
     dv_why = DataValidation(type="list", formula1='"C,M,T"', allow_blank=True)
     dv_fix = DataValidation(type="list", formula1='"No,Yes"', allow_blank=True)
@@ -166,16 +158,12 @@ def score_log():
     rows = 200
     for r in range(2, rows + 2):
         ws[f"F{r}"] = f'=IF(OR(D{r}="",E{r}="",E{r}=0),"",D{r}/E{r})'
-        ws[f"H{r}"] = f'=IF(F{r}="","",IF(F{r}>=G{r},"Yes","Not yet"))'
+        ws[f"H{r}"] = f'=IF(OR(F{r}="",G{r}=""),"",IF(F{r}>=G{r},"Yes","Not yet"))'
         ws[f"G{r}"] = 0.75
         ws[f"F{r}"].number_format = "0%"
         ws[f"G{r}"].number_format = "0%"
         ws[f"A{r}"].number_format = "yyyy-mm-dd"
-    ex = [(date.today(), "Question bank, set 1", "Pharmacology", 22, 40), (date.today(), "Question bank, set 2", "Management of care", 31, 40)]
-    for i, (d, s, t, rt, tot) in enumerate(ex, 2):
-        ws[f"A{i}"], ws[f"B{i}"], ws[f"C{i}"], ws[f"D{i}"], ws[f"E{i}"] = d, s, t, rt, tot
-        for col in "ABCDE":
-            ws[f"{col}{i}"].font = Font(italic=True, color="5B6B7F")
+    # no example rows: they would feed Overall and the chart
     ws.freeze_panes = "A2"
     ws["J1"], ws["K1"] = "Overall", '=IFERROR(SUM(D2:D201)/SUM(E2:E201),"")'
     ws["K1"].number_format = "0%"
