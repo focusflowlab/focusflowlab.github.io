@@ -10,6 +10,8 @@
   const storageKey = 'ffl-plan-' + config.id;
   const MS_PER_DAY = 24 * 60 * 60 * 1000;
   const TOPICS_SHOWN = 4;
+  // Calendar-day arithmetic. Adding n x 24 h lands on 11 pm the day before after the autumn clock change.
+  const addDays = (date, n) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + n);
 
   const form = document.getElementById('plan-form');
   const output = document.getElementById('plan');
@@ -53,18 +55,24 @@
   /** Return a friendly error message, or '' when the inputs are fine. */
   function validate(inputs, daysLeft) {
     if (!inputs.examDate) return 'Pick your exam date first.';
-    if (daysLeft < 3) return "Your exam is less than 3 days away. Rest, skim your notes, and trust the work you've done.";
+    if (!(daysLeft >= 3)) return "Your exam is less than 3 days away. Rest, skim your notes, and trust the work you've done.";
     if (daysLeft > config.maxDays) return `That's more than ${Math.round(config.maxDays / 30)} months away. Come back nearer the date for a tighter plan.`;
     if (!(inputs.hoursPerDay >= 0.5 && inputs.hoursPerDay <= 14)) return 'Hours per day should be somewhere between 0.5 and 14.';
     return '';
   }
 
-  /** Split hours across topics by exam weight, giving weak areas 50% more. */
+  /** Split hours across topics by exam weight, giving weak areas 50% more. Half-hour blocks shared by largest
+   *  remainder, so the topic hours always add up to the week's hours as shown (rounding each topic alone did not). */
   function splitTopicHours(hours, weak) {
     const weights = config.topics.map((topic, index) => topic.weight * (weak.includes(index) ? 1.5 : 1));
     const total = weights.reduce((sum, weight) => sum + weight, 0);
+    const blocks = Math.round(hours * 2);
+    const raw = weights.map((w) => (blocks * w) / total);
+    const counts = raw.map(Math.floor);
+    let spare = blocks - counts.reduce((a, b) => a + b, 0);
+    raw.map((v, i) => [v - counts[i], weights[i], i]).sort((a, b) => b[0] - a[0] || b[1] - a[1]).forEach(([, , i]) => { if (spare > 0) { counts[i]++; spare--; } });
     return config.topics
-      .map((topic, index) => ({ name: topic.name, hours: (hours * weights[index]) / total }))
+      .map((topic, index) => ({ name: topic.name, hours: counts[index] / 2 }))
       .sort((a, b) => b.hours - a.hours);
   }
 
@@ -88,7 +96,7 @@
     let totalHours = 0;
 
     for (let weekIndex = 0; weekIndex < totalWeeks; weekIndex++) {
-      const start = new Date(today.getTime() + weekIndex * 7 * MS_PER_DAY);
+      const start = addDays(today, weekIndex * 7);
       const daysInWeek = Math.min(7, daysLeft - weekIndex * 7);
       const studyDays = Math.max(1, Math.round((daysInWeek * inputs.daysPerWeek) / 7));
       const phase = totalWeeks === 1 ? 'final' : phaseForWeek(weekIndex, totalWeeks);
@@ -143,7 +151,7 @@
       </section>`;
     const days = [];
     for (let i = 0; i < n; i++) {
-      const day = new Date(week.start.getTime() + Math.floor((i * week.daysInWeek) / n) * MS_PER_DAY);
+      const day = addDays(week.start, Math.floor((i * week.daysInWeek) / n));
       const blocks = [0, 1, 2, 3].map((b) => `<li><span class="dp-n">${b + 1}</span><div><strong>${esc(queue[i * 4 + b] || week.topics[0].name)}</strong><span class="dp-sub">${minutes} minutes</span></div><span class="dp-box" aria-hidden="true"></span><span class="dp-lbl">Self-test done</span></li>`).join('');
       days.push(`<section class="day-page">
         <p class="dp-kicker">${esc(config.shortName)} · day ${i + 1} of ${n} this week · ${Math.max(0, Math.round((plan.exam - day) / MS_PER_DAY))} days to the exam</p>
@@ -247,7 +255,7 @@
       const top = week.topics.slice(0, 2).map((t) => t.name).join(' and ');
       const desc = 'Week ' + week.number + ', ' + PHASES[week.phase].label + '. Most time this week: ' + top + '. ' + week.tasks.join(' ') + ' Free plan from thefocusflowlab.com';
       for (let i = 0; i < week.studyDays; i++) {
-        const day = new Date(week.start.getTime() + Math.floor((i * week.daysInWeek) / week.studyDays) * MS_PER_DAY);
+        const day = addDays(week.start, Math.floor((i * week.daysInWeek) / week.studyDays));
         // Start at 6 PM; a long day ends at midnight instead, so the event starts earlier rather than running past midnight.
         const length = Math.max(15, Math.round(perDay * 60));
         const endMin = Math.min(18 * 60 + length, 24 * 60);
@@ -257,7 +265,7 @@
         add(['DTSTART:' + at(startMin), 'DTEND:' + at(endMin), 'SUMMARY:' + esc(config.shortName + ': ' + top), 'DESCRIPTION:' + esc(desc)]);
       }
     });
-    const next = new Date(plan.exam.getTime() + MS_PER_DAY);
+    const next = addDays(plan.exam, 1);
     add(['DTSTART;VALUE=DATE:' + ymd(plan.exam), 'DTEND;VALUE=DATE:' + ymd(next), 'SUMMARY:' + esc(config.shortName + ' exam day'), 'DESCRIPTION:' + esc('Good luck. Plan made with thefocusflowlab.com')]);
     lines.push('END:VCALENDAR');
     // Fold long lines (RFC 5545): continuation lines start with a space. 60 characters keeps multi-byte text under 75 bytes.

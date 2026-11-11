@@ -151,6 +151,142 @@ for (const [tz, fixed, localDay, label] of [
   await page.close();
 }
 
+// 5. Plan generator across a daylight-saving change (US): one session per day, no day skipped or doubled, exam-day event one day long.
+const icsOf = async (page, exam, hours, days) => {
+  await page.goto(`${BASE}/study-plan/gre/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => { localStorage.clear(); window.__blobs = []; const real = URL.createObjectURL.bind(URL); URL.createObjectURL = (b) => { window.__blobs.push(b); return real(b); }; HTMLAnchorElement.prototype.click = function () {}; });
+  await page.evaluate((exam, hours, days) => {
+    const set = (id, v) => { document.getElementById(id).value = v; };
+    set('examDate', exam); set('hoursPerDay', hours); set('daysPerWeek', days);
+    document.querySelector('form').requestSubmit();
+  }, exam, hours, days);
+  await wait(500);
+  await page.evaluate(() => document.getElementById('add-cal').click());
+  await wait(300);
+  return (await page.evaluate(async () => (window.__blobs[0] ? await window.__blobs[0].text() : ''))).replace(/\r\n /g, '');
+};
+for (const [fixed, exam, label] of [[Date.UTC(2027, 1, 28, 17), '2027-03-28', 'spring forward 14 Mar'], [Date.UTC(2027, 9, 20, 16), '2027-11-28', 'fall back 7 Nov'], [Date.UTC(2027, 9, 20, 16), '2027-11-07', 'exam on the fall-back day']]) {
+  const page = await newPage({ tz: 'America/New_York', fixed });
+  const ics = await icsOf(page, exam, '2', '7');
+  const starts = [...ics.matchAll(/DTSTART:(\d{8})T/g)].map((m) => m[1]);
+  const want = []; const d = new Date(fixed); const s = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+  for (const e = new Date(exam + 'T00:00:00Z'); s < e; s.setUTCDate(s.getUTCDate() + 1)) want.push(s.toISOString().slice(0, 10).replace(/-/g, ''));
+  check(JSON.stringify(starts) === JSON.stringify(want), `plan calendar across ${label}: sessions on each day once (${starts.length} of ${want.length}${starts.length ? ', ' + starts[0] + '..' + starts[starts.length - 1] : ''})`);
+  const ex = ics.match(/DTSTART;VALUE=DATE:(\d{8})\r\nDTEND;VALUE=DATE:(\d{8})/);
+  check(ex && ex[1] === exam.replace(/-/g, '') && ex[2] > ex[1], `plan calendar across ${label}: exam day event ${ex && ex[1]} to ${ex && ex[2]}`);
+  const weeks = await page.evaluate(() => [...document.querySelectorAll('.week-when span:first-of-type')].map((x) => x.textContent));
+  const sundays = new Set(weeks.map((w) => new Date(w.replace('from ', '') + ', 2027').getDay()));
+  check(sundays.size === 1, `plan weeks across ${label} all start on the same weekday (${weeks.join(' | ')})`);
+  await page.close();
+}
+
+// 6. Plan generator: each week's topic hours add up to the week's hours shown.
+for (const [slug, hours, days] of [['nclex', '1.5', '5'], ['mcat', '3', '6'], ['cpa-far', '0.5', '3'], ['gre', '7', '7']]) {
+  const page = await newPage();
+  await page.goto(`${BASE}/study-plan/${slug}/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.clear());
+  await page.evaluate((exam, hours, days) => {
+    const set = (id, v) => { document.getElementById(id).value = v; };
+    set('examDate', exam); set('hoursPerDay', hours); set('daysPerWeek', days);
+    document.querySelector('form').requestSubmit();
+  }, dateIn(40), hours, days);
+  await wait(400);
+  const bad = await page.evaluate(() => [...document.querySelectorAll('.week')].map((w) => {
+    const total = parseFloat(w.querySelector('.week-when span:last-child').textContent);
+    const parts = [...w.querySelectorAll('.alloc dd')].map((d) => parseFloat(d.textContent));
+    return { total, sum: parts.reduce((a, b) => a + b, 0), neg: parts.some((p) => !(p >= 0)) };
+  }).filter((x) => Math.abs(x.total - x.sum) > 1e-9 || x.neg || !(x.total > 0)));
+  check(bad.length === 0, `plan ${slug} ${hours} h x ${days} d: topic hours add up to each week's hours (${bad.length ? JSON.stringify(bad[0]) : 'all weeks'})`);
+  await page.close();
+}
+
+// 7. Test time calculator: no "60 min", no "question 0", checkpoints match the pace per question.
+for (const [t, q, r] of [['239', '4', '0'], ['179', '2', '0'], ['60', '1', '10'], ['100', '30', '0'], ['1000', '7', '20']]) {
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/test-time-calculator/`, { waitUntil: 'networkidle0' });
+  const text = await page.evaluate((t, q, r) => {
+    document.getElementById('totalMin').value = t; document.getElementById('questions').value = q; document.getElementById('reviewPct').value = r;
+    document.getElementById('pace-form').requestSubmit();
+    return document.getElementById('pace-result').innerText;
+  }, t, q, r);
+  // each "question n by T" must equal n x the per-question pace (to the minute)
+  const per = (Number(t) * (1 - Number(r) / 100)) / Number(q);
+  const toMin = (s) => { const m = s.match(/(?:(\d+) h )?(\d+) min/); return Number(m[1] || 0) * 60 + Number(m[2]); };
+  const pts = [...text.matchAll(/question (\d+) by ((?:\d+ h )?\d+ min)/g)].map((m) => [Number(m[1]), toMin(m[2])]);
+  const paced = pts.every(([n, m]) => Math.abs(m - n * per) <= 0.5 + 1e-9);
+  check(paced && pts.length && !/\b60 min|-\d|question 0\b|NaN/.test(text),`test time ${t} min, ${q} q, ${r}% review: ${text.replace(/\s+/g, ' ').slice(0, 140)}`);
+  await page.close();
+}
+
+// 8. GPA: a negative credit value cannot lower or inflate the GPA.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/gpa-calculator/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.clear());
+  await page.reload({ waitUntil: 'networkidle0' });
+  const res = await page.evaluate(() => {
+    const rows = [...document.querySelectorAll('.gpa-row')];
+    const setRow = (li, c, g) => { const [, cr] = li.querySelectorAll('input'); cr.value = c; li.querySelector('select').value = g; };
+    setRow(rows[0], '-3', 'A'); setRow(rows[1], '3', 'B'); setRow(rows[2], '0', 'A');
+    document.getElementById('gpa-form').dispatchEvent(new Event('input'));
+    return { term: document.getElementById('r-term').textContent, credits: document.getElementById('r-credits').textContent };
+  });
+  check(res.term === '3.00' && res.credits === '3', `GPA with a -3 credit row: term ${res.term}, credits ${res.credits} (want 3.00, 3)`);
+  await page.close();
+}
+
+// 9. Reading planner: every reading day has pages, pages run from the next unread page to the last page, no negatives.
+for (const [total, done, days, per] of [['10', '0', 6, '7'], ['100', '0', 6, '7'], ['50', '-5', 4, '7'], ['301', '17', 30, '5']]) {
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/reading-planner/`, { waitUntil: 'networkidle0' });
+  const res = await page.evaluate((total, done, deadline, per) => {
+    const set = (id, v) => { document.getElementById(id).value = v; };
+    set('totalPages', total); set('pagesRead', done); set('deadline', deadline); set('readDays', per);
+    document.getElementById('reviewDays').checked = false;
+    document.getElementById('reading-form').requestSubmit();
+    const ranges = [...document.querySelectorAll('#r-table td.mono')].map((td) => td.textContent.split('–').map(Number));
+    return { ranges, days: Number(document.getElementById('r-days').textContent) };
+  }, total, done, dateIn(days), per);
+  const first = Math.max(0, Number(done)) + 1;
+  const okChain = res.ranges.every(([a, b], i) => a >= 1 && b >= a && (i === 0 ? a === first : a === res.ranges[i - 1][1] + 1));
+  const okEnd = res.ranges.length && res.ranges[res.ranges.length - 1][1] === Number(total);
+  check(okChain && okEnd && res.ranges.length === res.days, `reading ${total} pages, read ${done}, ${days} days: ${res.ranges.length} rows for ${res.days} reading days, ${JSON.stringify(res.ranges.slice(0, 3))}..`);
+  await page.close();
+}
+
+// 10. Score tracker: suggested hours add up to the weekly hours entered; shares add up to 100%.
+for (const [exam, hours] of [['nclex', '7'], ['mcat', '20'], ['gre', '3'], ['usmle-step-1', '13']]) {
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/practice-score-tracker/`, { waitUntil: 'networkidle0' });
+  await page.evaluate((exam) => localStorage.setItem('ffl-scores', JSON.stringify({ exam, target: 75, hours: 0, entries: [] })), exam);
+  await page.reload({ waitUntil: 'networkidle0' });
+  const res = await page.evaluate((hours) => {
+    const h = document.getElementById('sc-hours'); h.value = hours; h.dispatchEvent(new Event('change'));
+    const cells = [...document.querySelectorAll('#sc-table tr td:last-child')].map((td) => td.textContent);
+    return { exam: document.getElementById('sc-exam').value, pct: cells.reduce((a, c) => a + parseFloat(c), 0), h: cells.reduce((a, c) => a + parseFloat((c.match(/\(([\d.]+) h\)/) || [0, 0])[1]), 0) };
+  }, hours);
+  check(Math.abs(res.h - Number(hours)) < 1e-9 && res.pct === 100, `score tracker ${res.exam} ${hours} h/week: suggested ${res.h} h, shares ${res.pct}%`);
+  await page.close();
+}
+
+// 11. Schedule maker: two subjects with the same name still add up to the hours entered.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/study-schedule-maker/`, { waitUntil: 'networkidle0' });
+  await page.evaluate(() => localStorage.clear());
+  await page.reload({ waitUntil: 'networkidle0' });
+  const all = await page.evaluate(async (a, b) => {
+    const rows = [...document.querySelectorAll('.ss-row')];
+    [[rows[0], a], [rows[1], b]].forEach(([li, d]) => { const [n, dt] = li.querySelectorAll('input'); n.value = 'Math'; dt.value = d; });
+    document.getElementById('ssHours').value = 2; document.getElementById('ssDays').value = '7';
+    document.getElementById('ss-form').requestSubmit();
+    await new Promise((r) => setTimeout(r, 200));
+    return [...document.querySelectorAll('#ss-table td.mono')].reduce((s, td) => s + (parseFloat(td.textContent) || 0), 0);
+  }, dateIn(14), dateIn(28));
+  check(all === 2 * 28, `schedule with two subjects named Math: ${all} h shown (want ${2 * 28})`);
+  await page.close();
+}
+
 await browser.close();
 console.log(failed ? `\n${failed} FAILED` : '\nALL PASSED');
 process.exit(failed ? 1 : 0);

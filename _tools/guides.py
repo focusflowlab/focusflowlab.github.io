@@ -193,7 +193,7 @@ GUIDES = [
 <thead><tr><th scope="col">Exam</th><th scope="col">Test length</th><th scope="col">Common prep time</th><th scope="col">Hours, roughly</th></tr></thead>
 <tbody>
 <tr><td><a href="/study-plan/nclex/">NCLEX-RN</a></td><td>85 to 150 questions, up to 5 hours</td><td>6 to 8 weeks</td><td>150 to 300</td></tr>
-<tr><td><a href="/study-plan/nclex-pn/">NCLEX-PN</a></td><td>85 to 205 questions, up to 5 hours</td><td>5 to 8 weeks</td><td>120 to 250</td></tr>
+<tr><td><a href="/study-plan/nclex-pn/">NCLEX-PN</a></td><td>85 to 150 questions, up to 5 hours</td><td>5 to 8 weeks</td><td>120 to 250</td></tr>
 <tr><td><a href="/study-plan/teas/">ATI TEAS</a></td><td>170 questions, about 3.5 hours</td><td>4 to 8 weeks</td><td>30 to 80</td></tr>
 <tr><td><a href="/study-plan/mcat/">MCAT</a></td><td>230 questions, about 7.5 hours with breaks</td><td>3 to 6 months</td><td>300 to 500</td></tr>
 <tr><td><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></td><td>Up to 280 questions, one 8-hour day</td><td>6 to 8 weeks dedicated</td><td>300 to 600</td></tr>
@@ -659,7 +659,7 @@ GUIDES = [
 <p>Anything over 100% means that grade is out of reach unless the course offers extra credit. Check the next grade down: for an 88% overall the same sum gives 95%.</p>"""),
          ("What to do with the number", """<ul>
 <li><strong>Under 60%:</strong> comfortable. Review the basics and keep the exam low stress.</li>
-<li><strong>60 to 85%:</strong> a normal study plan. Give the exam the hours you would give any final.</li>
+<li><strong>60 to 90%:</strong> a normal study plan. Give the exam the hours you would give any final.</li>
 <li><strong>Over 90%:</strong> it will take your best work. Put this exam first in your schedule, and check with your teacher whether rounding or extra credit applies.</li>
 </ul>
 <p>With several finals, share your time by this number: the exam that needs the highest score gets the most hours. The <a href="/guides/how-to-study-for-multiple-exams/">multiple exams guide</a> shows the split.</p>"""),
@@ -673,10 +673,10 @@ GUIDES = [
        card="A 6-week NCLEX-PN plan built on the test plan.",
        kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
        sections=[
-         ("How the NCLEX-PN works", """<p>The NCLEX-PN is a computerized adaptive test for practical and vocational nurses. It gives you between 85 and 205 questions in up to 5 hours, and each question adapts to how you answered the last one. It includes Next Generation NCLEX items, so expect case studies as well as standard multiple-choice questions.</p>
+         ("How the NCLEX-PN works", """<p>The NCLEX-PN is a computerized adaptive test for practical and vocational nurses. It gives you between 85 and 150 questions in up to 5 hours, and each question adapts to how you answered the last one. It includes Next Generation NCLEX items, so expect case studies as well as standard multiple-choice questions.</p>
 <p>The test stops when it is confident of your result, so the number of questions you get says nothing about how you did. Do not read anything into it.</p>"""),
          ("How it differs from the NCLEX-RN", """<ul>
-<li>The question range is wider: up to 205 questions on the PN exam, up to 150 on the <a href="/guides/how-to-study-for-the-nclex/">NCLEX-RN</a>.</li>
+<li>The length rules are the same as the <a href="/guides/how-to-study-for-the-nclex/">NCLEX-RN</a>: 85 to 150 questions in up to 5 hours.</li>
 <li>The test plan is written for the scope of practical nursing, so the weighting differs from the RN exam.</li>
 <li>The same client needs categories apply, so the study method is the same. Only the emphasis shifts. Read the current PN test plan at <a href="https://www.ncsbn.org/" rel="noopener">ncsbn.org</a> and weight your hours by it.</li>
 </ul>"""),

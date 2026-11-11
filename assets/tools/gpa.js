@@ -28,7 +28,7 @@
     return [...list.querySelectorAll('.gpa-row')].map((li) => {
       const [name, credits] = li.querySelectorAll('input');
       const [grade, level] = li.querySelectorAll('select');
-      return { name: name.value, credits: parseFloat(credits.value) || 0, grade: grade.value, level: level.value };
+      return { name: name.value, credits: Math.max(0, parseFloat(credits.value) || 0), grade: grade.value, level: level.value };
     });
   }
 

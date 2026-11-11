@@ -33,7 +33,8 @@
   }
 
   function build() {
-    const subjects = read().filter((s) => s.name && s.date);
+    // Keyed by row, not name: two rows called "Math" used to share one tally and both show the total.
+    const subjects = read().map((s, i) => ({ ...s, key: 'r' + i })).filter((s) => s.name && s.date);
     const hours = Math.round(Math.min(14, Math.max(0.5, parseFloat($('ssHours').value) || 0)) * 2) / 2; // the field steps by 0.5
     const perWeek = parseInt($('ssDays').value, 10);
     try { localStorage.setItem(key, JSON.stringify({ rows: read(), hours: $('ssHours').value, days: $('ssDays').value })); } catch {}
@@ -64,17 +65,17 @@
       const total = w.reduce((a, b) => a + b, 0);
       const week = Math.floor(i / 7);
       weeks[week] = weeks[week] || { start: new Date(d), hours: {} };
-      live.forEach((s, j) => { owed[s.name] = (owed[s.name] || 0) + blocks * w[j] / total; given[s.name] = given[s.name] || 0; });
+      live.forEach((s, j) => { owed[s.key] = (owed[s.key] || 0) + blocks * w[j] / total; given[s.key] = given[s.key] || 0; });
       for (let b = 0; b < blocks; b++) {
         let pick = live[0];
-        live.forEach((s) => { if (owed[s.name] - given[s.name] > owed[pick.name] - given[pick.name]) pick = s; });
-        given[pick.name] += 1;
-        weeks[week].hours[pick.name] = (weeks[week].hours[pick.name] || 0) + 0.5;
+        live.forEach((s) => { if (owed[s.key] - given[s.key] > owed[pick.key] - given[pick.key]) pick = s; });
+        given[pick.key] += 1;
+        weeks[week].hours[pick.key] = (weeks[week].hours[pick.key] || 0) + 0.5;
       }
     }
-    const names = future.sort((a, b) => parse(a.date) - parse(b.date)).map((s) => s.name);
-    const head = `<tr><th>Week</th>${names.map((n) => `<th>${esc(n)}</th>`).join('')}</tr>`;
-    const body = weeks.filter(Boolean).map((wk, i) => `<tr><td><strong>Week ${i + 1}</strong><span>from ${nice(wk.start)}</span></td>${names.map((n) => `<td class="mono">${wk.hours[n] ? wk.hours[n] + ' h' : '–'}</td>`).join('')}</tr>`).join('');
+    const cols = future.sort((a, b) => parse(a.date) - parse(b.date));
+    const head = `<tr><th>Week</th>${cols.map((s) => `<th>${esc(s.name)}</th>`).join('')}</tr>`;
+    const body = weeks.filter(Boolean).map((wk, i) => `<tr><td><strong>Week ${i + 1}</strong><span>from ${nice(wk.start)}</span></td>${cols.map((s) => `<td class="mono">${wk.hours[s.key] ? wk.hours[s.key] + ' h' : '–'}</td>`).join('')}</tr>`).join('');
     const exams = future.map((s) => `<li><strong>${esc(s.name)}</strong> exam on ${nice(parse(s.date))}</li>`).join('');
     $('ss-table').innerHTML = `<thead>${head}</thead><tbody>${body}</tbody>`;
     $('ss-exams').innerHTML = exams;

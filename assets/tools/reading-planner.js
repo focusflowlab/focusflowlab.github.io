@@ -16,7 +16,7 @@
 
   function calc() {
     const total = parseInt($('totalPages').value, 10);
-    const done = parseInt($('pagesRead').value || '0', 10);
+    const done = Math.max(0, parseInt($('pagesRead').value || '0', 10) || 0);
     const deadline = $('deadline').value;
     const perWeek = parseInt($('readDays').value, 10);
     const review = $('reviewDays').checked;
@@ -32,21 +32,20 @@
     for (let i = 0; i < days; i++) { const d = day0(); d.setDate(d.getDate() + i); all.push(d); }
     const keep = all.filter((_, i) => i % 7 < perWeek);
     const reviewCount = review ? Math.min(2, Math.max(0, keep.length - 1)) : 0;
-    const readDays = keep.slice(0, keep.length - reviewCount);
+    const left = total - done;
+    // Never more reading days than pages left, so no day is empty.
+    const readDays = keep.slice(0, Math.min(keep.length - reviewCount, left));
     const reviewList = keep.slice(keep.length - reviewCount);
     if (!readDays.length) { err.textContent = 'Not enough days. Move the deadline or read every day.'; out.hidden = true; return; }
 
-    const left = total - done;
-    const per = Math.ceil(left / readDays.length);
-    $('r-per').textContent = per;
-    $('r-days').textContent = readDays.length;
+    // Spread pages evenly (days differ by at most one page); rounding up every day left the last days empty.
+    const n = readDays.length;
+    $('r-per').textContent = Math.ceil(left / n);
+    $('r-days').textContent = n;
     $('r-left').textContent = left;
-    let page = done + 1;
-    const rows = readDays.map((d) => {
-      const to = Math.min(total, page + per - 1);
-      const row = page <= total ? `<tr><td>${nice(d)}</td><td class="mono">${page}–${to}</td></tr>` : '';
-      page = to + 1;
-      return row;
+    const rows = readDays.map((d, i) => {
+      const from = done + Math.floor((left * i) / n) + 1, to = done + Math.floor((left * (i + 1)) / n);
+      return `<tr><td>${nice(d)}</td><td class="mono">${from}–${to}</td></tr>`;
     }).join('') + reviewList.map((d) => `<tr><td>${nice(d)}</td><td>Review: skim your notes, recall the main points</td></tr>`).join('');
     $('r-table').innerHTML = rows;
     out.hidden = false;

@@ -62,7 +62,15 @@
     const body = $('sc-table');
     body.replaceChildren();
     const wsum = rows.reduce((a, r) => a + r.weight, 0) || 1;
-    rows.map((r, i) => ({ r, s: share[i] })).sort((a, b) => b.s - a.s).forEach(({ r, s }) => {
+    // Whole percents and half hours shared by largest remainder, so the column adds up to 100% and to the hours entered.
+    const split = (units) => {
+      const raw = share.map((s) => s * units), c = raw.map(Math.floor);
+      let spare = units - c.reduce((a, b) => a + b, 0);
+      raw.map((v, i) => [v - c[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (spare > 0) { c[i]++; spare--; } });
+      return c;
+    };
+    const pcts = split(100), halves = split(Math.round(hours * 2));
+    rows.map((r, i) => ({ r, s: share[i], pct: pcts[i], h: halves[i] / 2 })).sort((a, b) => b.s - a.s).forEach(({ r, pct, h }) => {
       const tr = el('tr');
       const acc = r.total ? Math.round((r.right / r.total) * 100) : null;
       const status = acc === null ? 'No data yet' : acc >= target ? 'At target' : acc >= target - 10 ? 'Close' : 'Below target';
@@ -71,7 +79,7 @@
       tr.append(el('td', acc === null ? '-' : acc + '% (' + r.right + '/' + r.total + ')'));
       tr.append(el('td', status, 'sc-' + status.toLowerCase().replace(/[^a-z]+/g, '-')));
       tr.append(el('td', Math.round((r.weight / wsum) * 100) + '%'));
-      tr.append(el('td', Math.round(s * 100) + '%' + (hours ? ' (' + (Math.round(s * hours * 2) / 2) + ' h)' : '')));
+      tr.append(el('td', pct + '%' + (hours ? ' (' + h + ' h)' : '')));
       body.append(tr);
     });
 

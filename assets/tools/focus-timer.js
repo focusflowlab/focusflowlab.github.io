@@ -8,8 +8,8 @@
   const resetBtn = $('reset');
   const prompt = $('selftest');
   const doneCount = $('done-count');
-  const now = new Date(); // local date, not UTC (toISOString is a day off near midnight, e.g. before 5 AM in Lahore)
-  const todayKey = 'ffl-timer-' + now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  // Local date, not UTC (toISOString is a day off near midnight). Worked out on each use, so a block finished after midnight counts for the new day.
+  const dayKey = () => { const now = new Date(); return 'ffl-timer-' + now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0'); };
 
   let phase = 'focus';      // 'focus' or 'break'
   let endsAt = 0;           // timestamp when the running phase ends
@@ -32,8 +32,8 @@
     document.title = tick ? fmt(remaining) + ' · ' + baseTitle : baseTitle;
     startBtn.textContent = tick ? 'Pause' : (remaining < minutes(phase) * 60_000 ? 'Resume' : 'Start');
   }
-  function readDone() { try { return Number(localStorage.getItem(todayKey) || 0); } catch { return 0; } }
-  function writeDone(n) { try { localStorage.setItem(todayKey, String(n)); } catch {} }
+  function readDone() { try { return Number(localStorage.getItem(dayKey()) || 0); } catch { return 0; } }
+  function writeDone(n) { try { localStorage.setItem(dayKey(), String(n)); } catch {} }
   function showDone() { const n = readDone(); doneCount.textContent = n === 1 ? '1 focus block done today' : n + ' focus blocks done today'; }
 
   function chime() {
