@@ -665,7 +665,7 @@ GUIDES = [
 <p>With several finals, share your time by this number: the exam that needs the highest score gets the most hours. The <a href="/guides/how-to-study-for-multiple-exams/">multiple exams guide</a> shows the split.</p>"""),
          ("Check your syllabus", """<p>Some courses drop the lowest score, scale grades or round up. This formula assumes none of that, so treat the answer as a close estimate and confirm with your instructor.</p>"""),
        ]),
-  dict(slug="how-to-study-for-the-nclex-pn", tag="Exam plans", video="4ktmRGfJkuI", date="2026-11-10",
+  dict(slug="how-to-study-for-the-nclex-pn", tag="Exam plans", video="eyY83uEMN4o", date="2026-11-10",
        title="How to Study for the NCLEX-PN: A 6-Week Plan",
        h1="How to study for the NCLEX-PN",
        desc="How to study for the NCLEX-PN in 5 to 8 weeks: how the exam works, how it differs from the NCLEX-RN, where to spend your hours and a week-by-week plan.",
