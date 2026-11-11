@@ -4,8 +4,10 @@
   const $ = (id) => document.getElementById(id);
   const key = 'ffl-flashcards';
   const STEPS = [1, 3, 7, 14, 30, 60];
-  const today = () => new Date().toISOString().slice(0, 10);
-  const addDays = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
+  // Local calendar dates (toISOString is UTC, which is yesterday or tomorrow near midnight, e.g. before 5 AM in Lahore).
+  const localDate = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  const today = () => localDate(new Date());
+  const addDays = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return localDate(d); };
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
   let cards = [];
@@ -61,8 +63,8 @@
   function rate(knew) {
     if (!current) return;
     if (knew) {
-      current.step = Math.min(current.step + 1, STEPS.length - 1);
-      current.due = addDays(STEPS[current.step - 1] || 1);
+      current.step = Math.min(current.step + 1, STEPS.length); // step n waits STEPS[n - 1] days, so the last step is the 60-day one
+      current.due = addDays(STEPS[current.step - 1]);
       queue.shift();
     } else {
       current.step = 0;
@@ -86,7 +88,7 @@
     try {
       const data = JSON.parse(await file.text());
       const ok = Array.isArray(data) ? data.filter((c) => c && typeof c.front === 'string' && typeof c.back === 'string') : [];
-      cards = cards.concat(ok.map((c) => ({ front: c.front.slice(0, 300), back: c.back.slice(0, 600), step: Number(c.step) || 0, due: /^\d{4}-\d{2}-\d{2}$/.test(c.due) ? c.due : today() })));
+      cards = cards.concat(ok.map((c) => ({ front: c.front.slice(0, 300), back: c.back.slice(0, 600), step: Math.min(Math.max(Number(c.step) || 0, 0), STEPS.length), due: /^\d{4}-\d{2}-\d{2}$/.test(c.due) ? c.due : today() })));
       save(); renderList();
       $('fc-error').textContent = `${ok.length} card${ok.length === 1 ? '' : 's'} imported.`;
     } catch { $('fc-error').textContent = 'That file isn’t a FocusFlow flashcard file.'; }

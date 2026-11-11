@@ -150,7 +150,7 @@ document.querySelectorAll('[data-example-for]').forEach((btn) => {
       if (el.type === 'date' && value.startsWith('+')) {
         const d = new Date();
         d.setDate(d.getDate() + Number(value.slice(1)));
-        value = d.toISOString().slice(0, 10);
+        value = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); // local date, not UTC
       }
       el.value = value;
       el.dispatchEvent(new Event('input', { bubbles: true }));

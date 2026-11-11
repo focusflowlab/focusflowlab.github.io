@@ -183,6 +183,6 @@ def bundle_sections(items, planners, exams):
       <section class="pd-section reading" aria-labelledby="worth-title">
         <h2 id="worth-title">Is the bundle worth it?</h2>
         <div class="reading-body">
-          <p>Each planner costs $5, so the bundle pays for itself once you need three. It suits students who sit more than one exam, such as the three CPA sections, or anyone who is still deciding between exams. If you only need one exam, buy that planner on its own.</p>
+          <p>Each planner costs $5, so any three cost the same $15 as the bundle. The bundle starts saving you money from the fourth planner. It suits students who sit more than one exam, such as the three CPA sections plus another test, or anyone who is still deciding between exams. If you only need one exam, buy that planner on its own.</p>
         </div>
       </section>"""

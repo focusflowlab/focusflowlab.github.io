@@ -248,9 +248,12 @@
       const desc = 'Week ' + week.number + ', ' + PHASES[week.phase].label + '. Most time this week: ' + top + '. ' + week.tasks.join(' ') + ' Free plan from thefocusflowlab.com';
       for (let i = 0; i < week.studyDays; i++) {
         const day = new Date(week.start.getTime() + Math.floor((i * week.daysInWeek) / week.studyDays) * MS_PER_DAY);
-        const startMin = 18 * 60;
-        const endMin = startMin + Math.round(perDay * 60);
-        const at = (m) => ymd(day) + 'T' + pad(Math.floor(m / 60) % 24) + pad(m % 60) + '00';
+        // Start at 6 PM; a long day ends at midnight instead, so the event starts earlier rather than running past midnight.
+        const length = Math.max(15, Math.round(perDay * 60));
+        const endMin = Math.min(18 * 60 + length, 24 * 60);
+        const startMin = endMin - length;
+        // new Date() rolls minutes past 1440 into the next day, so an end of exactly midnight gets tomorrow's date.
+        const at = (m) => { const t = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 0, m); return ymd(t) + 'T' + pad(t.getHours()) + pad(t.getMinutes()) + '00'; };
         add(['DTSTART:' + at(startMin), 'DTEND:' + at(endMin), 'SUMMARY:' + esc(config.shortName + ': ' + top), 'DESCRIPTION:' + esc(desc)]);
       }
     });
@@ -328,7 +331,7 @@
         <button class="btn btn-soft" type="button" id="add-cal">Add to my calendar (.ics)</button>
         <a class="btn btn-quiet" href="#plan-form">Change my answers</a>
       </div>
-      <p class="muted cal-note">The calendar file has one event per study session at 6 pm and your exam day. Move any session after you import it into Google Calendar, Apple Calendar or Outlook.</p>`;
+      <p class="muted cal-note">The calendar file has one event per study session, starting at 6 pm (earlier on very long days, so it ends by midnight), and your exam day. Move any session after you import it into Google Calendar, Apple Calendar or Outlook.</p>`;
     document.getElementById('print-plan').addEventListener('click', () => window.print());
     document.getElementById('add-cal').addEventListener('click', () => downloadIcs(plan));
     document.getElementById('print-days').addEventListener('click', () => printDailyPages(plan));

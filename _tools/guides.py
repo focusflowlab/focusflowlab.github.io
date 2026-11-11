@@ -25,7 +25,8 @@ GUIDES = [
 <li>Turn on Focus mode or Do Not Disturb, and allow only calls from a few people.</li>
 <li>Log out of the one app you open without thinking, for the length of the block.</li>
 </ul>
-<p>Each step is small. Together they turn “just checking” into a decision, and most of the time you’ll decide not to.</p>"""),
+<p>Each step is small. Together they turn “just checking” into a decision, and most of the time you’ll decide not to.</p>
+<p>The same idea applies on a laptop, where a site blocker is easy to switch off. <a href="/guides/why-website-blockers-fail/">Why website blockers fail</a> covers what to do instead.</p>"""),
          ("Give your brain a time to check", """<p>Checking is easier to skip when you know when you can do it. Study in set blocks, then check your phone in the break. The <a href="/tools/focus-timer/">focus timer</a> does this for you: a 25 to 50 minute block, then a short break.</p>"""),
          ("Write down what pulls you away", """<p>Keep a scrap of paper next to you. When you feel the urge to check, write down why: a message you’re waiting for, boredom, a hard question. After a few days you’ll see a pattern, and you can plan for it. The free Study Focus Kit has a worksheet for exactly this.</p>"""),
        ]),
@@ -369,6 +370,7 @@ GUIDES = [
 <tr><td>Discipline (BAR, ISC or TCP)</td><td>roughly 80 to 150</td><td>6 to 10</td><td>Use the <a href="/tools/study-schedule-maker/">study schedule maker</a></td></tr>
 </tbody></table></div>
 <p>These are common planning ranges, not official figures. Your accounting background and how recently you studied each topic move you up or down.</p>
+<p>The free section plans and the printable planners below cover FAR, AUD and REG. There is no plan or planner for the discipline sections (BAR, ISC or TCP) yet, so use the study schedule maker for yours.</p>
 <p>Prefer paper? There is a printable planner for each section: <a href="/planners/cpa-far-10-week-planner/">FAR</a>, <a href="/planners/cpa-aud-8-week-planner/">AUD</a> and <a href="/planners/cpa-reg-8-week-planner/">REG</a>, $5 each. They are independent study materials, not from the AICPA.</p>"""),
          ("A full timeline", """<p>Studying part time while working, most candidates finish all four sections in about 12 to 18 months:</p>
 <ol>
@@ -804,6 +806,7 @@ def KIT_BOX(g):
         </aside>'''
 
 RELATED = {
+    "stop-checking-phone-while-studying": [("Why website blockers fail", "/guides/why-website-blockers-fail/"), ("Focus timer", "/tools/focus-timer/"), ("Stop procrastinating while studying", "/guides/stop-procrastinating-studying/")],
     "study-schedule-template": [("Study schedule maker", "/tools/study-schedule-maker/"), ("All free exam study plans", "/study-plan/"), ("Printable planners", "/planners/")],
     "how-to-create-a-study-schedule": [("Study schedule maker", "/tools/study-schedule-maker/"), ("All free exam study plans", "/study-plan/"), ("Printable planners", "/planners/")],
     "how-to-calculate-what-you-need-on-your-final": [("Final grade calculator", "/tools/final-grade-calculator/"), ("Weighted grade calculator", "/tools/weighted-grade-calculator/"), ("GPA calculator", "/tools/gpa-calculator/")],

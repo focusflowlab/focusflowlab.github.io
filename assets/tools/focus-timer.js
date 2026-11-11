@@ -8,7 +8,8 @@
   const resetBtn = $('reset');
   const prompt = $('selftest');
   const doneCount = $('done-count');
-  const todayKey = 'ffl-timer-' + new Date().toISOString().slice(0, 10);
+  const now = new Date(); // local date, not UTC (toISOString is a day off near midnight, e.g. before 5 AM in Lahore)
+  const todayKey = 'ffl-timer-' + now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
 
   let phase = 'focus';      // 'focus' or 'break'
   let endsAt = 0;           // timestamp when the running phase ends

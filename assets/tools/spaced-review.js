@@ -13,7 +13,8 @@
   const save = (items) => { try { localStorage.setItem(key, JSON.stringify(items)); } catch {} };
   let topics = load();
 
-  const iso = (d) => d.toISOString().slice(0, 10);
+  // Local calendar dates (toISOString is UTC, which is yesterday or tomorrow near midnight, e.g. before 5 AM in Lahore).
+  const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   const parse = (s) => new Date(s + 'T12:00:00');
   const addDays = (s, n) => { const d = parse(s); d.setDate(d.getDate() + n); return iso(d); };
   const today = iso(new Date());

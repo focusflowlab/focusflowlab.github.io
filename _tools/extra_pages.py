@@ -213,7 +213,7 @@ _FOR = {  # permalink: (what the plan is for, exam-map wording, trademark / non-
     "cpa-reg-8-week-planner": ("the CPA Exam REG section", "Rough shares by content area.", ""),
     "mcat-16-week-planner": ("the MCAT", "A map of the exam.", "MCAT is a registered trademark of the AAMC. FocusFlow Lab is not affiliated with or endorsed by the AAMC."),
 }
-_CPA_TM = "CPA is a designation granted by state boards of accountancy. The Uniform CPA Examination is developed by the AICPA. FocusFlow Lab is not affiliated with or endorsed by the AICPA, NASBA or any board of accountancy."
+_CPA_TM = "CPA is a designation granted by state boards of accountancy. The Uniform CPA Examination is developed by the AICPA. FocusFlow Lab is not affiliated with or endorsed by the AICPA, NASBA or any board of accountancy. These planners cover the FAR, AUD and REG sections. There is no planner for the discipline sections (BAR, ISC or TCP) yet."
 CHECK = "The exam map shows rough shares of the exam. They are planning figures, so check the official outline for the current version."
 
 def planner_detail(t):
@@ -327,7 +327,7 @@ def planner_detail(t):
       <section class="pd-section reading" aria-labelledby="free-title">
         <h2 id="free-title">Use it with the free plan</h2>
         <div class="reading-body">
-        <p>Not sure yet? Our {free_links} builds a week-by-week schedule from your test date and free hours, and the free <a href="/#free-kit">Study Focus Kit</a> includes a printable planner. The paid planner is the same system on paper, with logs and a checklist you can write on.</p>
+        <p>Not sure yet? Use our {free_links} to build a week-by-week schedule from your test date and the hours you have. The free <a href="/#free-kit">Study Focus Kit</a> includes a printable planner. The paid planner is the same system on paper, with logs and a checklist you can write on.</p>
 {f'        <ul>{guides}</ul>' if guides else ''}
         </div>
       </section>
