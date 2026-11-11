@@ -711,9 +711,44 @@ GUIDES = [
 <p>Check each exam’s rules on flagging and going back, because some do not let you return to earlier questions.</p>"""),
          ("Practise the pace", """<p>Do timed question blocks in your last weeks, at real exam pace, and review the ones you rushed. Pace is a skill that improves with practice. For the planning side, see the <a href="/guides/how-long-to-study-for-exams/">study hours guide</a>.</p>"""),
        ]),
+  dict(slug="study-schedule-template", tag="Planning", date="2026-11-11",
+       title="Free Study Schedule Template: Spreadsheet, Printable and Exam Versions",
+       h1="Free study schedule template (spreadsheet and printable)",
+       desc="A free weekly study schedule template as a spreadsheet, a printable plan pack, and ready-made schedules for the MCAT, LSAT, GRE, GMAT, NCLEX and more.",
+       lead="A weekly spreadsheet, a printable plan pack and ready-made schedules for the big exams, all free.",
+       card="Free spreadsheet, printable and exam-ready schedules.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("Pick the template that fits", """<ul>
+<li><strong>Any course or several exams:</strong> the weekly spreadsheet below. You type in your subjects and hours.</li>
+<li><strong>One big exam with a date:</strong> the free <a href="/study-plan/">exam study plan generator</a>. It builds a week-by-week schedule from your test date and daily hours, and you can print it.</li>
+<li><strong>Finals week:</strong> the <a href="/guides/how-to-study-for-finals-in-a-week/">finals-in-a-week guide</a> and the <a href="/tools/study-schedule-maker/">study schedule maker</a>.</li>
+</ul>"""),
+         ("Weekly study schedule spreadsheet", """<p>An hourly grid from 6:00 to 22:00, Monday to Sunday. List your subjects on the second tab, pick one for each hour on the first, and the sheet counts the hours per subject for you. Plan your breaks in it too. It works in Excel, Google Sheets and LibreOffice.</p>
+<p class="download-row"><a class="btn btn-soft" href="/assets/templates/study-schedule-template.xlsx" download>Download the weekly schedule spreadsheet (.xlsx)</a></p>
+<p>Not sure how many hours to give each subject? Follow the five steps in <a href="/guides/how-to-create-a-study-schedule/">how to create a study schedule</a> first, then type the numbers in.</p>"""),
+         ("Printable plan for your exam", """<p>Choose your exam on the <a href="/study-plan/">study plan page</a>, enter your test date and hours, and use “Print my full plan pack”. You get a cover page, an overview, weekly pages, a first week day by day, error log pages and a checklist, with your own dates on them.</p>"""),
+         ("Ready-made schedules for each exam", """<p>If you want to see a finished schedule before you build your own:</p>
+<ul>
+<li><a href="/guides/mcat-study-schedule-3-months/">MCAT study schedule (3 months)</a></li>
+<li><a href="/guides/lsat-study-schedule-12-weeks/">LSAT study schedule (12 weeks)</a></li>
+<li><a href="/guides/gre-study-plan-8-weeks/">GRE study plan (8 weeks)</a> and <a href="/guides/gmat-study-plan-8-weeks/">GMAT study plan (8 weeks)</a></li>
+<li><a href="/guides/usmle-step-1-study-schedule/">USMLE Step 1 study schedule</a></li>
+<li><a href="/guides/how-to-study-for-the-nclex/">NCLEX-RN</a> and <a href="/guides/how-to-study-for-the-nclex-pn/">NCLEX-PN</a>, <a href="/guides/how-to-study-for-the-teas/">TEAS</a></li>
+<li><a href="/guides/cpa-study-schedule/">CPA exam schedule</a></li>
+<li><a href="/guides/dat-study-schedule-10-weeks/">DAT</a>, <a href="/guides/naplex-study-plan-8-weeks/">NAPLEX</a> and <a href="/guides/pance-study-plan-8-weeks/">PANCE</a></li>
+</ul>
+<p>Each one shows the week-by-week split, and each links to the generator so you can fit it to your own date.</p>"""),
+         ("Make any template work", """<ul>
+<li>Plan from the exam date backwards, and leave one catch-up block a week.</li>
+<li>Put a practice-question or recall block in every day, not only at the end.</li>
+<li>Track what you get wrong. The <a href="/tools/error-log/">error log</a> and <a href="/tools/practice-score-tracker/">practice score tracker</a> show which topics need more hours, and the plan generator can use them.</li>
+</ul>"""),
+       ]),
 ]
 
 REFS = {
+  "study-schedule-template": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "how-to-create-a-study-schedule": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "how-to-calculate-what-you-need-on-your-final": "Weighted-average grade formula. Check your syllabus for the weights and any drop, scaling or rounding rules.",
   "how-to-study-for-the-nclex-pn": "NCSBN. NCLEX-PN test plan, Next Generation NCLEX information and candidate bulletin, ncsbn.org.",
@@ -769,6 +804,7 @@ def KIT_BOX(g):
         </aside>'''
 
 RELATED = {
+    "study-schedule-template": [("Study schedule maker", "/tools/study-schedule-maker/"), ("All free exam study plans", "/study-plan/"), ("Printable planners", "/planners/")],
     "how-to-create-a-study-schedule": [("Study schedule maker", "/tools/study-schedule-maker/"), ("All free exam study plans", "/study-plan/"), ("Printable planners", "/planners/")],
     "how-to-calculate-what-you-need-on-your-final": [("Final grade calculator", "/tools/final-grade-calculator/"), ("Weighted grade calculator", "/tools/weighted-grade-calculator/"), ("GPA calculator", "/tools/gpa-calculator/")],
     "how-to-study-for-the-nclex-pn": [("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("How to study for the NCLEX-RN", "/guides/how-to-study-for-the-nclex/"), ("NCLEX-PN 6-week printable planner", "/planners/nclex-pn-6-week-planner/")],
