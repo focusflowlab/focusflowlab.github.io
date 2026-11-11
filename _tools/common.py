@@ -69,9 +69,23 @@ TRACKERS = {
     "nclex": ("Free NCLEX-RN 6-week tracker", "A printable test plan tracker for every client needs category, a weekly question log, an error log and a final-week checklist."),
     "mcat": ("Free MCAT 12-week tracker", "A printable tracker for all four sections, a practice exam score log, an error log and a final-week checklist."),
     "teas": ("Free ATI TEAS 4-week tracker", "A printable tracker for reading, math, science and English, a practice test log, an error log and a final-week checklist."),
+    # names and pages match focusflowlab-products/build_more_trackers.py
+    "nclex-pn": ("Free NCLEX-PN 6-week tracker", "A printable test plan tracker for every client needs category, a question bank log, an error log and a final-week checklist."),
+    "usmle-step-1": ("Free USMLE Step 1 8-week tracker", "A printable tracker for every organ system, a question bank log, an error log and a final-week checklist."),
+    "pance": ("Free PANCE 8-week tracker", "A printable tracker for every organ system on the blueprint, a question bank log, an error log and a final-week checklist."),
+    "naplex": ("Free NAPLEX 8-week tracker", "A printable tracker for every competency area, a question bank log, an error log and a final-week checklist."),
+    "dat": ("Free DAT 10-week tracker", "A printable tracker for every DAT section, including perceptual ability, a practice test score log, an error log and a final-week checklist."),
+    "gre": ("Free GRE 8-week tracker", "A printable tracker for verbal, quant and writing topics, a practice test score log, an error log and a final-week checklist."),
+    "gmat": ("Free GMAT Focus 8-week tracker", "A printable tracker for quant, verbal and data insights, a practice test score log, an error log and a final-week checklist."),
+    "lsat": ("Free LSAT 12-week tracker", "A printable tracker for every reasoning and reading question type, a timed practice log, an error log and a final-week checklist."),
+    "cpa-far": ("Free CPA FAR 10-week tracker", "A printable tracker for every FAR content area, a practice log for multiple choice and simulations, an error log and a final-week checklist."),
+    "cpa-aud": ("Free CPA AUD 8-week tracker", "A printable tracker for every AUD content area, a practice log for multiple choice and simulations, an error log and a final-week checklist."),
+    "cpa-reg": ("Free CPA REG 8-week tracker", "A printable tracker for every REG content area, a practice log for multiple choice and simulations, an error log and a final-week checklist."),
 }
 
-TRACKER_EXAM = {"nclex": "NCLEX-RN", "mcat": "MCAT", "teas": "ATI TEAS"}
+TRACKER_EXAM = {"nclex": "NCLEX-RN", "mcat": "MCAT", "teas": "ATI TEAS", "nclex-pn": "NCLEX-PN", "usmle-step-1": "USMLE Step 1",
+                "pance": "PANCE", "naplex": "NAPLEX", "dat": "DAT", "gre": "GRE", "gmat": "GMAT Focus", "lsat": "LSAT",
+                "cpa-far": "CPA FAR", "cpa-aud": "CPA AUD", "cpa-reg": "CPA REG"}
 
 def TRACKER_FORM(exam, indent="        "):
     title, text = TRACKERS[exam]
