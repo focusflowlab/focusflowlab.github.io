@@ -35,12 +35,13 @@ def pages():
     return out
 
 
+MODIFIED = re.compile(r'("dateModified": ")\d{4}-\d{2}-\d{2}(")')
 SHARED = re.compile(r"<!-- (site-head|site-foot) -->.*?<!-- /\1 -->", re.S)
 
 
 def norm(text):
     """Page content without the shared header/footer (copied into every page by build.py) and asset stamps."""
-    return STAMP.sub("", SHARED.sub("", text)).replace("\r\n", "\n").strip()
+    return MODIFIED.sub(r"\1\2", STAMP.sub("", SHARED.sub("", text))).replace("\r\n", "\n").strip()
 
 
 def last_dates(paths):
@@ -80,6 +81,14 @@ def main():
     src = pages()
     dates = last_dates(list(src))
     rows = sorted((url, dates[p]) for p, url in src.items())
+    # JSON-LD dateModified = the same real last-change date as lastmod (the stamp itself is ignored by norm()).
+    for p, url in src.items():
+        if p.endswith(".html"):
+            f = ROOT / p
+            html = f.read_text(encoding="utf-8")
+            new = MODIFIED.sub(lambda m: m.group(1) + dates[p] + m.group(2), html)
+            if new != html:
+                f.write_text(new, encoding="utf-8", newline="\n")
     assert len({u for u, _ in rows}) == len(rows), "duplicate URL"
     xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     xml += [f"  <url><loc>{SITE}{u}</loc><lastmod>{d}</lastmod></url>" for u, d in rows]

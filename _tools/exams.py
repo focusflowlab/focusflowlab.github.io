@@ -154,7 +154,7 @@ EXAMS = [
           'Take the day before off. Rest, eat well, sleep early.'
         ]
       }""",
-    "how": """<p>Step 1 is a one-day, roughly eight-hour exam and is now scored pass or fail. Questions mix basic science with the organ systems, so the schedule is built around the organ systems. The current USMLE content outline spreads the old general principles (biochemistry, genetics, microbiology, pharmacology) across the systems, and adds biostatistics, epidemiology and communication as their own areas.</p>
+    "how": """<p>Step 1 is a one-day, roughly eight-hour exam and is now scored pass or fail. Questions mix basic science with the organ systems, so the schedule is built around the organ systems. The current USMLE content outline spreads the old general principles (biochemistry, genetics, microbiology, pharmacology) across the systems, and lists biostatistics, epidemiology and communication as their own areas.</p>
           <ol>
             <li><strong>Systems review, a bit under half.</strong> Each week covers a few systems, with timed question blocks on them every day.</li>
             <li><strong>Mixed practice, the rest.</strong> Random timed blocks across all systems, with a self-assessment every week or two.</li>
