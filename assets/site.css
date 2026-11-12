@@ -993,3 +993,6 @@ html { scroll-behavior: smooth; }
     --color-wash-mint: oklch(96% 0.02 170); --color-wash-teal: oklch(96% 0.02 195); --color-wash-sun: oklch(97% 0.03 90);
   }
 }
+
+/* Score tracker: gap under "Your entries" before the empty note (layout scan, Nov 2026) */
+#sc-empty { margin-top: .5rem; }

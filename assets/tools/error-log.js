@@ -14,17 +14,21 @@
     guess: ['Guessed and got lucky', 2, 'Treat it as a miss: you did not know it, so learn it now.'],
   };
   let state = { exam: 'nclex', items: [] };
-  try {
+  const load = (first) => { try {
     // Keep only well-formed saved items (an unknown reason or a damaged entry used to stop the log).
     const s = JSON.parse(localStorage.getItem(KEY) || 'null');
     const ymd = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
     if (s && Array.isArray(s.items)) {
       state.items = s.items.filter((i) => i && typeof i.exam === 'string' && typeof i.topic === 'string' && typeof i.what === 'string' && i.reason in REASONS && ymd(i.review))
         .map((i) => ({ ...i, fix: typeof i.fix === 'string' ? i.fix : '', added: ymd(i.added) ? i.added : i.review, fixed: !!i.fixed }));
-      if (typeof s.exam === 'string') state.exam = s.exam;
+      if (first && typeof s.exam === 'string') state.exam = s.exam;
     }
-  } catch {}
+  } catch {} };
+  load(true);
   const save = () => ffSave(KEY, state);
+  // Re-read storage before each change, so another tab's additions are kept.
+  const change = (id, fn) => { load(); const x = state.items.find((i) => i.id === id); if (x) fn(x); save(); render(); };
+  const remove = (id) => { load(); state.items = state.items.filter((x) => x.id !== id); save(); render(); };
   const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   const today = () => iso(new Date());
   const plus = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
@@ -75,14 +79,32 @@
       const done = el('button', 'Fixed it', 'btn btn-soft');
       done.type = 'button';
       done.setAttribute('aria-label', 'Mark fixed: ' + i.what);
-      done.addEventListener('click', () => { i.fixed = true; save(); render(); });
+      done.addEventListener('click', () => change(i.id, (x) => { x.fixed = true; }));
       const del = el('button', 'Delete', 'btn btn-quiet');
       del.type = 'button';
       del.setAttribute('aria-label', 'Delete: ' + i.what);
-      del.addEventListener('click', () => { state.items = state.items.filter((x) => x.id !== i.id); save(); render(); });
+      del.addEventListener('click', () => remove(i.id));
       const acts = el('div', null, 'el-acts'); acts.append(done, del);
       li.append(info, acts);
       if (i.review <= today()) li.classList.add('is-due');
+      ul.append(li);
+    });
+    // Fixed items stay in the counts above, so list them too, with Undo and Delete (they used to vanish).
+    mine.filter((i) => i.fixed).sort((a, b) => a.id - b.id).forEach((i) => {
+      const li = el('li', null, 'is-fixed');
+      const info = el('div');
+      info.append(el('strong', i.what));
+      info.append(el('span', 'Fixed · ' + i.topic + ' · ' + REASONS[i.reason][0], 'el-meta'));
+      const undo = el('button', 'Undo', 'btn btn-quiet');
+      undo.type = 'button';
+      undo.setAttribute('aria-label', 'Mark not fixed: ' + i.what);
+      undo.addEventListener('click', () => change(i.id, (x) => { x.fixed = false; }));
+      const del = el('button', 'Delete', 'btn btn-quiet');
+      del.type = 'button';
+      del.setAttribute('aria-label', 'Delete: ' + i.what);
+      del.addEventListener('click', () => remove(i.id));
+      const acts = el('div', null, 'el-acts'); acts.append(undo, del);
+      li.append(info, acts);
       ul.append(li);
     });
     $('el-empty').hidden = open.length > 0;
@@ -96,6 +118,7 @@
     if (!what) { err.textContent = 'Write a few words about the question or concept.'; $('el-what').focus(); return; }
     err.textContent = '';
     const reason = reasonSel.value;
+    load();
     state.items.push({ id: Date.now() + Math.random(), exam: state.exam, topic: topicSel.value, what: what.slice(0, 120), reason, fix: $('el-fix').value.trim().slice(0, 120), added: today(), review: plus(REASONS[reason][1]), fixed: false });
     $('el-what').value = ''; $('el-fix').value = '';
     save(); render();
@@ -105,10 +128,11 @@
     // A leading = + - @ (or tab/CR) makes spreadsheets run the cell as a formula, so prefix a quote.
     const q = (v) => '"' + String(v).replace(/^[=+\-@\t\r]/, "'$&").replace(/"/g, '""') + '"';
     const rows = [['added', 'exam', 'topic', 'what', 'reason', 'fix', 'retest on', 'fixed'], ...state.items.map((i) => [i.added, TOPICS[i.exam] ? TOPICS[i.exam].name : i.exam, i.topic, i.what, REASONS[i.reason][0], i.fix || '', i.review, i.fixed ? 'yes' : 'no'])];
-    const blob = new Blob([rows.map((r) => r.map(q).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const blob = new Blob(['\ufeff' + rows.map((r) => r.map(q).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob); a.download = 'error-log.csv'; document.body.append(a); a.click(); a.remove();
   });
+  window.addEventListener('storage', (ev) => { if (ev.key === KEY) { load(); render(); } });
   fillTopics();
   render();
 })();

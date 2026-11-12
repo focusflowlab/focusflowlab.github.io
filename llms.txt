@@ -85,6 +85,12 @@
 ## Videos
 - [YouTube: FocusFlow Lab](https://www.youtube.com/@YourFocusFlowLab)
 
+## About
+- [About FocusFlow Lab](https://thefocusflowlab.com/about/)
+- [MCAT error log template](https://thefocusflowlab.com/guides/mcat-error-log-template/)
+- [Privacy](https://thefocusflowlab.com/privacy.html)
+- [Terms](https://thefocusflowlab.com/terms.html)
+
 ## Contact
 - hello@thefocusflowlab.com
 

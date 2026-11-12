@@ -84,7 +84,7 @@ TOOLS = [
               <div><dt>Study hours</dt><dd id="r-hours"></dd></div>
             </dl>
             <p class="muted">That’s <span id="r-weeks"></span>. <span id="r-tip"></span></p>
-            <p><a href="/study-plan/">Turn these hours into a week-by-week plan</a></p>
+            <p><a href="https://thefocusflowlab.com/study-plan/" target="_blank" rel="noopener">Turn these hours into a week-by-week plan</a></p>
           </div>
         </form>""",
        how="""<p>“Six weeks left” sounds like plenty. At three hours a day, five days a week, it’s 90 hours, and every topic, practice test and review day has to fit inside them.</p>
@@ -120,7 +120,7 @@ TOOLS = [
               <div><dt>Review time</dt><dd id="r-review"></dd></div>
             </dl>
             <p class="muted">Checkpoints: <span id="r-points"></span></p>
-            <p><a href="/study-plan/">Build a free study plan for your exam</a></p>
+            <p><a href="https://thefocusflowlab.com/study-plan/" target="_blank" rel="noopener">Build a free study plan for your exam</a></p>
           </div>
         </form>""",
        how="""<p>Divide the time by the questions and you have your average. The number is only useful if you check it while you test, so the calculator also gives checkpoints: where you should be a quarter, half and three quarters of the way through.</p>
@@ -396,6 +396,7 @@ TOOLS = [
         <div>
           <p class="muted" id="fc-empty">No cards yet. Add your first one above.</p>
           <ul class="fc-list" id="fc-list"></ul>
+          <p id="fc-status" class="visually-hidden" role="status"></p>
           <div class="sheet-actions"><button class="btn btn-soft" type="button" id="fc-export">Download my cards</button><label class="btn btn-soft fc-import">Import cards<input type="file" id="fc-import" accept="application/json,.json" hidden></label></div>
           <p class="muted">Cards are saved in this browser only. Download them to back them up or move them to another device.</p>
         </div>
@@ -466,7 +467,7 @@ TOOLS = [
             ("How is the suggested share worked out?", "Each topic starts from its rough weight in the exam outline. A topic below your target accuracy gets a larger share, in proportion to how far below it is. A topic with no data gets a small boost until you test it. Then the shares are scaled to add up to 100%."),
             ("Are the topic weights official?", "No. They are the rough shares the free plan generators use, based on each exam’s published outline. Check the official outline for the current version."),
             ("What target should I use?", "Use your own practice-test goal. If you are unsure, 70 to 80% is a common planning target, but it is not an official passing mark for any exam."),
-            ("Which exams does it cover?", "NCLEX-RN, NCLEX-PN, ATI TEAS, MCAT, USMLE Step 1, PANCE, NAPLEX, DAT, GRE, GMAT Focus, LSAT and the three CPA sections.")],
+            ("Which exams does it cover?", "NCLEX-RN, NCLEX-PN, ATI TEAS, MCAT, USMLE Step 1, PANCE, NAPLEX, DAT, GRE, GMAT, LSAT and the three CPA sections.")],
        script="score-tracker.js", pre="exam-topics.js"),
   dict(slug="error-log", name="Error log", tag="Exams",
        title="Error Log: Track Missed Questions and Why You Missed Them",

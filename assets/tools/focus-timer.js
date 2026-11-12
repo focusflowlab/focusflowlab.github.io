@@ -103,7 +103,9 @@
       remaining = Math.min(Math.max(0, s.remaining), minutes(phase) * 60_000);
       if (s.running && Number.isFinite(s.endsAt)) {
         remaining = Math.min(s.endsAt - Date.now(), minutes(phase) * 60_000); // a damaged far-future end cannot run longer than a block
-        if (remaining <= 0) finish(); else run();
+        if (remaining > 0) run();
+        else if (new Date(s.endsAt).toDateString() === new Date().toDateString()) finish();
+        else { phase = 'focus'; remaining = minutes('focus') * 60_000; } // a block that ended on an earlier day is not counted for today
       }
     }
   } catch {}

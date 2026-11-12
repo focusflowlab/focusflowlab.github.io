@@ -76,7 +76,7 @@ TRACKERS = {
     "naplex": ("Free NAPLEX 8-week tracker", "A printable tracker for every content domain, a question bank log, an error log and a final-week checklist."),
     "dat": ("Free DAT 10-week tracker", "A printable tracker for every DAT section, including perceptual ability, a practice test score log, an error log and a final-week checklist."),
     "gre": ("Free GRE 8-week tracker", "A printable tracker for verbal, quant and writing topics, a practice test score log, an error log and a final-week checklist."),
-    "gmat": ("Free GMAT Focus 8-week tracker", "A printable tracker for quant, verbal and data insights, a practice test score log, an error log and a final-week checklist."),
+    "gmat": ("Free GMAT 8-week tracker", "A printable tracker for quant, verbal and data insights, a practice test score log, an error log and a final-week checklist."),
     "lsat": ("Free LSAT 12-week tracker", "A printable tracker for every reasoning and reading question type, a timed practice log, an error log and a final-week checklist."),
     "cpa-far": ("Free CPA FAR 10-week tracker", "A printable tracker for every FAR content area, a practice log for multiple choice and simulations, an error log and a final-week checklist."),
     "cpa-aud": ("Free CPA AUD 8-week tracker", "A printable tracker for every AUD content area, a practice log for multiple choice and simulations, an error log and a final-week checklist."),
@@ -84,7 +84,7 @@ TRACKERS = {
 }
 
 TRACKER_EXAM = {"nclex": "NCLEX-RN", "mcat": "MCAT", "teas": "ATI TEAS", "nclex-pn": "NCLEX-PN", "usmle-step-1": "USMLE Step 1",
-                "pance": "PANCE", "naplex": "NAPLEX", "dat": "DAT", "gre": "GRE", "gmat": "GMAT Focus", "lsat": "LSAT",
+                "pance": "PANCE", "naplex": "NAPLEX", "dat": "DAT", "gre": "GRE", "gmat": "GMAT", "lsat": "LSAT",
                 "cpa-far": "CPA FAR", "cpa-aud": "CPA AUD", "cpa-reg": "CPA REG"}
 
 def TRACKER_FORM(exam, indent="        "):

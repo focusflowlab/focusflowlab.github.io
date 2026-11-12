@@ -18,8 +18,8 @@
     if (t === null || q === null || !T.ok || !Q.ok) { err.textContent = 'Enter the total minutes and the number of questions, each a whole number from 1 to 1,000.'; out.hidden = true; return; }
     err.textContent = '';
     const review = t * r / 100, work = t - review, per = work / q;
-    $('r-min').textContent = (Math.round(per * 100) / 100) + ' min';
-    $('r-sec').textContent = Math.round(per * 60) + ' sec';
+    $('r-min').textContent = (per < 0.01 ? 'under 0.01' : Math.round(per * 100) / 100) + ' min';
+    $('r-sec').textContent = (per * 60 < 10 ? Math.round(per * 600) / 10 : Math.round(per * 60)) + ' sec'; // one decimal under 10 s, so a tiny pace is not '0 sec'
     $('r-review').textContent = Math.round(review) + ' min';
     // Checkpoint times follow the question number (n x pace), and tiny tests skip "question 0" and repeats.
     const marks = [...new Set([0.25, 0.5, 0.75].map((f) => Math.round(q * f)))].filter((n) => n >= 1 && n < q);

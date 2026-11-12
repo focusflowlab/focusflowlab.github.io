@@ -3,7 +3,7 @@ The score tracker and error log use it. Re-run after a plan page's topics change
 import json, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-LABEL = {"nclex": "NCLEX-RN", "nclex-pn": "NCLEX-PN", "teas": "ATI TEAS", "mcat": "MCAT", "usmle-step-1": "USMLE Step 1", "pance": "PANCE", "naplex": "NAPLEX", "dat": "DAT", "gre": "GRE", "gmat": "GMAT Focus", "lsat": "LSAT", "cpa-far": "CPA FAR", "cpa-aud": "CPA AUD", "cpa-reg": "CPA REG"}
+LABEL = {"nclex": "NCLEX-RN", "nclex-pn": "NCLEX-PN", "teas": "ATI TEAS", "mcat": "MCAT", "usmle-step-1": "USMLE Step 1", "pance": "PANCE", "naplex": "NAPLEX", "dat": "DAT", "gre": "GRE", "gmat": "GMAT", "lsat": "LSAT", "cpa-far": "CPA FAR", "cpa-aud": "CPA AUD", "cpa-reg": "CPA REG"}
 out = {}
 for p in sorted((ROOT / "study-plan").glob("*/index.html")):
     h = p.read_text(encoding="utf-8")

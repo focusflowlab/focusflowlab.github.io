@@ -384,8 +384,11 @@
       if (!data || !Array.isArray(data.entries)) return;
       const target = Number(data.target) || 75;
       const totals = {};
-      data.entries.filter((e) => e.exam === slug).forEach((e) => {
-        const t = totals[e.topic] || (totals[e.topic] = { right: 0, total: 0 });
+      // Same rules as the tracker: entries over 5,000 questions are typos, and old topic names map to the current ones.
+      const renamed = { 'Safety and Infection Control': 'Safety and Infection Prevention and Control', 'Nervous system and behavior': 'Behavioral health and nervous system', 'Respiratory': 'Respiratory and renal/urinary', 'Renal and urinary': 'Respiratory and renal/urinary', 'Treatment plans': 'Assessment and treatment planning', 'Patient data and assessment': 'Assessment and treatment planning', 'Drug characteristics': 'Foundational knowledge', 'Calculations': 'Foundational knowledge', 'Compounding and dispensing': 'Medication use process', 'Practice and medication-use systems': 'Professional practice' };
+      data.entries.filter((e) => e.exam === slug && Number.isInteger(e.total) && e.total >= 1 && e.total <= 5000 && Number.isInteger(e.right) && e.right >= 0 && e.right <= e.total).forEach((e) => {
+        const name = renamed[e.topic] || e.topic;
+        const t = totals[name] || (totals[name] = { right: 0, total: 0 });
         t.right += e.right; t.total += e.total;
       });
       const weak = [];

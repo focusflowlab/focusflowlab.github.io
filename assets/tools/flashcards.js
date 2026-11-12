@@ -12,9 +12,10 @@
 
   // Keep only well-formed saved cards (a damaged or old entry used to stop the whole tool).
   const clean = (c) => ({ front: c.front.slice(0, 300), back: c.back.slice(0, 600), step: Math.min(Math.max(Math.floor(Number(c.step)) || 0, 0), STEPS.length), due: /^\d{4}-\d{2}-\d{2}$/.test(c.due) ? c.due : today() });
-  const valid = (c) => c && typeof c.front === 'string' && typeof c.back === 'string';
+  const valid = (c) => c && typeof c.front === 'string' && typeof c.back === 'string' && c.front.trim() !== '' && c.back.trim() !== '';
   let cards = [];
-  try { const v = JSON.parse(localStorage.getItem(key) || '[]'); cards = Array.isArray(v) ? v.filter(valid).map(clean) : []; } catch {}
+  const load = () => { try { const v = JSON.parse(localStorage.getItem(key) || '[]'); cards = Array.isArray(v) ? v.filter(valid).map(clean) : []; } catch { cards = []; } };
+  load();
   const save = () => ffSave(key, cards);
   const due = () => cards.filter((c) => c.due <= today());
 
@@ -49,15 +50,30 @@
     const back = $('fcBack').value.trim();
     if (!front || !back) { $('fc-error').textContent = 'Fill in both sides of the card.'; return; }
     $('fc-error').textContent = '';
+    load(); // keep cards another tab added
     cards.push({ front: front.slice(0, 300), back: back.slice(0, 600), step: 0, due: today() });
     save(); renderList();
+    $('fc-status').textContent = 'Card added.';
     $('fcFront').value = ''; $('fcBack').value = ''; $('fcFront').focus();
   });
 
   $('fc-list').addEventListener('click', (e) => {
     const b = e.target.closest('[data-del]');
     if (!b) return;
-    cards.splice(Number(b.dataset.del), 1); save(); renderList();
+    const gone = cards.splice(Number(b.dataset.del), 1)[0]; save();
+    $('fc-status').textContent = 'Card deleted.';
+    // A deleted card leaves the review too, even the one on screen.
+    if (gone && queue.includes(gone)) { queue = queue.filter((c) => c !== gone); show(); } else renderList();
+  });
+  // Another tab saved: take its deck; cards under review are matched by their text.
+  window.addEventListener('storage', (ev) => {
+    if (ev.key !== key) return;
+    load();
+    const same = (a) => cards.find((c) => c.front === a.front && c.back === a.back);
+    const wasOn = current;
+    queue = queue.map(same).filter(Boolean);
+    if (wasOn) { if (queue[0] && same(wasOn) === queue[0]) current = queue[0]; else show(); }
+    renderList();
   });
 
   $('fc-start').addEventListener('click', () => { queue = due(); show(); $('fc-study').scrollIntoView({ behavior: 'smooth', block: 'center' }); });

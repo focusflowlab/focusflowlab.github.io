@@ -48,7 +48,7 @@
     const anyWeighted = r.some((x) => x.level !== 'regular');
     $('r-term').textContent = credits ? (points / credits).toFixed(2) : '–';
     $('r-weighted').textContent = credits && anyWeighted ? (wpoints / credits).toFixed(2) : '–';
-    $('r-credits').textContent = credits;
+    $('r-credits').textContent = Math.round(credits * 100) / 100;
 
     // Box limits: GPA 0 to 5 (allows a weighted GPA), credits so far 1 to 1,000, next term 1 to 100.
     const prevGpa = read($('prevGpa')), prevCredits = read($('prevCredits'));

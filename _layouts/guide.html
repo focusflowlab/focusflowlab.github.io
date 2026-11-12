@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/site.css?v=9ef32013">
+  <link rel="stylesheet" href="/assets/site.css?v=694884fe">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,8 +27,8 @@
       { "@type": "Article", "headline": {{ page.title | jsonify }}, "description": {{ page.description | jsonify }},
         "url": "{{ site.url }}{{ page.url }}", "datePublished": "{{ page.date | date: '%Y-%m-%d' }}", "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
         "author": { "@type": "Organization", "@id": "{{ site.url }}/#org", "name": "FocusFlow Lab", "url": "{{ site.url }}/" },
-        "publisher": { "@type": "Organization", "@id": "{{ site.url }}/#org", "name": "FocusFlow Lab", "url": "{{ site.url }}/" }{% if page.video != "" and page.video %},
-        "image": "https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg"{% endif %} },
+        "publisher": { "@type": "Organization", "@id": "{{ site.url }}/#org", "name": "FocusFlow Lab", "url": "{{ site.url }}/" },
+        "image": "{% if page.video != "" and page.video %}https://i.ytimg.com/vi/{{ page.video }}/hqdefault.jpg{% else %}{{ site.url }}/assets/og-image.png{% endif %}" },
       { "@type": "BreadcrumbList", "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "FocusFlow Lab", "item": "{{ site.url }}/" },
         { "@type": "ListItem", "position": 2, "name": "Guides", "item": "{{ site.url }}/guides/" },

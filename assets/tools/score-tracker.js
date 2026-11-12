@@ -8,23 +8,31 @@
   const counted = (e) => e.total <= MAX;
   const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
   let state = { exam: 'nclex', target: 75, hours: 20, entries: [] };
-  try {
+  // Old topic names carried into the current ones (NAPLEX May 2025 domains, USMLE Step 1 outline without General Principles, NCLEX 2026 test plans).
+  // shortcut: USMLE 'General principles' has no single new area, so those entries stay listed but are not counted in a topic row.
+  const RENAMED = {
+    naplex: { 'Treatment plans': 'Assessment and treatment planning', 'Patient data and assessment': 'Assessment and treatment planning', 'Drug characteristics': 'Foundational knowledge', 'Calculations': 'Foundational knowledge', 'Compounding and dispensing': 'Medication use process', 'Practice and medication-use systems': 'Professional practice' },
+    'usmle-step-1': { 'Nervous system and behavior': 'Behavioral health and nervous system', 'Respiratory': 'Respiratory and renal/urinary', 'Renal and urinary': 'Respiratory and renal/urinary' },
+    nclex: { 'Safety and Infection Control': 'Safety and Infection Prevention and Control' },
+    'nclex-pn': { 'Safety and Infection Control': 'Safety and Infection Prevention and Control' },
+  };
+  const load = (first) => { try {
     // Keep only well-formed saved data (a damaged or old entry could show NaN or stop the tracker).
     const s = JSON.parse(localStorage.getItem(KEY) || 'null');
     if (s && Array.isArray(s.entries)) {
       state.entries = s.entries.filter((e) => e && typeof e.exam === 'string' && typeof e.topic === 'string' && Number.isInteger(e.right) && Number.isInteger(e.total) && e.total >= 1 && e.right >= 0 && e.right <= e.total)
         .map((e) => ({ ...e, date: /^\d{4}-\d{2}-\d{2}$/.test(e.date) ? e.date : today(), note: typeof e.note === 'string' ? e.note : '' }));
+      state.entries.forEach((e) => { const m = RENAMED[e.exam]; if (m && m[e.topic]) e.topic = m[e.topic]; });
+      if (!first) return; // another tab saved: take its entries, keep this tab's exam and settings
       if (typeof s.exam === 'string') state.exam = s.exam;
       if (Number(s.target) >= 1 && Number(s.target) <= 100) state.target = Number(s.target);
       if (Number(s.hours) >= 0) state.hours = Number(s.hours);
     }
-  } catch {}
+  } catch {} };
+  load(true);
   const save = () => ffSave(KEY, state);
   const el = (tag, text, cls) => { const e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; };
 
-  // NAPLEX moved to the May 2025 domains: carry entries saved under the old area names into the new ones.
-  const RENAMED = { naplex: { 'Treatment plans': 'Assessment and treatment planning', 'Patient data and assessment': 'Assessment and treatment planning', 'Drug characteristics': 'Foundational knowledge', 'Calculations': 'Foundational knowledge', 'Compounding and dispensing': 'Medication use process', 'Practice and medication-use systems': 'Professional practice' } };
-  state.entries.forEach((e) => { const m = RENAMED[e.exam]; if (m && m[e.topic]) e.topic = m[e.topic]; });
   const examSel = $('sc-exam'), topicSel = $('sc-topic');
   Object.entries(TOPICS).forEach(([slug, e]) => examSel.appendChild(new Option(e.name, slug)));
   if (!TOPICS[state.exam]) state.exam = Object.keys(TOPICS)[0];
@@ -120,7 +128,7 @@
       const b = el('button', 'Remove', 'btn btn-quiet');
       b.type = 'button';
       b.setAttribute('aria-label', 'Remove entry from ' + e.date + ' for ' + e.topic);
-      b.addEventListener('click', () => { state.entries = state.entries.filter((x) => x.id !== e.id); save(); render(); });
+      b.addEventListener('click', () => { load(); state.entries = state.entries.filter((x) => x.id !== e.id); save(); render(); });
       li.append(b);
       ul.append(li);
     });
@@ -145,23 +153,29 @@
     if (right === null || total === null) { err.textContent = 'Enter how many you got right and how many questions in total.'; return; }
     if (Number.isFinite(total) && total > MAX) { err.textContent = 'One entry can be at most ' + MAX.toLocaleString('en-US') + ' questions. Check the total, or log a big question bank in parts.'; return; }
     if (!R.ok || !T.ok || right > total) { err.textContent = 'Use whole numbers, with right not more than the total (at least 1).'; return; }
+    const date = $('sc-date').value || today();
+    if (!ffDate(date) || date > today() || date < '2000-01-01') { err.textContent = 'Pick the day you did the set: today or earlier.'; return; }
     err.textContent = '';
-    state.entries.push({ id: Date.now() + Math.random(), exam: state.exam, topic: topicSel.value, date: $('sc-date').value || today(), right, total, note: $('sc-note').value.trim().slice(0, 60) });
+    load(); // take entries another tab saved meanwhile, so this save does not drop them
+    state.entries.push({ id: Date.now() + Math.random(), exam: state.exam, topic: topicSel.value, date, right, total, note: $('sc-note').value.trim().slice(0, 60) });
     $('sc-right').value = ''; $('sc-total').value = ''; $('sc-note').value = '';
     save(); render();
     $('sc-right').focus();
   });
   $('sc-csv').addEventListener('click', () => {
-    const q = (v) => '"' + String(v).replace(/"/g, '""') + '"';
+    // A leading = + - @ (or tab/CR) makes spreadsheets run the cell as a formula, so prefix a quote.
+    const q = (v) => '"' + String(v).replace(/^[=+\-@\t\r]/, "'$&").replace(/"/g, '""') + '"';
     const rows = [['date', 'exam', 'topic', 'right', 'total', 'note'], ...state.entries.map((e) => [e.date, TOPICS[e.exam] ? TOPICS[e.exam].name : e.exam, e.topic, e.right, e.total, e.note || ''])];
-    const blob = new Blob([rows.map((r) => r.map(q).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const blob = new Blob(['\ufeff' + rows.map((r) => r.map(q).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob); a.download = 'practice-scores.csv'; document.body.append(a); a.click(); a.remove();
   });
   $('sc-clear').addEventListener('click', () => {
     if (!state.entries.some((e) => e.exam === state.exam)) return;
-    if (confirm('Delete all saved scores for ' + TOPICS[state.exam].name + ' in this browser?')) { state.entries = state.entries.filter((e) => e.exam !== state.exam); save(); render(); }
+    if (confirm('Delete all saved scores for ' + TOPICS[state.exam].name + ' in this browser?')) { load(); state.entries = state.entries.filter((e) => e.exam !== state.exam); save(); render(); }
   });
+  // Another tab saved: show its entries here too (each tab used to overwrite the other's).
+  window.addEventListener('storage', (ev) => { if (ev.key === KEY) { load(); render(); } });
   fillTopics();
   render();
 })();

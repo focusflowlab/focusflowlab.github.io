@@ -50,6 +50,7 @@
     if (!name) { $('review-error').textContent = 'Add a topic name first.'; return; }
     if (date > today()) { $('review-error').textContent = 'Pick the day you studied it: today or earlier.'; return; }
     $('review-error').textContent = '';
+    topics = load(); // keep topics another tab added
     topics.push({ name: name.slice(0, 80), date });
     save(topics); render();
     $('topic').value = ''; $('topic').focus();
@@ -58,24 +59,29 @@
   list.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-remove]');
     if (!btn) return;
-    topics.splice(Number(btn.dataset.remove), 1);
+    const gone = topics[Number(btn.dataset.remove)];
+    topics = load();
+    const at = gone ? topics.findIndex((t) => t.name === gone.name && t.date === gone.date) : -1;
+    if (at >= 0) topics.splice(at, 1);
     save(topics); render();
   });
 
-  $('clear-all').addEventListener('click', () => { topics = []; save(topics); render(); });
+  $('clear-all').addEventListener('click', () => { if (topics.length && confirm('Delete all ' + topics.length + ' topics from this browser?')) { topics = []; save(topics); render(); } });
 
   $('download-ics').addEventListener('click', () => {
     const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
     const icsEsc = (s) => s.replace(/[\\,;]/g, (c) => '\\' + c);
     // Hash of the full name keeps UIDs unique for non-Latin names (the slug alone turns them all into '-').
     const hash = (s) => { let h = 5381; for (const c of s) h = (h * 33 + c.codePointAt(0)) >>> 0; return h.toString(36); };
+    // Fold lines over 75 octets (RFC 5545), as the plan calendar does.
+    const fold = (line) => { const out = []; let cur = '', n = 0; for (const ch of line) { const b = new TextEncoder().encode(ch).length; if (n + b > 75) { out.push(cur); cur = ' '; n = 1; } cur += ch; n += b; } out.push(cur); return out.join('\r\n'); };
     const events = [];
     topics.forEach((t, ti) => GAPS.forEach((g, n) => {
       const d = addDays(t.date, g).replace(/-/g, '');
       const end = addDays(t.date, g + 1).replace(/-/g, '');
       events.push(['BEGIN:VEVENT', `UID:ffl-${t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}-${hash(t.name)}-${t.date}-${n}-${d}@thefocusflowlab.com`, `DTSTAMP:${stamp}`,
         `DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${end}`, `SUMMARY:${icsEsc('Review: ' + t.name)} (${n + 1} of ${GAPS.length})`,
-        'DESCRIPTION:Recall first\\, then check your notes. From thefocusflowlab.com/tools/spaced-review/', 'END:VEVENT'].join('\r\n'));
+        'DESCRIPTION:Recall first\\, then check your notes. From thefocusflowlab.com/tools/spaced-review/', 'END:VEVENT'].map(fold).join('\r\n'));
     }));
     const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//FocusFlow Lab//Spaced Review//EN', 'CALSCALE:GREGORIAN', ...events, 'END:VCALENDAR'].join('\r\n');
     const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
@@ -84,6 +90,7 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 
-  $('studied').value = today;
+  $('studied').value = today();
+  window.addEventListener('storage', (ev) => { if (ev.key === key) { topics = load(); render(); } });
   render();
 })();

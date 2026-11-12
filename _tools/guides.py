@@ -196,10 +196,10 @@ GUIDES = [
 <tr><td><a href="/study-plan/nclex-pn/">NCLEX-PN</a></td><td>85 to 150 questions, up to 5 hours</td><td>4 to 8 weeks</td><td>80 to 180</td></tr>
 <tr><td><a href="/study-plan/teas/">ATI TEAS</a></td><td>170 questions, about 3.5 hours</td><td>4 to 8 weeks</td><td>30 to 80</td></tr>
 <tr><td><a href="/study-plan/mcat/">MCAT</a></td><td>230 questions, about 7.5 hours with breaks</td><td>3 to 6 months</td><td>300 to 500</td></tr>
-<tr><td><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></td><td>Up to 280 questions, one 8-hour day</td><td>4 to 8 weeks dedicated</td><td>250 to 500</td></tr>
+<tr><td><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></td><td>Fourteen blocks of up to 20 questions, one 8-hour day</td><td>4 to 8 weeks dedicated</td><td>250 to 500</td></tr>
 <tr><td><a href="/study-plan/pance/">PANCE</a></td><td>300 questions, 5 hours</td><td>4 to 12 weeks</td><td>150 to 350</td></tr>
 <tr><td><a href="/study-plan/naplex/">NAPLEX</a></td><td>225 questions, 6 hours</td><td>4 to 8 weeks</td><td>120 to 300</td></tr>
-<tr><td><a href="/study-plan/dat/">DAT</a></td><td>About 4.5 hours</td><td>2 to 3 months</td><td>200 to 350</td></tr>
+<tr><td><a href="/study-plan/dat/">DAT</a></td><td>280 questions, about 4 hours 15 minutes of testing (5 hours 15 minutes in all)</td><td>2 to 3 months</td><td>200 to 350</td></tr>
 <tr><td><a href="/study-plan/gre/">GRE</a></td><td>About 2 hours</td><td>1 to 3 months</td><td>40 to 120</td></tr>
 <tr><td><a href="/study-plan/gmat/">GMAT</a></td><td>64 questions, 2 hours 15 minutes</td><td>2 to 3 months</td><td>80 to 150</td></tr>
 <tr><td><a href="/study-plan/lsat/">LSAT</a></td><td>Four 35-minute sections plus writing</td><td>2 to 4 months</td><td>120 to 300</td></tr>
@@ -554,15 +554,15 @@ GUIDES = [
 <p>Prefer paper? The <a href="/planners/pance-8-week-planner/">PANCE 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NCCPA.</p>"""),
        ]),
   dict(slug="gmat-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
-       title="GMAT Study Plan: An 8-Week Schedule for the Focus Edition",
+       title="GMAT Study Plan: An 8-Week Schedule for the Current Exam",
        h1="An 8-week GMAT study plan",
-       desc="An 8-week GMAT Focus Edition study plan: the three-section format, how to split Quant, Verbal and Data Insights, timed practice and full tests.",
-       lead="The GMAT Focus Edition has three sections and about two hours of testing. Here is an 8-week plan for it.",
-       card="An 8-week GMAT Focus Edition plan across Quant, Verbal and Data Insights.",
+       desc="An 8-week GMAT study plan: the three-section format, how to split Quant, Verbal and Data Insights, timed practice and full tests.",
+       lead="The GMAT exam has three sections and about two hours of testing. Here is an 8-week plan for it.",
+       card="An 8-week GMAT plan across Quant, Verbal and Data Insights.",
        kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
        sections=[
-         ("How the GMAT Focus Edition is built", """<p>GMAC lists three 45-minute sections, 2 hours 15 minutes of testing in all: Quantitative Reasoning (21 questions), Verbal Reasoning (23 questions) and Data Insights (20 questions). You can take the sections in any order and take one optional 10-minute break. You can bookmark questions and change up to three answers per section.</p>
-<p>The total score runs from 205 to 805, and the three sections count equally. Data sufficiency now sits in Data Insights, and Verbal no longer has sentence correction. Check <a href="https://www.mba.com/exams/gmat-focus-edition/about/exam-structure" rel="noopener">mba.com</a> for your test date.</p>"""),
+         ("How the GMAT exam is built", """<p>GMAC lists three 45-minute sections, 2 hours 15 minutes of testing in all: Quantitative Reasoning (21 questions), Verbal Reasoning (23 questions) and Data Insights (20 questions). You can take the sections in any order and take one optional 10-minute break. You can bookmark questions and change up to three answers per section.</p>
+<p>The total score runs from 205 to 805, and the three sections count equally. Data sufficiency now sits in Data Insights, and Verbal no longer has sentence correction. Check <a href="https://www.mba.com/exams/gmat-exam/about/exam-structure" rel="noopener">mba.com</a> for your test date.</p>"""),
          ("Because sections count equally", """<p>Verbal, Quant and Data Insights each carry a third of the total, so your weakest section is usually the best place to add hours. Take one practice test first and rank the three.</p>"""),
          ("Weeks 1 and 2: baseline and fundamentals", """<ul>
 <li>Take a full practice test to see where you stand.</li>
@@ -619,7 +619,7 @@ GUIDES = [
 <p>Prefer paper? The <a href="/planners/dat-10-week-planner/">DAT 10-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the ADA.</p>"""),
        ]),
   dict(slug="how-to-create-a-study-schedule", tag="Planning", date="2026-11-10",
-       title="How to Create a Study Schedule That You Will Follow",
+       title="How to Make a Study Schedule You Will Follow",
        h1="How to create a study schedule you will follow",
        desc="Build a study schedule in five steps: list your exams, count the hours you really have, split them by need, plan breaks and leave slack. Free tool included.",
        lead="Five steps, about twenty minutes, and a schedule that survives a bad day.",
@@ -640,7 +640,7 @@ GUIDES = [
 <p>If you are short of time, the <a href="/guides/how-to-study-for-finals-in-a-week/">finals-in-a-week guide</a> shows how to cut a plan down.</p>"""),
        ]),
   dict(slug="how-to-calculate-what-you-need-on-your-final", tag="Finals", date="2026-11-10",
-       title="What Do I Need on My Final? The Formula and Examples",
+       title="What Do I Need on My Final? Formula and Examples",
        h1="What do I need on my final to get the grade I want?",
        desc="Work out the score you need on your final exam with one formula, two worked examples, and what to do when the answer is over 100%.",
        lead="One formula, two worked examples, and what to do when the answer is over 100%.",
@@ -714,7 +714,7 @@ GUIDES = [
          ("Practise the pace", """<p>Do timed question blocks in your last weeks, at real exam pace, and review the ones you rushed. Pace is a skill that improves with practice. For the planning side, see the <a href="/guides/how-long-to-study-for-exams/">study hours guide</a>.</p>"""),
        ]),
   dict(slug="study-schedule-template", tag="Planning", date="2026-11-11",
-       title="Free Study Schedule Template: Spreadsheet, Printable and Exam Versions",
+       title="Free Study Schedule Template (Sheet and Printable)",
        h1="Free study schedule template (spreadsheet and printable)",
        desc="A free weekly study schedule template as a spreadsheet, a printable plan pack, and ready-made schedules for the MCAT, LSAT, GRE, GMAT, NCLEX and more.",
        lead="A weekly spreadsheet, a printable plan pack and ready-made schedules for the big exams, all free.",
@@ -755,7 +755,7 @@ REFS = {
   "how-to-calculate-what-you-need-on-your-final": "Weighted-average grade formula. Check your syllabus for the weights and any drop, scaling or rounding rules.",
   "how-to-study-for-the-nclex-pn": "NCSBN. NCLEX-PN test plan, Next Generation NCLEX information and candidate bulletin, ncsbn.org.",
   "how-to-pace-yourself-on-a-timed-exam": "GMAC, mba.com. NCCPA, nccpa.net. NABP, nabp.pharmacy. Confirm current test lengths on each site.",
-  "gmat-study-plan-8-weeks": "GMAC. GMAT Focus Edition exam structure, mba.com.",
+  "gmat-study-plan-8-weeks": "GMAC. GMAT exam structure and score guide, mba.com.",
   "dat-study-schedule-10-weeks": "American Dental Association. Dental Admission Test (DAT) 2026 Candidate Guide and exam page, ada.org.",
   "pance-study-plan-8-weeks": "NCCPA. PANCE content blueprint (effective January 2025) and What to Expect on Test Day, nccpa.net.",
   "naplex-study-plan-8-weeks": "NABP. Take the NAPLEX exam, nabp.pharmacy. NABP. NAPLEX Content Outline, effective for exams beginning May 1, 2025, nabp.pharmacy.",

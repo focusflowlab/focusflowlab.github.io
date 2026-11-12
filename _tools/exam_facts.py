@@ -10,12 +10,12 @@ EXAMS = [("nclex-rn-8-week-planner", "NCLEX-RN", "nclex"), ("nclex-pn-6-week-pla
          ("ati-teas-4-week-planner", "ATI TEAS", "teas"), ("mcat-16-week-planner", "MCAT", "mcat"),
          ("usmle-step-1-8-week-planner", "USMLE Step 1", "usmle-step-1"), ("pance-8-week-planner", "PANCE", "pance"),
          ("naplex-8-week-planner", "NAPLEX", "naplex"), ("dat-10-week-planner", "DAT", "dat"),
-         ("gre-8-week-planner", "GRE", "gre"), ("gmat-8-week-planner", "GMAT Focus", "gmat"), ("lsat-12-week-planner", "LSAT", "lsat"),
+         ("gre-8-week-planner", "GRE", "gre"), ("gmat-8-week-planner", "GMAT", "gmat"), ("lsat-12-week-planner", "LSAT", "lsat"),
          ("cpa-far-10-week-planner", "CPA FAR", "cpa-far"), ("cpa-aud-8-week-planner", "CPA AUD", "cpa-aud"), ("cpa-reg-8-week-planner", "CPA REG", "cpa-reg")]
 
 path = "/exam-facts/"
 crumb_html, crumb_ld = crumbs([("Home", "/"), ("Exam facts", path)])
-desc = "Question counts, test length, scoring and retake rules for 14 exams (NCLEX, MCAT, USMLE, GRE, LSAT, CPA and more), checked against each exam owner’s official page."
+desc = "Question counts, test length and scoring for 14 exams, with retake rules where the owner publishes them (NCLEX, MCAT, USMLE, GRE, LSAT, CPA and more), checked against each exam owner’s official page."
 secs, toc = [], []
 for key, name, slug in EXAMS:
     items, srcs = OFFICIAL[key]

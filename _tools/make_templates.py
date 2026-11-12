@@ -32,16 +32,17 @@ def mcat_error_log():
     ws.row_dimensions[1].height = 30
     rows = 300
     for r in range(2, rows + 2):
-        ws[f"G{r}"] = f'=IF(OR(A{r}="",E{r}=""),"",A{r}+IF(E{r}="C",7,2))'
+        ws[f"G{r}"] = f'=IF(OR(NOT(ISNUMBER(A{r})),E{r}=""),"",A{r}+IF(E{r}="C",7,2))'
         ws[f"A{r}"].number_format = "yyyy-mm-dd"
         ws[f"G{r}"].number_format = "yyyy-mm-dd"
         ws[f"F{r}"].alignment = Alignment(wrap_text=True, vertical="top")
         for col in "ABCDEFGH":
             ws[f"{col}{r}"].border = Border(bottom=thin)
     # no example row: it would be counted on the Weekly count tab
-    dv_sec = DataValidation(type="list", formula1='"' + ",".join(SECTIONS) + '"', allow_blank=True)
-    dv_why = DataValidation(type="list", formula1='"C,M,T"', allow_blank=True)
-    dv_fix = DataValidation(type="list", formula1='"No,Yes"', allow_blank=True)
+    stop = dict(allow_blank=True, showErrorMessage=True, errorTitle="Pick from the list", error="Choose one of the values in the dropdown.")
+    dv_sec = DataValidation(type="list", formula1='"' + ",".join(SECTIONS) + '"', **stop)
+    dv_why = DataValidation(type="list", formula1='"C,M,T"', **stop)
+    dv_fix = DataValidation(type="list", formula1='"No,Yes"', **stop)
     for dv, rng in ((dv_sec, f"C2:C{rows + 1}"), (dv_why, f"E2:E{rows + 1}"), (dv_fix, f"H2:H{rows + 1}")):
         ws.add_data_validation(dv)
         dv.add(rng)
@@ -131,7 +132,7 @@ def final_grade():
     ws["B15"] = '=IFERROR(SUMPRODUCT(B5:B10,C5:C10)/SUMIF(C5:C10,"<>",B5:B10),"")'
     ws["B15"].number_format = "0.0%"
     ws["A16"] = "Score needed on the final"
-    ws["B16"] = '=IF(OR(B15="",B12<=0),"",MAX(0,(B13-B15*(1-B12))/B12))'  # never a negative score
+    ws["B16"] = '=IF(OR(NOT(ISNUMBER(B15)),NOT(ISNUMBER(B12)),NOT(ISNUMBER(B13)),B12<=0),"",MAX(0,(B13-B15*(1-B12))/B12))'  # never a negative score
     ws["B16"].number_format = "0.0%"
     ws["A17"] = "What that means"
     ws["B17"] = '=IF(B16="","Fill in the cells above",IF(B16>1,"Out of reach unless there is extra credit: try a lower target",IF(B16<=0,"You already have it: any score keeps this grade","Aim for "&TEXT(B16,"0.0%")&" or more")))'
@@ -157,7 +158,7 @@ def score_log():
     from datetime import date
     rows = 200
     for r in range(2, rows + 2):
-        ws[f"F{r}"] = f'=IF(OR(D{r}="",E{r}="",E{r}=0),"",IF(D{r}>E{r},"Right > total?",D{r}/E{r}))'
+        ws[f"F{r}"] = f'=IF(OR(NOT(ISNUMBER(D{r})),NOT(ISNUMBER(E{r})),E{r}<=0),"",IF(D{r}>E{r},"Right > total?",D{r}/E{r}))'
         ws[f"H{r}"] = f'=IF(OR(NOT(ISNUMBER(F{r})),G{r}=""),"",IF(F{r}>=G{r},"Yes","Not yet"))'
         ws[f"G{r}"] = 0.75
         ws[f"F{r}"].number_format = "0%"
@@ -165,7 +166,7 @@ def score_log():
         ws[f"A{r}"].number_format = "yyyy-mm-dd"
     # no example rows: they would feed Overall and the chart
     ws.freeze_panes = "A2"
-    ws["J1"], ws["K1"] = "Overall", '=IFERROR(SUM(D2:D201)/SUM(E2:E201),"")'
+    ws["J1"], ws["K1"] = "Overall", '=IFERROR(SUMPRODUCT(ISNUMBER(D2:D201)*ISNUMBER(E2:E201)*(E2:E201>0)*(D2:D201<=E2:E201),D2:D201)/SUMPRODUCT(ISNUMBER(D2:D201)*ISNUMBER(E2:E201)*(E2:E201>0)*(D2:D201<=E2:E201),E2:E201),"")'
     ws["K1"].number_format = "0%"
     ws["J1"].font = Font(bold=True)
     ws["K1"].font = Font(bold=True, color=TEAL, size=12)
@@ -205,7 +206,7 @@ def study_schedule():
     for i, h in enumerate(range(6, 23), 3):
         ws[f"A{i}"] = f"{h}:00"
         ws[f"A{i}"].font = Font(bold=True, color="5B6B7F")
-    dv = _DV(type="list", formula1="=Subjects!$A$2:$A$11", allow_blank=True)
+    dv = _DV(type="list", formula1="=Subjects!$A$2:$A$11", allow_blank=True, showErrorMessage=True, errorStyle="warning", errorTitle="Not on your subject list", error="Add it on the Subjects tab first, or keep it anyway.")
     ws.add_data_validation(dv)
     dv.add("B3:H19")
     thin = Side(style="thin", color="B9C8CD")

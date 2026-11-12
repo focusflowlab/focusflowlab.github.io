@@ -85,7 +85,7 @@ EXAMS = [
     "date_label": "Exam date", "legend": "Where do you feel shaky? (optional)", "button": "Build my plan",
     "days_default": 5, "hours_default": 3,
     "config": {"id": "nclex-pn", "shortName": "NCLEX-PN", "maxDays": 180, "reviewShare": 0.4, "recommendedHours": {"min": 80, "max": 180}},
-    "topics": [("Coordinated Care", 21), ("Safety and Infection Control", 13), ("Pharmacological Therapies", 13), ("Psychosocial Integrity", 12), ("Reduction of Risk Potential", 12), ("Basic Care and Comfort", 10), ("Physiological Adaptation", 10), ("Health Promotion", 9)],
+    "topics": [("Coordinated Care", 21), ("Safety and Infection Prevention and Control", 13), ("Pharmacological Therapies", 13), ("Psychosocial Integrity", 12), ("Reduction of Risk Potential", 12), ("Basic Care and Comfort", 10), ("Physiological Adaptation", 10), ("Health Promotion", 9)],
     "tasks": """{
         review: (days) => [
           'Read up on one or two of this week’s categories each study day.',
@@ -133,7 +133,7 @@ EXAMS = [
     "date_label": "Test date", "legend": "Which areas worry you? (optional)", "button": "Build my schedule",
     "days_default": 6, "hours_default": 8,
     "config": {"id": "usmle-step-1", "shortName": "Step 1", "maxDays": 365, "reviewShare": 0.45, "recommendedHours": {"min": 250, "max": 500}},
-    "topics": [("General principles", 18), ("Nervous system and behavior", 15), ("Reproductive and endocrine", 12), ("Cardiovascular", 9), ("Musculoskeletal and skin", 9), ("Respiratory", 8), ("Renal and urinary", 8), ("Gastrointestinal", 8), ("Blood, lymph and immune", 8)],
+    "topics": [("Reproductive and endocrine", 14), ("Respiratory and renal/urinary", 13), ("Behavioral health and nervous system", 12), ("Blood, lymph and immune", 11), ("Musculoskeletal and skin", 10), ("Multisystem processes", 10), ("Cardiovascular", 9), ("Gastrointestinal", 8), ("Social sciences and communication", 7), ("Biostatistics and epidemiology", 5), ("Human development", 1)],
     "tasks": """{
         review: (days) => [
           'Cover this week’s systems in order, biggest first.',
@@ -154,13 +154,13 @@ EXAMS = [
           'Take the day before off. Rest, eat well, sleep early.'
         ]
       }""",
-    "how": """<p>Step 1 is a one-day, roughly eight-hour exam and is now scored pass or fail. Questions mix basic science with the organ systems, so the schedule is built around systems, with general principles (biochemistry, genetics, immunology, microbiology and pharmacology) as its own block.</p>
+    "how": """<p>Step 1 is a one-day, roughly eight-hour exam and is now scored pass or fail. Questions mix basic science with the organ systems, so the schedule is built around the organ systems. The current USMLE content outline spreads the old general principles (biochemistry, genetics, microbiology, pharmacology) across the systems, and adds biostatistics, epidemiology and communication as their own areas.</p>
           <ol>
             <li><strong>Systems review, a bit under half.</strong> Each week covers a few systems, with timed question blocks on them every day.</li>
             <li><strong>Mixed practice, the rest.</strong> Random timed blocks across all systems, with a self-assessment every week or two.</li>
             <li><strong>Final week.</strong> Your last self-assessment about a week out, light review, and a day off before the test.</li>
           </ol>
-          <p>Topic hours roughly follow the share of each system in the USMLE content outline. Any area you tick as a worry gets 50% more time. These weights are rough, not official.</p>
+          <p>Topic hours sit inside the percentage range USMLE gives for each area in its current content outline. Any area you tick as a worry gets 50% more time. These weights are rough, not official.</p>
           <p>Check the current content outline and rules at <a href="https://www.usmle.org/" rel="noopener">usmle.org</a> before you rely on them.</p>""",
     "faq": [
       ("How long is a Step 1 dedicated period?", "Many students take 4 to 8 weeks of dedicated study at 8 to 10 hours a day, after building a base during the preclinical years."),
@@ -494,7 +494,7 @@ EXAMS = [
             <li><strong>Final week.</strong> Light review, nothing new, and rest before test day.</li>
           </ol>
           <p>Section hours are rough shares based on the question counts and how much content each section covers. They aren’t official. Any section you tick as shaky gets 50% more time.</p>
-          <p>Check the current test details at <a href="https://www.ada.org/education/testing/dental-admission-test" rel="noopener">ada.org</a> before you rely on it.</p>""",
+          <p>Check the current test details at <a href="https://www.ada.org/education/testing/exams/dental-admission-test-dat" rel="noopener">ada.org</a> before you rely on it.</p>""",
     "faq": [
       ("How long should I study for the DAT?", "Many students plan around 2 to 3 months at 4 or more hours a day, roughly 200 to 350 hours, depending on how recently they took the sciences."),
       ("How do I get better at perceptual ability?", "Practise it a little every day rather than in big blocks. The question types follow patterns, and short daily practice builds speed."),
@@ -506,7 +506,7 @@ EXAMS = [
   {
     "slug": "gmat",
     "short": "GMAT",
-    "title": "GMAT Study Plan Generator: Free Weekly GMAT Focus Schedule",
+    "title": "GMAT Study Plan Generator: Free Weekly GMAT Schedule",
     "desc": "Put in your GMAT test date and study hours. Get a week-by-week plan across Quantitative Reasoning, Verbal Reasoning and Data Insights, with practice exams built in.",
     "og_title": "GMAT study plan generator",
     "h1": "Your GMAT study plan, week by week.",
@@ -534,7 +534,7 @@ EXAMS = [
           'Rest the day before and sleep early.'
         ]
       }""",
-    "how": """<p>The GMAT Focus Edition has three equally scored sections: Quantitative Reasoning, Verbal Reasoning and Data Insights. Time is split evenly across them, with extra for any section you mark as shaky.</p>
+    "how": """<p>The GMAT exam has three equally scored sections: Quantitative Reasoning, Verbal Reasoning and Data Insights. Time is split evenly across them, with extra for any section you mark as shaky.</p>
           <ol>
             <li><strong>Question types first, about half.</strong> Learn each type, then practise it untimed the same day.</li>
             <li><strong>Timed practice, the rest.</strong> A full practice exam every other week and timed sets on your weakest section.</li>

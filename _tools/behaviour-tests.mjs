@@ -853,6 +853,161 @@ for (const [slug, setup, out] of [
   }
 }
 
+// ---- Audit 5 (12 Nov 2026) ----
+{
+  const open = async (path, setup) => {
+    const page = await newPage();
+    const errs = []; page.on('pageerror', (e) => errs.push(e.message));
+    await page.goto(`${BASE}${path}`, { waitUntil: 'networkidle0' });
+    await page.evaluate((s) => { localStorage.clear(); if (s) Object.entries(s).forEach(([k, v]) => localStorage.setItem(k, v)); }, setup || null);
+    await page.reload({ waitUntil: 'networkidle0' });
+    return { page, errs };
+  };
+  // Capture what a download button would save.
+  const grab = (page, id) => page.evaluate(async (id) => {
+    let blob = null; const orig = URL.createObjectURL; URL.createObjectURL = (b) => { blob = b; return 'blob:x'; };
+    HTMLAnchorElement.prototype.click = function () {};
+    document.getElementById(id).click(); URL.createObjectURL = orig;
+    return blob ? new TextDecoder('utf-8', { ignoreBOM: true }).decode(await blob.arrayBuffer()) : '';
+  }, id);
+
+  // 5a.1 USMLE Step 1 weights: inside each official outline range and summing to 100; NCLEX name; GMAT name.
+  {
+    const { page } = await open('/tools/practice-score-tracker/');
+    const T = await page.evaluate(() => window.EXAM_TOPICS);
+    const RANGE = { 'Human development': [1, 3], 'Blood, lymph and immune': [9, 13], 'Behavioral health and nervous system': [10, 14], 'Musculoskeletal and skin': [8, 12], 'Cardiovascular': [7, 11], 'Respiratory and renal/urinary': [11, 15], 'Gastrointestinal': [6, 10], 'Reproductive and endocrine': [12, 16], 'Multisystem processes': [8, 12], 'Biostatistics and epidemiology': [4, 6], 'Social sciences and communication': [6, 9] };
+    const u = T['usmle-step-1'].topics;
+    check(u.length === 11 && u.reduce((a, [, w]) => a + w, 0) === 100 && u.every(([n, w]) => RANGE[n] && w >= RANGE[n][0] && w <= RANGE[n][1]), `USMLE Step 1 topics inside the official ranges, sum ${u.reduce((a, [, w]) => a + w, 0)}`);
+    check(['nclex', 'nclex-pn'].every((s) => T[s].topics.some(([n]) => n === 'Safety and Infection Prevention and Control')) && T.gmat.name === 'GMAT', 'NCLEX 2026 category name; GMAT label');
+    await page.close();
+  }
+
+  // M1 + L5 countdown wording and a damaged saved value.
+  for (const [days, perWeek, want] of [[59, '7', '8 weeks and 3 days'], [56, '7', '8 weeks'], [3, '7', '3 days'], [8, '7', '1 week and 1 day']]) {
+    const { page } = await open('/tools/exam-countdown/', { 'ffl-countdown': JSON.stringify({ examDate: dateIn(days), hoursPerDay: '2', daysPerWeek: perWeek }) });
+    const w = await page.$eval('#r-weeks', (e) => e.textContent);
+    check(w === want, `countdown ${days} days: "That’s ${w}" (want ${want})`);
+    await page.close();
+  }
+  {
+    const { page } = await open('/tools/exam-countdown/', { 'ffl-countdown': JSON.stringify({ examDate: dateIn(1), hoursPerDay: '1', daysPerWeek: '7' }) });
+    const tip = await page.$eval('#r-tip', (e) => e.textContent);
+    await page.close();
+    const p2 = await open('/tools/exam-countdown/', { 'ffl-countdown': JSON.stringify({ examDate: dateIn(30) }) });
+    const r = await p2.page.evaluate(() => ({ per: document.getElementById('daysPerWeek').value, study: document.getElementById('r-study').textContent }));
+    check(/about 1 hour before/.test(tip) && r.per === '5' && r.study !== '0', `countdown: "${tip}"; damaged save keeps ${r.per} days a week, ${r.study} study days`);
+    await p2.page.close();
+  }
+
+  // M2 two tabs: nothing is lost (score tracker, error log, flashcards, spaced review).
+  {
+    const A = await open('/tools/practice-score-tracker/'), B = await newPage();
+    await B.goto(`${BASE}/tools/practice-score-tracker/`, { waitUntil: 'networkidle0' });
+    const add = (p, r) => p.evaluate((r) => { document.getElementById('sc-right').value = r; document.getElementById('sc-total').value = '10'; document.getElementById('sc-form').requestSubmit(); }, r);
+    await add(A.page, '1'); await wait(150); await add(B, '2'); await wait(150); await add(A.page, '3'); await wait(150);
+    const n = await A.page.evaluate(() => JSON.parse(localStorage.getItem('ffl-scores')).entries.map((e) => e.right).join(','));
+    const shownB = await B.$$eval('#sc-list li', (l) => l.length);
+    check(n === '1,2,3' && shownB === 3, `score tracker two tabs: saved ${n}, other tab lists ${shownB}`);
+    await A.page.close(); await B.close();
+  }
+  {
+    const A = await open('/tools/error-log/'), B = await newPage();
+    await B.goto(`${BASE}/tools/error-log/`, { waitUntil: 'networkidle0' });
+    const add = (p, w) => p.evaluate((w) => { document.getElementById('el-what').value = w; document.getElementById('el-form').requestSubmit(); }, w);
+    await add(A.page, 'a'); await wait(150); await add(B, 'b'); await wait(150); await add(A.page, 'c'); await wait(150);
+    const n = await A.page.evaluate(() => JSON.parse(localStorage.getItem('ffl-errorlog')).items.map((i) => i.what).join(','));
+    check(n === 'a,b,c', `error log two tabs: saved ${n}`);
+    // M6 Fixed items stay visible with Undo and Delete.
+    await A.page.evaluate(() => document.querySelector('#el-list li button').click());
+    const fx = await A.page.evaluate(() => ({ fixed: document.querySelectorAll('#el-list li.is-fixed').length, undo: !!document.querySelector('#el-list li.is-fixed button[aria-label^="Mark not fixed"]') }));
+    await A.page.evaluate(() => document.querySelector('#el-list li.is-fixed button[aria-label^="Mark not fixed"]').click());
+    const back = await A.page.evaluate(() => document.querySelectorAll('#el-list li.is-fixed').length);
+    check(fx.fixed === 1 && fx.undo && back === 0, `error log: fixed item listed (${fx.fixed}) with Undo; Undo reopens it (${back} fixed left)`);
+    const csv = await grab(A.page, 'el-csv');
+    check(csv.charCodeAt(0) === 0xfeff, 'error log CSV starts with a UTF-8 BOM');
+    await A.page.close(); await B.close();
+  }
+  {
+    const A = await open('/tools/flashcards/'), B = await newPage();
+    await B.goto(`${BASE}/tools/flashcards/`, { waitUntil: 'networkidle0' });
+    const add = (p, f) => p.evaluate((f) => { document.getElementById('fcFront').value = f; document.getElementById('fcBack').value = 'x'; document.getElementById('fc-add').requestSubmit(); }, f);
+    await add(A.page, 'a'); await wait(150); await add(B, 'b'); await wait(150); await add(A.page, 'c'); await wait(150);
+    const n = await A.page.evaluate(() => JSON.parse(localStorage.getItem('ffl-flashcards')).map((c) => c.front).join(','));
+    const status = await A.page.$eval('#fc-status', (e) => e.textContent + '|' + e.getAttribute('role'));
+    // L11 deleting the card under review takes it off screen.
+    await A.page.evaluate(() => { document.getElementById('fc-start').click(); });
+    const front = await A.page.$eval('#fc-front', (e) => e.textContent);
+    await A.page.evaluate((f) => { const i = [...document.querySelectorAll('#fc-list li')].findIndex((li) => li.querySelector('strong').textContent === f); document.querySelectorAll('#fc-list [data-del]')[i].click(); }, front);
+    const after = await A.page.$eval('#fc-front', (e) => e.textContent);
+    check(n === 'a,b,c' && status === 'Card added.|status' && after !== front, `flashcards two tabs: saved ${n}; status "${status}"; deleting "${front}" under review moves on to "${after}"`);
+    await A.page.close(); await B.close();
+  }
+  {
+    const A = await open('/tools/spaced-review/'), B = await newPage();
+    await B.goto(`${BASE}/tools/spaced-review/`, { waitUntil: 'networkidle0' });
+    const add = (p, t) => p.evaluate((t) => { document.getElementById('topic').value = t; document.getElementById('review-form').requestSubmit(); }, t);
+    await add(A.page, 'a'); await wait(150); await add(B, 'b'); await wait(150); await add(A.page, 'c ' + 'long name '.repeat(6)); await wait(150);
+    const n = await A.page.evaluate(() => JSON.parse(localStorage.getItem('ffl-spaced-review')).length);
+    const studied = await B.$eval('#studied', (e) => e.value);
+    // L3 Clear all asks first; dismissing keeps the topics.
+    B.once('dialog', (d) => d.dismiss());
+    await B.evaluate(() => document.getElementById('clear-all').click());
+    const kept = await B.evaluate(() => JSON.parse(localStorage.getItem('ffl-spaced-review')).length);
+    // L10 calendar lines folded at 75 octets.
+    const ics = await grab(A.page, 'download-ics');
+    const long = ics.split('\r\n').filter((l) => new TextEncoder().encode(l).length > 75).length;
+    check(n === 3 && studied === dateIn(0) && kept === 3 && long === 0 && /\r\n /.test(ics), `spaced review two tabs: ${n} topics; first studied ${studied}; Clear all cancelled keeps ${kept}; ${long} calendar lines over 75 octets`);
+    await A.page.close(); await B.close();
+  }
+
+  // M5 + L8 score tracker CSV guard and BOM; future date refused; old USMLE/NCLEX names carried over.
+  {
+    const old = { exam: 'usmle-step-1', target: 75, hours: 10, entries: [{ id: 1, exam: 'usmle-step-1', topic: 'Respiratory', date: dateIn(-1), right: 5, total: 10, note: '=HYPERLINK("http://x","c")' }, { id: 2, exam: 'nclex', topic: 'Safety and Infection Control', date: dateIn(-1), right: 5, total: 10, note: 'اردو' }] };
+    const { page } = await open('/tools/practice-score-tracker/', { 'ffl-scores': JSON.stringify(old) });
+    const csv = await grab(page, 'sc-csv');
+    const row = await page.$eval('#sc-table', (t) => [...t.querySelectorAll('tr')].find((r) => r.querySelector('th').textContent === 'Respiratory and renal/urinary').textContent);
+    const msg = await page.evaluate(() => { document.getElementById('sc-date').value = '2099-01-01'; document.getElementById('sc-right').value = '1'; document.getElementById('sc-total').value = '2'; document.getElementById('sc-form').requestSubmit(); return document.getElementById('sc-error').textContent; });
+    check(csv.charCodeAt(0) === 0xfeff && csv.includes(`"'=HYPERLINK`) && csv.includes('Safety and Infection Prevention and Control') && /50%/.test(row) && /today or earlier/.test(msg), `score tracker: CSV BOM + formula guard + renamed topics; Respiratory entry counted under the new area (${row.slice(0, 50)}); 2099 refused`);
+    await page.close();
+  }
+
+  // L1 GPA credits 1.1 + 2.2; L6 tiny test pace; L4 far reading deadline; L7 focus block from an earlier day.
+  {
+    const g = await open('/tools/gpa-calculator/');
+    const credits = await g.page.evaluate(() => {
+      const rows = [...document.querySelectorAll('.gpa-row')];
+      const setRow = (li, c, gr) => { const [, cr] = li.querySelectorAll('input'); cr.value = c; li.querySelector('select').value = gr; };
+      setRow(rows[0], '1.1', 'A'); setRow(rows[1], '2.2', 'B'); rows.slice(2).forEach((r) => setRow(r, '0', 'A'));
+      document.getElementById('gpa-form').dispatchEvent(new Event('input'));
+      return document.getElementById('r-credits').textContent;
+    });
+    check(credits === '3.3', `GPA credits 1.1 + 2.2 = ${credits}`);
+    await g.page.close();
+    const t = await open('/tools/test-time-calculator/');
+    const sec = await t.page.evaluate(() => { document.getElementById('totalMin').value = '1'; document.getElementById('questions').value = '1000'; document.getElementById('reviewPct').value = '0'; document.getElementById('pace-form').requestSubmit(); return document.getElementById('r-sec').textContent + ' / ' + document.getElementById('r-min').textContent; });
+    check(/^0\.1 sec/.test(sec) && !/^0 min/.test(sec.split(' / ')[1]), `test time 1 min, 1000 questions: ${sec}`);
+    await t.page.close();
+    const r = await open('/tools/reading-planner/');
+    const t0 = Date.now();
+    const rp = await r.page.evaluate((d) => { document.getElementById('totalPages').value = '20000'; document.getElementById('pagesRead').value = ''; document.getElementById('deadline').value = d; document.getElementById('reading-form').requestSubmit(); return { err: document.getElementById('reading-error') ? document.getElementById('reading-error').textContent : document.querySelector('[role=alert]').textContent, rows: document.querySelectorAll('#r-table tr').length }; }, '9999-12-31');
+    check(/within two years/.test(rp.err) && Date.now() - t0 < 1500, `reading planner 9999-12-31: "${rp.err}", ${rp.rows} rows`);
+    await r.page.close();
+    const old = Date.now() - 3 * 86400000;
+    const f = await open('/tools/focus-timer/', { 'ffl-timer-run': JSON.stringify({ phase: 'focus', focus: 25, brk: 5, remaining: 0, running: true, endsAt: old }) });
+    const done = await f.page.$eval('#done-count', (e) => e.textContent);
+    check(!/\b1\b/.test(done), `focus timer: a block that ended 3 days ago is not counted today ("${done}")`);
+    await f.page.close();
+  }
+
+  // L9 embed links leave the iframe; L15 plan page offer applies the 5,000 limit and the renamed topics.
+  for (const p of ['/embed/exam-countdown/', '/embed/test-time-calculator/']) {
+    const { page } = await open(p);
+    const ok = await page.$$eval('a[href*="study-plan"]', (as) => as.length > 0 && as.every((a) => a.target === '_blank' && a.href.startsWith('https://thefocusflowlab.com/')));
+    check(ok, `${p}: study-plan link opens in a new tab with the full address`);
+    await page.close();
+  }
+}
+
 await browser.close();
 console.log(failed ? `\n${failed} FAILED` : '\nALL PASSED');
 process.exit(failed ? 1 : 0);
