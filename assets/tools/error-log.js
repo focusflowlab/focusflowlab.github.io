@@ -40,7 +40,7 @@
   function render() {
     const mine = state.items.filter((i) => i.exam === state.exam);
     const open = mine.filter((i) => !i.fixed);
-    const due = open.filter((i) => i.review <= today()).sort((a, b) => (a.review < b.review ? -1 : 1));
+    const due = open.filter((i) => i.review <= today()).sort((a, b) => (a.review < b.review ? -1 : a.review > b.review ? 1 : a.id - b.id));
     $('el-total').textContent = String(mine.length);
     $('el-open').textContent = String(open.length);
     $('el-due').textContent = String(due.length);
@@ -65,7 +65,7 @@
 
     const ul = $('el-list');
     ul.replaceChildren();
-    const show = [...open].sort((a, b) => (a.review < b.review ? -1 : 1));
+    const show = [...open].sort((a, b) => (a.review < b.review ? -1 : a.review > b.review ? 1 : a.id - b.id));
     show.forEach((i) => {
       const li = el('li');
       const info = el('div');
@@ -102,7 +102,8 @@
     $('el-what').focus();
   });
   $('el-csv').addEventListener('click', () => {
-    const q = (v) => '"' + String(v).replace(/"/g, '""') + '"';
+    // A leading = + - @ (or tab/CR) makes spreadsheets run the cell as a formula, so prefix a quote.
+    const q = (v) => '"' + String(v).replace(/^[=+\-@\t\r]/, "'$&").replace(/"/g, '""') + '"';
     const rows = [['added', 'exam', 'topic', 'what', 'reason', 'fix', 'retest on', 'fixed'], ...state.items.map((i) => [i.added, TOPICS[i.exam] ? TOPICS[i.exam].name : i.exam, i.topic, i.what, REASONS[i.reason][0], i.fix || '', i.review, i.fixed ? 'yes' : 'no'])];
     const blob = new Blob([rows.map((r) => r.map(q).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
     const a = document.createElement('a');
