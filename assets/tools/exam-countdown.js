@@ -13,7 +13,7 @@
   function startOfDay(d) { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; }
 
   function calc(submitted) {
-    const value = $('examDate').value;
+    const value = ffDate($('examDate').value) ? $('examDate').value : ''; // an impossible date counts as none
     // A blank or impossible date (e.g. 30 Feb, which the box empties) only gets a message when the button is pressed.
     if (!value) { out.hidden = true; $('countdown-error').textContent = submitted === true ? 'Pick your exam date.' : ''; return; }
     const exam = startOfDay(value + 'T00:00:00');

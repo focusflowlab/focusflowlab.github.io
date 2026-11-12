@@ -18,7 +18,7 @@
     // The boxes' own limits (shared reader; parseInt used to read "1e3" as 1 and "2.5" as 2).
     const T = ffField($('totalPages')), D = ffField($('pagesRead'));
     const total = T.v, done = D.v ?? 0;
-    const deadline = $('deadline').value;
+    const deadline = ffDate($('deadline').value) ? $('deadline').value : ''; // an impossible date counts as none
     const perWeek = parseInt($('readDays').value, 10);
     const review = $('reviewDays').checked;
     if (total === null || !deadline) { out.hidden = true; err.textContent = submitted === true ? 'Enter the total pages and your deadline.' : ''; return; }

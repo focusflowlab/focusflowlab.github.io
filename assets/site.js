@@ -50,10 +50,12 @@
   const status = form.querySelector('#kit-status');
   const button = form.querySelector('button[type="submit"]');
   const say = (text, bad) => { status.textContent = text; status.classList.toggle('is-error', !!bad); input.setAttribute('aria-invalid', bad ? 'true' : 'false'); };
+  input.addEventListener('input', () => { delete form.dataset.sent; });
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (form.website.value) return; // spam trap
     const email = input.value.trim();
+    if (!email && form.dataset.sent) return; // a fast double-click lands after the reset: keep the "Check your inbox" message
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say('Please enter a valid email address.', true); input.focus(); return; }
     button.disabled = true;
     say('Sending\u2026');
@@ -63,7 +65,7 @@
       const res = await fetch(form.action, { method: 'POST', body: data });
       const json = await res.json();
       if (json.success) {
-        form.reset();
+        form.reset(); form.dataset.sent = '1';
         say('Check your inbox! First you get an email called \u201cConfirmation email\u201d from FocusFlow Lab: open its link, and the kit arrives within a minute or two. If you don\u2019t see either, check Promotions or Spam.');
       } else {
         const msg = json.errors && json.errors.fields && json.errors.fields.email ? json.errors.fields.email[0] : 'Something went wrong. Please try again.';

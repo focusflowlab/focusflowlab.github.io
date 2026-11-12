@@ -45,7 +45,8 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = $('topic').value.trim();
-    const date = $('studied').value || today;
+    const raw = $('studied').value.trim(), date = raw || today;
+    if (!ffDate(date)) { $('review-error').textContent = 'Pick a real date for when you studied it.'; return; }
     if (!name) { $('review-error').textContent = 'Add a topic name first.'; return; }
     if (date > today) { $('review-error').textContent = 'Pick the day you studied it: today or earlier.'; return; }
     $('review-error').textContent = '';

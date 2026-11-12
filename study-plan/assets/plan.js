@@ -55,6 +55,9 @@
   /** Return a friendly error message, or '' when the inputs are fine. */
   function validate(inputs, daysLeft) {
     if (!inputs.examDate) return 'Pick your exam date first.';
+    // A date box that is plain text (older Safari) can hold an impossible date such as 2029-02-30.
+    const [y, m, d] = inputs.examDate.split('-').map(Number), real = new Date(y, m - 1, d);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(inputs.examDate) || real.getMonth() !== m - 1 || real.getDate() !== d) return 'That date doesn’t exist. Pick your exam date again.';
     if (!(daysLeft >= 3)) return "Your exam is less than 3 days away. Rest, skim your notes, and trust the work you've done.";
     if (daysLeft > config.maxDays) return `That's more than ${Math.round(config.maxDays / 30)} months away. Come back nearer the date for a tighter plan.`;
     if (!(inputs.hoursPerDay >= 0.5 && inputs.hoursPerDay <= 14)) return 'Hours per day should be somewhere between 0.5 and 14.';

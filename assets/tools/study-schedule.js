@@ -28,7 +28,7 @@
   function read() {
     return [...list.querySelectorAll('.ss-row')].map((li) => {
       const [n, d, p] = li.querySelectorAll('input, select');
-      return { name: n.value.trim(), date: d.value, priority: p.value };
+      return { name: n.value.trim(), date: ffDate(d.value) ? d.value : '', priority: p.value }; // an impossible date counts as none
     });
   }
 
