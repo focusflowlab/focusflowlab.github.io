@@ -152,7 +152,7 @@ def planners_page():
     <aside class="page-note" aria-label="About this page">
       <p>Made by FocusFlow Lab. Questions: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a>. Exam names belong to their owners; FocusFlow Lab isn’t affiliated with or endorsed by any exam owner. Purchases are processed by Gumroad; see the <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy policy</a>.</p>
     </aside>"""
-    return shell(path=path, title="Printable Study Planners: NCLEX, MCAT, GRE, CPA | FocusFlow Lab", desc=desc,
+    return shell(signup=False, path=path, title="Printable Study Planners: NCLEX, MCAT, GRE, CPA | FocusFlow Lab", desc=desc,
                  og_title="Printable study planners", ld=ld, body=body, css_depth=1, extra_head='\n  <link rel="stylesheet" href="../study-plan/assets/plan.css">')
 
 def about_page():
@@ -192,7 +192,7 @@ def about_page():
         </article>
       </div>
     </main>"""
-    return shell(path=path, title="About FocusFlow Lab: Free Study Tools and Printable Planners", desc=desc, og_title="About FocusFlow Lab", ld=ld, body=body, css_depth=1)
+    return shell(path=path, title="About FocusFlow Lab: Free Study Tools and Printable Planners", desc=desc, og_title="About FocusFlow Lab", ld=ld, body=body, css_depth=1, signup=False)
 
 # ---- one page per planner: /planners/<store permalink>/ ----
 # Facts below are copied from each product's own Gumroad description; do not add claims that are not in it.
@@ -352,7 +352,7 @@ def planner_detail(t):
       <p>Made by FocusFlow Lab. Questions: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a>. Purchases are processed by Gumroad; see the <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy policy</a>.</p>
     </aside>"""
     full_title = f"{h1.replace(' (14 days)', '')} ({'PDF' if len(h1) > 30 else 'Printable PDF'}) | FocusFlow Lab" if not is_bundle else "All 14 Exam Study Planners Bundle, $15 | FocusFlow Lab"
-    return path, shell(path=path, title=full_title, desc=desc[:160].rsplit(" ", 1)[0] if len(desc) > 160 else desc, og_title=h1, ld=ld, body=body, css_depth=2, og_image=f"{SITE}/assets/products/planners/{thumb}.png",
+    return path, shell(signup=False, path=path, title=full_title, desc=desc[:160].rsplit(" ", 1)[0] if len(desc) > 160 else desc, og_title=h1, ld=ld, body=body, css_depth=2, og_image=f"{SITE}/assets/products/planners/{thumb}.png",
                        extra_head='\n  <link rel="stylesheet" href="../../study-plan/assets/plan.css">')
 
 def not_found_page():
@@ -367,7 +367,7 @@ def not_found_page():
         <li><strong>Free tools and guides</strong><p>Calculators, timers and short study guides.</p><a class="text-link" href="/tools/">Study tools</a> <a class="text-link" href="/guides/">Study guides</a></li>
       </ul>
     </main>"""
-    html = shell(path="/404.html", title="Page not found | FocusFlow Lab", desc="This page could not be found.", og_title="Page not found", ld={"@context": "https://schema.org", "@graph": []},
+    html = shell(signup=False, path="/404.html", title="Page not found | FocusFlow Lab", desc="This page could not be found.", og_title="Page not found", ld={"@context": "https://schema.org", "@graph": []},
                  body=body, css_depth=0, extra_head='\n  <meta name="robots" content="noindex">')
     return html.replace('href="assets/', 'href="/assets/').replace('  <link rel="canonical" href="https://thefocusflowlab.com/404.html">\n', '')
 

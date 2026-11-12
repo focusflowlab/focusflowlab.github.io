@@ -66,3 +66,10 @@ for tpl in [*(ROOT / "_layouts").glob("*.html"), *(ROOT / "_includes").glob("*.h
 # sitemap.xml last, so its dates see the pages as written above
 import sitemap
 sitemap.main()
+
+# Last: fail loudly if any public page lost its signup form, canonical, sitemap entry and so on.
+import page_guard, sys
+_probs = page_guard.check(ROOT)
+for _p in _probs: print("PAGE GUARD FAIL", _p)
+print(f"PAGE GUARD: {len(_probs)} problem page(s)" if _probs else "PAGE GUARD: OK")
+if _probs: sys.exit(1)

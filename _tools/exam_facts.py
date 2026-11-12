@@ -53,5 +53,5 @@ body = f"""{crumb_html}
     </main>"""
 out = ROOT / "exam-facts" / "index.html"
 out.parent.mkdir(exist_ok=True)
-out.write_text(shell(path=path, title="Exam Formats at a Glance: Questions, Time, Retakes", desc=desc, og_title="Exam formats at a glance", ld=ld, body=body, css_depth=1), encoding="utf-8", newline="\n")
+out.write_text(shell(path=path, title="Exam Formats at a Glance: Questions, Time, Retakes", desc=desc, og_title="Exam formats at a glance", ld=ld, body=body, css_depth=1, signup=False), encoding="utf-8", newline="\n")
 print("wrote", out)

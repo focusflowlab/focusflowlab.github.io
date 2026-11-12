@@ -3,8 +3,10 @@ import json
 
 SITE = "https://thefocusflowlab.com"
 
-def shell(*, path, title, desc, og_title, ld, body, css_depth, extra_head="", scripts="", og_image=None):
+def shell(*, path, title, desc, og_title, ld, body, css_depth, extra_head="", scripts="", og_image=None, signup=True):
     url = SITE + path
+    if signup and 'id="kit-form"' not in body:  # every new page gets the kit signup unless it opts out; page_guard.py checks
+        body = body.replace("</main>", KIT_FORM("      ") + "\n    </main>", 1) if "</main>" in body else body + "\n" + KIT_FORM("    ")
     img, iw, ih, card = (og_image, 400, 400, "summary") if og_image else (f"{SITE}/assets/og-image.png", 1200, 630, "summary_large_image")
     up = "../" * css_depth
     return f"""<!doctype html>
