@@ -248,7 +248,7 @@ if (run('embeds')) {
       const page = await (await launch()).newPage(); const errs = []; page.on('pageerror', (e) => errs.push(e.message));
       await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: scheme }]);
       await page.setContent(`<html><body style="margin:0"><iframe id="f" src="${BASE}/embed/${slug}/" style="width:${w}px;height:900px;border:0"></iframe></body></html>`, { waitUntil: 'networkidle0' });
-      const frame = page.frames().find((f) => f.url().includes('/embed/'));
+      const frame = await page.waitForFrame((f) => f.url().includes('/embed/'), { timeout: 15000 }); // a slow network can leave it unattached after networkidle
       const info = await frame.evaluate(() => {
         const a = document.querySelector('.embed-credit a');
         return { over: document.documentElement.scrollWidth - document.documentElement.clientWidth, href: a?.getAttribute('href'), target: a?.target, bg: getComputedStyle(document.body).backgroundColor, inputs: document.querySelectorAll('input,select').length };
