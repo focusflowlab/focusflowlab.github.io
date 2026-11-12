@@ -1,6 +1,6 @@
 """Generate /tools/ pages.  Run: python _tools/tools.py && python _tools/build.py"""
 import pathlib, json, html
-from common import shell, crumbs, ORG, SITE, KIT_ASIDE
+from common import shell, crumbs, ORG, SITE, KIT_FORM
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PLAN_CSS = '\n  <link rel="stylesheet" href="../../study-plan/assets/plan.css">'
@@ -674,7 +674,7 @@ def tool_page(t):
 
 {next_step_block(t)}
 
-{KIT_ASIDE}
+{KIT_FORM("      ")}
     </main>"""
     return shell(path=path, title=t["title"] + " | FocusFlow Lab" if len(t["title"]) < 45 else t["title"], desc=t["desc"], og_title=t["name"] + " from FocusFlow Lab",
                  ld=ld, body=body, css_depth=2, extra_head=PLAN_CSS,

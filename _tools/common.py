@@ -56,13 +56,6 @@ def crumbs(items):
 
 ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "FocusFlow Lab", "url": SITE + "/"}
 
-KIT_ASIDE = """      <aside class="kit" aria-label="Free Study Focus Kit">
-        <div>
-          <h2>Staying focused is the hard part.</h2>
-          <p>The free Study Focus Kit has 5 printable worksheets for phone distractions, notes that stick and long study days, plus a free printable study planner.</p>
-        </div>
-        <a class="btn" href="/#free-kit">Get the free kit</a>
-      </aside>"""
 
 
 TRACKERS = {
@@ -89,20 +82,27 @@ TRACKER_EXAM = {"nclex": "NCLEX-RN", "mcat": "MCAT", "teas": "ATI TEAS", "nclex-
 
 def TRACKER_FORM(exam, indent="        "):
     title, text = TRACKERS[exam]
+    return SIGNUP_FORM(title, f"{text} Enter your email and it arrives with the free Study Focus Kit.", "Send me the tracker",
+                       f'\n      <input type="hidden" name="fields[exam]" value="{TRACKER_EXAM[exam]}">', indent)
+
+def KIT_FORM(indent="        "):
+    return SIGNUP_FORM("Free Study Focus Kit", "One printable PDF with five worksheets: phone distractions, notes that stick, mental clutter, long study days and covering your syllabus. Enter your email and it arrives in your inbox.",
+                       "Send me the kit", "", indent)
+
+def SIGNUP_FORM(title, text, cta, exam_field, indent):
     html = f'''<aside class="sheet tracker-offer" aria-label="{title}">
   <div class="tracker-copy">
     <h2 class="tracker-title">{title}</h2>
-    <p>{text} Enter your email and it arrives with the free Study Focus Kit.</p>
+    <p>{text}</p>
   </div>
   <div class="tracker-action">
     <form class="kit-form" id="kit-form" action="https://assets.mailerlite.com/jsonp/2740917/forms/202322886786024656/subscribe" method="post" novalidate>
       <label for="kit-email">Email address</label>
       <div class="kit-row">
         <input type="email" id="kit-email" name="fields[email]" autocomplete="email" required placeholder="you@example.com" aria-describedby="kit-status">
-        <button class="btn" type="submit">Send me the tracker</button>
+        <button class="btn" type="submit">{cta}</button>
       </div>
-      <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>
-      <input type="hidden" name="fields[exam]" value="{TRACKER_EXAM[exam]}">
+      <div class="kit-trap" aria-hidden="true"><label for="kit-website">Leave this empty</label><input type="text" id="kit-website" name="website" tabindex="-1" autocomplete="off"></div>{exam_field}
       <input type="hidden" name="ml-submit" value="1">
       <input type="hidden" name="anticsrf" value="true">
       <p class="kit-status" id="kit-status" role="status" aria-live="polite"></p>

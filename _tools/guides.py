@@ -1,6 +1,6 @@
 """Generate /guides/ pages.  Run: cd _tools && python guides.py && cd .. && python _tools/build.py"""
 import pathlib, re
-from common import shell, crumbs, ORG, SITE, TRACKER_FORM
+from common import shell, crumbs, ORG, SITE, TRACKER_FORM, KIT_FORM
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PUBLISHED = "2026-10-26"
@@ -799,12 +799,6 @@ MONTHS = ["January", "February", "March", "April", "May", "June", "July", "Augus
 def nice_date(iso):
     return f"{int(iso[8:10])} {MONTHS[int(iso[5:7]) - 1]} {iso[:4]}"
 
-def KIT_BOX(g):
-    return f'''        <aside class="sheet guide-kit" aria-label="Free Study Focus Kit">
-          <p><strong>Want this on paper?</strong> {g.get("kit", "The free Study Focus Kit has a printable worksheet for this system, plus four more.")}</p>
-          <a class="btn" href="/#free-kit">Get the free kit</a>
-        </aside>'''
-
 RELATED = {
     "stop-checking-phone-while-studying": [("Why website blockers fail", "/guides/why-website-blockers-fail/"), ("Focus timer", "/tools/focus-timer/"), ("Stop procrastinating while studying", "/guides/stop-procrastinating-studying/")],
     "study-schedule-template": [("Study schedule maker", "/tools/study-schedule-maker/"), ("All free exam study plans", "/study-plan/"), ("Printable planners", "/planners/")],
@@ -868,7 +862,7 @@ def guide_page(g):
 {secs}
 {watch}
 {related_block(g["slug"])}
-{TRACKER_FORM(g["signup"]) if g.get("signup") else KIT_BOX(g)}
+{TRACKER_FORM(g["signup"]) if g.get("signup") else KIT_FORM()}
         <p class="refs"><strong>{"Sources" if "<br>" in REFS[g['slug']] else "Source"}:</strong> {REFS[g['slug']]}</p>
         </article>
       </div>
