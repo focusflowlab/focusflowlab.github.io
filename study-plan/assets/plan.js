@@ -129,7 +129,8 @@
 
   /** Daily pages for the first week: your dates, your topics, four focus blocks with a self-test. Printed from a hidden block. */
   function buildDailyPages(plan, noCover) {
-    const week = plan.weeks[0];
+    // Week 1 can be a day or two now that weeks count back from the exam; print the first full week instead.
+    const week = plan.weeks.find((w) => w.daysInWeek === 7) || plan.weeks[0];
     const n = week.studyDays;
     const slots = n * 4;
     // Share the block slots between topics by hours (largest remainder), then deal them out round-robin so a day mixes topics.
@@ -152,7 +153,7 @@
         <p class="dp-kicker">My ${esc(config.shortName)} plan</p>
         <h2>${esc(config.shortName)} on ${esc(plan.exam.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }))}</h2>
         <p class="dp-lead">${plan.daysLeft} days to go. ${plan.inputs.hoursPerDay} hours a day, ${plan.inputs.daysPerWeek} days a week, about ${Math.round(plan.totalHours)} hours in total.</p>
-        <h3>Where week 1 goes</h3>
+        <h3>Where week ${week.number} goes</h3>
         <ul class="dp-list">${top.map((t) => `<li><span>${esc(t.name)}</span><strong>${roundHalf(t.hours)} h</strong></li>`).join('')}</ul>
         <h3>How each day works</h3>
         <ol class="dp-steps"><li>Four focus blocks of about ${minutes} minutes, phone in another room.</li><li>After each block, close your notes and write what you remember. Tick the self-test.</li><li>Write every miss in the error log at the bottom of the page.</li><li>Tomorrow, start with five minutes of recall from today.</li></ol>

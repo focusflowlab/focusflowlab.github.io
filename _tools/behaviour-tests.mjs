@@ -652,7 +652,10 @@ for (const [slug, setup, out] of [
         if (sess.length < studyDays) problems.push(`${tag}: ${sess.length} sessions for ${studyDays} weeks`);
         // print pack: cover + overview + week pages + first-week days + 2 error logs + checklist
         const weekPages = r.compact ? Math.ceil(r.weeks.length / 2) : r.weeks.length;
-        const week1Sessions = sess.filter((e) => e.description && /Week 1,/.test(e.description)).length;
+        // the pack prints the first full (7-day) week; week 1 can be shorter now that weeks count back from the exam
+        const firstLen = days - (r.weeks.length - 1) * 7, pw = firstLen === 7 || r.weeks.length === 1 ? 1 : 2;
+        const week1Sessions = sess.filter((e) => e.description && e.description.startsWith('Week ' + pw + ',')).length;
+        if (r.weeks.length > 1 && week1Sessions < 2) problems.push(`${tag}: pack prints a ${week1Sessions}-day week`);
         if (r.packPages !== 1 + 1 + weekPages + week1Sessions + 3) problems.push(`${tag}: pack ${r.packPages} pages, want ${1 + 1 + weekPages + week1Sessions + 3}`);
       }
       if (errors.length) problems.push('script error: ' + errors[0]);
@@ -660,6 +663,19 @@ for (const [slug, setup, out] of [
       await page.close();
     }
   }
+}
+
+// 22b. Score tracker: NAPLEX entries saved under the pre-May-2025 area names count toward the new domains.
+{
+  const page = await newPage();
+  await page.goto(`${BASE}/tools/practice-score-tracker/`, { waitUntil: 'networkidle0' });
+  await page.evaluate((d) => localStorage.setItem('ffl-scores', JSON.stringify({ exam: 'naplex', target: 75, hours: 0, entries: [
+    { id: 1, exam: 'naplex', topic: 'Calculations', date: d, right: 6, total: 10 }, { id: 2, exam: 'naplex', topic: 'Drug characteristics', date: d, right: 4, total: 10 },
+    { id: 3, exam: 'naplex', topic: 'Treatment plans', date: d, right: 9, total: 10 }] })), dateIn(0));
+  await page.reload({ waitUntil: 'networkidle0' });
+  const rows = await page.evaluate(() => Object.fromEntries([...document.querySelectorAll('#sc-table tr')].map((tr) => [tr.querySelector('th').textContent, tr.querySelector('td').textContent])));
+  check(rows['Foundational knowledge'] === '50% (10/20)' && rows['Assessment and treatment planning'] === '90% (9/10)', `score tracker maps old NAPLEX names (${rows['Foundational knowledge']}, ${rows['Assessment and treatment planning']})`);
+  await page.close();
 }
 
 // 23. Real keyboard input (the sections above mostly set .value in page script). Each odd value is typed or pasted into

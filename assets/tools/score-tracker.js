@@ -22,6 +22,9 @@
   const save = () => ffSave(KEY, state);
   const el = (tag, text, cls) => { const e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; };
 
+  // NAPLEX moved to the May 2025 domains: carry entries saved under the old area names into the new ones.
+  const RENAMED = { naplex: { 'Treatment plans': 'Assessment and treatment planning', 'Patient data and assessment': 'Assessment and treatment planning', 'Drug characteristics': 'Foundational knowledge', 'Calculations': 'Foundational knowledge', 'Compounding and dispensing': 'Medication use process', 'Practice and medication-use systems': 'Professional practice' } };
+  state.entries.forEach((e) => { const m = RENAMED[e.exam]; if (m && m[e.topic]) e.topic = m[e.topic]; });
   const examSel = $('sc-exam'), topicSel = $('sc-topic');
   Object.entries(TOPICS).forEach(([slug, e]) => examSel.appendChild(new Option(e.name, slug)));
   if (!TOPICS[state.exam]) state.exam = Object.keys(TOPICS)[0];
