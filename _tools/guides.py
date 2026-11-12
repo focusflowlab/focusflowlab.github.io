@@ -192,17 +192,17 @@ GUIDES = [
 <div class="table-scroll"><table class="mini-table">
 <thead><tr><th scope="col">Exam</th><th scope="col">Test length</th><th scope="col">Common prep time</th><th scope="col">Hours, roughly</th></tr></thead>
 <tbody>
-<tr><td><a href="/study-plan/nclex/">NCLEX-RN</a></td><td>85 to 150 questions, up to 5 hours</td><td>6 to 8 weeks</td><td>150 to 300</td></tr>
-<tr><td><a href="/study-plan/nclex-pn/">NCLEX-PN</a></td><td>85 to 150 questions, up to 5 hours</td><td>5 to 8 weeks</td><td>120 to 250</td></tr>
+<tr><td><a href="/study-plan/nclex/">NCLEX-RN</a></td><td>85 to 150 questions, up to 5 hours</td><td>4 to 8 weeks</td><td>100 to 200</td></tr>
+<tr><td><a href="/study-plan/nclex-pn/">NCLEX-PN</a></td><td>85 to 150 questions, up to 5 hours</td><td>4 to 8 weeks</td><td>80 to 180</td></tr>
 <tr><td><a href="/study-plan/teas/">ATI TEAS</a></td><td>170 questions, about 3.5 hours</td><td>4 to 8 weeks</td><td>30 to 80</td></tr>
 <tr><td><a href="/study-plan/mcat/">MCAT</a></td><td>230 questions, about 7.5 hours with breaks</td><td>3 to 6 months</td><td>300 to 500</td></tr>
-<tr><td><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></td><td>Up to 280 questions, one 8-hour day</td><td>6 to 8 weeks dedicated</td><td>300 to 600</td></tr>
-<tr><td><a href="/study-plan/pance/">PANCE</a></td><td>300 questions, 5 hours</td><td>6 to 12 weeks</td><td>150 to 350</td></tr>
-<tr><td><a href="/study-plan/naplex/">NAPLEX</a></td><td>225 questions, 6 hours</td><td>6 to 10 weeks</td><td>120 to 300</td></tr>
+<tr><td><a href="/study-plan/usmle-step-1/">USMLE Step 1</a></td><td>Up to 280 questions, one 8-hour day</td><td>4 to 8 weeks dedicated</td><td>250 to 500</td></tr>
+<tr><td><a href="/study-plan/pance/">PANCE</a></td><td>300 questions, 5 hours</td><td>4 to 12 weeks</td><td>150 to 350</td></tr>
+<tr><td><a href="/study-plan/naplex/">NAPLEX</a></td><td>225 questions, 6 hours</td><td>4 to 8 weeks</td><td>120 to 300</td></tr>
 <tr><td><a href="/study-plan/dat/">DAT</a></td><td>About 4.5 hours</td><td>2 to 3 months</td><td>200 to 350</td></tr>
-<tr><td><a href="/study-plan/gre/">GRE</a></td><td>About 2 hours</td><td>1 to 3 months</td><td>60 to 150</td></tr>
+<tr><td><a href="/study-plan/gre/">GRE</a></td><td>About 2 hours</td><td>1 to 3 months</td><td>40 to 120</td></tr>
 <tr><td><a href="/study-plan/gmat/">GMAT</a></td><td>64 questions, 2 hours 15 minutes</td><td>2 to 3 months</td><td>80 to 150</td></tr>
-<tr><td><a href="/study-plan/lsat/">LSAT</a></td><td>Four 35-minute sections plus writing</td><td>3 to 6 months</td><td>150 to 300</td></tr>
+<tr><td><a href="/study-plan/lsat/">LSAT</a></td><td>Four 35-minute sections plus writing</td><td>2 to 4 months</td><td>120 to 300</td></tr>
 <tr><td><a href="/study-plan/cpa-far/">CPA FAR</a></td><td>4 hours</td><td>8 to 12 weeks</td><td>100 to 180</td></tr>
 <tr><td><a href="/study-plan/cpa-aud/">CPA AUD</a></td><td>4 hours</td><td>6 to 10 weeks</td><td>90 to 150</td></tr>
 <tr><td><a href="/study-plan/cpa-reg/">CPA REG</a></td><td>4 hours</td><td>6 to 10 weeks</td><td>90 to 150</td></tr>
@@ -235,7 +235,7 @@ GUIDES = [
 <li><strong>Week 6: readiness and rest.</strong> One or two readiness assessments early in the week, then light review of your error log. No new content in the last two days, and rest the day before.</li>
 </ul>
 <p>Only have 4 weeks? Keep the same order and shorten each part. Have 8? Stretch the first part and add more mixed practice.</p>"""),
-         ("How many hours a day", """<p>Most people plan around 150 to 300 hours in total, often 3 to 5 hours a day for 6 to 8 weeks. If you’re working, fewer hours over more weeks is fine. The <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> compares the NCLEX with other exams.</p>"""),
+         ("How many hours a day", """<p>Most people plan around 100 to 200 hours in total, often 3 to 5 hours a day for 4 to 8 weeks. If you’re working, fewer hours over more weeks is fine. The <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> compares the NCLEX with other exams.</p>"""),
          ("What makes the difference", """<ul>
 <li><strong>Rationales over scores.</strong> Understanding why an answer is right teaches you more than the percentage.</li>
 <li><strong>Focus blocks.</strong> Work in 45 to 50 minute blocks with your phone in another room. The <a href="/tools/focus-timer/">focus timer</a> helps.</li>
@@ -668,7 +668,7 @@ GUIDES = [
   dict(slug="how-to-study-for-the-nclex-pn", tag="Exam plans", video="eyY83uEMN4o", date="2026-11-10",
        title="How to Study for the NCLEX-PN: A 6-Week Plan",
        h1="How to study for the NCLEX-PN",
-       desc="How to study for the NCLEX-PN in 5 to 8 weeks: how the exam works, how it differs from the NCLEX-RN, where to spend your hours and a week-by-week plan.",
+       desc="How to study for the NCLEX-PN in 4 to 8 weeks: how the exam works, how it differs from the NCLEX-RN, where to spend your hours and a week-by-week plan.",
        lead="How the PN exam works, how it differs from the RN exam, and a plan you can start this week.",
        card="A 6-week NCLEX-PN plan built on the test plan.",
        kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
@@ -686,7 +686,7 @@ GUIDES = [
 <li><strong>Week 6: readiness and rest.</strong> One or two readiness assessments early in the week, then light review of your error log. No new content in the last two days.</li>
 </ul>
 <p>The free <a href="/study-plan/nclex-pn/">NCLEX-PN study plan generator</a> turns your exam date and daily hours into this schedule. Prefer paper? The <a href="/planners/nclex-pn-6-week-planner/">NCLEX-PN 6-week planner</a> is $5 and independent of NCSBN.</p>"""),
-         ("How many hours", """<p>Many graduates plan around 120 to 250 hours in total over 5 to 8 weeks. That is a common planning range, not an official figure. A recent graduate with good practice scores sits at the low end. A long gap since school sits at the high end. See the <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> for other exams.</p>"""),
+         ("How many hours", """<p>Many graduates plan around 80 to 180 hours in total over 4 to 8 weeks. That is a common planning range, not an official figure. A recent graduate with good practice scores sits at the low end. A long gap since school sits at the high end. See the <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> for other exams.</p>"""),
          ("Test week", """<p>Know the route to the test centre, bring the ID your registration requires, sleep, and eat. If you do not pass, NCSBN requires at least 45 days before a retake, and some jurisdictions allow fewer attempts a year, so check with your board.</p>"""),
        ]),
   dict(slug="how-to-pace-yourself-on-a-timed-exam", tag="Exam plans", date="2026-11-10",

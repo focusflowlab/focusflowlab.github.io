@@ -20,7 +20,7 @@
     const today = startOfDay(new Date());
     const days = Math.round((exam - today) / 86400000);
     const err = $('countdown-error');
-    if (days < 1) { err.textContent = 'Pick a date after today.'; out.hidden = true; return; }
+    if (days < 1) { err.textContent = submitted === true ? 'Pick a date after today.' : ''; out.hidden = true; return; } // a saved past date waits for the button
     // A blank or out-of-range field used to count silently as 0.5 h (or 14 h) a day.
     const H = ffField($('hoursPerDay')), hours = H.v;
     if (hours === null || !H.ok) { err.textContent = 'Enter your study hours per day, between 0.5 and 14.'; out.hidden = true; return; }

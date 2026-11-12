@@ -18,6 +18,7 @@
     if (n <= 0) return 'You’ve already got this grade, even with a zero on the final.';
     if (n > 100) return 'That’s above 100%, so this grade is out of reach unless there’s extra credit.';
     if (n > 90) return 'Tough but possible. Start with your weakest topics and use practice tests.';
+    if (n > 80) return 'Needs a strong final. Plan your review now and use timed practice tests.';
     return 'Very doable with a steady plan.';
   }
 

@@ -277,7 +277,7 @@ EXAMS = [
     "date_label": "Exam date", "legend": "Which systems feel shaky? (optional)", "button": "Build my plan",
     "days_default": 6, "hours_default": 5,
     "config": {"id": "pance", "shortName": "PANCE", "maxDays": 270, "reviewShare": 0.45, "recommendedHours": {"min": 150, "max": 350}},
-    "topics": [("Cardiovascular", 13), ("Pulmonary", 10), ("Gastrointestinal and nutrition", 9), ("Musculoskeletal", 8), ("Endocrine", 7), ("EENT", 7), ("Neurologic", 7), ("Reproductive", 7), ("Infectious disease", 6), ("Psychiatry and behavioral", 6), ("Dermatologic", 5), ("Genitourinary", 5), ("Hematologic", 5), ("Renal", 5)],
+    "topics": [("Cardiovascular", 11), ("Pulmonary", 9), ("Gastrointestinal and nutrition", 8), ("Musculoskeletal", 8), ("Infectious disease", 7), ("Neurologic", 7), ("Psychiatry and behavioral", 7), ("Reproductive", 7), ("Endocrine", 6), ("EENT", 6), ("Professional practice", 6), ("Hematologic", 5), ("Renal", 5), ("Dermatologic", 4), ("Genitourinary", 4)],
     "tasks": """{
         review: (days) => [
           'Review this week’s organ systems, biggest first.',
@@ -303,7 +303,7 @@ EXAMS = [
             <li><strong>Mixed practice, the rest.</strong> Question blocks across all systems, a timed practice exam every other week, and focused work on your weakest areas.</li>
             <li><strong>Final week.</strong> Error log and high-yield review, nothing new, and a day off before the exam.</li>
           </ol>
-          <p>Topic hours follow the rough share of each organ system on the NCCPA content blueprint. Any system you tick as shaky gets 50% more time. These shares are rough, not official.</p>
+          <p>Topic hours follow the share of each content category on the NCCPA PANCE blueprint (effective January 2025). Any system you tick as shaky gets 50% more time. Your real exam may vary slightly.</p>
           <p>Check the current blueprint at <a href="https://www.nccpa.net/" rel="noopener">nccpa.net</a> before you rely on it.</p>""",
     "faq": [
       ("How long should I study for the PANCE?", "Many students give it 4 to 12 weeks after graduation, often around 150 to 350 hours, depending on how their rotations went."),
@@ -317,14 +317,14 @@ EXAMS = [
     "slug": "naplex",
     "short": "NAPLEX",
     "title": "NAPLEX Study Plan Generator: Free Weekly Schedule",
-    "desc": "Put in your NAPLEX date and study hours. Get a week-by-week plan weighted to the NAPLEX competency areas, with calculations practice every week.",
+    "desc": "Put in your NAPLEX date and study hours. Get a week-by-week plan weighted to the five NAPLEX content domains, with calculations practice every week.",
     "og_title": "NAPLEX study plan generator",
     "h1": "Your NAPLEX study plan, week by week.",
-    "lead": "Put in your exam date and the hours you have. You get a plan weighted to the NAPLEX areas, with calculations every week.",
+    "lead": "Put in your exam date and the hours you have. You get a plan weighted to the NAPLEX domains, with calculations every week.",
     "date_label": "Exam date", "legend": "Which areas feel shaky? (optional)", "button": "Build my plan",
     "days_default": 6, "hours_default": 5,
     "config": {"id": "naplex", "shortName": "NAPLEX", "maxDays": 270, "reviewShare": 0.45, "recommendedHours": {"min": 120, "max": 300}},
-    "topics": [("Treatment plans", 35), ("Patient data and assessment", 18), ("Drug characteristics", 14), ("Calculations", 14), ("Compounding and dispensing", 11), ("Practice and medication-use systems", 8)],
+    "topics": [("Assessment and treatment planning", 40), ("Foundational knowledge", 25), ("Medication use process", 25), ("Professional practice", 5), ("Pharmacy management", 5)],
     "tasks": """{
         review: (days) => [
           'Review this week’s drug classes and disease states, biggest first.',
@@ -351,7 +351,7 @@ EXAMS = [
             <li><strong>Mixed practice, the rest.</strong> Timed practice exams every other week, mixed question sets in between, and focused work on your weakest area.</li>
             <li><strong>Final week.</strong> Light review, nothing new, and a day off before the exam.</li>
           </ol>
-          <p>Topic hours follow the rough share of each competency area on the NAPLEX blueprint. Any area you tick as shaky gets 50% more time. These shares are rough, not official.</p>
+          <p>Topic hours follow the five content domain weights in the NAPLEX Content Outline (in force since 1 May 2025). Calculations sit inside these domains, so they get a daily slot rather than their own share. Any area you tick as shaky gets 50% more time.</p>
           <p>Check the current blueprint at <a href="https://nabp.pharmacy/" rel="noopener">nabp.pharmacy</a> before you rely on it.</p>""",
     "faq": [
       ("How long should I study for the NAPLEX?", "Many graduates study for 4 to 8 weeks, often around 120 to 300 hours, starting soon after finishing their program."),
@@ -783,7 +783,7 @@ def page(e):
       </aside>
     </main>
     <aside class="page-note" aria-label="About this page">
-      <p>Made by FocusFlow Lab. Last reviewed October 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
+      <p>Made by FocusFlow Lab. Last reviewed November 2026. Questions or corrections: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a></p>
       <p>{e['note']}</p>
     </aside>
   </div>

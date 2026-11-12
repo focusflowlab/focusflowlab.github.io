@@ -27,7 +27,7 @@ for key, name, slug in EXAMS:
         <ul>{lis}</ul>
         <p>Sources: {src}. Make a schedule with the free <a href="/study-plan/{slug}/">{name} study plan generator</a>.</p>''')
 ld = {"@context": "https://schema.org", "@graph": [
-    {"@type": "WebPage", "name": "Exam formats at a glance", "url": SITE + path, "description": desc, "publisher": ORG, "datePublished": "2026-11-10", "dateModified": "2026-11-10"},
+    {"@type": "WebPage", "name": "Exam formats at a glance", "url": SITE + path, "description": desc, "publisher": ORG, "datePublished": "2026-11-10", "dateModified": "2026-11-12"},
     crumb_ld]}
 body = f"""{crumb_html}
 

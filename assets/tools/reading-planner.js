@@ -27,7 +27,7 @@
     if (done >= total) { err.textContent = 'You’ve already read it all.'; out.hidden = true; return; }
     const end = new Date(deadline + 'T00:00:00');
     const days = Math.round((end - day0()) / 86400000);
-    if (days < 1) { err.textContent = 'Pick a deadline after today.'; out.hidden = true; return; }
+    if (days < 1) { err.textContent = submitted === true ? 'Pick a deadline after today.' : ''; out.hidden = true; return; }
     err.textContent = '';
 
     // Reading days from today up to the day before the deadline, skipping rest days evenly.

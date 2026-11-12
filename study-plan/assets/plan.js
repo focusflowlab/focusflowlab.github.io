@@ -99,11 +99,15 @@
     const weeks = [];
     let totalHours = 0;
 
+    // Weeks count back from the exam, so the final week is always the last 7 days and any short week comes first.
+    const firstLen = daysLeft - (totalWeeks - 1) * 7;
     for (let weekIndex = 0; weekIndex < totalWeeks; weekIndex++) {
-      const start = addDays(today, weekIndex * 7);
-      const daysInWeek = Math.min(7, daysLeft - weekIndex * 7);
-      const studyDays = Math.max(1, Math.round((daysInWeek * inputs.daysPerWeek) / 7));
+      const start = addDays(today, weekIndex === 0 ? 0 : firstLen + (weekIndex - 1) * 7);
+      const daysInWeek = weekIndex === 0 ? firstLen : 7;
       const phase = totalWeeks === 1 ? 'final' : phaseForWeek(weekIndex, totalWeeks);
+      // The day before the exam is a rest day: no session goes on it.
+      const openDays = daysInWeek - (phase === 'final' ? 1 : 0);
+      const studyDays = Math.max(1, Math.min(openDays, Math.round((daysInWeek * inputs.daysPerWeek) / 7)));
       // The final week eases off so you walk in rested.
       const hours = studyDays * inputs.hoursPerDay * (phase === 'final' ? 0.6 : 1);
       totalHours += hours;
@@ -114,6 +118,7 @@
         hours,
         studyDays,
         daysInWeek,
+        openDays,
         topics: splitTopicHours(hours, inputs.weak),
         tasks: config.tasks[phase](studyDays, weekIndex, totalWeeks),
       });
@@ -155,7 +160,7 @@
       </section>`;
     const days = [];
     for (let i = 0; i < n; i++) {
-      const day = addDays(week.start, Math.floor((i * week.daysInWeek) / n));
+      const day = addDays(week.start, Math.floor((i * week.openDays) / n));
       const blocks = [0, 1, 2, 3].map((b) => `<li><span class="dp-n">${b + 1}</span><div><strong>${esc(queue[i * 4 + b] || week.topics[0].name)}</strong><span class="dp-sub">${minutes} minutes</span></div><span class="dp-box" aria-hidden="true"></span><span class="dp-lbl">Self-test done</span></li>`).join('');
       days.push(`<section class="day-page">
         <p class="dp-kicker">${esc(config.shortName)} · day ${i + 1} of ${n} this week · ${Math.max(0, Math.round((plan.exam - day) / MS_PER_DAY))} days to the exam</p>
@@ -252,25 +257,25 @@
     const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
     const esc = (t) => String(t).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
     const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//FocusFlow Lab//Study plan//EN', 'CALSCALE:GREGORIAN', 'X-WR-CALNAME:' + esc(config.shortName + ' study plan')];
-    let uid = 0;
-    const add = (ev) => { lines.push('BEGIN:VEVENT', 'UID:ffl-' + stamp + '-' + (uid++) + '@thefocusflowlab.com', 'DTSTAMP:' + stamp, ...ev, 'END:VEVENT'); };
+    // Stable UIDs (exam + date): re-importing an updated plan replaces events instead of duplicating them.
+    const add = (key, ev) => { lines.push('BEGIN:VEVENT', 'UID:ffl-' + config.id + '-' + key + '@thefocusflowlab.com', 'DTSTAMP:' + stamp, ...ev, 'END:VEVENT'); };
     plan.weeks.forEach((week) => {
       const perDay = week.hours / week.studyDays;
       const top = week.topics.slice(0, 2).map((t) => t.name).join(' and ');
       const desc = 'Week ' + week.number + ', ' + PHASES[week.phase].label + '. Most time this week: ' + top + '. ' + week.tasks.join(' ') + ' Free plan from thefocusflowlab.com';
       for (let i = 0; i < week.studyDays; i++) {
-        const day = addDays(week.start, Math.floor((i * week.daysInWeek) / week.studyDays));
+        const day = addDays(week.start, Math.floor((i * week.openDays) / week.studyDays));
         // Start at 6 PM; a long day ends at midnight instead, so the event starts earlier rather than running past midnight.
         const length = Math.max(15, Math.round(perDay * 60));
         const endMin = Math.min(18 * 60 + length, 24 * 60);
         const startMin = endMin - length;
         // new Date() rolls minutes past 1440 into the next day, so an end of exactly midnight gets tomorrow's date.
         const at = (m) => { const t = new Date(day.getFullYear(), day.getMonth(), day.getDate(), 0, m); return ymd(t) + 'T' + pad(t.getHours()) + pad(t.getMinutes()) + '00'; };
-        add(['DTSTART:' + at(startMin), 'DTEND:' + at(endMin), 'SUMMARY:' + esc(config.shortName + ': ' + top), 'DESCRIPTION:' + esc(desc)]);
+        add(ymd(day), ['DTSTART:' + at(startMin), 'DTEND:' + at(endMin), 'SUMMARY:' + esc(config.shortName + ': ' + top), 'DESCRIPTION:' + esc(desc)]);
       }
     });
     const next = addDays(plan.exam, 1);
-    add(['DTSTART;VALUE=DATE:' + ymd(plan.exam), 'DTEND;VALUE=DATE:' + ymd(next), 'SUMMARY:' + esc(config.shortName + ' exam day'), 'DESCRIPTION:' + esc('Good luck. Plan made with thefocusflowlab.com')]);
+    add('exam', ['DTSTART;VALUE=DATE:' + ymd(plan.exam), 'DTEND;VALUE=DATE:' + ymd(next), 'SUMMARY:' + esc(config.shortName + ' exam day'), 'DESCRIPTION:' + esc('Good luck. Plan made with thefocusflowlab.com')]);
     lines.push('END:VCALENDAR');
     // Fold long lines (RFC 5545): continuation lines start with a space. 60 characters keeps multi-byte text under 75 bytes.
     const fold = (l) => { const out = []; for (let i = 0; i < l.length; i += 60) out.push((i ? ' ' : '') + l.slice(i, i + 60)); return out.join('\r\n'); };

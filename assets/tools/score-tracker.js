@@ -61,7 +61,7 @@
     const right = used.reduce((a, e) => a + e.right, 0), total = used.reduce((a, e) => a + e.total, 0);
     $('sc-overall').textContent = total ? Math.round((right / total) * 100) + '%' : '-';
     $('sc-count').textContent = String(total);
-    const sorted = [...list].sort((a, b) => (a.date < b.date ? -1 : 1)), sortedUsed = sorted.filter(counted);
+    const sorted = [...list].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : a.id - b.id)), sortedUsed = sorted.filter(counted);
     let trend = '-';
     if (sortedUsed.length >= 4) {
       const half = Math.floor(sortedUsed.length / 2);
@@ -86,8 +86,9 @@
     const pcts = split(100), halves = split(Math.round(hours * 2));
     rows.map((r, i) => ({ r, s: share[i], pct: pcts[i], h: halves[i] / 2 })).sort((a, b) => b.s - a.s).forEach(({ r, pct, h }) => {
       const tr = el('tr');
-      const acc = r.total ? Math.round((r.right / r.total) * 100) : null;
-      const status = acc === null ? 'No data yet' : acc >= target ? 'At target' : acc >= target - 10 ? 'Close' : 'Below target';
+      const exact = r.total ? (r.right / r.total) * 100 : null, acc = exact === null ? null : Math.round(exact);
+      // Status from the unrounded value, so 74.6% with a 75 target is not 'At target' while listed as weakest.
+      const status = acc === null ? 'No data yet' : exact >= target ? 'At target' : exact >= target - 10 ? 'Close' : 'Below target';
       tr.append(el('th', r.name));
       tr.lastChild.setAttribute('scope', 'row');
       tr.append(el('td', acc === null ? '-' : acc + '% (' + r.right + '/' + r.total + ')'));

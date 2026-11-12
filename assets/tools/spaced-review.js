@@ -24,7 +24,7 @@
   const iso = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   const parse = (s) => new Date(s + 'T12:00:00');
   const addDays = (s, n) => { const d = parse(s); d.setDate(d.getDate() + n); return iso(d); };
-  const today = iso(new Date());
+  const today = () => iso(new Date()); // read each time: a tab left open past midnight must move on
   const nice = (s) => parse(s).toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -33,7 +33,7 @@
     actions.hidden = topics.length === 0;
     list.innerHTML = topics.map((t, i) => {
       const dates = GAPS.map((g) => addDays(t.date, g));
-      const cells = dates.map((d, n) => `<li class="${d < today ? 'past' : d === today ? 'due' : ''}"><span>Review ${n + 1}</span><strong>${nice(d)}</strong></li>`).join('');
+      const cells = dates.map((d, n) => `<li class="${d < today() ? 'past' : d === today() ? 'due' : ''}"><span>Review ${n + 1}</span><strong>${nice(d)}</strong></li>`).join('');
       return `<article class="sheet review-topic">
         <div class="review-head"><h3>${esc(t.name)}</h3><button class="btn btn-quiet" type="button" data-remove="${i}">Remove</button></div>
         <p class="muted">First studied ${nice(t.date)}</p>
@@ -45,10 +45,10 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = $('topic').value.trim();
-    const raw = $('studied').value.trim(), date = raw || today;
+    const raw = $('studied').value.trim(), date = raw || today();
     if (!ffDate(date)) { $('review-error').textContent = 'Pick a real date for when you studied it.'; return; }
     if (!name) { $('review-error').textContent = 'Add a topic name first.'; return; }
-    if (date > today) { $('review-error').textContent = 'Pick the day you studied it: today or earlier.'; return; }
+    if (date > today()) { $('review-error').textContent = 'Pick the day you studied it: today or earlier.'; return; }
     $('review-error').textContent = '';
     topics.push({ name: name.slice(0, 80), date });
     save(topics); render();
@@ -67,11 +67,13 @@
   $('download-ics').addEventListener('click', () => {
     const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
     const icsEsc = (s) => s.replace(/[\\,;]/g, (c) => '\\' + c);
+    // Hash of the full name keeps UIDs unique for non-Latin names (the slug alone turns them all into '-').
+    const hash = (s) => { let h = 5381; for (const c of s) h = (h * 33 + c.codePointAt(0)) >>> 0; return h.toString(36); };
     const events = [];
     topics.forEach((t, ti) => GAPS.forEach((g, n) => {
       const d = addDays(t.date, g).replace(/-/g, '');
       const end = addDays(t.date, g + 1).replace(/-/g, '');
-      events.push(['BEGIN:VEVENT', `UID:ffl-${t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}-${t.date}-${n}-${d}@thefocusflowlab.com`, `DTSTAMP:${stamp}`,
+      events.push(['BEGIN:VEVENT', `UID:ffl-${t.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}-${hash(t.name)}-${t.date}-${n}-${d}@thefocusflowlab.com`, `DTSTAMP:${stamp}`,
         `DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${end}`, `SUMMARY:${icsEsc('Review: ' + t.name)} (${n + 1} of ${GAPS.length})`,
         'DESCRIPTION:Recall first\\, then check your notes. From thefocusflowlab.com/tools/spaced-review/', 'END:VEVENT'].join('\r\n'));
     }));

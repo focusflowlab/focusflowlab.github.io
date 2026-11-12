@@ -172,12 +172,27 @@ for (const [fixed, exam, label] of [[Date.UTC(2027, 1, 28, 17), '2027-03-28', 's
   const starts = [...ics.matchAll(/DTSTART:(\d{8})T/g)].map((m) => m[1]);
   const want = []; const d = new Date(fixed); const s = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
   for (const e = new Date(exam + 'T00:00:00Z'); s < e; s.setUTCDate(s.getUTCDate() + 1)) want.push(s.toISOString().slice(0, 10).replace(/-/g, ''));
+  want.pop(); // the day before the exam is a rest day
   check(JSON.stringify(starts) === JSON.stringify(want), `plan calendar across ${label}: sessions on each day once (${starts.length} of ${want.length}${starts.length ? ', ' + starts[0] + '..' + starts[starts.length - 1] : ''})`);
   const ex = ics.match(/DTSTART;VALUE=DATE:(\d{8})\r\nDTEND;VALUE=DATE:(\d{8})/);
   check(ex && ex[1] === exam.replace(/-/g, '') && ex[2] > ex[1], `plan calendar across ${label}: exam day event ${ex && ex[1]} to ${ex && ex[2]}`);
   const weeks = await page.evaluate(() => [...document.querySelectorAll('.week-when span:first-of-type')].map((x) => x.textContent));
-  const sundays = new Set(weeks.map((w) => new Date(w.replace('from ', '') + ', 2027').getDay()));
-  check(sundays.size === 1, `plan weeks across ${label} all start on the same weekday (${weeks.join(' | ')})`);
+  const sundays = new Set(weeks.slice(1).map((w) => new Date(w.replace('from ', '') + ', 2027').getDay())); // week 1 may be short
+  check(sundays.size === 1, `plan weeks 2+ across ${label} all start on the same weekday (${weeks.join(' | ')})`);
+  await page.close();
+}
+
+// 5b. Final week is always the last 7 days, and nothing is scheduled the day before the exam (7 days a week).
+for (const d of [8, 15, 57]) {
+  const page = await newPage();
+  const ics = await icsOf(page, dateIn(d), '2', '7');
+  const starts = [...ics.matchAll(/DTSTART:(\d{8})T/g)].map((m) => m[1]);
+  const ymd = (n) => dateIn(n).replace(/-/g, '');
+  const last7 = starts.filter((x) => x >= ymd(d - 7));
+  check(starts.length === d - 1 && !starts.includes(ymd(d - 1)) && last7.length === 6, `plan ${d} days left: ${starts.length} sessions, none on the day before, ${last7.length} in the final 7 days`);
+  const info = await page.evaluate(() => { const w = [...document.querySelectorAll('.week-when span:first-of-type')]; return w.length ? w[w.length - 1].textContent : ''; });
+  const want = new Date(dateIn(d - 7) + 'T00:00:00');
+  check(new Date(info.replace('from ', '') + ', ' + want.getFullYear()).getDate() === want.getDate(), `plan ${d} days left: final week starts 7 days before the exam (${info})`);
   await page.close();
 }
 
@@ -373,7 +388,7 @@ for (const [cur, w, tgt, want] of [['78', '40', '80', '83%'], ['85', '30', '90',
   const page = await newPage({ tz: 'America/New_York', fixed: Date.UTC(2028, 1, 1, 17) });
   const ics = await icsOf(page, '2028-02-29', '1.5', '7');
   const starts = [...ics.matchAll(/DTSTART:(\d{8})T/g)].map((m) => m[1]);
-  check(starts.length === 28 && starts[27] === '20280228' && /DTSTART;VALUE=DATE:20280229\r\nDTEND;VALUE=DATE:20280301/.test(ics), `plan to leap day 29 Feb 2028: ${starts.length} sessions, last ${starts[starts.length - 1]}, exam event 29 Feb to 1 Mar`);
+  check(starts.length === 27 && starts[26] === '20280227' && /DTSTART;VALUE=DATE:20280229\r\nDTEND;VALUE=DATE:20280301/.test(ics), `plan to leap day 29 Feb 2028: ${starts.length} sessions, last ${starts[starts.length - 1]}, exam event 29 Feb to 1 Mar`);
   await page.close();
 }
 for (const [days, hours, perWeek, ok] of [[0, '2', '5', false], [-3, '2', '5', false], [2, '2', '5', false], [3, '2', '5', true], [3, '14', '7', true], [180, '0.5', '3', true], [181, '2', '5', false], [30, '2', '1', false], [30, '', '5', false]]) {
