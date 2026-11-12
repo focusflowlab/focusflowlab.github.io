@@ -443,7 +443,7 @@ GUIDES = [
 <li>Use official LSAC practice tests where you can, because they are closest to the real thing.</li>
 </ul>"""),
          ("Week 12: taper", """<p>One last full test early in the week, then error-log review and a few short timed sets. Rest the last two days. Complete your writing sample ahead of time so nothing delays your score.</p>"""),
-         ("How many hours?", """<p>Many students plan roughly 100 to 300 hours in total, spread over two to six months. That is a common estimate, not an official number. Starting score, target score and time between tests all move it, so use your first practice test to judge where you fall.</p>"""),
+         ("How many hours?", """<p>Many students plan roughly 120 to 300 hours in total, spread over two to four months. That is a common estimate, not an official number. Starting score, target score and time between tests all move it, so use your first practice test to judge where you fall.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 12 weeks? The free <a href="/study-plan/lsat/">LSAT study schedule generator</a> builds this structure from your test date and daily hours.</p>
 <p>Prefer paper? The <a href="/planners/lsat-12-week-planner/">LSAT 12-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by LSAC.</p>"""),
        ]),
@@ -474,7 +474,7 @@ GUIDES = [
 <li>Use the official ETS practice material where possible, because its questions are the closest to the real test.</li>
 </ul>"""),
          ("Week 8: taper", """<p>One last practice test early in the week, then your error log and a few short timed sets. No new topics in the last two days. Check your ID and test-centre or at-home setup, and sleep.</p>"""),
-         ("How many hours?", """<p>Many students plan about 50 to 120 hours over 6 to 12 weeks. That is a common estimate, not an official figure. A strong starting score or a lower target needs fewer; a long break from maths needs more.</p>"""),
+         ("How many hours?", """<p>Many students plan about 40 to 120 hours over one to three months. That is a common estimate, not an official figure. A strong starting score or a lower target needs fewer; a long break from maths needs more.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gre/">GRE study plan generator</a> builds this structure from your test date and daily hours.</p>
 <p>Prefer paper? The <a href="/planners/gre-8-week-planner/">GRE 8-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by ETS.</p>"""),
        ]),
@@ -582,7 +582,7 @@ GUIDES = [
 <li>Spend as long reviewing as testing. Use official GMAC practice material where you can.</li>
 </ul>"""),
          ("Week 8: taper", """<p>One last full test early in the week, then error-log review and short timed sets. Keep the last two days light, check your ID and test setup, and sleep.</p>"""),
-         ("How many hours?", """<p>Many students plan about 80 to 150 hours over 6 to 12 weeks. That is a common planning range, not an official figure. A high starting score or a modest target needs fewer; a long break from maths needs more.</p>"""),
+         ("How many hours?", """<p>Many students plan about 80 to 150 hours over two to three months. That is a common planning range, not an official figure. A high starting score or a modest target needs fewer; a long break from maths needs more.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gmat/">GMAT study plan generator</a> builds a plan from your test date and daily hours.</p>
 <p>Prefer paper? The <a href="/planners/gmat-8-week-planner/">GMAT 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by GMAC.</p>"""),
        ]),

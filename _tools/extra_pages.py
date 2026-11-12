@@ -83,11 +83,11 @@ def planners_page():
          "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": {
              "@type": "Product", "name": t[0], "description": t[2], "url": f"{SITE}/planners/{t[3]}/", "image": f"{SITE}/assets/products/planners/{t[5]}.png",
              "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
-             "offers": {"@type": "Offer", "price": "5.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + t[3], **offer_extra}}}
+             "offers": {"@type": "Offer", "price": "5.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": f"{SITE}/planners/{t[3]}/", **offer_extra}}}
              for i, t in enumerate(ITEMS)] + [{"@type": "ListItem", "position": len(ITEMS) + 1, "item": {
              "@type": "Product", "name": BUNDLE[0], "description": BUNDLE[2], "url": f"{SITE}/planners/{BUNDLE[3]}/", "image": f"{SITE}/assets/products/planners/{BUNDLE[5]}.png",
              "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
-             "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": STORE + BUNDLE[3], **offer_extra}}}]}},
+             "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": f"{SITE}/planners/{BUNDLE[3]}/", **offer_extra}}}]}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]},
         crumb_ld]}
     cards = "\n".join(card(t) for t in sorted(ITEMS, key=lambda t: [n for n, _ in GROUPS].index(group_of(t))))
@@ -201,7 +201,7 @@ _FOR = {  # permalink: (what the plan is for, exam-map wording, trademark / non-
     "nclex-rn-8-week-planner": ("the NCLEX-RN", "Weighted to the client-needs categories.", "NCLEX and NCLEX-RN are registered trademarks of NCSBN. FocusFlow Lab is not affiliated with or endorsed by NCSBN."),
     "nclex-pn-6-week-planner": ("the NCLEX-PN", "Weighted to the client-needs categories.", "NCLEX and NCLEX-PN are registered trademarks of the National Council of State Boards of Nursing (NCSBN). FocusFlow Lab is not affiliated with or endorsed by NCSBN."),
     "ati-teas-4-week-planner": ("the ATI TEAS", "Rough shares by section.", "TEAS and ATI are registered trademarks of Assessment Technologies Institute, LLC. FocusFlow Lab is not affiliated with or endorsed by ATI."),
-    "naplex-8-week-planner": ("the NAPLEX", "Rough shares by competency area.", "NAPLEX is a registered trademark of the National Association of Boards of Pharmacy (NABP). FocusFlow Lab is not affiliated with or endorsed by NABP."),
+    "naplex-8-week-planner": ("the NAPLEX", "Shares by content domain on the NABP outline (May 2025).", "NAPLEX is a registered trademark of the National Association of Boards of Pharmacy (NABP). FocusFlow Lab is not affiliated with or endorsed by NABP."),
     "pance-8-week-planner": ("the PANCE", "Rough shares by organ system.", "The PANCE is the Physician Assistant National Certifying Exam, run by the National Commission on Certification of Physician Assistants (NCCPA). FocusFlow Lab is not affiliated with or endorsed by the NCCPA."),
     "dat-10-week-planner": ("the DAT", "Rough shares by section.", "DAT is a program of the American Dental Association. FocusFlow Lab is not affiliated with or endorsed by the ADA."),
     "usmle-step-1-8-week-planner": ("USMLE Step 1", "Weighted to the content outline.", "USMLE is a joint program of the Federation of State Medical Boards (FSMB) and the National Board of Medical Examiners (NBME). FocusFlow Lab is not affiliated with or endorsed by either."),
@@ -388,5 +388,5 @@ with feed.open("w", encoding="utf-8", newline="") as f:
     w.writerow(["id", "title", "description", "link", "image_link", "price", "availability", "condition", "brand"])
     for t in ITEMS + [BUNDLE]:
         price = "15.00 USD" if t is BUNDLE else "5.00 USD"
-        w.writerow([t[3], t[0] + " (Printable PDF)", t[2] + " Printable PDF, A4 and US Letter. Instant download.", STORE + t[3], f"{SITE}/assets/products/planners/{t[5]}.png", price, "in stock", "new", "FocusFlow Lab"])
+        w.writerow([t[3], t[0] + " (Printable PDF)", t[2] + " Printable PDF, A4 and US Letter. Instant download.", f"{SITE}/planners/{t[3]}/", f"{SITE}/assets/products/planners/{t[5]}.png", price, "in stock", "new", "FocusFlow Lab"])
 print("wrote", feed.relative_to(ROOT).as_posix())

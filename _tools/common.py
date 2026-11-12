@@ -73,7 +73,7 @@ TRACKERS = {
     "nclex-pn": ("Free NCLEX-PN 6-week tracker", "A printable test plan tracker for every client needs category, a question bank log, an error log and a final-week checklist."),
     "usmle-step-1": ("Free USMLE Step 1 8-week tracker", "A printable tracker for every organ system, a question bank log, an error log and a final-week checklist."),
     "pance": ("Free PANCE 8-week tracker", "A printable tracker for every organ system on the blueprint, a question bank log, an error log and a final-week checklist."),
-    "naplex": ("Free NAPLEX 8-week tracker", "A printable tracker for every competency area, a question bank log, an error log and a final-week checklist."),
+    "naplex": ("Free NAPLEX 8-week tracker", "A printable tracker for every content domain, a question bank log, an error log and a final-week checklist."),
     "dat": ("Free DAT 10-week tracker", "A printable tracker for every DAT section, including perceptual ability, a practice test score log, an error log and a final-week checklist."),
     "gre": ("Free GRE 8-week tracker", "A printable tracker for verbal, quant and writing topics, a practice test score log, an error log and a final-week checklist."),
     "gmat": ("Free GMAT Focus 8-week tracker", "A printable tracker for quant, verbal and data insights, a practice test score log, an error log and a final-week checklist."),
