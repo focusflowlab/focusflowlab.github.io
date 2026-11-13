@@ -228,7 +228,7 @@ GUIDES = [
 <p>Because the test adapts, you can’t cram a few topics and hope they come up. You need steady practice across all of it, and the habit of reasoning through each question.</p>"""),
          ("Split your time by the test plan", """<p>NCSBN publishes the share of questions in each client needs category. The biggest are Management of Care and Pharmacological and Parenteral Therapies, so they deserve the most hours. Smaller areas still need regular practice because every category appears on the exam.</p>
 <p>Start with a practice assessment to find your weak categories, then give those extra time. The free <a href="/study-plan/nclex/">NCLEX study plan generator</a> does this split for you from your exam date and hours.</p>
-<p>Prefer paper? The <a href="/planners/nclex-rn-8-week-planner/">NCLEX-RN 8-week planner</a> and the <a href="/planners/nclex-pn-6-week-planner/">NCLEX-PN 6-week planner</a> have an exam map, weekly and daily pages and an error log for $5 each. They are independent study materials, not from NCSBN.</p>"""),
+<p>Prefer paper? The <a href="/planners/nclex-rn-8-week-planner/">NCLEX-RN 8-week planner</a> and the <a href="/planners/nclex-pn-6-week-planner/">NCLEX-PN 6-week planner</a> have an exam map, weekly and daily pages and an error log for [[P]] each. They are independent study materials, not from NCSBN.</p>"""),
          ("A 6-week plan", """<ul>
 <li><strong>Weeks 1 to 3: content plus questions.</strong> Review one or two categories a day, biggest first. End each day with 50 to 75 practice questions on what you covered, and read every rationale, including for questions you got right.</li>
 <li><strong>Weeks 4 and 5: mixed practice.</strong> Do larger blocks of mixed questions, including case studies. Keep an error log: the concept you missed and why. Review that log instead of re-reading notes.</li>
@@ -308,7 +308,7 @@ GUIDES = [
 </ul>
 <p>These are starting points. Your own pattern matters more than any rule.</p>"""),
          ("Where it fits in your schedule", """<p>Fill in the log right after every question set and every full-length exam, and spend at least as long reviewing as you spent testing. The <a href="/guides/mcat-study-schedule-3-months/">3-month MCAT schedule</a> shows where the practice exams go, and the free <a href="/study-plan/mcat/">MCAT study schedule generator</a> builds the same structure from your test date.</p>
-<p>Prefer paper? The <a href="/planners/mcat-16-week-planner/">MCAT 16-week planner</a> has an error log page, a full-length test log and a weekly page for $5.</p>"""),
+<p>Prefer paper? The <a href="/planners/mcat-16-week-planner/">MCAT 16-week planner</a> has an error log page, a full-length test log and a weekly page for [[P]].</p>"""),
        ]),
   dict(slug="how-to-study-for-the-teas", tag="Exam plans", signup="teas", date="2026-10-28",
        title="How to Study for the TEAS 7: Sections, Timing and a 4-Week Plan",
@@ -334,7 +334,7 @@ GUIDES = [
 <li><strong>Week 4:</strong> a full timed practice test early in the week, then review your mistakes. Light review only in the last two days.</li>
 </ul>
 <p>Most people plan 30 to 80 hours in total, about 1 to 2 hours a day. The free <a href="/study-plan/teas/">TEAS study plan generator</a> builds this from your own test date and hours.</p>
-<p>Prefer paper? The <a href="/planners/ati-teas-4-week-planner/">ATI TEAS 4-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material, not from ATI.</p>"""),
+<p>Prefer paper? The <a href="/planners/ati-teas-4-week-planner/">ATI TEAS 4-week planner</a> has an exam map, weekly and daily pages and an error log for [[P]]. It is independent study material, not from ATI.</p>"""),
          ("Study smarter, not longer", """<ul>
 <li>Test yourself instead of re-reading. Read a topic once, close the book, write what you remember, then check.</li>
 <li>Use <a href="/tools/flashcards/">flashcards</a> for anatomy terms and science facts.</li>
@@ -371,7 +371,7 @@ GUIDES = [
 </tbody></table></div>
 <p>These are common planning ranges, not official figures. Your accounting background and how recently you studied each topic move you up or down.</p>
 <p>The free section plans and the printable planners below cover FAR, AUD and REG. There is no plan or planner for the discipline sections (BAR, ISC or TCP) yet, so use the study schedule maker for yours.</p>
-<p>Prefer paper? There is a printable planner for each section: <a href="/planners/cpa-far-10-week-planner/">FAR</a>, <a href="/planners/cpa-aud-8-week-planner/">AUD</a> and <a href="/planners/cpa-reg-8-week-planner/">REG</a>, $5 each. They are independent study materials, not from the AICPA.</p>"""),
+<p>Prefer paper? There is a printable planner for each section: <a href="/planners/cpa-far-10-week-planner/">FAR</a>, <a href="/planners/cpa-aud-8-week-planner/">AUD</a> and <a href="/planners/cpa-reg-8-week-planner/">REG</a>, [[P]] each. They are independent study materials, not from the AICPA.</p>"""),
          ("A full timeline", """<p>Studying part time while working, most candidates finish all four sections in about 12 to 18 months:</p>
 <ol>
 <li><strong>Months 1 to 3:</strong> FAR. Book your exam date before you start, so the plan has an end.</li>
@@ -414,7 +414,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One more self-assessment early in the week, then your error log and short question sets. Keep the last two days light, check your test centre route and ID, and sleep. A full-length exam the day before only adds fatigue.</p>"""),
          ("How many hours?", """<p>Many students use 4 to 8 weeks of dedicated study, with 8 to 10 hours a day on study days. That is a common planning range, not an official figure, and it depends on how recently you finished the basic science courses. If you are short on time, cut the weeks and keep the daily question blocks.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/usmle-step-1/">USMLE Step 1 study schedule generator</a> builds a systems-based plan from your exam date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/usmle-step-1-8-week-planner/">USMLE Step 1 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the USMLE.</p>"""),
+<p>Prefer paper? The <a href="/planners/usmle-step-1-8-week-planner/">USMLE Step 1 8-week planner</a> has an exam map, weekly and daily pages and an error log for [[P]]. It is independent study material and is not affiliated with or endorsed by the USMLE.</p>"""),
        ]),
   dict(slug="lsat-study-schedule-12-weeks", tag="Exam plans", date="2026-11-02",
        title="LSAT Study Schedule: A 12-Week Plan, Week by Week",
@@ -445,7 +445,7 @@ GUIDES = [
          ("Week 12: taper", """<p>One last full test early in the week, then error-log review and a few short timed sets. Rest the last two days. Complete your writing sample ahead of time so nothing delays your score.</p>"""),
          ("How many hours?", """<p>Many students plan roughly 120 to 300 hours in total, spread over two to four months. That is a common estimate, not an official number. Starting score, target score and time between tests all move it, so use your first practice test to judge where you fall.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 12 weeks? The free <a href="/study-plan/lsat/">LSAT study schedule generator</a> builds this structure from your test date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/lsat-12-week-planner/">LSAT 12-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by LSAC.</p>"""),
+<p>Prefer paper? The <a href="/planners/lsat-12-week-planner/">LSAT 12-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for [[P]]. It is independent study material and is not affiliated with or endorsed by LSAC.</p>"""),
        ]),
   dict(slug="gre-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
        title="GRE Study Plan: 8 Weeks for the Shorter Test",
@@ -476,7 +476,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One last practice test early in the week, then your error log and a few short timed sets. No new topics in the last two days. Check your ID and test-centre or at-home setup, and sleep.</p>"""),
          ("How many hours?", """<p>Many students plan about 40 to 120 hours over one to three months. That is a common estimate, not an official figure. A strong starting score or a lower target needs fewer; a long break from maths needs more.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gre/">GRE study plan generator</a> builds this structure from your test date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/gre-8-week-planner/">GRE 8-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for $5. It is independent study material and is not affiliated with or endorsed by ETS.</p>"""),
+<p>Prefer paper? The <a href="/planners/gre-8-week-planner/">GRE 8-week planner</a> has an exam map, weekly and daily pages, a practice test log and an error log for [[P]]. It is independent study material and is not affiliated with or endorsed by ETS.</p>"""),
        ]),
   dict(slug="naplex-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
        title="NAPLEX Study Plan: An 8-Week Schedule by Content Domain",
@@ -517,7 +517,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One more mixed practice set early in the week, then your error log and calculations. Keep the last two days light, check your ID and test-centre details, and sleep.</p>"""),
          ("How many hours?", """<p>Many graduates study for 4 to 8 weeks, often around 120 to 300 hours. That is a common planning range, not an official figure. If you are short on time, shorten the therapeutics weeks and keep the daily calculations and practice questions.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/naplex/">NAPLEX study plan generator</a> builds a plan from your exam date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/naplex-8-week-planner/">NAPLEX 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NABP.</p>"""),
+<p>Prefer paper? The <a href="/planners/naplex-8-week-planner/">NAPLEX 8-week planner</a> has an exam map, weekly and daily pages and an error log for [[P]]. It is independent study material and is not affiliated with or endorsed by NABP.</p>"""),
        ]),
   dict(slug="pance-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
        title="PANCE Study Plan: 8 Weeks by Organ System",
@@ -551,7 +551,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One more mixed question set early in the week, then your error log. Keep the last two days light. Bring two valid IDs with matching names, arrive at least 30 minutes early, and sleep.</p>"""),
          ("How many hours?", """<p>Many students give the PANCE 4 to 12 weeks after graduation, often around 150 to 350 hours, depending on how their rotations went. That is a common planning range, not an official figure. If you are short on time, cut weeks from the middle and keep the daily question blocks.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/pance/">PANCE study plan generator</a> builds a plan from your exam date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/pance-8-week-planner/">PANCE 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by NCCPA.</p>"""),
+<p>Prefer paper? The <a href="/planners/pance-8-week-planner/">PANCE 8-week planner</a> has an exam map, weekly and daily pages and an error log for [[P]]. It is independent study material and is not affiliated with or endorsed by NCCPA.</p>"""),
        ]),
   dict(slug="gmat-study-plan-8-weeks", tag="Exam plans", date="2026-11-02",
        title="GMAT Study Plan: An 8-Week Schedule for the Current Exam",
@@ -584,7 +584,7 @@ GUIDES = [
          ("Week 8: taper", """<p>One last full test early in the week, then error-log review and short timed sets. Keep the last two days light, check your ID and test setup, and sleep.</p>"""),
          ("How many hours?", """<p>Many students plan about 80 to 150 hours over two to three months. That is a common planning range, not an official figure. A high starting score or a modest target needs fewer; a long break from maths needs more.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 8 weeks? The free <a href="/study-plan/gmat/">GMAT study plan generator</a> builds a plan from your test date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/gmat-8-week-planner/">GMAT 8-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by GMAC.</p>"""),
+<p>Prefer paper? The <a href="/planners/gmat-8-week-planner/">GMAT 8-week planner</a> has an exam map, weekly and daily pages and an error log for [[P]]. It is independent study material and is not affiliated with or endorsed by GMAC.</p>"""),
        ]),
   dict(slug="dat-study-schedule-10-weeks", tag="Exam plans", date="2026-11-02",
        title="DAT Study Schedule: A 10-Week Plan for the Four Tests",
@@ -616,7 +616,7 @@ GUIDES = [
          ("Week 10: taper", """<p>One last mock early in the week, then your error log and short timed sets. No new topics in the last two days. Check your ID and test-centre details, and sleep.</p>"""),
          ("How many hours?", """<p>Many students plan around 2 to 3 months at 4 or more hours a day, roughly 200 to 350 hours, depending on how recently they took the sciences. That is a common estimate, not an official figure.</p>"""),
          ("Make it fit your dates", """<p>Not exactly 10 weeks? The free <a href="/study-plan/dat/">DAT study plan generator</a> builds a plan from your test date and daily hours.</p>
-<p>Prefer paper? The <a href="/planners/dat-10-week-planner/">DAT 10-week planner</a> has an exam map, weekly and daily pages and an error log for $5. It is independent study material and is not affiliated with or endorsed by the ADA.</p>"""),
+<p>Prefer paper? The <a href="/planners/dat-10-week-planner/">DAT 10-week planner</a> has an exam map, weekly and daily pages and an error log for [[P]]. It is independent study material and is not affiliated with or endorsed by the ADA.</p>"""),
        ]),
   dict(slug="how-to-create-a-study-schedule", tag="Planning", date="2026-11-10",
        title="How to Make a Study Schedule You Will Follow",
@@ -685,7 +685,7 @@ GUIDES = [
 <li><strong>Weeks 4 and 5: mixed practice.</strong> Do larger mixed blocks, including case studies. Keep an error log of the concept you missed and why, and review it instead of re-reading notes.</li>
 <li><strong>Week 6: readiness and rest.</strong> One or two readiness assessments early in the week, then light review of your error log. No new content in the last two days.</li>
 </ul>
-<p>The free <a href="/study-plan/nclex-pn/">NCLEX-PN study plan generator</a> turns your exam date and daily hours into this schedule. Prefer paper? The <a href="/planners/nclex-pn-6-week-planner/">NCLEX-PN 6-week planner</a> is $5 and independent of NCSBN.</p>"""),
+<p>The free <a href="/study-plan/nclex-pn/">NCLEX-PN study plan generator</a> turns your exam date and daily hours into this schedule. Prefer paper? The <a href="/planners/nclex-pn-6-week-planner/">NCLEX-PN 6-week planner</a> is [[P]] and independent of NCSBN.</p>"""),
          ("How many hours", """<p>Many graduates plan around 80 to 180 hours in total over 4 to 8 weeks. That is a common planning range, not an official figure. A recent graduate with good practice scores sits at the low end. A long gap since school sits at the high end. See the <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> for other exams.</p>"""),
          ("Test week", """<p>Know the route to the test centre, bring the ID your registration requires, sleep, and eat. If you do not pass, NCSBN requires at least 45 days before a retake, and some jurisdictions allow fewer attempts a year, so check with your board.</p>"""),
        ]),

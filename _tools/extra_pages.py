@@ -5,6 +5,7 @@ Planner list comes from PLANNERS in exams.py, read with ast (importing exams.py 
 Add a planner by adding its slug to PLANNERS in exams.py and a thumbnail to assets/products/planners/.
 """
 import ast, json, pathlib, re
+from prices import fill
 from common import SITE, shell, crumbs, ORG
 import planner_extra
 
@@ -26,7 +27,7 @@ for slug, (weeks, link) in PLANNERS.items():
     top = ", ".join(n for n, _ in e["topics"][:3])
     ITEMS.append((f"{e['short']} {weeks}-Week Study Planner", f"{weeks} weeks", f"Exam map covering {top} and more, with weekly and daily pages.", link, f"/study-plan/{slug}/", link))
 
-BUNDLE = ("All 14 Exam Planners Bundle", "14 planners", "All 14 exam-specific planners listed below in one purchase: NCLEX-RN and PN, TEAS, NAPLEX, MCAT, USMLE Step 1, PANCE, DAT, GRE, LSAT, GMAT and the three CPA sections. $15 instead of $70 bought one by one. The Exam Sprint Planner is sold separately.", "all-exam-planners-bundle", "/study-plan/", "all-exam-planners-bundle")
+BUNDLE = ("All 14 Exam Planners Bundle", "14 planners", "All 14 exam-specific planners listed below in one purchase: NCLEX-RN and PN, TEAS, NAPLEX, MCAT, USMLE Step 1, PANCE, DAT, GRE, LSAT, GMAT and the three CPA sections. [[B]] instead of [[ALL]] bought one by one. The Exam Sprint Planner is sold separately.", "all-exam-planners-bundle", "/study-plan/", "all-exam-planners-bundle")
 
 FAQ = [
     ("What do I get?", "Two printable PDFs, A4 and US Letter, of 9 pages each: an exam map, a week-by-week overview, a weekly page, a daily focus page with four focus blocks and a self-test after each, a practice test log, an error log and a test-day checklist. Print as many copies of the weekly and daily pages as you need."),
@@ -47,7 +48,7 @@ GROUPS = [("Short on time", ("exam-sprint",)), ("Nursing", ("nclex", "ati-teas")
 def group_of(t):  # shortcut: groups match by thumb-slug prefix, a new exam needs a key here
     return next(n for n, keys in GROUPS if t[5].startswith(keys))
 
-def card(t, price="$5", meta=None, cta="Get the planner", group=True):
+def card(t, price="[[P]]", meta=None, cta="Get the planner", group=True):
     title, dur, blurb, link, plan, thumb = t
     meta = meta or dur
     g = group_of(t) if group else ""
@@ -77,17 +78,17 @@ def planners_page():
     path = "/planners/"
     offer_extra = OFFER_EXTRA
     crumb_html, crumb_ld = crumbs([("Home", "/"), ("Planners", path)])
-    desc = "Printable study planners for NCLEX, MCAT, USMLE, GRE, LSAT, CPA and more. Weekly and daily pages, error log, checklist. $5 each or all 14 for $15."
+    desc = "Printable study planners for NCLEX, MCAT, USMLE, GRE, LSAT, CPA and more. Weekly and daily pages, error log, checklist. [[P]] each or all 14 for [[B]]."
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "name": "Printable study planners", "url": SITE + path, "description": desc, "publisher": ORG,
          "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": {
              "@type": "Product", "name": t[0], "description": t[2], "url": f"{SITE}/planners/{t[3]}/", "image": f"{SITE}/assets/products/planners/{t[5]}.png",
              "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
-             "offers": {"@type": "Offer", "price": "5.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": f"{SITE}/planners/{t[3]}/", **offer_extra}}}
+             "offers": {"@type": "Offer", "price": "[[PN]]", "priceCurrency": "[[CUR]]", "availability": "https://schema.org/InStock", "url": f"{SITE}/planners/{t[3]}/", **offer_extra}}}
              for i, t in enumerate(ITEMS)] + [{"@type": "ListItem", "position": len(ITEMS) + 1, "item": {
              "@type": "Product", "name": BUNDLE[0], "description": BUNDLE[2], "url": f"{SITE}/planners/{BUNDLE[3]}/", "image": f"{SITE}/assets/products/planners/{BUNDLE[5]}.png",
              "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
-             "offers": {"@type": "Offer", "price": "15.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": f"{SITE}/planners/{BUNDLE[3]}/", **offer_extra}}}]}},
+             "offers": {"@type": "Offer", "price": "[[BN]]", "priceCurrency": "[[CUR]]", "availability": "https://schema.org/InStock", "url": f"{SITE}/planners/{BUNDLE[3]}/", **offer_extra}}}]}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]},
         crumb_ld]}
     cards = "\n".join(card(t) for t in sorted(ITEMS, key=lambda t: [n for n, _ in GROUPS].index(group_of(t))))
@@ -100,7 +101,7 @@ def planners_page():
       <section class="hero single wash">
         <div>
           <h1>Printable study planners.</h1>
-          <p class="lead">One plan per exam, laid out week by week. Print it, pin it up, follow it. $5 each, or all 14 exam planners for $15, with a 14-day no-questions refund.</p>
+          <p class="lead">One plan per exam, laid out week by week. Print it, pin it up, follow it. [[P]] each, or all 14 exam planners for [[B]], with a 14-day no-questions refund.</p>
         </div>
         <a class="scroll-cue" href="#find"><span>All 15 planners below</span><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </section>
@@ -109,16 +110,16 @@ def planners_page():
         <ul class="choose-grid">
           <li><strong>Your exam is within two weeks</strong><p>The Exam Sprint Planner lays out the last 14 days.</p><a class="text-link" href="/planners/exam-sprint-planner/">See the Sprint Planner</a></li>
           <li><strong>One exam, a month or more away</strong><p>Pick your exam below. Each plan matches that exam&rsquo;s length and sections.</p><a class="text-link" href="#find">Find your exam</a></li>
-          <li><strong>Two or more exams, or still deciding</strong><p>Three single planners cost $15, the same as the bundle of all 14.</p><a class="text-link" href="/planners/all-exam-planners-bundle/">See the bundle</a></li>
+          <li><strong>Two or more exams, or still deciding</strong><p>[[Parity]] single planners cost [[B]], the same as the bundle of all 14.</p><a class="text-link" href="/planners/all-exam-planners-bundle/">See the bundle</a></li>
         </ul>
       </section>
 
       <section class="bundle-band" aria-labelledby="bundle-title">
         <div>
           <p class="pc-tag">Best value</p>
-          <h2 id="bundle-title">All 14 exam planners, $15</h2>
-          <p>Every exam-specific planner in one purchase, instead of $70 bought one by one. The Exam Sprint Planner is sold separately.</p>
-          <div class="pc-buy"><span class="pc-price">$15</span><a class="btn" href="/planners/{BUNDLE[3]}/">See the bundle</a></div>
+          <h2 id="bundle-title">All 14 exam planners, [[B]]</h2>
+          <p>Every exam-specific planner in one purchase, instead of [[ALL]] bought one by one. The Exam Sprint Planner is sold separately.</p>
+          <div class="pc-buy"><span class="pc-price">[[B]]</span><a class="btn" href="/planners/{BUNDLE[3]}/">See the bundle</a></div>
         </div>
         <ul class="bundle-links" aria-label="Planners in the bundle">{bundle_links}</ul>
       </section>
@@ -184,7 +185,7 @@ def about_page():
 <h2 id="free">What’s free</h2>
 <p>The <a href="/study-plan/">study plan generators</a>, the <a href="/tools/">study tools</a> and the <a href="/guides/">guides</a> are free. The tools run in your browser and keep what you type on your own device. The <a href="/#free-kit">Study Focus Kit</a> is free by email.</p>
 <h2 id="paid">What’s paid</h2>
-<p>The <a href="/planners/">printable planners</a> are $5 each, or $15 for the bundle of all 14 exam planners. They are sold through Gumroad, which handles payment and tax. Each one has a 14-day no-questions refund: email <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a> within 14 days of buying.</p>
+<p>The <a href="/planners/">printable planners</a> are [[P]] each, or [[B]] for the bundle of all 14 exam planners. They are sold through Gumroad, which handles payment and tax. Each one has a 14-day no-questions refund: email <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a> within 14 days of buying.</p>
 <h2 id="names">Exam names</h2>
 <p>Exam names belong to their owners. FocusFlow Lab isn’t affiliated with or endorsed by any exam owner, and nothing here guarantees a score or a pass. Exam details come from the official outlines; where we estimate, we say so.</p>
 <h2 id="contact">Get in touch</h2>
@@ -220,7 +221,7 @@ def planner_detail(t):
     title, dur, blurb, link, plan, thumb = t
     is_bundle, is_sprint, is_mcat = t is BUNDLE, link == "exam-sprint-planner", link == "mcat-16-week-planner"
     path = f"/planners/{link}/"
-    price = "$15" if is_bundle else "$5"
+    price = "[[B]]" if is_bundle else "[[P]]"
     weeks = re.match(r"(\d+)", dur).group(1) if not (is_bundle or is_sprint) else None
     for_, emap, tm = _FOR.get(link, ("", "", ""))
     tm = tm or (_CPA_TM if link.startswith("cpa-") else "Exam names belong to their owners. FocusFlow Lab is not affiliated with or endorsed by any exam owner.")
@@ -228,14 +229,14 @@ def planner_detail(t):
         h1 = "All 14 Exam Study Planners Bundle"
         lead = "All 14 exam study planners in one purchase. Each has 9 pages, in A4 and US Letter, so you can print the one for your exam tonight."
         inside = [(i[0].replace(" Study Planner", ""), f"{i[1]} plan.") for i in ITEMS[1:]]
-        desc = "All 14 exam study planners in one purchase for $15: NCLEX, TEAS, NAPLEX, MCAT, USMLE, PANCE, DAT, GRE, LSAT, GMAT and CPA. A4 and US Letter PDFs, 14-day refund."
+        desc = "All 14 exam study planners in one purchase for [[B]]: NCLEX, TEAS, NAPLEX, MCAT, USMLE, PANCE, DAT, GRE, LSAT, GMAT and CPA. A4 and US Letter PDFs, 14-day refund."
         inside_h = "The 14 planners in the bundle"
     elif is_sprint:
         h1 = "Exam Sprint Planner (14 days)"
         lead = "A 14-day printable plan for the two weeks before your exams. Nine pages, in A4 and US Letter, ready to print tonight."
         inside = [("Exam map and priority grid", "Map the exam and set your priorities."), ("Sprint calendar", "Four focus blocks a day across the 14 days."),
                   ("Daily pages", "Each block ends with a self-test."), ("Active-recall tracker", "An active-recall tracker for your sprint.")]
-        desc = "A printable 14-day plan for the two weeks before your exams: exam map, priority grid, four focus blocks a day. $5, A4 and Letter PDFs, 14-day refund."
+        desc = "A printable 14-day plan for the two weeks before your exams: exam map, priority grid, four focus blocks a day. [[P]], A4 and Letter PDFs, 14-day refund."
         inside_h = "What is inside"
     else:
         h1 = title
@@ -249,13 +250,13 @@ def planner_detail(t):
             inside = [("Exam map", emap), (f"{weeks}-week overview", f"The whole plan across {weeks} weeks."), ("Weekly pages", "One page for each week."),
                       ("Daily focus pages", "Four focus blocks a day, with a self-test after each."),
                       ("Practice test log and error log", "Record your scores, and the questions you missed."), ("Test-day checklist", "What to do and bring on the day.")]
-        desc = (f"Printable {weeks}-week plan for {for_}: exam map, weekly and daily pages, error log and test-day checklist. $5, A4 and Letter PDFs, 14-day refund."
-                if not is_mcat else "Printable 16-week MCAT plan: content review first, full-length tests second, CARS every week. $5, A4 and Letter PDFs, 14-day refund.")
+        desc = (f"Printable {weeks}-week plan for {for_}: exam map, weekly and daily pages, error log and test-day checklist. [[P]], A4 and Letter PDFs, 14-day refund."
+                if not is_mcat else "Printable 16-week MCAT plan: content review first, full-length tests second, CARS every week. [[P]], A4 and Letter PDFs, 14-day refund.")
         inside_h = "What is inside"
     buy_text = "Get the bundle" if is_bundle else "Get the planner"
     cards = "\n".join(f'          <li><strong>{a}</strong>{b}</li>' for a, b in inside)
     if is_bundle:
-        cards = "\n".join(f'          <li class="pd-link"><a href="/planners/{i[3]}/"><img src="/assets/products/planners/{i[5]}.png" alt="" width="96" height="96" loading="lazy" decoding="async"><span><strong>{i[0].replace(" Study Planner", "")}</strong>{i[1]} · $5 · See details</span></a></li>' for i in sorted(ITEMS[1:], key=lambda t: [n for n, _ in GROUPS].index(group_of(t))))
+        cards = "\n".join(f'          <li class="pd-link"><a href="/planners/{i[3]}/"><img src="/assets/products/planners/{i[5]}.png" alt="" width="96" height="96" loading="lazy" decoding="async"><span><strong>{i[0].replace(" Study Planner", "")}</strong>{i[1]} · [[P]] · See details</span></a></li>' for i in sorted(ITEMS[1:], key=lambda t: [n for n, _ in GROUPS].index(group_of(t))))
     day = "" if (is_bundle or is_mcat) else f'''
       <section class="pd-section pd-split" aria-labelledby="day-title">
         <div>
@@ -298,7 +299,7 @@ def planner_detail(t):
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Product", "name": title if not is_sprint else "Exam Sprint Planner", "description": desc, "url": SITE + path,
          "image": f"{SITE}/assets/products/planners/{thumb}.png", "brand": {"@type": "Brand", "name": "FocusFlow Lab"},
-         "offers": {"@type": "Offer", "price": "15.00" if is_bundle else "5.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+         "offers": {"@type": "Offer", "price": "[[BN]]" if is_bundle else "[[PN]]", "priceCurrency": "[[CUR]]", "availability": "https://schema.org/InStock",
                     "url": STORE + link, **OFFER_EXTRA}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
         crumb_ld]}
@@ -344,15 +345,15 @@ def planner_detail(t):
         <ul class="pc-grid">
 {sibs}
         </ul>
-        <p class="pd-more">{"" if is_bundle else '<a href="/planners/all-exam-planners-bundle/">All 14 exam planners, $15</a> · '}<a href="/planners/">See every planner</a></p>
+        <p class="pd-more">{"" if is_bundle else '<a href="/planners/all-exam-planners-bundle/">All 14 exam planners, [[B]]</a> · '}<a href="/planners/">See every planner</a></p>
       </section>''' }
     </main>
     <aside class="page-note" aria-label="About this page">
       <p>{tm}</p>
       <p>Made by FocusFlow Lab. Questions: <a href="mailto:hello@thefocusflowlab.com">hello@thefocusflowlab.com</a>. Purchases are processed by Gumroad; see the <a href="/terms.html">terms</a> and <a href="/privacy.html">privacy policy</a>.</p>
     </aside>"""
-    full_title = f"{h1.replace(' (14 days)', '')} ({'PDF' if len(h1) > 30 else 'Printable PDF'}) | FocusFlow Lab" if not is_bundle else "All 14 Exam Study Planners Bundle, $15 | FocusFlow Lab"
-    return path, shell(signup=False, path=path, title=full_title, desc=desc[:160].rsplit(" ", 1)[0] if len(desc) > 160 else desc, og_title=h1, ld=ld, body=body, css_depth=2, og_image=f"{SITE}/assets/products/planners/{thumb}.png",
+    full_title = f"{h1.replace(' (14 days)', '')} ({'PDF' if len(h1) > 30 else 'Printable PDF'}) | FocusFlow Lab" if not is_bundle else "All 14 Exam Study Planners Bundle, [[B]] | FocusFlow Lab"
+    return path, shell(signup=False, path=path, title=full_title, desc=fill(desc)[:160].rsplit(" ", 1)[0] if len(fill(desc)) > 160 else desc, og_title=h1, ld=ld, body=body, css_depth=2, og_image=f"{SITE}/assets/products/planners/{thumb}.png",
                        extra_head='\n  <link rel="stylesheet" href="../../study-plan/assets/plan.css">')
 
 def not_found_page():
@@ -363,7 +364,7 @@ def not_found_page():
       </header>
       <ul class="choose-grid">
         <li><strong>Free study plans</strong><p>Put in your test date and hours, get a week-by-week plan.</p><a class="text-link" href="/study-plan/">All study plans</a></li>
-        <li><strong>Printable planners</strong><p>One planner per exam, $5 each or all 14 for $15.</p><a class="text-link" href="/planners/">All planners</a></li>
+        <li><strong>Printable planners</strong><p>One planner per exam, [[P]] each or all 14 for [[B]].</p><a class="text-link" href="/planners/">All planners</a></li>
         <li><strong>Free tools and guides</strong><p>Calculators, timers and short study guides.</p><a class="text-link" href="/tools/">Study tools</a> <a class="text-link" href="/guides/">Study guides</a></li>
       </ul>
     </main>"""
@@ -379,14 +380,23 @@ for rel, html in pages:
     out.write_text(html, encoding="utf-8", newline="\n")
     print("wrote", out.relative_to(ROOT).as_posix())
 
-# Pinterest catalog feed (upload its URL in Pinterest Business > Catalogs); prices match Gumroad.
+# Product feeds; prices come from prices.py and must match Gumroad (price_sync.py checks).
+# pinterest-catalog.csv: Pinterest Business > Catalogs. openai-feed.csv: the Business Hub product feed (hosted URL).
 import csv
-feed = ROOT / "feeds" / "pinterest-catalog.csv"
-feed.parent.mkdir(exist_ok=True)
-with feed.open("w", encoding="utf-8", newline="") as f:
-    w = csv.writer(f)
-    w.writerow(["id", "title", "description", "link", "image_link", "price", "availability", "condition", "brand"])
-    for t in ITEMS + [BUNDLE]:
-        price = "15.00 USD" if t is BUNDLE else "5.00 USD"
-        w.writerow([t[3], t[0] + " (Printable PDF)", t[2] + " Printable PDF, A4 and US Letter. Instant download.", f"{SITE}/planners/{t[3]}/", f"{SITE}/assets/products/planners/{t[5]}.png", price, "in stock", "new", "FocusFlow Lab"])
-print("wrote", feed.relative_to(ROOT).as_posix())
+from prices import fill
+(ROOT / "feeds").mkdir(exist_ok=True)
+FEEDS = {
+    "pinterest-catalog.csv": (["id", "title", "description", "link", "image_link", "price", "availability", "condition", "brand"],
+                              lambda t, url, img, desc, price: [t[3], t[0] + " (Printable PDF)", desc, url, img, price, "in stock", "new", "FocusFlow Lab"]),
+    "openai-feed.csv": (["item_id", "title", "description", "url", "brand", "seller_name", "image_url", "availability", "price", "accepts_returns", "return_deadline_in_days", "return_policy"],
+                        lambda t, url, img, desc, price: [t[3], t[0] + " (Printable PDF)", desc, url, "FocusFlow Lab", "FocusFlow Lab", img, "in_stock", price, "true", "14", f"{SITE}/terms.html#planner-refunds"]),
+}
+for name, (header, row) in FEEDS.items():
+    feed = ROOT / "feeds" / name
+    with feed.open("w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(header)
+        for t in ITEMS + [BUNDLE]:
+            price = fill("[[BN]] [[CUR]]" if t is BUNDLE else "[[PN]] [[CUR]]")
+            w.writerow(fill(c) for c in row(t, f"{SITE}/planners/{t[3]}/", f"{SITE}/assets/products/planners/{t[5]}.png", t[2] + " Printable PDF, A4 and US Letter. Instant download.", price))
+    print("wrote", feed.relative_to(ROOT).as_posix())

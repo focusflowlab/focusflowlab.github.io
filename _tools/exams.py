@@ -5,6 +5,7 @@ Edit the EXAMS data below, never the generated pages by hand.
 JS task strings use typographic apostrophes (’) only, so single quotes never break them.
 """
 import json, pathlib, html
+from prices import fill
 from common import TRACKER_FORM, TRACKERS
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -54,7 +55,7 @@ BUNDLE_LINE = {
 def bundle_line(slug):
     if slug not in PLANNERS:
         return ""
-    return f'\n          <p class="bundle-line">{BUNDLE_LINE.get(slug, "Studying for more than one exam?")} <a href="{BUNDLE_URL}">All 14 exam planners are $15, instead of $70 bought separately.</a></p>'
+    return f'\n          <p class="bundle-line">{BUNDLE_LINE.get(slug, "Studying for more than one exam?")} <a href="{BUNDLE_URL}">All 14 exam planners are [[B]], instead of [[ALL]] bought separately.</a></p>'
 
 
 def planner_offer(e):
@@ -65,7 +66,7 @@ def planner_offer(e):
     return f'''      <aside class="kit" aria-label="Printable planner">
         <div>
           <h2>Want it on paper?</h2>
-          <p>The {e['short']} {weeks}-Week Study Planner. Weekly and daily pages, a practice test log, an error log and a test-day checklist to print. $5, 14-day no-questions refund. <a href="/planners/{link}/">See what's inside</a></p>{bundle_line(e['slug'])}
+          <p>The {e['short']} {weeks}-Week Study Planner. Weekly and daily pages, a practice test log, an error log and a test-day checklist to print. [[P]], 14-day no-questions refund. <a href="/planners/{link}/">See what's inside</a></p>{bundle_line(e['slug'])}
         </div>
         <a class="btn" href="/planners/{link}/">See the planner</a>
       </aside>
@@ -800,5 +801,5 @@ def page(e):
 for e in EXAMS:
     out = ROOT / "study-plan" / e["slug"] / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(page(e), encoding="utf-8", newline="\n")
+    out.write_text(fill(page(e)), encoding="utf-8", newline="\n")
     print("wrote", out.relative_to(ROOT).as_posix())

@@ -21,7 +21,9 @@ def version_assets(html, base):
             return m.group(0)
         return f'{m.group(1)}="{ref}?v={hashlib.sha1(f.read_bytes()).hexdigest()[:8]}"'
     return ASSET.sub(one, html)
-head = (ROOT / "_partials/site-head.html").read_text(encoding="utf-8").strip()
+import sys; sys.path.insert(0, str(ROOT / "_tools"))
+from prices import fill
+head = fill((ROOT / "_partials/site-head.html").read_text(encoding="utf-8").strip())
 foot = (ROOT / "_partials/site-foot.html").read_text(encoding="utf-8").strip()
 
 HUB = {"/planners/": "← All planners", "/study-plan/": "← All study plans", "/tools/": "← All study tools", "/guides/": "← All study guides"}
@@ -73,3 +75,10 @@ _probs = page_guard.check(ROOT)
 for _p in _probs: print("PAGE GUARD FAIL", _p)
 print(f"PAGE GUARD: {len(_probs)} problem page(s)" if _probs else "PAGE GUARD: OK")
 if _probs: sys.exit(1)
+
+# And prices: every page, JSON-LD offer, pin and feed must match _tools/prices.py.
+import price_check
+_pp = price_check.check(ROOT)
+for _p in _pp: print("PRICE CHECK FAIL", _p)
+print(f"PRICE CHECK: {len(_pp)} problem(s)" if _pp else "PRICE CHECK: OK")
+if _pp: sys.exit(1)

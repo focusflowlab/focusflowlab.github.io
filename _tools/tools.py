@@ -547,25 +547,25 @@ def related_block(t):
       </section>"""
 
 # Next-step box per tool: (heading, text, button label, button href, text-link label, text-link href)
-GRADES = ("Finals coming up?", "Turn your grade target into a study plan. The Exam Sprint Planner is a printable 14-day plan with four focus blocks a day and a self-test after each. $5, 14-day no-questions refund.",
+GRADES = ("Finals coming up?", "Turn your grade target into a study plan. The Exam Sprint Planner is a printable 14-day plan with four focus blocks a day and a self-test after each. [[P]], 14-day no-questions refund.",
           "See the planners", "/planners/", "Free guide: how to study for finals in a week.", "/guides/how-to-study-for-finals-in-a-week/")
 # GPA and weighted-grade tools get no planner pitch: free guide and free plans only.
 GRADES_FREE = ("Finals coming up?", "Turn your grade target into a study plan. Read how to cover a course in the last week, or build a free week-by-week plan for your exam.",
                "Finals in a week: the guide", "/guides/how-to-study-for-finals-in-a-week/", "Free exam study plans.", "/study-plan/")
 PLAN = ("Know your exam date? Get the plan.", "Pick your exam for a free week-by-week study plan, or print one.",
-        "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/")
+        "Free exam study plans", "/study-plan/", "See the [[P]] printable planners.", "/planners/")
 NEXT_STEP = {
     "practice-score-tracker": ("Turn the weak topics into a plan.", "Pick your exam for a free week-by-week plan, then use your suggested split to set each week’s hours. You can also add the plan to your calendar.",
-                               "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
+                               "Free exam study plans", "/study-plan/", "See the [[P]] printable planners.", "/planners/"),
     "error-log": ("Turn misses into a plan.", "Pick your exam for a free week-by-week plan, or print the error log pages that come with the planners.",
-                  "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
+                  "Free exam study plans", "/study-plan/", "See the [[P]] printable planners.", "/planners/"),
     "final-grade-calculator": GRADES, "gpa-calculator": GRADES_FREE, "weighted-grade-calculator": GRADES_FREE,
     "exam-countdown": PLAN, "test-time-calculator": PLAN, "study-schedule-maker": PLAN, "reading-planner": PLAN,
     "spaced-review": ("Studying for a big exam?", "Reviews need dates to fit into. Build a free week-by-week plan for your exam, or print one.",
-                      "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
+                      "Free exam study plans", "/study-plan/", "See the [[P]] printable planners.", "/planners/"),
     "flashcards": ("Studying for a big exam?", "Cards work best inside a plan. Build a free week-by-week study plan for your exam, or print one.",
-                   "Free exam study plans", "/study-plan/", "See the $5 printable planners.", "/planners/"),
-    "focus-timer": ("Take the focus blocks offline.", "The printable planners have daily pages with four focus blocks and a self-test after each. $5 each, 14-day no-questions refund.",
+                   "Free exam study plans", "/study-plan/", "See the [[P]] printable planners.", "/planners/"),
+    "focus-timer": ("Take the focus blocks offline.", "The printable planners have daily pages with four focus blocks and a self-test after each. [[P]] each, 14-day no-questions refund.",
                     "See the planners", "/planners/", "Or build a free exam study plan.", "/study-plan/"),
 }
 

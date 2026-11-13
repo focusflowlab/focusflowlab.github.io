@@ -1,5 +1,6 @@
 """Shared page shell for generated pages (tools and guides)."""
 import json
+from prices import fill
 
 SITE = "https://thefocusflowlab.com"
 
@@ -9,7 +10,7 @@ def shell(*, path, title, desc, og_title, ld, body, css_depth, extra_head="", sc
         body = body.replace("</main>", KIT_FORM("      ") + "\n    </main>", 1) if "</main>" in body else body + "\n" + KIT_FORM("    ")
     img, iw, ih, card = (og_image, 400, 400, "summary") if og_image else (f"{SITE}/assets/og-image.png", 1200, 630, "summary_large_image")
     up = "../" * css_depth
-    return f"""<!doctype html>
+    return fill(f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -44,7 +45,7 @@ def shell(*, path, title, desc, og_title, ld, body, css_depth, extra_head="", sc
 <!-- site-foot --><!-- /site-foot -->{scripts}
 </body>
 </html>
-"""
+""")
 
 def crumbs(items):
     """items: list of (name, path). Returns (html, BreadcrumbList)."""
