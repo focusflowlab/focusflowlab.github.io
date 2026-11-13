@@ -7,6 +7,7 @@ card: "Here is how to build computer focus using real system limits."
 tag: "Focus"
 video: ""
 date: 2026-11-08
+modified: 2026-11-12
 ---
 You can block websites, but you still close tabs and procrastinate on your laptop within seconds.
 

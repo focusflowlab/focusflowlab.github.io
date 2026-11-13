@@ -7,6 +7,7 @@ card: "Ninety minutes is one useful block length to try, with a real break after
 tag: "Study system"
 video: "CkTkgw7-e_M"
 date: 2026-10-25
+modified: 2026-11-11
 ---
 Long study sessions without a break wear most students down, especially late in the semester.
 
