@@ -5,7 +5,7 @@ description: "You can block websites, but you still close tabs and procrastinate
 lead: "Here is how to build computer focus using real system limits."
 card: "Here is how to build computer focus using real system limits."
 tag: "Focus"
-video: ""
+video: "1TueHKhiClw"
 date: 2026-11-08
 modified: 2026-11-12
 ---
