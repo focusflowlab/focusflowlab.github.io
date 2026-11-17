@@ -996,3 +996,6 @@ html { scroll-behavior: smooth; }
 
 /* Score tracker: gap under "Your entries" before the empty note (layout scan, Nov 2026) */
 #sc-empty { margin-top: .5rem; }
+
+/* Study-plan hub: the demo video spans the full row above the walkthroughs */
+#videos .videos .video-wide { grid-column: 1 / -1; }
