@@ -1002,3 +1002,5 @@ html { scroll-behavior: smooth; }
 
 /* Video grids inside .prose: no list indent, so the cards line up with the text above */
 .prose ul.videos { padding-left: 0; margin-left: 0; }
+.prose ul.videos li { margin: 0; }
+.prose ul.videos a.video { margin: 0; }
