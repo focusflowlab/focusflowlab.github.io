@@ -747,9 +747,129 @@ GUIDES = [
 <li>Track what you get wrong. The <a href="/tools/error-log/">error log</a> and <a href="/tools/practice-score-tracker/">practice score tracker</a> show which topics need more hours, and the plan generator can use them.</li>
 </ul>"""),
        ]),
+  dict(slug="spaced-repetition-schedule", tag="Memory", date="2026-11-18",
+       title="Spaced Repetition Schedule: When to Review (Free Tool)",
+       h1="Spaced repetition schedule: when to review what you study",
+       desc="How to space your reviews so facts stick: a simple review schedule, how many topics to carry at once, and a free spaced review calendar and flashcards.",
+       lead="Review a topic just before you would forget it. Here is a simple schedule you can follow, plus a free calendar that works the dates out.",
+       card="A simple review schedule and a free spaced review calendar.",
+       kit="The free Study Focus Kit has printable worksheets for review and recall.",
+       sections=[
+         ("What spaced repetition means", """<p>Spaced repetition means you come back to a topic several times, with gaps that grow, instead of studying it all in one block. Research on distributed practice finds that spread-out study tends to beat the same hours crammed together, especially when you are tested on the material later.</p>"""),
+         ("A simple review schedule", """<p>There is no single official schedule. A common rule of thumb is to review a new topic after about a day, then after three days, a week, two weeks and a month. If a review goes badly, move the topic back to the start of the list.</p>
+<ul>
+<li><strong>Day 0:</strong> learn the topic and write 3 to 5 test questions about it.</li>
+<li><strong>Day 1 and day 3:</strong> answer the questions from memory, then check.</li>
+<li><strong>Day 7, 14 and 30:</strong> repeat. Spend the time on the questions you missed.</li>
+</ul>
+<p>These gaps are a starting point. If your exam is in three weeks, squeeze them: the last review should land a few days before the exam, not after it.</p>"""),
+         ("Let a calendar do the dates", """<p>Working out review dates for ten topics by hand is where most people give up. The <a href="/tools/spaced-review/">spaced review calendar</a> takes a topic and a start date and shows when to review it again. Put the cards you want to drill into the <a href="/tools/flashcards/">flashcards</a>, which bring a card back when it is due.</p>"""),
+         ("Fit it into your exam plan", """<ul>
+<li>Build the main plan first with the <a href="/study-plan/">exam study plan generator</a>, so you know how many weeks you have.</li>
+<li>Give reviews a fixed slot each day, for example the first 20 minutes, so they do not get squeezed out.</li>
+<li>Log what you get wrong in the <a href="/tools/error-log/">error log</a> and put those topics back at the start of the cycle.</li>
+</ul>
+<p>New to making a plan? Start with <a href="/guides/how-to-create-a-study-schedule/">how to create a study schedule</a>.</p>"""),
+         ("Common mistakes", """<ul>
+<li><strong>Re-reading instead of recalling.</strong> Cover the notes and answer from memory. See <a href="/guides/active-recall-notes/">active recall notes</a>.</li>
+<li><strong>Too many topics at once.</strong> Start with what you are weakest on and add more as reviews get easier.</li>
+<li><strong>Skipping the first reviews.</strong> The early gaps are the short ones. Missing them is what makes later reviews feel like starting over.</li>
+</ul>"""),
+       ]),
+  dict(slug="study-calendar-for-an-exam", tag="Planning", date="2026-11-18",
+       title="Study Calendar for an Exam: Build One and Add It to Google Calendar",
+       h1="How to make a study calendar for an exam (and add it to your calendar app)",
+       desc="Make a study calendar from your exam date: count the weeks, set weekly hours, then export the plan as a calendar file for Google Calendar, Apple Calendar or Outlook.",
+       lead="Start from the exam date and work backwards. Then put the plan in the calendar you already check every day.",
+       card="Build a study calendar from your exam date and export it.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("Step 1: count back from the exam date", """<p>Write down the exam date and count the full weeks until then. Remove any week you already know is lost, such as travel or a work deadline. What is left is the time you really have.</p>
+<p>The <a href="/tools/exam-countdown/">exam countdown</a> does this for you: enter the date, the hours per day and the days per week, and it shows the study hours left.</p>"""),
+         ("Step 2: split the weeks", """<p>Give most weeks to learning content, put practice and review in the middle, and keep the last week light. The <a href="/study-plan/">exam study plan generator</a> does this split for each of the exams it covers. If your exam is not listed, the <a href="/tools/study-schedule-maker/">study schedule maker</a> fits weekly hours around several subjects or exams.</p>"""),
+         ("Step 3: export it to your calendar", """<p>On a plan page, choose “Add to my calendar (.ics)”. The file has one event per study session, plus the exam day. Import it into Google Calendar, Apple Calendar or Outlook. Each session starts at 6 pm; on very long days the start moves earlier so it ends by midnight. Move any session after you import it.</p>
+<p>Prefer paper? The same page prints the plan, with a first week laid out day by day.</p>"""),
+         ("Keep the calendar honest", """<ul>
+<li>Leave one catch-up block a week for sessions you miss.</li>
+<li>Move a missed session, do not delete it. A calendar full of gaps stops being checked.</li>
+<li>Look at the calendar every Sunday and adjust the next week from what you got wrong. The <a href="/tools/practice-score-tracker/">practice score tracker</a> shows which topics need more hours.</li>
+</ul>
+<p>For the full method, read <a href="/guides/how-to-create-a-study-schedule/">how to create a study schedule</a> and <a href="/guides/study-schedule-template/">the free study schedule template</a>.</p>"""),
+       ]),
+  dict(slug="printable-study-plan-pdf", tag="Planning", date="2026-11-18",
+       title="Printable Study Plan (PDF) for Your Exam: Free Generator",
+       h1="Printable study plan (PDF) for your exam: how to get one free",
+       desc="Get a free printable study plan for your exam date: pick your exam, enter your hours, then print or save the plan pack as a PDF from your browser.",
+       lead="Pick your exam, enter your test date and your hours, and print the plan or save it as a PDF. No sign-up.",
+       card="Print or save a week-by-week plan as a PDF, free.",
+       kit="The free Study Focus Kit has printable worksheets, one for each study system.",
+       sections=[
+         ("Get your printable plan in three steps", """<ol>
+<li>Open the <a href="/study-plan/">study plan page</a> and choose your exam.</li>
+<li>Enter your test date and how many hours a day and days a week you can study.</li>
+<li>Choose “Print or save as PDF” for the plan, or “Print my full plan pack” for the longer version. In the print window, set the destination to “Save as PDF” to keep a file.</li>
+</ol>"""),
+         ("What is in the plan pack", """<p>A cover page, an overview, weekly pages, a first week day by day, error log pages and a checklist, filled in with your own dates. The plan runs on your device, so nothing you type is sent to a server.</p>"""),
+         ("Need a blank template instead?", """<p>If you would rather fill in the hours yourself, the <a href="/guides/study-schedule-template/">free study schedule template</a> has a weekly spreadsheet you can print. The Study Focus Kit adds one-page worksheets for planning, recall and review.</p>"""),
+         ("Make the printout work", """<ul>
+<li>Pin it where you study, and tick off each session as you finish it.</li>
+<li>Write the exam date at the top and count down the weeks.</li>
+<li>Rebuild the plan if your date or hours change, then reprint it.</li>
+</ul>
+<p>Want a ready-made planner with extra tracking pages? See the <a href="/planners/">printable planners</a>.</p>"""),
+       ]),
+  dict(slug="how-to-study-while-working-full-time", tag="Planning", date="2026-11-18",
+       title="How to Study for an Exam While Working Full Time",
+       h1="How to study for an exam while working full time",
+       desc="A realistic way to study for a big exam around a full-time job: count your real hours, protect short daily blocks, and use a weekly plan that survives a bad week.",
+       lead="You will not find ten free hours a day. You can find a few small, protected blocks, and plan the exam around them.",
+       card="Plan an exam around a full-time job with small daily blocks.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("Count the hours you really have", """<p>Work out your weekly study hours honestly: weekday evenings, mornings, lunch breaks, weekend blocks. Then multiply by the weeks to the exam. The <a href="/tools/exam-countdown/">exam countdown</a> shows how many study hours that is. If the number is short for your exam, the fix is a later date, not a heroic plan you will drop in week two.</p>"""),
+         ("Use short blocks every day", """<ul>
+<li>Aim for 60 to 90 minutes on workdays and one longer block at the weekend.</li>
+<li>Keep the same time each day so it becomes a habit rather than a decision.</li>
+<li>Use the weak spots in the day for recall and flashcards, and the strong spots for new material.</li>
+</ul>"""),
+         ("Build a plan that survives a bad week", """<p>Enter your real hours into the <a href="/study-plan/">exam study plan generator</a>, not the hours you wish you had. Keep one catch-up block a week. If a week is lost to overtime, move the sessions forward instead of trying to cram them into the next one.</p>"""),
+         ("Protect the habit", """<ul>
+<li>Do the first block before the day gets away from you.</li>
+<li>Turn off distractions. See <a href="/guides/stop-checking-phone-while-studying/">how to stop checking your phone while studying</a>.</li>
+<li>Review what you got wrong each weekend with the <a href="/tools/error-log/">error log</a>.</li>
+</ul>
+<p>Studying for several things at once? Read <a href="/guides/how-to-study-for-multiple-exams/">how to study for multiple exams</a>.</p>"""),
+       ]),
+  dict(slug="two-week-exam-study-plan", tag="Finals", date="2026-11-18",
+       title="2-Week Exam Study Plan: What to Do in 14 Days",
+       h1="A 2-week exam study plan: what to do in 14 days",
+       desc="A 14-day exam study plan: split the time between learning, practice and review, drill your weak spots, and keep the last two days light. Free plan generator included.",
+       lead="Two weeks is enough to improve a lot if you pick what matters, practise from memory and stop adding new material near the end.",
+       card="A 14-day plan: learn, practise, review, then rest.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("Before day 1: list and rank", """<p>List every topic that could be on the exam and mark each one: strong, shaky or unknown. Spend your hours on shaky and unknown first. Check how many hours you really have with the <a href="/tools/exam-countdown/">exam countdown</a>.</p>"""),
+         ("Days 1 to 7: learn the big topics", """<ul>
+<li>Cover the highest-value topics first, in short blocks.</li>
+<li>After each block, close the notes and write what you remember. See <a href="/guides/active-recall-notes/">active recall notes</a>.</li>
+<li>Keep one block a day for practice questions, even in week one.</li>
+</ul>"""),
+         ("Days 8 to 12: practise and fix", """<ul>
+<li>Do timed practice. Log every miss in the <a href="/tools/error-log/">error log</a> and say why you missed it.</li>
+<li>Re-study the topics your misses point to, and retest them two days later.</li>
+<li>Use the <a href="/tools/spaced-review/">spaced review calendar</a> to schedule those retests.</li>
+</ul>"""),
+         ("Days 13 and 14: light review, then rest", """<p>Go through your error log and flashcards, check the exam logistics, and stop studying early the night before. Cramming new material now tends to cost more than it adds. If you want the evidence, read <a href="/guides/does-cramming-work/">does cramming work</a>.</p>"""),
+         ("Build it for your exam", """<p>The <a href="/study-plan/">exam study plan generator</a> turns your date and hours into a day-by-day schedule you can print. For finals week specifically, see <a href="/guides/how-to-study-for-finals-in-a-week/">how to study for finals in a week</a>.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "spaced-repetition-schedule": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3). The review schedule above is a rule of thumb, not an official schedule.",
+  "study-calendar-for-an-exam": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
+  "printable-study-plan-pdf": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
+  "how-to-study-while-working-full-time": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
+  "two-week-exam-study-plan": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "study-schedule-template": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "how-to-create-a-study-schedule": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "how-to-calculate-what-you-need-on-your-final": "Weighted-average grade formula. Check your syllabus for the weights and any drop, scaling or rounding rules.",
