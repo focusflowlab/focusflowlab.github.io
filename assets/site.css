@@ -1004,3 +1004,4 @@ html { scroll-behavior: smooth; }
 .prose ul.videos { padding-left: 0; margin-left: 0; }
 .prose ul.videos li { margin: 0; }
 .prose ul.videos a.video { margin: 0; }
+.prose ul.videos a.video { max-width: none; }
