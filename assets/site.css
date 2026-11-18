@@ -999,3 +999,6 @@ html { scroll-behavior: smooth; }
 
 /* Study-plan hub: the demo video spans the full row above the walkthroughs */
 #videos .videos .video-wide { grid-column: 1 / -1; }
+
+/* Video grids inside .prose: no list indent, so the cards line up with the text above */
+.prose ul.videos { padding-left: 0; margin-left: 0; }
