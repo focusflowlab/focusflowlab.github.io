@@ -100,3 +100,6 @@ fieldset { border: 0; padding: 0; margin: var(--space-lg) 0 0; min-width: 0; }
 }
 
 .topic:active { transform: translateY(1px); }
+
+/* Phones: tighter gap between the reading sections, closer to the other bands */
+@media (max-width: 860px) { .reading { padding-top: 32px; } .reading + .reading { margin-top: 32px; } }
