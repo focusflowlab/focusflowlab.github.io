@@ -92,6 +92,16 @@ PINS = [
        title="Why Exam Study Marathons Fail (and What to Do Instead)", desc="Long study marathons burn you out. Work in 90-minute focus blocks, take real breaks and switch topics between them."),
   dict(slug="focus-kit", board="Study Tips and Focus", headline="5 free study focus worksheets", line="Phone distractions, notes, clutter, syllabus, focus reset.", kind="steps", data=["Stop phone distractions", "Take notes you remember", "Clear mental clutter", "Cover your syllabus faster", "Reset your focus"], link="/#free-kit",
        title="Free Study Focus Kit: 5 Printable Worksheets", desc="Five free printable worksheets, one for each FocusFlow study system. Enter your email and the kit arrives in your inbox."),
+  dict(slug="naplex-length", board="Exam Study Plans", headline="How long is the NAPLEX?", line="225 questions in 6 hours. Pace it.", kind="steps", data=["225 questions", "6 hours", "About 96 seconds each", "Practise at full length"], link="/guides/how-long-is-the-naplex-exam/",
+       title="How Long Is the NAPLEX? Format, Time per Question and a Pacing Plan", desc="The NAPLEX has 225 questions in 6 hours. What that means per question, how to pace each hour and how to practise at that speed."),
+  dict(slug="step1-calendar", board="Exam Study Plans", headline="Your USMLE Step 1 study calendar", line="From your test date to your calendar app.", kind="weeks", data=["Content + questions", "Content + questions", "Practice blocks", "Weak topics", "Light review"], link="/guides/usmle-step-1-study-calendar/",
+       title="USMLE Step 1 Study Calendar: Build One From Your Test Date", desc="Count back the weeks from your Step 1 date, split content and practice, and export the plan to Google Calendar, Apple Calendar or Outlook."),
+  dict(slug="nclex-pdf", board="Exam Study Plans", headline="Free NCLEX study plan, printable", line="Print it or save it as a PDF.", kind="steps", data=["Pick RN or PN", "Enter your test date", "Enter your hours", "Print or save as PDF"], link="/guides/nclex-study-plan-pdf-free/",
+       title="Free NCLEX Study Plan (Printable PDF) From Your Test Date", desc="Enter your NCLEX test date and hours, then print the plan or save it as a PDF. Covers NCLEX-RN and NCLEX-PN, no sign-up."),
+  dict(slug="spaced-calculator", board="Study Tips and Focus", headline="When should you review it again?", line="1, 3, 7, 14 and 30 day gaps.", kind="dates", data=["Day 1", "Day 3", "Day 7", "Day 14", "Day 30"], link="/guides/spaced-repetition-calculator/",
+       title="Spaced Repetition Calculator: Work Out Your Review Dates", desc="Enter the day you learn a topic and get its review dates, with a worked example and a free spaced review calendar."),
+  dict(slug="lsat-calendar", board="Exam Study Plans", headline="Your LSAT study calendar", line="Timed practice from week one.", kind="weeks", data=["Question types", "Question types", "Timed sections", "Full-length tests", "Taper"], link="/guides/lsat-study-calendar/",
+       title="LSAT Study Calendar: Build One From Your Test Date", desc="Count back from your LSAT date, learn each question type, move to timed sections, and export the plan to your calendar app."),
 ]
 
 CSS = """
