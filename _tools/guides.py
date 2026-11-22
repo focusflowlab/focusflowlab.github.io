@@ -862,9 +862,120 @@ GUIDES = [
          ("Days 13 and 14: light review, then rest", """<p>Go through your error log and flashcards, check the exam logistics, and stop studying early the night before. Cramming new material now tends to cost more than it adds. If you want the evidence, read <a href="/guides/does-cramming-work/">does cramming work</a>.</p>"""),
          ("Build it for your exam", """<p>The <a href="/study-plan/">exam study plan generator</a> turns your date and hours into a day-by-day schedule you can print. For finals week specifically, see <a href="/guides/how-to-study-for-finals-in-a-week/">how to study for finals in a week</a>.</p>"""),
        ]),
+  dict(slug="how-long-is-the-naplex-exam", tag="Exam plans", date="2026-11-22",
+       title="How Long Is the NAPLEX? Format, Time per Question and a Pacing Plan",
+       h1="How long is the NAPLEX exam, and how to pace it",
+       desc="The NAPLEX has 225 questions in 6 hours. Here is what that means per question, how to pace each hour, and how to practise at that speed before test day.",
+       lead="The NAPLEX is 225 questions in 6 hours, taken on a computer. That is a long day, so pacing needs practice well before the exam.",
+       card="NAPLEX length, time per question and how to practise pacing.",
+       kit="The free Study Focus Kit has printable worksheets for long study days and recall.",
+       sections=[
+         ("What the exam owner publishes", """<p>NABP says the NAPLEX has 225 questions and lasts 6 hours. Results are reported as pass or fail, with no numeric score. Exam formats change, so confirm the details on the <a href="https://nabp.pharmacy/programs/naplex/" rel="noopener">NABP NAPLEX page</a> before you book. Other exams are listed side by side in <a href="/exam-facts/">exam formats at a glance</a>.</p>"""),
+         ("What that means per question", """<p>Six hours is 360 minutes. Divided by 225 questions, that is about 1.6 minutes per question, or roughly 96 seconds. This is our own arithmetic, not an official figure, and it includes any time you spend on breaks. The <a href="/tools/test-time-calculator/">test time calculator</a> lets you change the numbers if your test day differs.</p>
+<p>Case-based questions usually take longer than a short recall question, so some will run past the average and others will be quick. Use the average as a check, not a rule for each question.</p>"""),
+         ("A simple pacing plan", """<ul>
+<li>Check your progress at the end of each hour. At the one-hour mark you should be roughly 37 questions in (225 divided by 6).</li>
+<li>If a question stalls you for much longer than the average, mark your best guess and move on.</li>
+<li>Keep your break plan fixed: decide before test day when you will stop and what you will eat.</li>
+</ul>"""),
+         ("Practise at exam length", """<p>Doing short sets does not train the stamina a 6-hour sitting needs. Add a few long, timed practice blocks in the weeks before the exam, and log every miss in the <a href="/tools/error-log/">error log</a> so you know what to fix. The <a href="/guides/naplex-study-plan-8-weeks/">8-week NAPLEX study plan</a> shows where those long blocks fit, and the <a href="/study-plan/naplex/">NAPLEX study plan generator</a> builds the schedule from your test date.</p>
+<p>For pacing across any timed exam, read <a href="/guides/how-to-pace-yourself-on-a-timed-exam/">how to pace yourself on a timed exam</a>.</p>"""),
+       ]),
+  dict(slug="usmle-step-1-study-calendar", tag="Exam plans", date="2026-11-22",
+       title="USMLE Step 1 Study Calendar: Build One and Add It to Your Calendar App",
+       h1="USMLE Step 1 study calendar: build one from your test date",
+       desc="Make a USMLE Step 1 study calendar: count the weeks to your test date, split them between content and practice questions, and export the plan to Google Calendar, Apple Calendar or Outlook.",
+       lead="Start from your test date, count back the weeks you really have, and put the plan in the calendar you already check every day.",
+       card="Build a Step 1 calendar from your test date and export it.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("Know the exam you are planning for", """<p>USMLE lists Step 1 as one 8-hour test day. Since 14 May 2026 it runs as 30-minute blocks of up to 20 questions each; before that it was 60-minute blocks of up to 40. Step 1 has been reported pass or fail only since 26 January 2022. Check the current details on <a href="https://www.usmle.org/step-exams/step-1" rel="noopener">usmle.org</a>, and see <a href="/exam-facts/">exam formats at a glance</a> for other exams.</p>"""),
+         ("Step 1: count back from the test date", """<p>Write down the date, count the full weeks to it and remove the weeks you already know are lost. The <a href="/tools/exam-countdown/">exam countdown</a> turns your hours per day and days per week into the study hours you have left. If that number looks short, move the date before you make a plan you will not keep.</p>"""),
+         ("Step 2: split the weeks", """<p>Spend the early weeks on content review, add timed question blocks from the start, and keep a catch-up block each week. The <a href="/study-plan/usmle-step-1/">USMLE Step 1 study plan generator</a> splits your weeks and lays out the first week day by day. For a worked example, read the <a href="/guides/usmle-step-1-study-schedule/">Step 1 study schedule</a>.</p>"""),
+         ("Step 3: export it to your calendar", """<p>On the plan page, choose “Add to my calendar (.ics)”. The file has one event per study session plus the test day. Import it into Google Calendar, Apple Calendar or Outlook, then move any session that does not fit your week. Prefer paper? The same page prints the plan.</p>"""),
+         ("Keep the calendar working", """<ul>
+<li>Move missed sessions instead of deleting them.</li>
+<li>Review your wrong answers every weekend in the <a href="/tools/error-log/">error log</a> and give those topics extra hours.</li>
+<li>Use the <a href="/tools/spaced-review/">spaced review calendar</a> to schedule when to revisit weak topics.</li>
+</ul>
+<p>For the general method, see <a href="/guides/study-calendar-for-an-exam/">how to make a study calendar for an exam</a>.</p>"""),
+       ]),
+  dict(slug="nclex-study-plan-pdf-free", tag="Exam plans", date="2026-11-22",
+       title="Free NCLEX Study Plan (Printable PDF) From Your Test Date",
+       h1="Free NCLEX study plan: print it or save it as a PDF",
+       desc="Get a free NCLEX study plan from your test date: enter your hours, then print the plan or save it as a PDF. Covers NCLEX-RN and NCLEX-PN, no sign-up.",
+       lead="Pick NCLEX-RN or NCLEX-PN, enter your test date and your hours, and print the plan or save it as a PDF.",
+       card="A free NCLEX plan you can print or save as a PDF.",
+       kit="The free Study Focus Kit has printable worksheets for recall and review.",
+       sections=[
+         ("Get your plan in three steps", """<ol>
+<li>Open the <a href="/study-plan/nclex/">NCLEX-RN study plan</a> or the <a href="/study-plan/nclex-pn/">NCLEX-PN study plan</a>.</li>
+<li>Enter your test date, hours per day and days per week.</li>
+<li>Choose “Print or save as PDF”. In the print window, set the destination to “Save as PDF” to keep a file.</li>
+</ol>
+<p>The plan runs on your own device, so nothing you type is sent to a server.</p>"""),
+         ("What the exam looks like", """<p>NCSBN says the NCLEX gives you between 85 and 150 questions with up to 5 hours to finish, for both RN and PN. You can retake it up to 8 times a year, at least 45 days apart, unless your jurisdiction sets a stricter limit. Confirm current rules in the <a href="https://www.ncsbn.org/" rel="noopener">NCSBN</a> candidate bulletin.</p>"""),
+         ("Make the printout work", """<ul>
+<li>Write your test date at the top and count down the weeks.</li>
+<li>Keep one practice-question block in every day.</li>
+<li>Log every miss in the <a href="/tools/error-log/">error log</a> and re-study the pattern behind it.</li>
+</ul>
+<p>Want the method behind it? Read <a href="/guides/how-to-study-for-the-nclex/">how to study for the NCLEX</a> or <a href="/guides/how-to-study-for-the-nclex-pn/">the NCLEX-PN version</a>. Need a ready-made planner with extra tracking pages? See the <a href="/planners/">printable planners</a>.</p>"""),
+       ]),
+  dict(slug="spaced-repetition-calculator", tag="Memory", date="2026-11-22",
+       title="Spaced Repetition Calculator: Work Out Your Review Dates",
+       h1="Spaced repetition calculator: work out your review dates",
+       desc="Enter the day you learn a topic and get its review dates. A worked example with the 1, 3, 7, 14 and 30 day gaps, and a free spaced review calendar that does it for you.",
+       lead="Give it the day you learned a topic and it lists the days to review it again. Here is how the dates work, and a free calculator that does them for you.",
+       card="Turn a learning date into a list of review dates.",
+       kit="The free Study Focus Kit has printable worksheets for review and recall.",
+       sections=[
+         ("Use the calculator", """<p>Open the <a href="/tools/spaced-review/">spaced review calendar</a>, enter a topic and the day you first studied it, and it shows when to review it again. Put the questions you want to drill into the <a href="/tools/flashcards/">flashcards</a>, which bring a card back when it is due.</p>"""),
+         ("A worked example", """<p>Say you learn a topic on Monday 1 March 2027 and use the common gaps of 1, 3, 7, 14 and 30 days. These gaps are a rule of thumb, not an official schedule.</p>
+<ul>
+<li>Learn: Monday 1 March</li>
+<li>Review 1: Tuesday 2 March</li>
+<li>Review 2: Thursday 4 March</li>
+<li>Review 3: Monday 8 March</li>
+<li>Review 4: Monday 15 March</li>
+<li>Review 5: Wednesday 31 March</li>
+</ul>
+<p>If your exam falls before the last review, shorten the gaps so the final review lands a few days before the test.</p>"""),
+         ("When a review goes badly", """<p>If you cannot answer a question from memory, move that topic back to the first gap instead of carrying on down the list. Missing a review is also fine: do it the next day and keep the rest of the dates.</p>"""),
+         ("Fit it into your plan", """<ul>
+<li>Build the main schedule first with the <a href="/study-plan/">exam study plan generator</a>.</li>
+<li>Give reviews a fixed daily slot, for example the first 20 minutes.</li>
+<li>Track what you miss in the <a href="/tools/error-log/">error log</a>.</li>
+</ul>
+<p>For the full method, read the <a href="/guides/spaced-repetition-schedule/">spaced repetition schedule guide</a>.</p>"""),
+       ]),
+  dict(slug="lsat-study-calendar", tag="Exam plans", date="2026-11-22",
+       title="LSAT Study Calendar: Build One From Your Test Date",
+       h1="LSAT study calendar: build one from your test date",
+       desc="Make an LSAT study calendar: count the weeks to your test date, split them between learning question types and timed sections, and export the plan to your calendar app.",
+       lead="Start from your LSAT date, count back the weeks, and put timed practice on the calendar from the first week.",
+       card="Build an LSAT calendar from your test date and export it.",
+       kit="The free Study Focus Kit has printable worksheets for planning and long study days.",
+       sections=[
+         ("What you are planning for", """<p>LSAC lists four sections of 35 minutes each, with a 10-minute break after the second. Two Logical Reasoning sections and one Reading Comprehension section are scored, and the fourth is unscored. Argumentative Writing is separate. LSAC has announced the LSAT will change from August 2027, so check the current format on <a href="https://www.lsac.org/lsat" rel="noopener">lsac.org</a> before you test. See <a href="/exam-facts/">exam formats at a glance</a> for other exams.</p>"""),
+         ("Count back from the date", """<p>Enter your test date, hours per day and days per week in the <a href="/tools/exam-countdown/">exam countdown</a> to see the study hours you have. Remove weeks you already know are lost to travel or deadlines.</p>"""),
+         ("Split the weeks", """<p>Use the early weeks to learn each question type, then move to timed sections, then full-length practice. The <a href="/study-plan/lsat/">LSAT study plan generator</a> splits the weeks from your date, and the <a href="/guides/lsat-study-schedule-12-weeks/">12-week LSAT schedule</a> shows an example.</p>"""),
+         ("Export it", """<p>On the plan page, choose “Add to my calendar (.ics)” and import the file into Google Calendar, Apple Calendar or Outlook. It has one event per study session plus the test day. Move any session that does not fit your week.</p>"""),
+         ("Keep it honest", """<ul>
+<li>Keep one catch-up block a week.</li>
+<li>Log every missed question and why in the <a href="/tools/error-log/">error log</a>.</li>
+<li>Track your practice results with the <a href="/tools/practice-score-tracker/">practice score tracker</a>.</li>
+</ul>
+<p>The general method is in <a href="/guides/study-calendar-for-an-exam/">how to make a study calendar for an exam</a>.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "how-long-is-the-naplex-exam": "NABP. Take the NAPLEX exam, nabp.pharmacy. Time per question is our own arithmetic (360 minutes divided by 225 questions).",
+  "usmle-step-1-study-calendar": "USMLE. Step 1 exam content and format, usmle.org/step-exams/step-1. USMLE. Examination results and scoring, usmle.org.",
+  "nclex-study-plan-pdf-free": "NCSBN. NCLEX candidate bulletin and test plans, ncsbn.org.",
+  "spaced-repetition-calculator": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3). The review gaps above are a rule of thumb, not an official schedule.",
+  "lsat-study-calendar": "LSAC. LSAT format and changes, lsac.org/lsat.",
   "spaced-repetition-schedule": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3). The review schedule above is a rule of thumb, not an official schedule.",
   "study-calendar-for-an-exam": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
   "printable-study-plan-pdf": "Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., &amp; Rohrer, D. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. <em>Psychological Bulletin</em>, 132(3).",
