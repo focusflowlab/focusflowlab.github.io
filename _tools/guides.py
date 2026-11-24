@@ -160,9 +160,9 @@ GUIDES = [
 <tr><td>Spaced</td><td>Three 2-hour sessions over three days: learn and test, review and test, test again</td><td>Each topic is recalled three times, with a night’s sleep between. Weak spots show up while you can still fix them.</td></tr>
 </tbody></table></div>
 <p>The hours are the same. The spaced plan only needs you to start three days earlier. If you have just one night, use the cram steps above and still test yourself instead of re-reading.</p>"""),
-         ("Common questions", """<p><strong>Is it better to cram or sleep?</strong> If you have to choose, sleep. Staying up all night costs you attention on the exam itself, and you can’t recall what you can’t think clearly about.</p>
-<p><strong>Can I cram for an exam I’ll need again later?</strong> You can pass tomorrow, but it won’t last. Cumulative exams, such as a final or a board exam, need spaced review from the start. The <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> shows typical prep times.</p>
-<p><strong>How many days before an exam should I start?</strong> More than one, and ideally enough to review each topic at least twice. The <a href="/tools/exam-countdown/">exam countdown calculator</a> shows how many study days you have left, and the <a href="/guides/how-to-create-a-study-schedule/">study schedule guide</a> turns them into a plan.</p>"""),
+         ("Is it better to cram or sleep?", """<p>If you have to choose, sleep. Staying up all night costs you attention on the exam itself, and you can’t recall what you can’t think clearly about.</p>"""),
+         ("Can I cram for an exam I’ll need again later?", """<p>You can pass tomorrow, but it won’t last. Cumulative exams, such as a final or a board exam, need spaced review from the start. The <a href="/guides/how-long-to-study-for-exams/">study hours guide</a> shows typical prep times.</p>"""),
+         ("How many days before an exam should I start?", """<p>More than one, and ideally enough to review each topic at least twice. The <a href="/tools/exam-countdown/">exam countdown calculator</a> shows how many study days you have left, and the <a href="/guides/how-to-create-a-study-schedule/">study schedule guide</a> turns them into a plan.</p>"""),
          ("Next time, space it out", """<p>Study the same hours across more days instead. Review each topic a day later, a few days later and a week later. The <a href="/tools/spaced-review/">spaced review calendar</a> and <a href="/tools/flashcards/">flashcards</a> do the scheduling for you.</p>"""),
        ]),
   dict(slug="stop-procrastinating-studying", tag="Focus", date="2026-10-27",
@@ -527,6 +527,15 @@ GUIDES = [
        card="An 8-week PANCE plan weighted to the NCCPA blueprint.",
        kit="The free Study Focus Kit has printable worksheets for phone distractions, notes and long study days.",
        sections=[
+         ("The 8-week plan at a glance", """<div class="table-scroll"><table class="mini-table">
+<thead><tr><th scope="col">Weeks</th><th scope="col">Focus</th></tr></thead>
+<tbody>
+<tr><td>1 to 2</td><td>Baseline practice exam, then cardiovascular and pulmonary, the two biggest shares. Daily question blocks and an error log.</td></tr>
+<tr><td>3 to 6</td><td>About two systems a week, ordered by weight and your weak spots, with pediatrics and surgical topics alongside.</td></tr>
+<tr><td>7</td><td>A timed 300-question practice exam in five blocks, then review every miss.</td></tr>
+<tr><td>8</td><td>One mixed question set, your error log, and light days before the exam.</td></tr>
+</tbody></table></div>
+<p>The sections below give the exam format and the detail for each stage. To turn this into dated days, use the <a href="/study-plan/pance/">PANCE study plan generator</a> or the <a href="/planners/pance-8-week-planner/">PANCE 8-week printable planner</a>.</p>"""),
          ("How the PANCE is built", """<p>NCCPA lists the PANCE as a five-hour exam of 300 multiple-choice questions in five blocks of 60 questions, with 60 minutes per block. There are 45 minutes of break time in total between blocks, and you manage it yourself. A 15-minute tutorial comes first. Once you leave a block or its time runs out, you cannot go back to it.</p>
 <p>The blueprint effective January 2025 splits the exam two ways, by medical content and by task. Check <a href="https://www.nccpa.net/become-certified/pance-blueprint/" rel="noopener">nccpa.net</a> for the version that applies to your test date.</p>"""),
          ("Where the questions are", """<p>Largest medical content shares: Cardiovascular 11%, Pulmonary 9%, Gastrointestinal/Nutrition 8% and Musculoskeletal 8%. Infectious Diseases, Neurologic, Psychiatry/Behavioral Science and Reproductive are 7% each. Professional Practice is 6%, and the rest are 4 to 6% each. NCCPA notes that up to 8 to 10% of the exam covers general surgical topics, 12 to 15% focuses on pediatric patients, and the percentages may vary slightly.</p>
