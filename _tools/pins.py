@@ -102,6 +102,8 @@ PINS = [
        title="Spaced Repetition Calculator: Work Out Your Review Dates", desc="Enter the day you learn a topic and get its review dates, with a worked example and a free spaced review calendar."),
   dict(slug="lsat-calendar", board="Exam Study Plans", headline="Your LSAT study calendar", line="Timed practice from week one.", kind="weeks", data=["Question types", "Question types", "Timed sections", "Full-length tests", "Taper"], link="/guides/lsat-study-calendar/",
        title="LSAT Study Calendar: Build One From Your Test Date", desc="Count back from your LSAT date, learn each question type, move to timed sections, and export the plan to your calendar app."),
+  dict(slug="studyplanner-tools", board="Study Tips and Focus", headline="Which study tool does what?", line="Plan, remember, practise.", kind="steps", data=["Plan: a day-by-day schedule", "Remember: flashcards", "Practise: a question bank", "One tool per job"], link="/guides/best-exam-study-planner-tools/",
+       title="Best Exam Study Planner Tools: What Each One Is Good At", desc="Anki, Notion, Todoist, MyStudyLife, AMBOSS and FocusFlow Lab compared by job: planning, remembering and practising."),
 ]
 
 CSS = """
