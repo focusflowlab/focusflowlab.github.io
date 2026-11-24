@@ -881,6 +881,29 @@ GUIDES = [
          ("Practise at exam length", """<p>Doing short sets does not train the stamina a 6-hour sitting needs. Add a few long, timed practice blocks in the weeks before the exam, and log every miss in the <a href="/tools/error-log/">error log</a> so you know what to fix. The <a href="/guides/naplex-study-plan-8-weeks/">8-week NAPLEX study plan</a> shows where those long blocks fit, and the <a href="/study-plan/naplex/">NAPLEX study plan generator</a> builds the schedule from your test date.</p>
 <p>For pacing across any timed exam, read <a href="/guides/how-to-pace-yourself-on-a-timed-exam/">how to pace yourself on a timed exam</a>.</p>"""),
        ]),
+  dict(slug="best-exam-study-planner-tools", tag="Planning", date="2026-11-25",
+       title="Best Exam Study Planner Tools: What Each One Is Good At",
+       h1="Best exam study planner tools, and what each is good for",
+       desc="A fair look at Anki, Notion, Todoist, MyStudyLife, AMBOSS and FocusFlow Lab: what each does well, where it falls short, and which to use for exam prep.",
+       lead="No single tool does everything. Exam prep needs three jobs covered: a schedule, a way to remember facts, and practice questions. Here is which tools cover which job.",
+       card="Anki, Notion, Todoist, MyStudyLife, AMBOSS and FocusFlow Lab compared by job.",
+       kit="The free Study Focus Kit has printable worksheets for planning and recall.",
+       sections=[
+         ("Start with the job, not the app", """<p>Most exam prep comes down to three jobs: <strong>planning</strong> (what to study on which day), <strong>remembering</strong> (flashcards and spaced review) and <strong>practising</strong> (timed questions). Tools are usually strong at one. Pick one tool per job and avoid a setup that takes longer to maintain than to study from.</p>"""),
+         ("Anki: remembering", """<p><a href="https://apps.ankiweb.net/" rel="noopener">Anki</a> is a flashcard program built around spaced repetition, and many medical students use it with shared decks. It is the strongest option here for memorising facts. It does not build a day-by-day schedule for you, so pair it with a planner. See <a href="/guides/spaced-repetition-schedule/">how to set a spaced repetition schedule</a>.</p>"""),
+         ("Notion: flexible notes and templates", """<p><a href="https://www.notion.com/" rel="noopener">Notion</a> lets you build your own tracker, notes database and calendar views. It is flexible, but you have to design the system yourself, and a complicated setup can become its own procrastination project.</p>"""),
+         ("Todoist: task lists", """<p><a href="https://www.todoist.com/" rel="noopener">Todoist</a> is a general task manager. It works well if you want a simple daily checklist, but it does not know about exam dates, content weighting or study pacing, so you plan the schedule yourself.</p>"""),
+         ("MyStudyLife: class and exam diary", """<p><a href="https://www.mystudylife.com/" rel="noopener">MyStudyLife</a> is a student planner for classes, assignments and exam dates. It suits school and university timetables more than a multi-week board exam plan.</p>"""),
+         ("AMBOSS: practice questions", """<p><a href="https://www.amboss.com/" rel="noopener">AMBOSS</a> is a medical library and question bank. It covers the practising job for medical exams. It is a question bank, not a schedule planner.</p>"""),
+         ("FocusFlow Lab: the schedule", """<p>FocusFlow Lab covers the planning job. The <a href="/study-plan/">exam study plan generator</a> turns your test date and weekly hours into a day-by-day schedule you can print or add to your calendar, with exam-specific plans such as <a href="/study-plan/nclex/">NCLEX</a>, <a href="/study-plan/mcat/">MCAT</a> and <a href="/study-plan/naplex/">NAPLEX</a>. The <a href="/tools/">free tools</a> add a <a href="/tools/spaced-review/">spaced review calendar</a>, <a href="/tools/flashcards/">flashcards</a> and an <a href="/tools/error-log/">error log</a>, and the <a href="/planners/">printable planners</a> are there if you prefer paper.</p>
+<p>It is not a question bank and it does not replace one. If you need practice questions, use a bank made for your exam.</p>"""),
+         ("A simple combination", """<ul>
+<li>Schedule: the <a href="/study-plan/">study plan generator</a> or a calendar you already use.</li>
+<li>Memory: Anki or <a href="/tools/flashcards/">flashcards</a>.</li>
+<li>Practice: your exam's question bank, with misses logged in the <a href="/tools/error-log/">error log</a>.</li>
+</ul>
+<p>Details of each tool change over time, so check the tool's own site for current features and pricing.</p>"""),
+       ]),
   dict(slug="usmle-step-1-study-calendar", tag="Exam plans", date="2026-11-22",
        title="USMLE Step 1 Study Calendar: Build One and Add It to Your Calendar App",
        h1="USMLE Step 1 study calendar: build one from your test date",
@@ -971,6 +994,7 @@ GUIDES = [
 ]
 
 REFS = {
+  "best-exam-study-planner-tools": "Tool descriptions are summarised from each product's own site (apps.ankiweb.net, notion.com, todoist.com, mystudylife.com, amboss.com). Features and pricing change; check each site.",
   "how-long-is-the-naplex-exam": "NABP. Take the NAPLEX exam, nabp.pharmacy. Time per question is our own arithmetic (360 minutes divided by 225 questions).",
   "usmle-step-1-study-calendar": "USMLE. Step 1 exam content and format, usmle.org/step-exams/step-1. USMLE. Examination results and scoring, usmle.org.",
   "nclex-study-plan-pdf-free": "NCSBN. NCLEX candidate bulletin and test plans, ncsbn.org.",
@@ -1037,6 +1061,7 @@ RELATED = {
     "printable-study-plan-pdf": [("Exam study plan generator", "/study-plan/"), ("Free NCLEX study plan (PDF)", "/guides/nclex-study-plan-pdf-free/"), ("Printable planners", "/planners/")],
     "how-to-study-while-working-full-time": [("Exam study plan generator", "/study-plan/"), ("Study calendar for an exam", "/guides/study-calendar-for-an-exam/"), ("Exam countdown", "/tools/exam-countdown/")],
     "two-week-exam-study-plan": [("Exam study plan generator", "/study-plan/"), ("Study finals in a week", "/guides/how-to-study-for-finals-in-a-week/"), ("Spaced review calendar", "/tools/spaced-review/")],
+    "best-exam-study-planner-tools": [("Exam study plan generator", "/study-plan/"), ("Spaced review calendar", "/tools/spaced-review/"), ("Printable planners", "/planners/"), ("Spaced repetition schedule", "/guides/spaced-repetition-schedule/")],
     "how-long-is-the-naplex-exam": [("NAPLEX study plan generator", "/study-plan/naplex/"), ("Test time calculator", "/tools/test-time-calculator/"), ("NAPLEX 8-week study plan", "/guides/naplex-study-plan-8-weeks/")],
     "usmle-step-1-study-calendar": [("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("USMLE Step 1 study schedule", "/guides/usmle-step-1-study-schedule/"), ("USMLE Step 1 8-week printable planner", "/planners/")],
     "nclex-study-plan-pdf-free": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/")],
