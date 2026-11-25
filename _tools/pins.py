@@ -106,6 +106,8 @@ PINS = [
        title="Best Exam Study Planner Tools: What Each One Is Good At", desc="Anki, Notion, Todoist, MyStudyLife, AMBOSS and FocusFlow Lab compared by job: planning, remembering and practising."),
   dict(slug="exam-length-compare", board="Exam Study Plans", headline="Minutes per question, by exam", line="PANCE 1.0. GMAT 2.1. NCLEX up to 3.5.", kind="steps", data=["PANCE: 1.0 min", "TEAS: 1.2 min", "MCAT, NAPLEX, GRE: 1.6 min", "GMAT: 2.1 min"], link="/guides/exam-length-time-per-question/",
        title="Exam Length and Time per Question: 12 Exams Compared", desc="Questions, time allowed and minutes per question for NCLEX, MCAT, PANCE, NAPLEX, GRE, GMAT and more, from the official sources."),
+  dict(slug="nursing-med-planner", board="Study Tips and Focus", headline="Planner for nursing and med students", line="Schedule, review, practice.", kind="steps", data=["Schedule: dated, back from exam day", "Review: spaced, not rereading", "Practice: a question bank", "Log every miss"], link="/guides/best-study-planner-for-nursing-and-medical-students/",
+       title="Best Study Planner for Nursing and Medical Students", desc="What nursing and medical students need from a planner, and which tool covers the schedule, the review and the practice questions."),
 ]
 
 CSS = """

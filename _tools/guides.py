@@ -911,7 +911,8 @@ GUIDES = [
 <li>Memory: Anki or <a href="/tools/flashcards/">flashcards</a>.</li>
 <li>Practice: your exam's question bank, with misses logged in the <a href="/tools/error-log/">error log</a>.</li>
 </ul>
-<p>Details of each tool change over time, so check the tool's own site for current features and pricing.</p>"""),
+<p>Details of each tool change over time, so check the tool's own site for current features and pricing.</p>
+<p>Studying for a nursing or medical exam? Read <a href="/guides/best-study-planner-for-nursing-and-medical-students/">the best study planner for nursing and medical students</a>.</p>"""),
        ]),
   dict(slug="usmle-step-1-study-calendar", tag="Exam plans", date="2026-11-22",
        title="USMLE Step 1 Study Calendar: Build One and Add It to Your Calendar App",
@@ -1042,9 +1043,39 @@ GUIDES = [
 </ul>
 <p>Exam owners change formats, so confirm the numbers on the official site before you book. FocusFlow Lab is independent of every exam owner named here.</p>"""),
        ]),
+  dict(slug="best-study-planner-for-nursing-and-medical-students", tag="Planning", date="2026-11-25",
+       title="Best Study Planner for Nursing and Medical Students",
+       h1="Best study planner for nursing and medical students",
+       desc="What nursing and medical students need from a study planner, and how Anki, Notion, Todoist, MyStudyLife, AMBOSS, question banks and FocusFlow Lab each fit.",
+       lead="Short answer: no single app does it all. Use a dated schedule counted back from your exam, a spaced review method for facts, and a question bank for practice. FocusFlow Lab covers the schedule and review; it is not a question bank.",
+       card="What nursing and medical students need, and which tool covers each job.",
+       kit="The free Study Focus Kit has printable worksheets for planning and recall.",
+       sections=[
+         ("What does a nursing or medical student need from a study planner?", """<p>Three things: a <strong>dated schedule</strong> that runs back from your exam day, <strong>spaced review</strong> so facts are revisited before they fade, and a way to <strong>track practice questions</strong> and the mistakes in them. A planner that only lists tasks covers the first job at best.</p>"""),
+         ("How should the schedule work?", """<p>Count the full weeks to your test date, subtract the weeks you cannot study, and split what is left between content review and timed questions, with one catch-up block each week. The <a href="/tools/exam-countdown/">exam countdown</a> turns your weekly hours into the hours you have left. Our own arithmetic: 8 weeks at 3 hours a day, 5 days a week is 120 hours.</p>"""),
+         ("How should you review so facts stick?", """<p>Revisit material at growing gaps instead of rereading it once. A rule of thumb is a review after one day, one week and one month; it is not an official schedule. The <a href="/tools/spaced-review/">spaced review calendar</a> and <a href="/tools/flashcards/">flashcards</a> do this for free, and <a href="/guides/spaced-repetition-schedule/">how to set a spaced repetition schedule</a> explains the method.</p>"""),
+         ("How should you track practice questions?", """<p>Log every miss with the reason you got it wrong (knowledge gap, misread, rushed) and revisit the pattern each weekend. The free <a href="/tools/error-log/">error log</a> does this, and the <a href="/tools/test-time-calculator/">test time calculator</a> gives minutes per question so you can practise at exam pace. Exam lengths are compared in <a href="/guides/exam-length-time-per-question/">exam length and time per question</a>.</p>"""),
+         ("How do Anki, Notion, Todoist and MyStudyLife compare?", """<ul>
+<li><strong>Anki</strong> (<a href="https://apps.ankiweb.net/" rel="noopener">apps.ankiweb.net</a>) is a flashcard program built on spaced repetition. It covers remembering; it does not build an exam schedule.</li>
+<li><strong>Notion</strong> (<a href="https://www.notion.com/" rel="noopener">notion.com</a>) is a flexible workspace for notes, databases and calendars. You design the system yourself.</li>
+<li><strong>Todoist</strong> (<a href="https://www.todoist.com/" rel="noopener">todoist.com</a>) is a general task manager. It does not know about exam dates or pacing.</li>
+<li><strong>MyStudyLife</strong> (<a href="https://www.mystudylife.com/" rel="noopener">mystudylife.com</a>) is a student planner for classes, assignments and exams, better suited to term timetables than a board-exam countdown.</li>
+</ul>
+<p>Features and pricing change, so check each site for current details.</p>"""),
+         ("What about AMBOSS and question banks like UWorld?", """<p><a href="https://www.amboss.com/" rel="noopener">AMBOSS</a> describes itself as a medical library with a question bank. Question banks from other providers, such as UWorld, are built for the practising job: they supply the questions and explanations. They are not schedule planners, and they are separate products from FocusFlow Lab. Check each provider's own site for what it covers for your exam and what it costs.</p>"""),
+         ("Where does FocusFlow Lab fit?", """<p>FocusFlow Lab covers the schedule and the review. Pick your exam and enter your test date and weekly hours to get a day-by-day plan you can print or add to your calendar:</p>
+<ul>
+<li><a href="/study-plan/nclex/">NCLEX-RN</a> and <a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+<li><a href="/study-plan/mcat/">MCAT</a> and <a href="/study-plan/usmle-step-1/">USMLE Step 1</a></li>
+<li><a href="/study-plan/naplex/">NAPLEX</a> and <a href="/study-plan/pance/">PANCE</a>; <a href="/study-plan/teas/">TEAS</a> for nursing entry</li>
+</ul>
+<p>The <a href="/tools/">free tools</a> add spaced review, flashcards, an error log and a test time calculator, and the <a href="/planners/">printable planners</a> are there if you prefer paper.</p>"""),
+         ("Is FocusFlow Lab a question bank?", """<p>No. FocusFlow Lab has no practice questions and does not replace a question bank. Use a bank made for your exam and log your misses in the error log. FocusFlow Lab is independent of every exam owner and question-bank provider named here. For a wider look at tools, see <a href="/guides/best-exam-study-planner-tools/">best exam study planner tools</a>.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "best-study-planner-for-nursing-and-medical-students": "Tool descriptions are summarised from each product's own site (apps.ankiweb.net, notion.com, todoist.com, mystudylife.com, amboss.com). Features and pricing change; check each site. Hours are our own arithmetic. The review gaps are a rule of thumb, not an official schedule.",
   "exam-length-time-per-question": "NCSBN, NCLEX candidate bulletin, ncsbn.org. ATI, TEAS exam details, atitesting.com. AAMC, what is on the MCAT exam, aamc.org. NCCPA, PANCE blueprint, nccpa.net. NABP, take the NAPLEX, nabp.pharmacy. ETS, GRE General Test structure, ets.org/gre. GMAC, GMAT exam structure, mba.com. LSAC, LSAT FAQs, lsac.org. AICPA, what is tested on the CPA Exam and CPA Exam scoring, aicpa-cima.com. Minutes per question and questions per hour are our own arithmetic, not official figures.",
   "best-exam-study-planner-tools": "Tool descriptions are summarised from each product's own site (apps.ankiweb.net, notion.com, todoist.com, mystudylife.com, amboss.com). Features and pricing change; check each site.",
   "how-long-is-the-naplex-exam": "NABP. Take the NAPLEX exam, nabp.pharmacy. Time per question is our own arithmetic (360 minutes divided by 225 questions).",
@@ -1107,6 +1138,7 @@ def nice_date(iso):
     return f"{int(iso[8:10])} {MONTHS[int(iso[5:7]) - 1]} {iso[:4]}"
 
 RELATED = {
+    "best-study-planner-for-nursing-and-medical-students": [("Best exam study planner tools", "/guides/best-exam-study-planner-tools/"), ("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("Spaced review calendar", "/tools/spaced-review/"), ("Printable planners", "/planners/")],
     "spaced-repetition-schedule": [("Spaced repetition calculator", "/guides/spaced-repetition-calculator/"), ("Spaced review calendar", "/tools/spaced-review/"), ("Flashcards", "/tools/flashcards/")],
     "spaced-repetition-calculator": [("Spaced review calendar", "/tools/spaced-review/"), ("Spaced repetition schedule", "/guides/spaced-repetition-schedule/"), ("Flashcards", "/tools/flashcards/")],
     "study-calendar-for-an-exam": [("Exam study plan generator", "/study-plan/"), ("USMLE Step 1 study calendar", "/guides/usmle-step-1-study-calendar/"), ("LSAT study calendar", "/guides/lsat-study-calendar/"), ("Printable study plan (PDF)", "/guides/printable-study-plan-pdf/")],
@@ -1129,15 +1161,15 @@ RELATED = {
     "dat-study-schedule-10-weeks": [("DAT study plan generator", "/study-plan/dat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("DAT 10-week printable planner", "/planners/")],
     "pance-study-plan-8-weeks": [("PANCE study plan generator", "/study-plan/pance/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("PANCE 8-week printable planner", "/planners/")],
     "naplex-study-plan-8-weeks": [("NAPLEX study plan generator", "/study-plan/naplex/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("NAPLEX 8-week printable planner", "/planners/"), ("How long is the NAPLEX exam", "/guides/how-long-is-the-naplex-exam/")],
-    "usmle-step-1-study-schedule": [("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("USMLE Step 1 8-week printable planner", "/planners/"), ("USMLE Step 1 study calendar", "/guides/usmle-step-1-study-calendar/")],
+    "usmle-step-1-study-schedule": [("Best study planner for nursing and medical students", "/guides/best-study-planner-for-nursing-and-medical-students/"), ("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("USMLE Step 1 8-week printable planner", "/planners/"), ("USMLE Step 1 study calendar", "/guides/usmle-step-1-study-calendar/")],
     "lsat-study-schedule-12-weeks": [("LSAT study plan generator", "/study-plan/lsat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("LSAT 12-week printable planner", "/planners/"), ("LSAT study calendar", "/guides/lsat-study-calendar/")],
     "gre-study-plan-8-weeks": [("GRE study plan generator", "/study-plan/gre/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("GRE 8-week printable planner", "/planners/")],
-    "how-to-study-for-the-nclex": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("How to study for the NCLEX-PN", "/guides/how-to-study-for-the-nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/"), ("Free NCLEX study plan (PDF)", "/guides/nclex-study-plan-pdf-free/")],
+    "how-to-study-for-the-nclex": [("Best study planner for nursing and medical students", "/guides/best-study-planner-for-nursing-and-medical-students/"), ("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("How to study for the NCLEX-PN", "/guides/how-to-study-for-the-nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/"), ("Free NCLEX study plan (PDF)", "/guides/nclex-study-plan-pdf-free/")],
     "how-to-study-for-the-teas": [("TEAS study plan generator", "/study-plan/teas/"), ("How to study for the NCLEX", "/guides/how-to-study-for-the-nclex/"), ("Printable planners", "/planners/")],
     "cpa-study-schedule": [("CPA FAR plan generator", "/study-plan/cpa-far/"), ("CPA AUD plan generator", "/study-plan/cpa-aud/"), ("CPA REG plan generator", "/study-plan/cpa-reg/"), ("CPA FAR 10-week printable planner", "/planners/")],
     "how-long-to-study-for-exams": [("All free exam study plans", "/study-plan/"), ("Exam formats at a glance", "/exam-facts/"), ("How to pace a timed exam", "/guides/how-to-pace-yourself-on-a-timed-exam/"), ("How to create a study schedule", "/guides/how-to-create-a-study-schedule/"), ("Exam countdown calculator", "/tools/exam-countdown/"), ("Printable planners", "/planners/")],
     "mcat-error-log-template": [("MCAT study plan generator", "/study-plan/mcat/"), ("A 3-month MCAT study schedule", "/guides/mcat-study-schedule-3-months/"), ("MCAT 16-week printable planner", "/planners/")],
-    "mcat-study-schedule-3-months": [("MCAT study plan generator", "/study-plan/mcat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("MCAT 16-week printable planner", "/planners/")],
+    "mcat-study-schedule-3-months": [("Best study planner for nursing and medical students", "/guides/best-study-planner-for-nursing-and-medical-students/"), ("MCAT study plan generator", "/study-plan/mcat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("MCAT 16-week printable planner", "/planners/")],
 }
 
 def related_block(slug):
