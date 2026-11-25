@@ -1000,9 +1000,52 @@ GUIDES = [
 </ul>
 <p>The general method is in <a href="/guides/study-calendar-for-an-exam/">how to make a study calendar for an exam</a>.</p>"""),
        ]),
+  dict(slug="exam-length-time-per-question", tag="Exam plans", date="2026-11-25",
+       title="Exam Length and Time per Question: 12 Exams Compared",
+       h1="Exam length and time per question: 12 exams compared",
+       desc="How many questions and how much time each exam gives you, from the official sources, with minutes per question and questions per hour for NCLEX, MCAT, PANCE, NAPLEX, GRE, GMAT and more.",
+       lead="PANCE gives you about 1 minute per question. The GMAT Focus Edition gives about 2.1. The NCLEX allows 2 to 3.5 minutes, depending on how many questions you get. The table has the rest.",
+       card="Questions, time and minutes per question for 12 exams in one table.",
+       kit="The free Study Focus Kit has printable worksheets for planning and timed practice.",
+       sections=[
+         ("The short answer", """<p>The fastest pace in this table is the PANCE, at about 1 minute per question (300 questions in 300 minutes). The slowest is the NCLEX, which allows up to 5 hours for 85 to 150 questions. The other exams sit between 1.2 and 2.1 minutes per question. The question and time figures are the exam owners' published numbers. Minutes per question and questions per hour are our own arithmetic.</p>"""),
+         ("Exam length compared", """<p>Where an exam has several sections, we added the section times and counted only the questions each owner lists. The CPA sections mix multiple-choice questions with task-based simulations that take much longer than a multiple-choice question, so a single minutes-per-question figure would mislead and we leave it out.</p>
+<div class="table-scroll"><table class="mini-table">
+<thead><tr><th>Exam</th><th>Questions</th><th>Time allowed</th><th>Minutes per question</th><th>Questions per hour</th><th>Other format notes</th></tr></thead>
+<tbody>
+<tr><td>NCLEX-RN</td><td>85 to 150</td><td>Up to 5 hours</td><td>2.0 to 3.5</td><td>17 to 30</td><td>Break time not in what we checked</td></tr>
+<tr><td>NCLEX-PN</td><td>85 to 150</td><td>Up to 5 hours</td><td>2.0 to 3.5</td><td>17 to 30</td><td>Break time not in what we checked</td></tr>
+<tr><td>ATI TEAS</td><td>170</td><td>209 minutes</td><td>1.2</td><td>49</td><td>Some questions are unscored practice items</td></tr>
+<tr><td>MCAT</td><td>230</td><td>6 h 15 min testing (7 h 30 min in the seat)</td><td>1.6</td><td>37</td><td>About 75 minutes of breaks</td></tr>
+<tr><td>PANCE</td><td>300</td><td>300 minutes in five 60-minute blocks</td><td>1.0</td><td>60</td><td>45 minutes of breaks</td></tr>
+<tr><td>NAPLEX</td><td>225</td><td>6 hours</td><td>1.6</td><td>38</td><td>Pass or fail, no numeric score</td></tr>
+<tr><td>GRE General</td><td>54 (plus one writing task)</td><td>About 1 h 58 min in total; 88 minutes for the Verbal and Quant sections</td><td>1.6</td><td>37</td><td>Verbal and Quant adapt by section</td></tr>
+<tr><td>GMAT Focus</td><td>64</td><td>2 h 15 min</td><td>2.1</td><td>28</td><td>Score 205 to 805</td></tr>
+<tr><td>LSAT</td><td>Not in what we checked</td><td>Four 35-minute sections (140 minutes)</td><td>n/a</td><td>n/a</td><td>10-minute break after section 2; one section unscored</td></tr>
+<tr><td>CPA FAR</td><td>50 multiple-choice + 7 simulations</td><td>4 hours</td><td>n/a</td><td>n/a</td><td>Scored 0 to 99, 75 to pass</td></tr>
+<tr><td>CPA AUD</td><td>78 multiple-choice + 7 simulations</td><td>4 hours</td><td>n/a</td><td>n/a</td><td>Scored 0 to 99, 75 to pass</td></tr>
+<tr><td>CPA REG</td><td>72 multiple-choice + 8 simulations</td><td>4 hours</td><td>n/a</td><td>n/a</td><td>Scored 0 to 99, 75 to pass</td></tr>
+</tbody></table></div>
+<p>The figures are rounded. The NCLEX range comes from dividing 300 minutes by 150 and by 85 questions. The GRE row counts the Verbal and Quantitative Reasoning sections only (12 + 15 + 12 + 15 questions in 18 + 23 + 21 + 26 minutes). The MCAT row divides 375 testing minutes by 230 questions. Not every owner lists its break time, so a missing break note here means we have not checked it, not that there are no breaks. USMLE Step 1 and the DAT are not in the table because we have not checked both a question count and a total time for them; see <a href="/exam-facts/">exam formats at a glance</a> for what we have.</p>"""),
+         ("What the numbers mean for pacing", """<ul>
+<li>Under 1.5 minutes per question (PANCE, TEAS): speed is the skill. Practise in timed blocks, not open-ended sets.</li>
+<li>Around 1.6 minutes (MCAT, NAPLEX, GRE): you can read a stem and think, but not for long. Long timed sets matter.</li>
+<li>2 minutes or more (GMAT, NCLEX): harder, longer questions, so stamina and decision making count more than raw speed.</li>
+</ul>
+<p>Work out your own target for any test length with the <a href="/tools/test-time-calculator/">test time calculator</a>, and see <a href="/guides/how-to-pace-yourself-on-a-timed-exam/">how to pace yourself on a timed exam</a> for the method.</p>"""),
+         ("Build a plan for your exam", """<p>Pick your exam for the free study plan generator, or read <a href="/exam-facts/">exam formats at a glance</a> for retake rules and scoring.</p>
+<ul>
+<li><a href="/study-plan/nclex/">NCLEX-RN</a> and <a href="/study-plan/nclex-pn/">NCLEX-PN</a></li>
+<li><a href="/study-plan/teas/">ATI TEAS</a>, <a href="/study-plan/mcat/">MCAT</a>, <a href="/study-plan/pance/">PANCE</a>, <a href="/study-plan/naplex/">NAPLEX</a></li>
+<li><a href="/study-plan/gre/">GRE</a>, <a href="/study-plan/gmat/">GMAT</a>, <a href="/study-plan/lsat/">LSAT</a></li>
+<li><a href="/study-plan/cpa-far/">CPA FAR</a>, <a href="/study-plan/cpa-aud/">CPA AUD</a>, <a href="/study-plan/cpa-reg/">CPA REG</a></li>
+</ul>
+<p>Exam owners change formats, so confirm the numbers on the official site before you book. FocusFlow Lab is independent of every exam owner named here.</p>"""),
+       ]),
 ]
 
 REFS = {
+  "exam-length-time-per-question": "NCSBN, NCLEX candidate bulletin, ncsbn.org. ATI, TEAS exam details, atitesting.com. AAMC, what is on the MCAT exam, aamc.org. NCCPA, PANCE blueprint, nccpa.net. NABP, take the NAPLEX, nabp.pharmacy. ETS, GRE General Test structure, ets.org/gre. GMAC, GMAT exam structure, mba.com. LSAC, LSAT FAQs, lsac.org. AICPA, what is tested on the CPA Exam and CPA Exam scoring, aicpa-cima.com. Minutes per question and questions per hour are our own arithmetic, not official figures.",
   "best-exam-study-planner-tools": "Tool descriptions are summarised from each product's own site (apps.ankiweb.net, notion.com, todoist.com, mystudylife.com, amboss.com). Features and pricing change; check each site.",
   "how-long-is-the-naplex-exam": "NABP. Take the NAPLEX exam, nabp.pharmacy. Time per question is our own arithmetic (360 minutes divided by 225 questions).",
   "usmle-step-1-study-calendar": "USMLE. Step 1 exam content and format, usmle.org/step-exams/step-1. USMLE. Examination results and scoring, usmle.org.",
@@ -1070,8 +1113,9 @@ RELATED = {
     "printable-study-plan-pdf": [("Exam study plan generator", "/study-plan/"), ("Free NCLEX study plan (PDF)", "/guides/nclex-study-plan-pdf-free/"), ("Printable planners", "/planners/")],
     "how-to-study-while-working-full-time": [("Exam study plan generator", "/study-plan/"), ("Study calendar for an exam", "/guides/study-calendar-for-an-exam/"), ("Exam countdown", "/tools/exam-countdown/")],
     "two-week-exam-study-plan": [("Exam study plan generator", "/study-plan/"), ("Study finals in a week", "/guides/how-to-study-for-finals-in-a-week/"), ("Spaced review calendar", "/tools/spaced-review/")],
+    "exam-length-time-per-question": [("Exam formats at a glance", "/exam-facts/"), ("Test time calculator", "/tools/test-time-calculator/"), ("Exam study plan generator", "/study-plan/"), ("How to pace yourself on a timed exam", "/guides/how-to-pace-yourself-on-a-timed-exam/")],
     "best-exam-study-planner-tools": [("Exam study plan generator", "/study-plan/"), ("Spaced review calendar", "/tools/spaced-review/"), ("Printable planners", "/planners/"), ("Spaced repetition schedule", "/guides/spaced-repetition-schedule/")],
-    "how-long-is-the-naplex-exam": [("NAPLEX study plan generator", "/study-plan/naplex/"), ("Test time calculator", "/tools/test-time-calculator/"), ("NAPLEX 8-week study plan", "/guides/naplex-study-plan-8-weeks/")],
+    "how-long-is-the-naplex-exam": [("Exam length compared, 12 exams", "/guides/exam-length-time-per-question/"), ("NAPLEX study plan generator", "/study-plan/naplex/"), ("Test time calculator", "/tools/test-time-calculator/"), ("NAPLEX 8-week study plan", "/guides/naplex-study-plan-8-weeks/")],
     "usmle-step-1-study-calendar": [("USMLE Step 1 study plan generator", "/study-plan/usmle-step-1/"), ("USMLE Step 1 study schedule", "/guides/usmle-step-1-study-schedule/"), ("USMLE Step 1 8-week printable planner", "/planners/")],
     "nclex-study-plan-pdf-free": [("NCLEX-RN study plan generator", "/study-plan/nclex/"), ("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("NCLEX-RN 8-week printable planner", "/planners/")],
     "lsat-study-calendar": [("LSAT study plan generator", "/study-plan/lsat/"), ("12-week LSAT schedule", "/guides/lsat-study-schedule-12-weeks/"), ("LSAT 12-week printable planner", "/planners/")],
@@ -1080,7 +1124,7 @@ RELATED = {
     "how-to-create-a-study-schedule": [("Study schedule maker", "/tools/study-schedule-maker/"), ("All free exam study plans", "/study-plan/"), ("Printable planners", "/planners/"), ("Printable study plan (PDF)", "/guides/printable-study-plan-pdf/")],
     "how-to-calculate-what-you-need-on-your-final": [("Final grade calculator", "/tools/final-grade-calculator/"), ("Weighted grade calculator", "/tools/weighted-grade-calculator/"), ("GPA calculator", "/tools/gpa-calculator/")],
     "how-to-study-for-the-nclex-pn": [("NCLEX-PN study plan generator", "/study-plan/nclex-pn/"), ("How to study for the NCLEX-RN", "/guides/how-to-study-for-the-nclex/"), ("NCLEX-PN 6-week printable planner", "/planners/nclex-pn-6-week-planner/"), ("Free NCLEX study plan (PDF)", "/guides/nclex-study-plan-pdf-free/")],
-    "how-to-pace-yourself-on-a-timed-exam": [("Test time calculator", "/tools/test-time-calculator/"), ("Exam formats at a glance", "/exam-facts/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("All free exam study plans", "/study-plan/")],
+    "how-to-pace-yourself-on-a-timed-exam": [("Exam length compared, 12 exams", "/guides/exam-length-time-per-question/"), ("Test time calculator", "/tools/test-time-calculator/"), ("Exam formats at a glance", "/exam-facts/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("All free exam study plans", "/study-plan/")],
     "gmat-study-plan-8-weeks": [("GMAT study plan generator", "/study-plan/gmat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("GMAT 8-week printable planner", "/planners/")],
     "dat-study-schedule-10-weeks": [("DAT study plan generator", "/study-plan/dat/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("DAT 10-week printable planner", "/planners/")],
     "pance-study-plan-8-weeks": [("PANCE study plan generator", "/study-plan/pance/"), ("How long to study for each exam", "/guides/how-long-to-study-for-exams/"), ("PANCE 8-week printable planner", "/planners/")],

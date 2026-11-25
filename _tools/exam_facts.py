@@ -46,7 +46,7 @@ body = f"""{crumb_html}
           </ol>
         </nav>
         <article class="prose">
-        <p>Exam owners change formats, so treat this page as a starting point and confirm on the official site before you book. Each section links to its sources. FocusFlow Lab is independent of every exam owner listed here. To turn a test length into minutes per question, use the <a href="/tools/test-time-calculator/">test time calculator</a>. For how long people usually prepare, see <a href="/guides/how-long-to-study-for-exams/">how long to study for each exam</a>.</p>
+        <p>Exam owners change formats, so treat this page as a starting point and confirm on the official site before you book. Each section links to its sources. FocusFlow Lab is independent of every exam owner listed here. To turn a test length into minutes per question, use the <a href="/tools/test-time-calculator/">test time calculator</a>, or see them side by side in <a href="/guides/exam-length-time-per-question/">exam length and time per question</a>. For how long people usually prepare, see <a href="/guides/how-long-to-study-for-exams/">how long to study for each exam</a>.</p>
 {chr(10).join(secs)}
         </article>
       </div>

@@ -104,6 +104,8 @@ PINS = [
        title="LSAT Study Calendar: Build One From Your Test Date", desc="Count back from your LSAT date, learn each question type, move to timed sections, and export the plan to your calendar app."),
   dict(slug="studyplanner-tools", board="Study Tips and Focus", headline="Which study tool does what?", line="Plan, remember, practise.", kind="steps", data=["Plan: a day-by-day schedule", "Remember: flashcards", "Practise: a question bank", "One tool per job"], link="/guides/best-exam-study-planner-tools/",
        title="Best Exam Study Planner Tools: What Each One Is Good At", desc="Anki, Notion, Todoist, MyStudyLife, AMBOSS and FocusFlow Lab compared by job: planning, remembering and practising."),
+  dict(slug="exam-length-compare", board="Exam Study Plans", headline="Minutes per question, by exam", line="PANCE 1.0. GMAT 2.1. NCLEX up to 3.5.", kind="steps", data=["PANCE: 1.0 min", "TEAS: 1.2 min", "MCAT, NAPLEX, GRE: 1.6 min", "GMAT: 2.1 min"], link="/guides/exam-length-time-per-question/",
+       title="Exam Length and Time per Question: 12 Exams Compared", desc="Questions, time allowed and minutes per question for NCLEX, MCAT, PANCE, NAPLEX, GRE, GMAT and more, from the official sources."),
 ]
 
 CSS = """
